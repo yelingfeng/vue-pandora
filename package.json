@@ -1,6 +1,6 @@
 {
-  "name": "vue-pandora",
-  "version": "0.0.1",
+  "name": "ylf-vue-pandora",
+  "version": "1.0.0",
   "description": "A component library of custom secondary encapsulation about element-ui",
   "main": "dist/vue-pandora.umd.min.js",
   "repository": "https://github.com/yelingfeng/vue-pandora.git",
