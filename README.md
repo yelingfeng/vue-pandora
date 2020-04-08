@@ -32,7 +32,7 @@ vue.use(VuePandora)
 </template>
 <script lang="ts">
 // @ is an alias to /src
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Ref } from 'vue-property-decorator'
 import { VForm } from 'vue-pandora'
 import axios from 'axios'
 @Component({})
