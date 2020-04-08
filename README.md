@@ -1,5 +1,9 @@
 # vue-pandora
 
+![travis-image](https://travis-ci.com/yelingfeng/vue-pandora.svg?branch=master)
+![gitub](https://img.shields.io/github/package-json/v/yelingfeng/vue-pandora)
+![npm](https://img.shields.io/npm/v/vue-pandora)
+
 A component library of custom secondary encapsulation about element-ui
 
 ## Install
@@ -13,7 +17,7 @@ A component library of custom secondary encapsulation about element-ui
 ## Usage
 
 ```ts
-import VuePandora from 'vue-pandora' 
+import VuePandora from 'vue-pandora'
 
 vue.use(VuePandora)
 ```
