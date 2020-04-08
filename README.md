@@ -1,6 +1,6 @@
 # vue-pandora
 
-![travis-image](https://travis-ci.org/yelingfeng/vue-pandora.svg?branch=master)
+[![Build Status](https://travis-ci.org/yelingfeng/vue-pandora.svg?branch=master)](https://travis-ci.org/yelingfeng/vue-pandora)
 ![gitub](https://img.shields.io/github/package-json/v/yelingfeng/vue-pandora)
 ![npm](https://img.shields.io/npm/v/vue-pandora)
 
