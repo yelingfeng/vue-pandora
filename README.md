@@ -1,15 +1,20 @@
 # vue-pandora
+
 A component library of custom secondary encapsulation about element-ui
 
 ## Install
+
 ```node
 
-  yarn add vue-pandora 
+  yarn add vue-pandora
 
 ```
 
+## Usage
 
-## Usage 
+```vue
+import VuePandora from 'vue-pandora' vue.use(VuePandora)
+```
 
 ```vue
 <template>
@@ -26,9 +31,11 @@ A component library of custom secondary encapsulation about element-ui
 <script lang="ts">
 // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator'
+import { VForm } from 'vue-pandora'
 import axios from 'axios'
 @Component({})
 export default class App extends Vue {
+  @Ref() readonly form!: VForm
   private formObj: any = {
     inline: true,
     labelPosition: 'right',
@@ -139,9 +146,7 @@ export default class App extends Vue {
           value: '查询',
           width: 210,
           disabled: false,
-          click: () => {
-            console.log(1)
-          }
+          click: this.querySearchAction
         }
       },
       {
@@ -150,9 +155,7 @@ export default class App extends Vue {
           value: '新建',
           width: 210,
           disabled: false,
-          click: () => {
-            console.log(2)
-          }
+          click: this.addSearchAction
         }
       }
     ]
@@ -213,6 +216,14 @@ export default class App extends Vue {
   }
   tableHeight = 400
 
+  querySearchAction() {
+    const searchValue = this.form.getValue()
+    this.$message.info(searchValue)
+  }
+  addSearchAction() {
+    this.$message.info('add action')
+  }
+
   mounted() {
     axios.get('/api/tablelist').then(resp => {
       const list = resp.data.data.list as Array<object>
@@ -230,5 +241,4 @@ export default class App extends Vue {
   min-width: 900px;
 }
 </style>
-
 ```

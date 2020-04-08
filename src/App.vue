@@ -11,11 +11,13 @@
 </template>
 <script lang="ts">
 // @ is an alias to /src
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Ref } from 'vue-property-decorator'
+import VForm from '../packages/Form/index.vue'
 import axios from 'axios'
 @Component({})
 export default class App extends Vue {
-  private formObj: any = {
+  @Ref() readonly form!: VForm
+  formObj: any = {
     inline: true,
     labelPosition: 'right',
     labelWidth: '100',
@@ -125,9 +127,7 @@ export default class App extends Vue {
           value: '查询',
           width: 210,
           disabled: false,
-          click: () => {
-            console.log(1)
-          }
+          click: this.querySearchAction
         }
       },
       {
@@ -136,9 +136,7 @@ export default class App extends Vue {
           value: '新建',
           width: 210,
           disabled: false,
-          click: () => {
-            console.log(2)
-          }
+          click: this.addSearchAction
         }
       }
     ]
@@ -198,6 +196,14 @@ export default class App extends Vue {
     }
   }
   tableHeight = 400
+
+  querySearchAction() {
+    const formValue = this.form.getValue()
+    console.log(this, formValue)
+  }
+  addSearchAction() {
+    this.$message.info('add')
+  }
 
   mounted() {
     axios.get('/api/tablelist').then(resp => {
