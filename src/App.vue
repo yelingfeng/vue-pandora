@@ -12,15 +12,8 @@
 <script lang="ts">
 // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator'
-import VForm from '@/components/Form/index.vue'
-import VTable from '@/components/Table/index.vue'
 import axios from 'axios'
-@Component({
-  components: {
-    VForm,
-    VTable
-  }
-})
+@Component({})
 export default class App extends Vue {
   private formObj: any = {
     inline: true,

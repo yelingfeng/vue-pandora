@@ -1,17 +1,10 @@
-declare module Form {
-  export type lP = 'right' | 'left' | 'top'
-  export type ItemType =
-    | 'select'
-    | 'text'
-    | 'date'
-    | 'button'
-    | 'radio'
-    | 'checkbox'
-    | 'autoComplete'
+declare namespace Form {
+  type lP = 'right' | 'left' | 'top'
+  type ItemType = 'select' | 'text' | 'date' | 'button' | 'radio' | 'checkbox' | 'autoComplete'
   /**
    * form 的对象格式
    */
-  export interface IFormOpt {
+  interface IFormOpt {
     // 行内表单模式
     inline?: boolean
     // 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width
@@ -27,7 +20,7 @@ declare module Form {
   /**
    * form 每个item的对象类型
    */
-  export interface IFormItemOpt {
+  interface IFormItemOpt {
     label: string
     type: ItemType
     required?: boolean
@@ -39,7 +32,7 @@ declare module Form {
   /**
    * form 每个item对应内部组件接口类型
    */
-  export interface IFormItemCompOpt {
+  interface IFormItemCompOpt {
     id: string
     value: string | any
     type: string
@@ -55,5 +48,36 @@ declare module Form {
     data?: any[]
     click?: Function
     change?: Function
+  }
+}
+
+declare namespace Table {
+  interface ITableType {
+    // 是否隔行变色
+    stripe: boolean
+    // 表格表头数据
+    column: object[]
+    // 表格数据
+    data: object[]
+    // 行点击事件
+    rowClick?: (row: object, column: object, event: any) => void
+    // 是否分页
+    pagination: boolean
+    // 分页参数
+    pageOpt: object
+  }
+
+  // 分页参数
+  interface IPageOpt {
+    // 当前页
+    currentPage: number
+    // 总数
+    total: number[]
+    // 每页显示条数选择数组
+    pageSizes: Array<number>
+    // 当前显示每页条数
+    pageSize: number
+    // 分页功能 默认显示完整功能 （可不传）
+    layout?: string
   }
 }

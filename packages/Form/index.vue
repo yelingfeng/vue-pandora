@@ -21,7 +21,8 @@ import { isFunction, isArray, merge } from '@/utils/common'
   }
 })
 export default class VForm extends Vue {
-  @Prop() option: Form.IFormOpt
+  @Prop()
+  option: Form.IFormOpt
 
   private labelPosition = ''
   private labelWidth = ''

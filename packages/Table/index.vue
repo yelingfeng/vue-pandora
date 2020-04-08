@@ -1,19 +1,4 @@
 <script lang="tsx">
-// 表格参数
-interface ItableOpt {
-  // 是否隔行变色
-  stripe: boolean
-  // 表格表头数据
-  column: object[]
-  // 表格数据
-  data: object[]
-  // 行点击事件
-  rowClick?: (row: object, column: object, event: any) => void
-  // 是否分页
-  pagination: boolean
-  // 分页参数
-  pageOpt: object
-}
 // 分页高度
 const PAGE_HEIGHT = 50
 
@@ -28,8 +13,10 @@ import pagination from './pagination.vue'
 })
 export default class VTable extends Vue {
   // 传入的表格相关数据
-  @Prop() private option: Table.ITableType
-  @Prop() private height: number
+  @Prop()
+  private option: Table.ITableType
+  @Prop()
+  private height: number
   // 表格详细数据
   private tableData: object[] = []
   private tableHeight: number
