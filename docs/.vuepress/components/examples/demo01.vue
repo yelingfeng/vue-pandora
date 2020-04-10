@@ -1,7 +1,6 @@
 <template>
   <el-row :gutter="24">
     <el-col :span="24">
-      <h1>demo01</h1>
       <VForm :option="formObj" ref="form"></VForm>
       <VTable :option="tableOpt" :height="tableHeight"></VTable>
     </el-col>
@@ -10,8 +9,15 @@
 <script lang="ts">
 // @ is an alias to /src
 import { Component, Vue, Ref } from 'vue-property-decorator'
+import VForm from '../../../../packages/Form/index.vue'
+import VTable from '../../../../packages/Table/index.vue'
 import axios from 'axios'
-@Component({})
+@Component({
+  components: {
+    VForm,
+    VTable
+  }
+})
 export default class Demo01 extends Vue {
   @Ref() readonly form!: any
   formObj: any = {

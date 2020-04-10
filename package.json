@@ -24,7 +24,7 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "core-js": "2.6.9",
+    "core-js": "3.6.5",
     "dayjs": "^1.8.23",
     "element-ui": "^2.13.0"
   },

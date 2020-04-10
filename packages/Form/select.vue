@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction } from '@/utils/common'
+import { isFunction } from '../../src/utils/common'
 @Component({
   components: {}
 })

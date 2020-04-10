@@ -4,7 +4,6 @@ module.exports = {
   base: BASE_URL,
   title: 'Vue-pandora',
   description: 'A component library of custom secondary encapsulation about element-ui', //描述
-  dest: './dist',
   port: '4444',
   markdown: {
     lineNumber: false //

@@ -3,7 +3,7 @@
 const PAGE_HEIGHT = 50
 
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction } from '@/utils/common'
+import { isFunction } from '../../src/utils/common'
 import pagination from './pagination.vue'
 
 @Component({
