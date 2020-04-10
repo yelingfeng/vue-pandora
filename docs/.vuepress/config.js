@@ -2,7 +2,9 @@ const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 const BASE_URL = IS_PROD ? '/vue-pandora/' : '/'
 module.exports = {
   base: BASE_URL,
-  title: 'Docs',
+  title: 'Vue-pandora',
+  description: 'A component library of custom secondary encapsulation about element-ui', //描述
+  dest: './dist',
   port: '4444',
   markdown: {
     lineNumber: false //
@@ -25,11 +27,26 @@ module.exports = {
       {
         text: 'API',
         link: '/api/'
+      },
+      {
+        text: 'github',
+        // 这里是下拉列表展现形式。
+        items: [{ text: 'vue-pandora', link: 'https://github.com/yelingfeng/vue-pandora' }]
       }
     ],
     // 添加侧边栏
     sidebar: 'auto',
     sidebarDepth: 2
   },
-  plugins: ['@vuepress/back-to-top']
+  plugins: [
+    '@vuepress/back-to-top',
+    [
+      'vuepress-plugin-typescript',
+      {
+        tsLoaderOptions: {
+          // ts-loader 的所有配置项
+        }
+      }
+    ]
+  ]
 }

@@ -7,8 +7,8 @@ import VuePandora from '../index'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VuePandora)
-import './mock/index.ts'
-
+import '../mock/index.ts'
+import './index.css'
 new Vue({
   render: h => h(App)
 }).$mount('#app')

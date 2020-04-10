@@ -179,11 +179,11 @@ export default class VForm extends Vue {
         return formBox
       })
       if (this.formOpt.btnPos === 'right') {
-        elBtns = <div class="v-right-btns">{elBtns}</div>
+        elBtns = <div class="vpandora-right-btns">{elBtns}</div>
       }
     }
     return (
-      <div class="v-form-wrap">
+      <div class="vpandora-form">
         <el-form
           inline={this.formOpt.inline}
           label-position={this.labelPosition}
@@ -198,20 +198,3 @@ export default class VForm extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.v-form-wrap {
-  position: relative;
-}
-.v-right-btns {
-  position: absolute;
-  right: 10px;
-  bottom: 0;
-}
-.v-form-required {
-  color: #f00;
-  position: absolute;
-  top: 2px;
-  right: -12px;
-}
-</style>

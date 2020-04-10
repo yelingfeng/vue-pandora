@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination">
+  <div class="vpandora-pagination">
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -31,10 +31,3 @@ export default class PagerStyles extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.pagination {
-  width: 100%;
-  margin-top: 14px;
-}
-</style>

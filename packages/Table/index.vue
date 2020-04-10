@@ -148,7 +148,7 @@ export default class VTable extends Vue {
       return com
     })
     return (
-      <div class="vtable">
+      <div class="vpandora-table">
         <el-table
           height={this.tableHeight}
           data={this.tableData}
@@ -171,14 +171,3 @@ export default class VTable extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.vtable {
-  width: 100%;
-  height: 100%;
-}
-.tablePart {
-  width: 100%;
-  height: 100%;
-}
-</style>
