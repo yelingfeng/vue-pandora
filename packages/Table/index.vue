@@ -6,6 +6,11 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
 import pagination from './pagination.vue'
 
+const enum OperateType {
+  BUTTON = 'button',
+  ICON = 'icon'
+}
+
 @Component({
   components: {
     pagination
@@ -114,18 +119,33 @@ export default class VTable extends Vue {
             align={item.align}
             scopedSlots={{
               default: (props: any) => {
-                const operations = item.operations.map((operate: any, opIndex: number) => {
-                  return (
-                    <el-button
-                      type="text"
-                      size="mini"
-                      key={opIndex}
-                      disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
-                      on-click={() => operate.handlerClick(props.row, props.$index)}
-                    >
-                      {operate.label}
-                    </el-button>
-                  )
+                const operations = item.operations.map((operate: any, index: number) => {
+                  const type = operate.type || 'button'
+                  let operateDom
+                  if (OperateType.ICON === type) {
+                    operateDom = (
+                      <i
+                        key={index}
+                        class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
+                        on-click={() => operate.handlerClick(props.row, props.$index)}
+                      ></i>
+                    )
+                  } else {
+                    operateDom = (
+                      <el-button
+                        type="text"
+                        size="mini"
+                        key={index}
+                        disabled={
+                          operate.disCallBack && operate.disCallBack(props.row, props.$index)
+                        }
+                        on-click={() => operate.handlerClick(props.row, props.$index)}
+                      >
+                        {operate.label}
+                      </el-button>
+                    )
+                  }
+                  return operateDom
                 })
                 return operations
               }

@@ -18,7 +18,7 @@ module.exports = {
     proxy: false
   },
   css: {
-    extract: false,
+    // extract: false,
     requireModuleExtension: true,
     loaderOptions: {
       css: {

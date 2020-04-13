@@ -160,7 +160,6 @@ export default class App extends Vue {
         operations: [
           {
             label: '详情',
-            type: 'label',
             disCallBack() {
               return false
             },
@@ -170,16 +169,23 @@ export default class App extends Vue {
           },
           {
             label: '编辑',
-            type: 'label',
             handlerClick: (row: any) => {
               console.log(row)
             }
           },
           {
             label: '删除',
-            type: 'label',
             disCallBack(row: any) {},
             handlerClick: (row: any) => {}
+          },
+          {
+            label: '查看',
+            type: 'icon',
+            iconName: 'el-icon-edit',
+            disCallBack(row: any) {},
+            handlerClick: (row: any) => {
+              console.log(row)
+            }
           }
         ]
       }
