@@ -3459,7 +3459,7 @@ core-js-compat@^3.6.2, core-js-compat@^3.6.4:
     browserslist "^4.8.3"
     semver "7.0.0"
 
-core-js@3:
+core-js@3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
@@ -11333,15 +11333,6 @@ vue-loader@^15.8.3:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
-
-vue-pandora@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/vue-pandora/-/vue-pandora-1.0.0.tgz#27d5ca3d7e8b4dcbb4127439c7ca7ca96bd9d1e7"
-  integrity sha512-kDBYcXd8sbccucBIwJ3vHB1awdxmCC2eGvS5oDlkZo5I2Xo6V3PjqFl2c1ABe9FZH4/YmQPz2CRtErRFss+YgQ==
-  dependencies:
-    core-js "^3.6.4"
-    dayjs "^1.8.23"
-    element-ui "^2.13.0"
 
 vue-property-decorator@^8.3.0:
   version "8.4.1"
