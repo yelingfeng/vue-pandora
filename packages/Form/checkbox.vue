@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { isFunction } from '../../src/utils/common'
+import { isFunction } from '@/utils/common'
 
 @Component({
   components: {}

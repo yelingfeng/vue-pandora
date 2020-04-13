@@ -7,7 +7,7 @@ import checkBoxComp from './checkbox.vue'
 import buttonComp from './button.vue'
 import autocompleteComp from './autoComplete.vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { isFunction, isArray, merge } from '../../src/utils/common'
+import { isFunction, isArray, merge } from '@/utils/common'
 
 @Component({
   components: {

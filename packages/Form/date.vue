@@ -56,7 +56,7 @@
 </template>
 <script lang="ts">
 import dayjs from 'dayjs'
-import { isFunction } from '../../src/utils/common'
+import { isFunction } from '@/utils/common'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
