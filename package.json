@@ -19,10 +19,11 @@
     "publish": "npm publish"
   },
   "files": [
-    "lib",
+    "packages",
     "index.ts",
-    "index.d.ts"
+    "types"
   ],
+  "typings": "types/index.d.ts",
   "dependencies": {
     "core-js": "3.6.5",
     "dayjs": "^1.8.23",
@@ -67,7 +68,6 @@
     "vue-class-component": "^7.2.2",
     "vue-highlight.js": "^3.1.0",
     "vue-jest": "^3.0.5",
-    "vue-pandora": "^1.0.0",
     "vue-property-decorator": "^8.3.0",
     "vue-template-compiler": "^2.6.11",
     "vuepress-plugin-typescript": "^0.2.0",

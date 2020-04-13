@@ -199,7 +199,7 @@ export default class App extends Vue {
 
   querySearchAction() {
     const formValue = this.form.getValue()
-    console.log(this, formValue)
+    console.log(formValue)
   }
   addSearchAction() {
     this.$message.info('add')

@@ -11,6 +11,8 @@
     "esModuleInterop": true,
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "declaration": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": ["webpack-env", "jest"],

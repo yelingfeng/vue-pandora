@@ -1,4 +1,4 @@
-declare namespace Form {
+declare module Form {
   type lP = 'right' | 'left' | 'top'
   type ItemType = 'select' | 'text' | 'date' | 'button' | 'radio' | 'checkbox' | 'autoComplete'
   /**
@@ -51,8 +51,8 @@ declare namespace Form {
   }
 }
 
-declare namespace Table {
-  interface ITableType {
+declare module Table {
+  interface ITableOption {
     // 是否隔行变色
     stripe: boolean
     // 表格表头数据

@@ -14,7 +14,7 @@ import pagination from './pagination.vue'
 export default class VTable extends Vue {
   // 传入的表格相关数据
   @Prop()
-  private option: Table.ITableType
+  private option: Table.ITableOption
   @Prop()
   private height: number
   // 表格详细数据
