@@ -143,6 +143,7 @@ export default class App extends Vue {
   }
   private tableOpt: any = {
     stripe: true,
+    isHeader: false,
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
       { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center' },
@@ -160,9 +161,8 @@ export default class App extends Vue {
         operations: [
           {
             label: '详情',
-            disCallBack() {
-              return false
-            },
+            type: 'icon',
+            iconName: 'el-icon-eleme    ',
             handlerClick: (row: any) => {
               console.log(row)
             }
@@ -192,14 +192,14 @@ export default class App extends Vue {
     ],
     data: [],
     // 是否分页
-    pagination: true,
+    pagination: false
     // 分页参数
-    pageOpt: {
-      currentPage: 1,
-      total: 0,
-      pageSizes: [10, 20, 30, 40, 50],
-      pageSize: 10
-    }
+    // pageOpt: {
+    //   currentPage: 1,
+    //   total: 0,
+    //   pageSizes: [10, 20, 30, 40, 50],
+    //   pageSize: 10
+    // }
   }
   tableHeight = 400
 

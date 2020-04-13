@@ -10,6 +10,12 @@ const enum OperateType {
   BUTTON = 'button',
   ICON = 'icon'
 }
+const defaultOption: Table.IPageOpt = {
+  currentPage: 1,
+  total: 0,
+  pageSizes: [10, 20, 30, 40, 50],
+  pageSize: 10
+}
 
 @Component({
   components: {
@@ -172,6 +178,7 @@ export default class VTable extends Vue {
         <el-table
           height={this.tableHeight}
           data={this.tableData}
+          show-header={this.option.isHeader}
           stripe={this.option.stripe}
           style={this.tableHeight}
           on-row-click={this.rowClick}
@@ -181,7 +188,7 @@ export default class VTable extends Vue {
         </el-table>
         <pagination
           v-show={this.option.pagination}
-          option={this.option.pageOpt}
+          option={this.option.pageOpt || defaultOption}
           ref="pagination"
           on-handleSizeChange={this.handleSizeChange}
           on-handleCurrentChange={this.handleCurrentChange}
