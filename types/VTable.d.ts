@@ -9,6 +9,8 @@ export interface ITableOption {
   stripe: boolean
   // 是否显示表头
   isHeader: boolean
+  // 是否显示多选
+  selection: boolean
   // 表格表头数据
   column: object[]
   // 表格数据

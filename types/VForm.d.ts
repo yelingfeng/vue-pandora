@@ -32,8 +32,9 @@ export interface IFormItemCompOpt {
   // 是否显示清除按钮
   clearable?: boolean
   data?: any[]
-  click?: Function
-  change?: Function
+  className?: string
+  click?: Function | undefined
+  change?: Function | undefined
 }
 
 export interface IFormOption {

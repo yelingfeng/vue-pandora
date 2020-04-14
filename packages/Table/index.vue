@@ -173,6 +173,10 @@ export default class VTable extends Vue {
       }
       return com
     })
+    let elColumnSelection
+    if (this.option.selection) {
+      elColumnSelection = <el-table-column type="selection" width="55"></el-table-column>
+    }
     return (
       <div class="vpandora-table">
         <el-table
@@ -184,6 +188,7 @@ export default class VTable extends Vue {
           on-row-click={this.rowClick}
           on-selection-change={this.handleSelectionChange}
         >
+          {elColumnSelection}
           {elColumn}
         </el-table>
         <pagination

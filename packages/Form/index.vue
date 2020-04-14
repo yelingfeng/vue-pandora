@@ -22,7 +22,7 @@ import { isFunction, isArray, merge } from '@/utils/common'
 })
 export default class VForm extends Vue {
   @Prop()
-  option: Form.IFormOpt
+  option: Form.IFormOption
 
   private labelPosition = ''
   private labelWidth = ''
@@ -165,10 +165,21 @@ export default class VForm extends Vue {
       elBtns = this.formOpt.btns.map((it: Form.IFormItemOpt, index: number) => {
         let formBox
         const ref: string = 'btn' + index
-        const comp = <buttonComp option={it.comOpt} ref={ref} />
+        let comp
         if (it.show === undefined || it.show) {
+          if (it.comOpt.type && it.comOpt.type === 'icon') {
+            comp = (
+              <i
+                class={it.comOpt.className ? it.comOpt.className : 'el-icon-edit'}
+                on-click={() => it.comOpt.click && it.comOpt.click()}
+              ></i>
+            )
+          } else {
+            comp = <buttonComp option={it.comOpt} ref={ref} />
+          }
           formBox = <el-form-item label={it.label}>{comp}</el-form-item>
         }
+
         if (it.wrap) {
           return (
             <span>

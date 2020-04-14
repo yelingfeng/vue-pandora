@@ -14,6 +14,7 @@ A component library of custom secondary encapsulation about element-ui
 
 ```ts
 import VuePandora from 'vue-pandora'
+import 'vue-pandora/lib/vuepandora.css'
 
 vue.use(VuePandora)
 ```

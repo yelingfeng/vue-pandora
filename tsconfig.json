@@ -23,6 +23,8 @@
   },
   "include": [
     "src/**/*.ts",
+    "packages/**/*.ts",
+    "packages/**/*.vue",
     "./index.d.ts",
     "src/**/*.vue",
     "__tests__/**/*.ts",

@@ -4,7 +4,11 @@
       <el-col :span="16" :offset="4">
         <h1>Vue-pandora</h1>
         <VForm :option="formObj" ref="form"></VForm>
-        <VTable :option="tableOpt" :height="tableHeight"></VTable>
+        <VTable
+          :option="tableOpt"
+          :height="tableHeight"
+          @handleSelectionChange="selectionChange"
+        ></VTable>
       </el-col>
     </el-row>
   </div>
@@ -43,18 +47,6 @@ export default class App extends Vue {
           width: 210,
           disabled: false,
           show: false,
-          placeholder: '',
-          value: ''
-        }
-      },
-      {
-        label: '目标',
-        type: 'text',
-        comOpt: {
-          id: 'targetIpInfo',
-          width: 210,
-          disabled: false,
-          show: true,
           placeholder: '',
           value: ''
         }
@@ -101,26 +93,17 @@ export default class App extends Vue {
             { name: '已完成', value: '4' }
           ]
         }
-      },
-      {
-        label: '文件状态',
-        type: 'select',
-        wrap: true,
-        comOpt: {
-          id: 'fileStatusId',
-          value: '0',
-          width: 210,
-          disabled: false,
-          show: true,
-          data: [
-            { name: '全部', value: '0' },
-            { name: '未下载', value: '1' },
-            { name: '已下载', value: '2' }
-          ]
-        }
       }
     ],
     btns: [
+      {
+        comOpt: {
+          id: 'iconTest',
+          type: 'icon',
+          className: 'el-icon-edit',
+          click: this.iconClickAction
+        }
+      },
       {
         comOpt: {
           id: 'query',
@@ -143,13 +126,14 @@ export default class App extends Vue {
   }
   private tableOpt: any = {
     stripe: true,
-    isHeader: false,
+    isHeader: true,
+    selection: true,
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
       { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center' },
       { name: '创建时间', value: 'createTime', align: 'center' },
       { name: '更新时间', value: 'updateTime', align: 'center' },
-      { name: '任务状态', value: 'taskStatusName', align: 'center' },
+      // { name: '任务状态', value: 'taskStatusName', align: 'center' },
       { name: '任务内容', value: 'taskContent', align: 'center' },
       { name: '任务结果', value: 'jobResult', align: 'center' },
       {
@@ -201,7 +185,7 @@ export default class App extends Vue {
     //   pageSize: 10
     // }
   }
-  tableHeight = 400
+  tableHeight = 300
 
   querySearchAction() {
     const formValue = this.form.getValue()
@@ -211,6 +195,12 @@ export default class App extends Vue {
     this.$message.info('add')
   }
 
+  selectionChange(row: any) {
+    console.log(row)
+  }
+  iconClickAction() {
+    console.log(1)
+  }
   mounted() {
     axios.get('/api/tablelist').then(resp => {
       const list = resp.data.data.list as Array<object>
