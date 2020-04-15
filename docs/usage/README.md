@@ -3,7 +3,6 @@
 ## demo
 
 <common-democode title="基本用法" description="基本table用法">
-  <examples-demo01 slot="codeComp"></examples-demo01>
   <highlight-code  slot="codeText" lang="vue">
     <template>
       <el-row :gutter="20">

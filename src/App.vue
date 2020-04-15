@@ -30,6 +30,7 @@ export default class App extends Vue {
       {
         label: '任务名称',
         type: 'text',
+        required: true,
         comOpt: {
           id: 'taskName',
           width: 210,
@@ -42,6 +43,7 @@ export default class App extends Vue {
       {
         label: '任务内容',
         type: 'text',
+        required: true,
         comOpt: {
           id: 'taskContent',
           width: 210,
@@ -176,16 +178,17 @@ export default class App extends Vue {
     ],
     data: [],
     // 是否分页
-    pagination: false
+    pagination: true,
     // 分页参数
-    // pageOpt: {
-    //   currentPage: 1,
-    //   total: 0,
-    //   pageSizes: [10, 20, 30, 40, 50],
-    //   pageSize: 10
-    // }
+    pageOpt: {
+      height: 40,
+      currentPage: 1,
+      total: 0,
+      pageSizes: [10, 20, 30, 40, 50],
+      pageSize: 10
+    }
   }
-  tableHeight = 300
+  tableHeight = '100%'
 
   querySearchAction() {
     const formValue = this.form.getValue()
@@ -193,6 +196,7 @@ export default class App extends Vue {
   }
   addSearchAction() {
     this.$message.info('add')
+    this.form.setValue([{ id: 'taskContent', value: 'testtest' }])
   }
 
   selectionChange(row: any) {

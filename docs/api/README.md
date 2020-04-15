@@ -105,7 +105,7 @@ items: [
 | data       | object[]                                          | 表格数据     |
 | rowClick   | (row: object, column: object, event: any) => void | 行点击事件   |
 | pagination | boolean                                           | 是否分页     |
-| pageOpt    | object                                            | 分页参数     |
+| pageOpt    | `IPageOpt`                                        | 分页参数     |
 
 ```ts
 private tableOpt: any = {
@@ -169,3 +169,16 @@ private tableOpt: any = {
    }
  }
 ```
+
+### IPageOpt
+
+分页配置属性
+
+| 属性        | 类型     | 说明                 |
+| :---------- | -------- | -------------------- |
+| height      | number   | 分页高度             |
+| currentPage | number   | 当前页               |
+| total       | number   | 总数                 |
+| pageSizes   | number[] | 每页显示条数选择数组 |
+| pageSize    | number   | 当前显示每页条数     |
+| layout      | string   |                      | 分页功能 默认显示完整功能 （可不传） |

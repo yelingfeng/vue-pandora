@@ -7,10 +7,9 @@ import css from 'highlight.js/lib/languages/css'
 import javascript from 'highlight.js/lib/languages/javascript'
 import vue from 'vue-highlight.js/lib/languages/vue'
 import 'highlight.js/styles/atom-one-dark.css'
-import Element from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import Element from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
 import '../../mock/index.ts'
-// import 'core-js'
 export default ({
   Vue // VuePress 正在使用的 Vue 构造函数
 }) => {
@@ -23,5 +22,5 @@ export default ({
       vue
     }
   })
-  Vue.use(Element)
+  // Vue.use(Element)
 }

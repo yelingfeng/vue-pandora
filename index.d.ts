@@ -15,11 +15,13 @@ declare namespace Table {
     // 是否分页
     pagination: boolean
     // 分页参数
-    pageOpt: object
+    pageOpt: IPageOpt
   }
 
   // 分页参数
   export interface IPageOpt {
+    // 分页高度
+    height: number
     // 当前页
     currentPage: number
     // 总数

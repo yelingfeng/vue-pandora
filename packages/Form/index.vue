@@ -149,8 +149,17 @@ export default class VForm extends Vue {
           break
       }
       let formBox
+      let requiredBox
       if (it.show === undefined || it.show) {
-        formBox = <el-form-item label={it.label}>{comp}</el-form-item>
+        if (it.required) {
+          requiredBox = <span class="vpandora-form-required">*</span>
+        }
+        formBox = (
+          <el-form-item label={it.label}>
+            {comp}
+            {requiredBox}
+          </el-form-item>
+        )
       }
       if (it.wrap) {
         return (

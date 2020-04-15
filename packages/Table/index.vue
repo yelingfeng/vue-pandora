@@ -11,6 +11,7 @@ const enum OperateType {
   ICON = 'icon'
 }
 const defaultOption: Table.IPageOpt = {
+  height: PAGE_HEIGHT,
   currentPage: 1,
   total: 0,
   pageSizes: [10, 20, 30, 40, 50],
@@ -27,10 +28,10 @@ export default class VTable extends Vue {
   @Prop()
   private option: Table.ITableOption
   @Prop()
-  private height: number
+  private height: number | string
   // 表格详细数据
   private tableData: object[] = []
-  private tableHeight: number
+  private tableHeight: number | string
 
   @Watch('option.data')
   optionDataChange(newval: object[]) {
@@ -56,13 +57,19 @@ export default class VTable extends Vue {
 
   /**
    * @name: setTableHeight
-   * @param {number} val 传入的表格高度
+   * @param {number|string} val 传入的表格高度 字符串则高度 100%
    * @return:
    * @description: 计算表格高度
    */
-  setTableHeight(val: number) {
-    const paginationHeight = this.option.pagination ? PAGE_HEIGHT : 0
-    this.tableHeight = val - paginationHeight
+  setTableHeight(val: number | string) {
+    let paginationHeight
+    if (typeof val === 'string') {
+      paginationHeight = val
+      this.tableHeight = paginationHeight
+    } else {
+      paginationHeight = this.option.pagination ? this.option.pageOpt.height : 0
+      this.tableHeight = val - paginationHeight
+    }
     this.$forceUpdate()
   }
 

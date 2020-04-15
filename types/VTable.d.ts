@@ -20,11 +20,12 @@ export interface ITableOption {
   // 是否分页
   pagination: boolean
   // 分页参数
-  pageOpt: object
+  pageOpt: IPageOpt
 }
 
 // 分页参数
 export interface IPageOpt {
+  height: number
   // 当前页
   currentPage: number
   // 总数
