@@ -54,6 +54,18 @@ export default class App extends Vue {
         }
       },
       {
+        label: '文本Group',
+        type: 'textGroup',
+        required: true,
+        comOpt: {
+          id: 'taskGroup',
+          width: 310,
+          disabled: false,
+          placeholder: '',
+          value: '1,2'
+        }
+      },
+      {
         label: '创建日期',
         type: 'date',
         comOpt: {
@@ -130,9 +142,10 @@ export default class App extends Vue {
     stripe: true,
     isHeader: true,
     selection: true,
+    defaultSort: { prop: 'createTime', order: 'descending' },
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
-      { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center' },
+      { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center', sortable: true },
       { name: '创建时间', value: 'createTime', align: 'center' },
       { name: '更新时间', value: 'updateTime', align: 'center' },
       // { name: '任务状态', value: 'taskStatusName', align: 'center' },
@@ -188,15 +201,24 @@ export default class App extends Vue {
       pageSize: 10
     }
   }
-  tableHeight = '100%'
+  tableHeight = '400'
 
   querySearchAction() {
     const formValue = this.form.getValue()
     console.log(formValue)
+    // 设置textGroup值
+    this.form.setValue([
+      {
+        id: 'taskGroup',
+        value: '021-2222,123912312312'
+      }
+    ])
   }
   addSearchAction() {
     this.$message.info('add')
     this.form.setValue([{ id: 'taskContent', value: 'testtest' }])
+    this.form.setDisabled([{ id: 'taskContent', value: true }])
+    console.log(this.form.getValue())
   }
 
   selectionChange(row: any) {

@@ -174,6 +174,7 @@ export default class VTable extends Vue {
             width={item.width}
             fixed={item.fixed}
             align={item.align}
+            sortable={item.sortable}
             show-overflow-tooltip={item.tooltip}
           ></el-table-column>
         )
@@ -193,6 +194,7 @@ export default class VTable extends Vue {
           stripe={this.option.stripe}
           style={this.tableHeight}
           on-row-click={this.rowClick}
+          default-sort={this.option.defaultSort}
           on-selection-change={this.handleSelectionChange}
         >
           {elColumnSelection}

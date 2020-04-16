@@ -1,33 +1,46 @@
 <template>
   <el-input
     v-model="value"
-    :disabled="disabled"
+    :disabled="option.disabled"
     :placeholder="placeholder"
     auto-complete="on"
     :style="widthStyle"
     :type="option.type"
     :rows="option.rows"
-  ></el-input>
+    class="input-group"
+  >
+    <div slot="prepend" :style="innerStyle" class="vp-textGroup-prepend">
+      <el-input v-model="innerValue" class="vp-textGroup-inner-input" />
+      <span class="vp-textGroup-line">-</span>
+    </div>
+  </el-input>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+
 @Component({
   components: {}
 })
-/**
- * option.disabled：是否禁用
- * option.type：可选值text，textarea 和其他 原生 input 的 type 值；默认text
- * option.rows：输入框行数，只对 type="textarea" 有效
- */
-export default class VInput extends Vue {
+export default class VInputGroup extends Vue {
   @Prop() option: Form.IFormItemCompOpt
   private value = ''
   private placeholder = ''
-  private disabled = false
+  private innerValue = ''
 
   @Watch('option.value')
   changeValue(newVal: string) {
-    this.value = newVal
+    this.setGroupValue(newVal)
+  }
+
+  /**
+   * 设置值
+   */
+  setGroupValue(value: string) {
+    const groupV: string[] = value.split(',')
+    if (groupV && groupV.length) {
+      this.innerValue = groupV[0]
+      this.value = groupV[1]
+    }
   }
 
   get widthStyle() {
@@ -35,6 +48,13 @@ export default class VInput extends Vue {
       width: this.option.width + 'px'
     }
   }
+
+  get innerStyle() {
+    return {
+      width: '100px'
+    }
+  }
+
   mounted() {
     this.initFunc()
   }
@@ -45,8 +65,7 @@ export default class VInput extends Vue {
    * @description: 组件加载完成后，初始化方法
    */
   initFunc() {
-    this.value = this.option.value
-    this.disabled = this.option.disabled || false
+    this.setGroupValue(this.option.value)
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请输入内容'
   }
   /**
@@ -56,7 +75,7 @@ export default class VInput extends Vue {
    * @description: 获取input的值
    */
   getValue() {
-    return { [this.option.id]: this.value || '' }
+    return { [this.option.id]: [this.innerValue, this.value] || '' }
   }
   /**
    * @name: setValue
@@ -65,11 +84,7 @@ export default class VInput extends Vue {
    * @description: 为input框赋值
    */
   setValue(val: string) {
-    this.value = val
-  }
-  // 设置是或否禁用
-  setDisabled(bol: boolean) {
-    this.disabled = bol
+    this.setGroupValue(val)
   }
 }
 </script>

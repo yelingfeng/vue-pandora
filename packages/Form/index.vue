@@ -6,6 +6,7 @@ import radioComp from './radio.vue'
 import checkBoxComp from './checkbox.vue'
 import buttonComp from './button.vue'
 import autocompleteComp from './autoComplete.vue'
+import textGroupComp from './textGroup.vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
 
@@ -17,6 +18,7 @@ import { isFunction, isArray, merge } from '@/utils/common'
     radioComp,
     checkBoxComp,
     buttonComp,
+    textGroupComp,
     autocompleteComp
   }
 })
@@ -73,6 +75,24 @@ export default class VForm extends Vue {
       })
     })
   }
+  /**
+   * @name: setDisabled
+   * @param {data}
+   * @return:
+   * @description: 为组件显示隐藏
+   */
+  setDisabled(data: Array<any>) {
+    this.formOpt.items.forEach((it: Form.IFormItemOpt, index: number) => {
+      data.forEach(d => {
+        if (it.comOpt.id === d.id) {
+          this.$nextTick(() => {
+            ;(this.$refs['comp' + index] as any).setDisabled(d.value)
+          })
+        }
+      })
+    })
+  }
+
   /**
    * @name: clearValue
    * @param {type}
@@ -144,6 +164,9 @@ export default class VForm extends Vue {
           break
         case 'autoComplete':
           comp = <autocompleteComp option={it.comOpt} ref={ref} />
+          break
+        case 'textGroup':
+          comp = <textGroupComp option={it.comOpt} ref={ref} />
           break
         default:
           break

@@ -96,22 +96,24 @@ items: [
 
 ### TableOption
 
-| 属性       | 类型                                              | 说明         |
-| :--------- | ------------------------------------------------- | ------------ |
-| stripe     | boolean                                           | 是否隔行变色 |
-| isHeader   | boolean                                           | 是否显示表头 |
-| selection  | boolean                                           | 是否显示多选 |
-| column     | object[]                                          | 表格表头数据 |
-| data       | object[]                                          | 表格数据     |
-| rowClick   | (row: object, column: object, event: any) => void | 行点击事件   |
-| pagination | boolean                                           | 是否分页     |
-| pageOpt    | `IPageOpt`                                        | 分页参数     |
+| 属性        | 类型                                              | 说明         |
+| :---------- | ------------------------------------------------- | ------------ |
+| stripe      | boolean                                           | 是否隔行变色 |
+| isHeader    | boolean                                           | 是否显示表头 |
+| selection   | boolean                                           | 是否显示多选 |
+| column      | object[]                                          | 表格表头数据 |
+| data        | object[]                                          | 表格数据     |
+| rowClick    | (row: object, column: object, event: any) => void | 行点击事件   |
+| defaultSort | object                                            | 默认排序     |
+| pagination  | boolean                                           | 是否分页     |
+| pageOpt     | `IPageOpt`                                        | 分页参数     |
 
 ```ts
 private tableOpt: any = {
    stripe: true,
    isHeader: true,
    selection: true,
+   defaultSort: { prop: 'createTime', order: 'descending' },
    column: [
      { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
      { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center' },

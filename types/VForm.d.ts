@@ -1,7 +1,15 @@
 import { PandoraUIComponent } from './component'
 
 export type lP = 'right' | 'left' | 'top'
-export type ItemType = 'select' | 'text' | 'date' | 'button' | 'radio' | 'checkbox' | 'autoComplete'
+export type ItemType =
+  | 'select'
+  | 'text'
+  | 'date'
+  | 'button'
+  | 'radio'
+  | 'checkbox'
+  | 'autoComplete'
+  | 'textGroup'
 
 /**
  * form 每个item的对象类型
@@ -62,4 +70,6 @@ export declare class Form extends PandoraUIComponent {
   setItemData: (id: string, data: Array<any>) => void
   // 设置一组是否可显示
   setShow: (data: Array<any>) => void
+  // 设置一组是否禁用
+  setDisabled: (data: Array<any>) => void
 }

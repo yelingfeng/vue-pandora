@@ -19,6 +19,8 @@ export interface ITableOption {
   rowClick?: (row: object, column: object, event: any) => void
   // 是否分页
   pagination: boolean
+  // 排序
+  defaultSort: object
   // 分页参数
   pageOpt: IPageOpt
 }
