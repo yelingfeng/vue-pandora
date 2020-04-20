@@ -130,6 +130,8 @@ export default class VTable extends Vue {
             width={item.width}
             fixed={item.fixed}
             align={item.align}
+            min-width={item.minWidth}
+            formatter={item.formatter}
             scopedSlots={{
               default: (props: any) => {
                 const operations = item.operations.map((operate: any, index: number) => {
@@ -174,7 +176,9 @@ export default class VTable extends Vue {
             width={item.width}
             fixed={item.fixed}
             align={item.align}
+            min-width={item.minWidth}
             sortable={item.sortable}
+            formatter={item.formatter}
             show-overflow-tooltip={item.tooltip}
           ></el-table-column>
         )

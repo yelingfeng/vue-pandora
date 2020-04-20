@@ -31,6 +31,7 @@ export default class App extends Vue {
         label: '任务名称',
         type: 'text',
         required: true,
+        wrap: true,
         comOpt: {
           id: 'taskName',
           width: 210,
@@ -145,7 +146,17 @@ export default class App extends Vue {
     defaultSort: { prop: 'createTime', order: 'descending' },
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
-      { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center', sortable: true },
+      {
+        name: '任务名称',
+        value: 'taskName',
+        fixed: 'left',
+        align: 'center',
+        minWidth: '200',
+        sortable: true,
+        formatter: function(row: any, column: any, cellValue: any, index: any) {
+          return cellValue + '-a'
+        }
+      },
       { name: '创建时间', value: 'createTime', align: 'center' },
       { name: '更新时间', value: 'updateTime', align: 'center' },
       // { name: '任务状态', value: 'taskStatusName', align: 'center' },
