@@ -143,7 +143,10 @@ export default class App extends Vue {
     stripe: true,
     isHeader: true,
     selection: true,
-    defaultSort: { prop: 'createTime', order: 'descending' },
+    defaultSort: { prop: 'index', order: 'descending' },
+    sortChange: function(column: object) {
+      console.log(column)
+    },
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
       {
@@ -151,8 +154,8 @@ export default class App extends Vue {
         value: 'taskName',
         fixed: 'left',
         align: 'center',
+        sortable: 'custom',
         minWidth: '200',
-        sortable: true,
         formatter: function(row: any, column: any, cellValue: any, index: any) {
           return cellValue + '-a'
         }

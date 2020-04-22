@@ -1,6 +1,6 @@
 <template>
   <el-radio-group v-model="value" :disabled="option.disabled" @change="changeHandler">
-    <el-radio v-for="item in option.data" :key="item.name" :label="item.value">
+    <el-radio v-for="item in option.data" :key="item.index" :label="item.value">
       {{ item.name }}
     </el-radio>
   </el-radio-group>

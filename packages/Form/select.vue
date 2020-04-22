@@ -11,7 +11,7 @@
   >
     <el-option
       v-for="item in data"
-      :key="item.name"
+      :key="item.index"
       :label="item.name"
       :value="item.value"
     ></el-option>

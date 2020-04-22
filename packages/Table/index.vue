@@ -97,6 +97,12 @@ export default class VTable extends Vue {
     }
   }
 
+  sortChange(row: object) {
+    if (this.option.sortChange && isFunction(this.option.sortChange)) {
+      this.option.sortChange(row)
+    }
+  }
+
   /**
    * @name: handleCurrentChange
    * @param {number} val 切换的页码
@@ -130,6 +136,7 @@ export default class VTable extends Vue {
             width={item.width}
             fixed={item.fixed}
             align={item.align}
+            sortable={item.sortable}
             min-width={item.minWidth}
             formatter={item.formatter}
             scopedSlots={{
@@ -192,11 +199,13 @@ export default class VTable extends Vue {
     return (
       <div class="vpandora-table">
         <el-table
+          ref="table"
           height={this.tableHeight}
           data={this.tableData}
           show-header={this.option.isHeader}
           stripe={this.option.stripe}
           style={this.tableHeight}
+          on-sort-change={this.sortChange}
           on-row-click={this.rowClick}
           default-sort={this.option.defaultSort}
           on-selection-change={this.handleSelectionChange}

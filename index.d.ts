@@ -12,6 +12,8 @@ declare namespace Table {
     data: object[]
     // 行点击事件
     rowClick?: (row: object, column: object, event: any) => void
+    // 排序事件
+    sortChange?: (row: object) => void
     // 是否分页
     pagination: boolean
     // 排序
