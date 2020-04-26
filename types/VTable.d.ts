@@ -22,7 +22,7 @@ export interface ITableOption {
   // 是否分页
   pagination: boolean
   // 排序
-  defaultSort: object
+  defaultSort: []
   // 分页参数
   pageOpt: IPageOpt
 }

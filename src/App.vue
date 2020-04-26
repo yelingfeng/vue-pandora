@@ -45,11 +45,11 @@ export default class App extends Vue {
         label: '任务内容',
         type: 'text',
         required: true,
+        show: true,
         comOpt: {
           id: 'taskContent',
           width: 210,
           disabled: false,
-          show: false,
           placeholder: '',
           value: ''
         }
@@ -58,6 +58,7 @@ export default class App extends Vue {
         label: '文本Group',
         type: 'textGroup',
         required: true,
+        show: true,
         comOpt: {
           id: 'taskGroup',
           width: 310,
@@ -115,6 +116,7 @@ export default class App extends Vue {
         comOpt: {
           id: 'iconTest',
           type: 'icon',
+          title: 'this is icon test',
           className: 'el-icon-edit',
           click: this.iconClickAction
         }
@@ -143,7 +145,10 @@ export default class App extends Vue {
     stripe: true,
     isHeader: true,
     selection: true,
-    defaultSort: { prop: 'index', order: 'descending' },
+    defaultSort: [
+      { prop: 'taskName', order: 'descending' },
+      { prop: 'taskContent', order: 'ascending' }
+    ],
     sortChange: function(column: object) {
       console.log(column)
     },
@@ -154,16 +159,21 @@ export default class App extends Vue {
         value: 'taskName',
         fixed: 'left',
         align: 'center',
+        sortable: 'custom'
+      },
+
+      { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100' },
+      { name: '更新时间', value: 'updateTime', align: 'center' },
+      { name: '任务状态', value: 'taskStatusName', align: 'center' },
+      {
+        name: '任务内容',
+        value: 'taskContent',
         sortable: 'custom',
-        minWidth: '200',
+        align: 'center',
         formatter: function(row: any, column: any, cellValue: any, index: any) {
-          return cellValue + '-a'
+          return cellValue
         }
       },
-      { name: '创建时间', value: 'createTime', align: 'center' },
-      { name: '更新时间', value: 'updateTime', align: 'center' },
-      // { name: '任务状态', value: 'taskStatusName', align: 'center' },
-      { name: '任务内容', value: 'taskContent', align: 'center' },
       { name: '任务结果', value: 'jobResult', align: 'center' },
       {
         name: '操作',
@@ -175,6 +185,7 @@ export default class App extends Vue {
           {
             label: '详情',
             type: 'icon',
+            title: '添加一个title属性',
             iconName: 'el-icon-eleme    ',
             handlerClick: (row: any) => {
               console.log(row)
@@ -221,10 +232,18 @@ export default class App extends Vue {
     const formValue = this.form.getValue()
     console.log(formValue)
     // 设置textGroup值
-    this.form.setValue([
+    // this.form.setShow([
+    //   {
+    //     id: 'taskGroup',
+    //     value: false
+    //   }
+    // ])
+
+    // 设置下拉框禁用
+    this.form.setDisabled([
       {
-        id: 'taskGroup',
-        value: '021-2222,123912312312'
+        id: 'taskStatusId',
+        value: true
       }
     ])
   }

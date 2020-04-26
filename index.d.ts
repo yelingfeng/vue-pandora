@@ -17,7 +17,7 @@ declare namespace Table {
     // 是否分页
     pagination: boolean
     // 排序
-    defaultSort: object
+    defaultSort: []
     // 分页参数
     pageOpt: IPageOpt
   }
@@ -59,7 +59,7 @@ declare namespace Form {
     type: ItemType
     required?: boolean
     wrap?: boolean
-    show?: boolean
+    show?: boolean | null
     comOpt: IFormItemCompOpt
   }
 
@@ -71,6 +71,7 @@ declare namespace Form {
     value: string | any
     type: string
     width?: string | number
+    title?: string
     isAll?: boolean
     disabled?: boolean
     placeholder?: string

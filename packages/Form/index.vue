@@ -203,6 +203,7 @@ export default class VForm extends Vue {
             comp = (
               <i
                 class={it.comOpt.className ? it.comOpt.className : 'el-icon-edit'}
+                title={it.comOpt.title || ''}
                 on-click={() => it.comOpt.click && it.comOpt.click()}
               ></i>
             )

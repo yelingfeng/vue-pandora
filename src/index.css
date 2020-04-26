@@ -24,3 +24,22 @@
   width: 100%;
   margin-top: 10px;
 }
+
+.vpandora-table >>> .active-thead .sort-caret.descending {
+  border-top-color: #409eff;
+}
+.vpandora-table >>> .active-thead .sort-caret.ascending {
+  border-top-color: #409eff;
+}
+
+.vpandora-table .column-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  height: 34px;
+  width: 24px;
+  vertical-align: middle;
+  cursor: pointer;
+  overflow: initial;
+  position: relative;
+}

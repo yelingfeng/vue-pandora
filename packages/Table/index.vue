@@ -3,7 +3,7 @@
 const PAGE_HEIGHT = 50
 
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction } from '@/utils/common'
+import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
 import pagination from './pagination.vue'
 
 const enum OperateType {
@@ -16,6 +16,49 @@ const defaultOption: Table.IPageOpt = {
   total: 0,
   pageSizes: [10, 20, 30, 40, 50],
   pageSize: 10
+}
+
+const ASC = 'ascending'
+const DESC = 'descending'
+
+// 自定义排序属性
+const SORT_CODE = 'custom'
+// 排序字段集合
+const SORT_ARR: string[] = [ASC, DESC]
+
+// 获取指定order的 非当前排序字段
+const getTargetSortKey = (order: string) => {
+  const index = SORT_ARR.findIndex((value, index, arr) => {
+    return value !== order
+  })
+  return SORT_ARR[index]
+}
+
+/**
+ * 取当前th上的className 排序order字段
+ */
+const getCurrentSortKey = (classList: any): string => {
+  let currentOrder = ''
+  const reg = `${ASC}|${DESC}`
+  for (let i = 0; i < classList.length; i++) {
+    if (new RegExp(reg).test(classList[i])) {
+      currentOrder = trim(classList[i])
+    }
+  }
+  return currentOrder
+}
+
+type sortChangeCb = {
+  column: object
+  prop: string
+  order: string | null
+}
+type activeSortType = {
+  [key: string]: any
+}
+type defaultSortType = {
+  prop: string
+  order: string
 }
 
 @Component({
@@ -33,11 +76,18 @@ export default class VTable extends Vue {
   private tableData: object[] = []
   private tableHeight: number | string
 
+  // 当前排序
+  private activeSort: any
+  // 默认排序
+  private defaultObj: any
+
   @Watch('option.data')
   optionDataChange(newval: object[]) {
+    this.tableData = newval
     this.$nextTick(() => {
-      this.tableData = newval
       // this.$forceUpdate()
+      this.setTableHeight(this.height)
+      this.initDefaultOrder()
     })
   }
 
@@ -51,8 +101,41 @@ export default class VTable extends Vue {
   }
 
   mounted() {
-    this.setTableHeight(this.height)
+    this.activeSort = Object.create([])
+    this.defaultObj = Object.create([])
     this.tableData = this.option.data
+  }
+
+  initDefaultOrder() {
+    const defaultSort = this.option.defaultSort
+    defaultSort.forEach((item: defaultSortType) => {
+      this.defaultObj[item.prop] = item.order
+    })
+    this.tableColumn.map((item: any) => {
+      // 默认设置值
+      if (item.sortable !== undefined && item.sortable === SORT_CODE) {
+        this.activeSort[item.value] = this.defaultObj[item.value]
+      }
+    })
+    this.initIconSort()
+  }
+
+  /**
+   * 获取当前排序列的th Dom
+   */
+  getSortColDom(order: string) {
+    const tableEl = (this.$refs.table as any).$el
+    return tableEl.querySelectorAll(`div[relid=${order}]`)
+  }
+
+  // 初始化icon按钮状态
+  initIconSort() {
+    for (const key in this.activeSort) {
+      const thNode = this.getSortColDom(key)
+      thNode.forEach((item: any) => {
+        addClass(item.parentNode.parentNode, this.activeSort[key])
+      })
+    }
   }
 
   /**
@@ -97,12 +180,74 @@ export default class VTable extends Vue {
     }
   }
 
-  sortChange(row: object) {
-    if (this.option.sortChange && isFunction(this.option.sortChange)) {
-      this.option.sortChange(row)
+  /**
+   * icon click事件
+   * @param {object} order 排序字段
+   * @param {object} column 当前列对象
+   * @param {any} e 当前事件
+   */
+  private sortIconClick(e: any, column: any, order: string) {
+    const thNode = e.target.parentNode.parentNode.parentNode.parentNode
+
+    // 清除对立active
+    const targetOrder = getTargetSortKey(order)
+    if (hasClass(thNode, targetOrder)) {
+      removeClass(thNode, targetOrder)
     }
+
+    addClass(thNode, order)
+
+    this.sortOrderService(column.property, order)
+    // console.log('sortIconClick--->', column.property + ',' + order)
+    // console.log(this.activeSort)
+
+    this.sortChange()
+    e.stopPropagation()
+    e.preventDefault()
   }
 
+  /**
+   * 表头事件回调
+   */
+  handleHeaderClick(column: any, e: any) {
+    const thNode = e.target.parentNode.parentNode
+    const currentOrder = getCurrentSortKey(thNode.classList)
+    if (currentOrder !== '') {
+      const prop = column.property
+      const targetOrder = getTargetSortKey(currentOrder)
+      // console.log('handleHeaderClick--当前order->', currentOrder)
+      // console.log('handleHeaderClick--目标order->', targetOrder)
+      if (hasClass(thNode, currentOrder)) {
+        removeClass(thNode, currentOrder)
+      }
+      addClass(thNode, targetOrder)
+      this.sortOrderService(prop, targetOrder)
+    }
+    this.sortChange()
+  }
+
+  /**
+   * 排序处理服务
+   * @param {string} column 排序列名
+   * @param {string} order 排序字段
+   */
+  private sortOrderService(column: string, order: string): void {
+    this.activeSort[column] = order
+  }
+
+  /**
+   * 排序回调
+   */
+  sortChange() {
+    if (this.option.sortChange && isFunction(this.option.sortChange)) {
+      // 判断数组curThead中是否存在当前节点的prop
+      // console.log('sortChange ---', this.activeSort)
+      this.option.sortChange(this.activeSort)
+    }
+  }
+  handleTheadAddClass(val: any) {
+    const column = val.column
+  }
   /**
    * @name: handleCurrentChange
    * @param {number} val 切换的页码
@@ -148,6 +293,7 @@ export default class VTable extends Vue {
                     operateDom = (
                       <i
                         key={index}
+                        title={operate.title || ''}
                         class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
                         on-click={() => operate.handlerClick(props.row, props.$index)}
                       ></i>
@@ -174,7 +320,7 @@ export default class VTable extends Vue {
             }}
           ></el-table-column>
         )
-      } else {
+      } else if (item.sortable === SORT_CODE) {
         com = (
           <el-table-column
             type={item.value}
@@ -184,7 +330,42 @@ export default class VTable extends Vue {
             fixed={item.fixed}
             align={item.align}
             min-width={item.minWidth}
+            formatter={item.formatter}
+            show-overflow-tooltip={item.tooltip}
+            scopedSlots={{
+              header: (props: any) => {
+                const column = props.column
+                const customHeader = (
+                  <div relId={column.property}>
+                    {column.label}
+                    <span class="caret-wrapper">
+                      <i
+                        class="sort-caret ascending"
+                        on-click={(e: any) => this.sortIconClick(e, column, 'ascending')}
+                      ></i>
+                      <i
+                        class="sort-caret descending"
+                        on-click={(e: any) => this.sortIconClick(e, column, 'descending')}
+                      ></i>
+                    </span>
+                  </div>
+                )
+                return customHeader
+              }
+            }}
+          ></el-table-column>
+        )
+      } else {
+        com = (
+          <el-table-column
+            type={item.value}
+            prop={item.value}
+            label={item.name}
+            width={item.width}
+            fixed={item.fixed}
             sortable={item.sortable}
+            align={item.align}
+            min-width={item.minWidth}
             formatter={item.formatter}
             show-overflow-tooltip={item.tooltip}
           ></el-table-column>
@@ -205,10 +386,9 @@ export default class VTable extends Vue {
           show-header={this.option.isHeader}
           stripe={this.option.stripe}
           style={this.tableHeight}
-          on-sort-change={this.sortChange}
           on-row-click={this.rowClick}
-          default-sort={this.option.defaultSort}
           on-selection-change={this.handleSelectionChange}
+          on-header-click={this.handleHeaderClick}
         >
           {elColumnSelection}
           {elColumn}

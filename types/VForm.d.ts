@@ -19,7 +19,7 @@ export interface IFormItemOpt {
   type: ItemType
   required?: boolean
   wrap?: boolean
-  show?: boolean
+  show?: boolean | null
   comOpt: IFormItemCompOpt
 }
 
@@ -30,6 +30,7 @@ export interface IFormItemCompOpt {
   id: string
   value: string | any
   type: string
+  title?: string
   width?: string | number
   isAll?: boolean
   disabled?: boolean

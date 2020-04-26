@@ -2,7 +2,7 @@
   <el-select
     v-model="value"
     :clearable="option.clearable"
-    :disabled="option.disabled"
+    :disabled="disabled"
     :filterable="option.filterable"
     :multiple="option.multiple"
     @change="changeHandler"
@@ -28,6 +28,7 @@ export default class VSelect extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
   private value = ''
+  private disabled = false
   private placeholder = ''
   private data: object[] = []
 
@@ -54,6 +55,7 @@ export default class VSelect extends Vue {
   initFunc() {
     this.data = this.option.data || []
     this.value = this.option.value
+    this.disabled = this.option.disabled || false
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请选择-text'
   }
   /**
@@ -74,6 +76,14 @@ export default class VSelect extends Vue {
   setValue(val: string) {
     if (val !== undefined) this.value = val
   }
+
+  /**
+   * 设置select disabled属性
+   */
+  setDisabled(val: boolean) {
+    if (val !== undefined) this.disabled = val
+  }
+
   /**
    * @name:
    * @param {val}
