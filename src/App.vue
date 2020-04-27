@@ -145,6 +145,8 @@ export default class App extends Vue {
     stripe: true,
     isHeader: true,
     selection: true,
+    // 排序模式 single 独立排序 ,multi 多项排序
+    sortMode: 'single',
     defaultSort: [
       { prop: 'taskName', order: 'descending' },
       { prop: 'taskContent', order: 'ascending' }
@@ -159,7 +161,7 @@ export default class App extends Vue {
         value: 'taskName',
         fixed: 'left',
         align: 'center',
-        sortable: 'custom'
+        sortable: true
       },
 
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100' },
@@ -168,7 +170,7 @@ export default class App extends Vue {
       {
         name: '任务内容',
         value: 'taskContent',
-        sortable: 'custom',
+        sortable: true,
         align: 'center',
         formatter: function(row: any, column: any, cellValue: any, index: any) {
           return cellValue

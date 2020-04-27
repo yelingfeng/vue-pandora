@@ -5,7 +5,11 @@ const PAGE_HEIGHT = 50
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
 import pagination from './pagination.vue'
-
+// 排序模式
+const enum sortModeType {
+  SINGLE = 'single',
+  MULTI = 'multi'
+}
 const enum OperateType {
   BUTTON = 'button',
   ICON = 'icon'
@@ -21,8 +25,6 @@ const defaultOption: Table.IPageOpt = {
 const ASC = 'ascending'
 const DESC = 'descending'
 
-// 自定义排序属性
-const SORT_CODE = 'custom'
 // 排序字段集合
 const SORT_ARR: string[] = [ASC, DESC]
 
@@ -86,7 +88,6 @@ export default class VTable extends Vue {
     this.tableData = newval
     this.$nextTick(() => {
       // this.$forceUpdate()
-      this.setTableHeight(this.height)
       this.initDefaultOrder()
     })
   }
@@ -103,17 +104,18 @@ export default class VTable extends Vue {
   mounted() {
     this.activeSort = Object.create([])
     this.defaultObj = Object.create([])
+    this.setTableHeight(this.height)
     this.tableData = this.option.data
   }
 
   initDefaultOrder() {
     const defaultSort = this.option.defaultSort
-    defaultSort.forEach((item: defaultSortType) => {
+    defaultSort.forEach((item: any) => {
       this.defaultObj[item.prop] = item.order
     })
     this.tableColumn.map((item: any) => {
       // 默认设置值
-      if (item.sortable !== undefined && item.sortable === SORT_CODE) {
+      if (item.sortable !== undefined) {
         this.activeSort[item.value] = this.defaultObj[item.value]
       }
     })
@@ -188,19 +190,13 @@ export default class VTable extends Vue {
    */
   private sortIconClick(e: any, column: any, order: string) {
     const thNode = e.target.parentNode.parentNode.parentNode.parentNode
-
     // 清除对立active
     const targetOrder = getTargetSortKey(order)
     if (hasClass(thNode, targetOrder)) {
       removeClass(thNode, targetOrder)
     }
-
     addClass(thNode, order)
-
     this.sortOrderService(column.property, order)
-    // console.log('sortIconClick--->', column.property + ',' + order)
-    // console.log(this.activeSort)
-
     this.sortChange()
     e.stopPropagation()
     e.preventDefault()
@@ -222,8 +218,8 @@ export default class VTable extends Vue {
       }
       addClass(thNode, targetOrder)
       this.sortOrderService(prop, targetOrder)
+      this.sortChange()
     }
-    this.sortChange()
   }
 
   /**
@@ -232,6 +228,10 @@ export default class VTable extends Vue {
    * @param {string} order 排序字段
    */
   private sortOrderService(column: string, order: string): void {
+    // 如果是独立排序
+    if (sortModeType.SINGLE === this.option.sortMode) {
+      this.activeSort = {}
+    }
     this.activeSort[column] = order
   }
 
@@ -244,9 +244,6 @@ export default class VTable extends Vue {
       // console.log('sortChange ---', this.activeSort)
       this.option.sortChange(this.activeSort)
     }
-  }
-  handleTheadAddClass(val: any) {
-    const column = val.column
   }
   /**
    * @name: handleCurrentChange
@@ -270,126 +267,98 @@ export default class VTable extends Vue {
 
   render() {
     let elColumn: any = {}
-    elColumn = this.tableColumn.map((item: any) => {
-      let com
-      if (item.operations) {
-        com = (
-          <el-table-column
-            type={item.value}
-            prop={item.value}
-            label={item.name}
-            width={item.width}
-            fixed={item.fixed}
-            align={item.align}
-            sortable={item.sortable}
-            min-width={item.minWidth}
-            formatter={item.formatter}
-            scopedSlots={{
-              default: (props: any) => {
-                const operations = item.operations.map((operate: any, index: number) => {
-                  const type = operate.type || 'button'
-                  let operateDom
-                  if (OperateType.ICON === type) {
-                    operateDom = (
-                      <i
-                        key={index}
-                        title={operate.title || ''}
-                        class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
-                        on-click={() => operate.handlerClick(props.row, props.$index)}
-                      ></i>
-                    )
-                  } else {
-                    operateDom = (
-                      <el-button
-                        type="text"
-                        size="mini"
-                        key={index}
-                        disabled={
-                          operate.disCallBack && operate.disCallBack(props.row, props.$index)
-                        }
-                        on-click={() => operate.handlerClick(props.row, props.$index)}
-                      >
-                        {operate.label}
-                      </el-button>
-                    )
-                  }
-                  return operateDom
-                })
-                return operations
-              }
-            }}
-          ></el-table-column>
-        )
-      } else if (item.sortable === SORT_CODE) {
-        com = (
-          <el-table-column
-            type={item.value}
-            prop={item.value}
-            label={item.name}
-            width={item.width}
-            fixed={item.fixed}
-            align={item.align}
-            min-width={item.minWidth}
-            formatter={item.formatter}
-            show-overflow-tooltip={item.tooltip}
-            scopedSlots={{
-              header: (props: any) => {
-                const column = props.column
-                const customHeader = (
-                  <div relId={column.property}>
-                    {column.label}
-                    <span class="caret-wrapper">
-                      <i
-                        class="sort-caret ascending"
-                        on-click={(e: any) => this.sortIconClick(e, column, 'ascending')}
-                      ></i>
-                      <i
-                        class="sort-caret descending"
-                        on-click={(e: any) => this.sortIconClick(e, column, 'descending')}
-                      ></i>
-                    </span>
-                  </div>
-                )
-                return customHeader
-              }
-            }}
-          ></el-table-column>
-        )
-      } else {
-        com = (
-          <el-table-column
-            type={item.value}
-            prop={item.value}
-            label={item.name}
-            width={item.width}
-            fixed={item.fixed}
-            sortable={item.sortable}
-            align={item.align}
-            min-width={item.minWidth}
-            formatter={item.formatter}
-            show-overflow-tooltip={item.tooltip}
-          ></el-table-column>
-        )
+    elColumn = this.tableColumn.map((item: any, index: number) => {
+      let columnProps = Object.create(null)
+      columnProps = {
+        props: {
+          prop: item.value,
+          label: item.name,
+          width: item.width,
+          fixed: item.fixed,
+          aligin: item.align,
+          'min-width': item.minWidth,
+          formatter: item.formatter
+        }
       }
-      return com
+      if (item.operations) {
+        columnProps.scopedSlots = {
+          default: (props: any) => {
+            const operations = item.operations.map((operate: any, index: number) => {
+              const type = operate.type || 'button'
+              let operateDom
+              if (OperateType.ICON === type) {
+                operateDom = (
+                  <i
+                    key={index}
+                    title={operate.title || ''}
+                    class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
+                    on-click={() => operate.handlerClick(props.row, props.$index)}
+                  ></i>
+                )
+              } else {
+                operateDom = (
+                  <el-button
+                    type="text"
+                    size="mini"
+                    key={index}
+                    disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+                    on-click={() => operate.handlerClick(props.row, props.$index)}
+                  >
+                    {operate.label}
+                  </el-button>
+                )
+              }
+              return operateDom
+            })
+            return operations
+          }
+        }
+      } else if (item.sortable) {
+        columnProps.scopedSlots = {
+          header: (props: any) => {
+            const column = props.column
+            const customHeader = (
+              <div relId={column.property}>
+                {column.label}
+                <span class="caret-wrapper">
+                  <i
+                    class="sort-caret ascending"
+                    on-click={(e: any) => this.sortIconClick(e, column, 'ascending')}
+                  ></i>
+                  <i
+                    class="sort-caret descending"
+                    on-click={(e: any) => this.sortIconClick(e, column, 'descending')}
+                  ></i>
+                </span>
+              </div>
+            )
+            return customHeader
+          }
+        }
+      }
+      return <el-table-column {...columnProps}></el-table-column>
     })
     let elColumnSelection
     if (this.option.selection) {
       elColumnSelection = <el-table-column type="selection" width="55"></el-table-column>
     }
+    // table属性
+    const vprops: any = {
+      props: {
+        height: this.tableHeight,
+        showHeader: this.option.isHeader,
+        stript: this.option.stripe,
+        data: this.tableData
+      },
+      on: {
+        'row-click': this.rowClick,
+        'selection-change': this.handleSelectionChange,
+        'header-click': this.handleHeaderClick
+      }
+    }
     return (
       <div class="vpandora-table">
-        <el-table
-          ref="table"
-          height={this.tableHeight}
-          data={this.tableData}
-          show-header={this.option.isHeader}
-          stripe={this.option.stripe}
-          style={this.tableHeight}
-          on-row-click={this.rowClick}
-          on-selection-change={this.handleSelectionChange}
-          on-header-click={this.handleHeaderClick}
-        >
+        <el-table ref="table" {...vprops}>
           {elColumnSelection}
           {elColumn}
         </el-table>

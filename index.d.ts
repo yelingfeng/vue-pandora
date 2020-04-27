@@ -6,6 +6,8 @@ declare namespace Table {
     isHeader: boolean
     // 是否显示多选
     selection: boolean
+    // 排序模式
+    sortMode: string
     // 表格表头数据
     column: object[]
     // 表格数据
@@ -17,7 +19,7 @@ declare namespace Table {
     // 是否分页
     pagination: boolean
     // 排序
-    defaultSort: []
+    defaultSort: object[]
     // 分页参数
     pageOpt: IPageOpt
   }
