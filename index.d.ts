@@ -49,6 +49,7 @@ declare namespace Form {
     | 'radio'
     | 'checkbox'
     | 'textGroup'
+    | 'singleGroup'
     | 'autoComplete'
 
   /**

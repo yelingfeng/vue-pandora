@@ -9,6 +9,7 @@ export type ItemType =
   | 'radio'
   | 'checkbox'
   | 'autoComplete'
+  | 'singleGroup'
   | 'textGroup'
 
 /**

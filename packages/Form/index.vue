@@ -7,6 +7,7 @@ import checkBoxComp from './checkbox.vue'
 import buttonComp from './button.vue'
 import autocompleteComp from './autoComplete.vue'
 import textGroupComp from './textGroup.vue'
+import singleGroupComp from './singleGroup/index.vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
 
@@ -19,7 +20,8 @@ import { isFunction, isArray, merge } from '@/utils/common'
     checkBoxComp,
     buttonComp,
     textGroupComp,
-    autocompleteComp
+    autocompleteComp,
+    singleGroupComp
   }
 })
 export default class VForm extends Vue {
@@ -167,6 +169,9 @@ export default class VForm extends Vue {
           break
         case 'textGroup':
           comp = <textGroupComp option={it.comOpt} ref={ref} />
+          break
+        case 'singleGroup':
+          comp = <singleGroupComp option={it.comOpt} ref={ref} />
           break
         default:
           break
