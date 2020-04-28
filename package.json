@@ -1,6 +1,6 @@
 {
   "name": "vue-pandora",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A component library of custom secondary encapsulation about element-ui",
   "main": "./lib/vuepandora.umd.js",
   "module": "./lib/vuepandora.common.js",
@@ -16,6 +16,7 @@
     "docs:build": "vuepress build docs",
     "commit": "git-cz",
     "test": "jest",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "docs:push": "node  ./build/ghpage-push.ts",
     "publish": "npm publish"
   },
