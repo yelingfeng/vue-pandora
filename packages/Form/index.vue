@@ -96,6 +96,21 @@ export default class VForm extends Vue {
   }
 
   /**
+   * 动态设置 必填属性状态
+   ** @param {data}
+   * @return:
+   */
+  setRequired(data: Array<any>) {
+    this.formOpt.items.forEach((it: Form.IFormItemOpt, index: number) => {
+      data.forEach(d => {
+        if (it.comOpt.id === d.id) {
+          it.required = d.value
+        }
+      })
+    })
+  }
+
+  /**
    * @name: clearValue
    * @param {type}
    * @return:

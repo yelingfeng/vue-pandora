@@ -191,11 +191,14 @@ export default class VTable extends Vue {
   private sortIconClick(e: any, column: any, order: string) {
     const thNode = e.target.parentNode.parentNode.parentNode.parentNode
     // 清除对立active
-    const targetOrder = getTargetSortKey(order)
-    if (hasClass(thNode, targetOrder)) {
-      removeClass(thNode, targetOrder)
-    }
-    addClass(thNode, order)
+    // const targetOrder = getTargetSortKey(order)
+    // if (hasClass(thNode, targetOrder)) {
+    //   removeClass(thNode, targetOrder)
+    // }
+    // addClass(thNode, order)
+
+    this.changeSortOrderClass(thNode, order)
+
     this.sortOrderService(column.property, order)
     this.sortChange()
     e.stopPropagation()
@@ -203,22 +206,50 @@ export default class VTable extends Vue {
   }
 
   /**
+   * 处理sort icon 样式方法
+   * @param {object} node dom节点对象
+   * @param {string} sourceOrder 原排序order
+   */
+  changeSortOrderClass(node: any, sourceOrder: string) {
+    const lastOrder = getTargetSortKey(sourceOrder)
+    // 存在则移除上一次的
+    if (hasClass(node, lastOrder)) {
+      removeClass(node, lastOrder)
+    }
+    addClass(node, sourceOrder)
+  }
+
+  /**
    * 表头事件回调
    */
   handleHeaderClick(column: any, e: any) {
     const thNode = e.target.parentNode.parentNode
+    const prop = column.property
+    // 多选模式
     const currentOrder = getCurrentSortKey(thNode.classList)
     if (currentOrder !== '') {
-      const prop = column.property
       const targetOrder = getTargetSortKey(currentOrder)
       // console.log('handleHeaderClick--当前order->', currentOrder)
       // console.log('handleHeaderClick--目标order->', targetOrder)
-      if (hasClass(thNode, currentOrder)) {
-        removeClass(thNode, currentOrder)
-      }
-      addClass(thNode, targetOrder)
+      // if (hasClass(thNode, currentOrder)) {
+      //   removeClass(thNode, currentOrder)
+      // }
+      // addClass(thNode, targetOrder)
+
+      this.changeSortOrderClass(thNode, targetOrder)
       this.sortOrderService(prop, targetOrder)
       this.sortChange()
+    } else {
+      let order = ''
+      this.option.defaultSort.forEach((item: any) => {
+        if (item.prop == column.property) order = item.order
+      })
+      // 如果当前没有默认排序 且是单选模式 则设定默认排序
+      if (sortModeType.SINGLE === this.option.sortMode && order !== '') {
+        this.changeSortOrderClass(thNode, order)
+        this.sortOrderService(prop, order)
+        this.sortChange()
+      }
     }
   }
 
@@ -231,8 +262,26 @@ export default class VTable extends Vue {
     // 如果是独立排序
     if (sortModeType.SINGLE === this.option.sortMode) {
       this.activeSort = {}
+      this.option.defaultSort.forEach((item: any) => {
+        if (item.prop !== column) {
+          this.clearSortOrderCls(item.prop)
+        }
+      })
     }
     this.activeSort[column] = order
+  }
+
+  /**
+   * 清空所属icon样式
+   * @param {string} column 排序列名
+   */
+  private clearSortOrderCls(column: string) {
+    const thNode = this.getSortColDom(column)
+    thNode.forEach((item: any) => {
+      SORT_ARR.forEach(order => {
+        removeClass(item.parentNode.parentNode, order)
+      })
+    })
   }
 
   /**

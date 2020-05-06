@@ -20,6 +20,8 @@ import VForm from '../packages/Form/index.vue'
 import axios from 'axios'
 @Component({})
 export default class App extends Vue {
+  private vaildStatus = true
+
   @Ref() readonly form!: VForm
   formObj: any = {
     inline: true,
@@ -146,7 +148,7 @@ export default class App extends Vue {
     isHeader: true,
     selection: true,
     // 排序模式 single 独立排序 ,multi 多项排序
-    sortMode: 'single',
+    sortMode: 'multi',
     defaultSort: [
       { prop: 'taskName', order: 'descending' },
       { prop: 'taskContent', order: 'ascending' }
@@ -234,12 +236,16 @@ export default class App extends Vue {
     const formValue = this.form.getValue()
     console.log(formValue)
     // 设置textGroup值
-    // this.form.setShow([
-    //   {
-    //     id: 'taskGroup',
-    //     value: false
-    //   }
-    // ])
+    this.form.setShow([
+      {
+        id: 'taskGroup',
+        value: !this.vaildStatus
+      }
+    ])
+
+    // 设置动态必填
+    this.form.setRequired([{ id: 'taskName', value: !this.vaildStatus }])
+    this.vaildStatus = !this.vaildStatus
 
     // 设置下拉框禁用
     this.form.setDisabled([
