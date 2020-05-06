@@ -1,4 +1,10 @@
-## 1.0.13 (2020-04-28)
+## [1.0.14](https://github.com/yelingfeng/vue-pandora/compare/v1.0.13...v1.0.14) (2020-05-06)
+
+### Bug Fixes
+
+- **sortmode:** fixed single model ([956c3cc](https://github.com/yelingfeng/vue-pandora/commit/956c3cc834a9f7da674537e7f14f8de73bcd484a))
+
+## [1.0.13](https://github.com/yelingfeng/vue-pandora/compare/d77dc34d3a5a02eb8b7fee62c53066a9489d9712...v1.0.13) (2020-04-28)
 
 ### Bug Fixes
 
