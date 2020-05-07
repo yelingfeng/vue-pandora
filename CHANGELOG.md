@@ -1,20 +1,16 @@
-## [1.0.14](https://github.com/yelingfeng/vue-pandora/compare/v1.0.13...v1.0.14) (2020-05-06)
-
-### Bug Fixes
-
-- **sortmode:** fixed single model ([956c3cc](https://github.com/yelingfeng/vue-pandora/commit/956c3cc834a9f7da674537e7f14f8de73bcd484a))
-
-## [1.0.13](https://github.com/yelingfeng/vue-pandora/compare/d77dc34d3a5a02eb8b7fee62c53066a9489d9712...v1.0.13) (2020-04-28)
+## 1.0.15 (2020-05-07)
 
 ### Bug Fixes
 
 - **fix sortable:** add sort mode ([5b30e33](https://github.com/yelingfeng/vue-pandora/commit/5b30e332566150e35db07bb99a18afffb1f3587f))
+- **sortmode:** fixed single model ([956c3cc](https://github.com/yelingfeng/vue-pandora/commit/956c3cc834a9f7da674537e7f14f8de73bcd484a))
 
 ### Features
 
 - **add:** add docs ([aa49309](https://github.com/yelingfeng/vue-pandora/commit/aa4930921c9f2954e0103537eec80861ada8c4e2))
 - **add:** add jest and travis ([746e47e](https://github.com/yelingfeng/vue-pandora/commit/746e47e120417dd0228a20698e3281dc8b979d89))
 - **init:** init code ([d77dc34](https://github.com/yelingfeng/vue-pandora/commit/d77dc34d3a5a02eb8b7fee62c53066a9489d9712))
+- **sortorder/tooltip:** change sortorder bug ,add tooltip ([89f246a](https://github.com/yelingfeng/vue-pandora/commit/89f246a3a9a217a5b6e41629b46eb2e464f6b09c))
 - **update:** update ([1cbe3d8](https://github.com/yelingfeng/vue-pandora/commit/1cbe3d8fe7454697b7715d42caa642e9118299c1))
 - **update:** update path bug ([0b62931](https://github.com/yelingfeng/vue-pandora/commit/0b62931241429c0815420064b02d33e15d669588))
 - **update:** update table operate ([a8353f6](https://github.com/yelingfeng/vue-pandora/commit/a8353f6a361500112c19986b0792a00acc8a0149))
