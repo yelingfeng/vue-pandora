@@ -189,16 +189,9 @@ export default class VTable extends Vue {
    * @param {any} e 当前事件
    */
   private sortIconClick(e: any, column: any, order: string) {
-    const thNode = e.target.parentNode.parentNode.parentNode.parentNode
-    // 清除对立active
-    // const targetOrder = getTargetSortKey(order)
-    // if (hasClass(thNode, targetOrder)) {
-    //   removeClass(thNode, targetOrder)
-    // }
-    // addClass(thNode, order)
+    const thNode = this.getTargetNode(e)
 
     this.changeSortOrderClass(thNode, order)
-
     this.sortOrderService(column.property, order)
     this.sortChange()
     e.stopPropagation()
@@ -208,33 +201,65 @@ export default class VTable extends Vue {
   /**
    * 处理sort icon 样式方法
    * @param {object} node dom节点对象
-   * @param {string} sourceOrder 原排序order
+   * @param {string} order 目标排序order
    */
-  changeSortOrderClass(node: any, sourceOrder: string) {
-    const lastOrder = getTargetSortKey(sourceOrder)
-    // 存在则移除上一次的
-    if (hasClass(node, lastOrder)) {
-      removeClass(node, lastOrder)
+  private changeSortOrderClass(node: any, order: string) {
+    // const lastOrder = getTargetSortKey(sourceOrder)
+    // // 存在则移除上一次的
+    // if (hasClass(node, lastOrder)) {
+    //   removeClass(node, lastOrder)
+    // }
+    this.removeAllSortOrderCls(node)
+    addClass(node, order)
+  }
+
+  /**
+   * 移除所有排序cls样式
+   **/
+  private removeAllSortOrderCls(node: any) {
+    SORT_ARR.forEach(item => {
+      removeClass(node, item)
+    })
+  }
+
+  /**
+   * 获取目标dom节点
+   *
+   */
+  private getTargetNode(e: any) {
+    const target = e.target
+    let node
+    // 点击了span
+    if (target.className === 'caret-wrapper') {
+      node = target.parentNode.parentNode.parentNode
     }
-    addClass(node, sourceOrder)
+    // icon触发
+    else if (target.nodeName === 'I') {
+      node = target.parentNode.parentNode.parentNode.parentNode
+    }
+    // div rel header触发
+    else if (target.nodeName === 'DIV' && target.attributes.getNamedItem('relid')) {
+      node = target.parentNode.parentNode
+    }
+    // div cell
+    else if (target.nodeName === 'DIV' && target.className == 'cell') {
+      node = target.parentNode
+    }
+    return node
   }
 
   /**
    * 表头事件回调
    */
   handleHeaderClick(column: any, e: any) {
-    const thNode = e.target.parentNode.parentNode
+    const target = e.target
+    const thNode = this.getTargetNode(e)
+
     const prop = column.property
     // 多选模式
     const currentOrder = getCurrentSortKey(thNode.classList)
     if (currentOrder !== '') {
       const targetOrder = getTargetSortKey(currentOrder)
-      // console.log('handleHeaderClick--当前order->', currentOrder)
-      // console.log('handleHeaderClick--目标order->', targetOrder)
-      // if (hasClass(thNode, currentOrder)) {
-      //   removeClass(thNode, currentOrder)
-      // }
-      // addClass(thNode, targetOrder)
 
       this.changeSortOrderClass(thNode, targetOrder)
       this.sortOrderService(prop, targetOrder)
@@ -278,9 +303,7 @@ export default class VTable extends Vue {
   private clearSortOrderCls(column: string) {
     const thNode = this.getSortColDom(column)
     thNode.forEach((item: any) => {
-      SORT_ARR.forEach(order => {
-        removeClass(item.parentNode.parentNode, order)
-      })
+      this.removeAllSortOrderCls(item.parentNode.parentNode)
     })
   }
 
@@ -324,8 +347,9 @@ export default class VTable extends Vue {
           label: item.name,
           width: item.width,
           fixed: item.fixed,
-          aligin: item.align,
+          align: item.align,
           'min-width': item.minWidth,
+          'show-overflow-tooltip': true,
           formatter: item.formatter
         }
       }
@@ -334,27 +358,46 @@ export default class VTable extends Vue {
           default: (props: any) => {
             const operations = item.operations.map((operate: any, index: number) => {
               const type = operate.type || 'button'
+              let tooltipProp = Object.create(null)
+              tooltipProp = {
+                props: {
+                  placement: 'top',
+                  content: ''
+                }
+              }
+              if (isFunction(operate.tooltip)) {
+                tooltipProp.props.content = operate.tooltip(props.row, props.$index)
+              } else if (typeof operate.tooltip === 'string') {
+                tooltipProp.props.content = operate.tooltip
+              } else if (operate.title && operate.title != '') {
+                tooltipProp.props.content = operate.title
+              } else {
+                tooltipProp.props.content = operate.label
+              }
               let operateDom
               if (OperateType.ICON === type) {
                 operateDom = (
-                  <i
-                    key={index}
-                    title={operate.title || ''}
-                    class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
-                    on-click={() => operate.handlerClick(props.row, props.$index)}
-                  ></i>
+                  <el-tooltip {...tooltipProp}>
+                    <i
+                      key={index}
+                      class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
+                      on-click={() => operate.handlerClick(props.row, props.$index)}
+                    ></i>
+                  </el-tooltip>
                 )
               } else {
                 operateDom = (
-                  <el-button
-                    type="text"
-                    size="mini"
-                    key={index}
-                    disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
-                    on-click={() => operate.handlerClick(props.row, props.$index)}
-                  >
-                    {operate.label}
-                  </el-button>
+                  <el-tooltip {...tooltipProp}>
+                    <el-button
+                      type="text"
+                      size="mini"
+                      key={index}
+                      disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+                      on-click={() => operate.handlerClick(props.row, props.$index)}
+                    >
+                      {operate.label}
+                    </el-button>
+                  </el-tooltip>
                 )
               }
               return operateDom
@@ -396,7 +439,7 @@ export default class VTable extends Vue {
       props: {
         height: this.tableHeight,
         showHeader: this.option.isHeader,
-        stript: this.option.stripe,
+        stripe: this.option.stripe,
         data: this.tableData
       },
       on: {

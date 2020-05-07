@@ -189,7 +189,11 @@ export default class App extends Vue {
           {
             label: '详情',
             type: 'icon',
-            title: '添加一个title属性',
+            // title: '添加一个title属性',
+            tooltip: function(row: any) {
+              return row.taskContent + '流量链接趋势'
+            },
+            // tooltip: '1流量链接趋势',
             iconName: 'el-icon-eleme    ',
             handlerClick: (row: any) => {
               console.log(row)
@@ -197,6 +201,7 @@ export default class App extends Vue {
           },
           {
             label: '编辑',
+            tooltip: '编辑测试222',
             handlerClick: (row: any) => {
               console.log(row)
             }
