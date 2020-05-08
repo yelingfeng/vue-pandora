@@ -8,7 +8,6 @@ const install = function(vue: typeof Vue, opts = {}) {
 }
 
 const VuePandora = {
-  version: '1.0.1',
   install,
   VForm,
   VTable

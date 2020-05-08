@@ -220,12 +220,26 @@ export default class VForm extends Vue {
         let comp
         if (it.show === undefined || it.show) {
           if (it.comOpt.type && it.comOpt.type === 'icon') {
+            let tooltipProp = Object.create(null)
+            tooltipProp = {
+              props: {
+                placement: 'top',
+                content: '',
+                'open-delay': 1000
+              }
+            }
+            if (it.comOpt.title) {
+              tooltipProp.props.content = it.comOpt.title
+            } else {
+              tooltipProp.props.disabled = true
+            }
             comp = (
-              <i
-                class={it.comOpt.className ? it.comOpt.className : 'el-icon-edit'}
-                title={it.comOpt.title || ''}
-                on-click={() => it.comOpt.click && it.comOpt.click()}
-              ></i>
+              <el-tooltip {...tooltipProp}>
+                <i
+                  class={it.comOpt.className ? it.comOpt.className : 'el-icon-edit'}
+                  on-click={() => it.comOpt.click && it.comOpt.click()}
+                ></i>
+              </el-tooltip>
             )
           } else {
             comp = <buttonComp option={it.comOpt} ref={ref} />

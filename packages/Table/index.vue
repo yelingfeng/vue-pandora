@@ -362,18 +362,24 @@ export default class VTable extends Vue {
               tooltipProp = {
                 props: {
                   placement: 'top',
-                  content: ''
+                  content: '',
+                  'open-delay': 1000
                 }
               }
-              if (isFunction(operate.tooltip)) {
-                tooltipProp.props.content = operate.tooltip(props.row, props.$index)
-              } else if (typeof operate.tooltip === 'string') {
-                tooltipProp.props.content = operate.tooltip
-              } else if (operate.title && operate.title != '') {
-                tooltipProp.props.content = operate.title
+              if (operate.tooltip) {
+                if (isFunction(operate.tooltip)) {
+                  tooltipProp.props.content = operate.tooltip(props.row, props.$index)
+                } else if (typeof operate.tooltip === 'string') {
+                  tooltipProp.props.content = operate.tooltip
+                } else if (operate.title && operate.title != '') {
+                  tooltipProp.props.content = operate.title
+                } else {
+                  tooltipProp.props.content = operate.label
+                }
               } else {
-                tooltipProp.props.content = operate.label
+                tooltipProp.props.disabled = true
               }
+
               let operateDom
               if (OperateType.ICON === type) {
                 operateDom = (
