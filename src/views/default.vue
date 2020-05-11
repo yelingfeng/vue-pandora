@@ -1,7 +1,9 @@
 <template>
   <div>
+    <el-button @click.native="demoClick">手动table排序重置</el-button>
     <VForm :option="formObj" ref="form"></VForm>
     <VTable
+      ref="table"
       :option="tableOpt"
       :height="tableHeight"
       @handleSelectionChange="selectionChange"
@@ -12,12 +14,14 @@
 // @ is an alias to /src
 import { Component, Vue, Ref } from 'vue-property-decorator'
 import VForm from '../../packages/Form/index.vue'
+import VTable from '../../packages/Table/index.vue'
 import axios from 'axios'
 @Component({})
 export default class Default extends Vue {
   private vaildStatus = true
 
   @Ref() readonly form!: VForm
+  @Ref() readonly table!: VTable
   formObj: any = {
     inline: true,
     labelPosition: 'right',
@@ -146,8 +150,8 @@ export default class Default extends Vue {
     // 排序模式 single 独立排序 ,multi 多项排序
     sortMode: 'single',
     defaultSort: [
-      { prop: 'taskName', order: 'descending' },
-      { prop: 'taskContent', order: 'ascending' }
+      { prop: 'taskName', order: 'descending' }
+      // { prop: 'taskContent', order: 'ascending' }
     ],
     sortChange: (column: object) => {
       console.log(column)
@@ -163,8 +167,8 @@ export default class Default extends Vue {
         sortable: true
       },
 
-      { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100' },
-      { name: '更新时间', value: 'updateTime', align: 'center' },
+      { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
+      { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
       { name: '任务状态', value: 'taskStatusName', align: 'center' },
       {
         name: '任务内容',
@@ -233,6 +237,10 @@ export default class Default extends Vue {
     }
   }
   tableHeight = '400'
+
+  demoClick() {
+    this.table.initIconSort()
+  }
 
   querySearchAction() {
     const formValue = this.form.getValue()

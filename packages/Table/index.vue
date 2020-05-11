@@ -81,8 +81,8 @@ export default class VTable extends Vue {
   // 当前排序
   private activeSort: any
   // 默认排序
-  private defaultObj: any
-
+  private defaultSortObj: any
+  // 第一次加载初始化状态 完成后 设置false
   private isStart = true
 
   @Watch('option.data')
@@ -108,20 +108,43 @@ export default class VTable extends Vue {
 
   mounted() {
     this.activeSort = Object.create([])
-    this.defaultObj = Object.create([])
+    this.defaultSortObj = Object.create([])
     this.setTableHeight(this.height)
     this.tableData = this.option.data
   }
 
-  initDefaultOrder() {
-    const defaultSort = this.option.defaultSort
-    defaultSort.forEach((item: any) => {
-      this.defaultObj[item.prop] = item.order
+  /**
+   * 获取默认配置sortable = true的列 对应的order属性
+   * return {object}
+   */
+  getDefaultOrderColumn() {
+    const obj = Object.create([])
+    this.tableColumn.map((item: any) => {
+      // 配置了开启排序模式
+      if (item.sortable && item.sortable !== undefined) {
+        obj[item.value] = ''
+      }
     })
+    return obj
+  }
+
+  // 初始化 装载默认得排序对象
+  private _initDefSortObj(): void {
+    this.option.defaultSort.forEach((item: any) => {
+      this.defaultSortObj[item.prop] = item.order
+    })
+  }
+
+  initDefaultOrder() {
+    console.log(this.getDefaultOrderColumn())
+
+    this._initDefSortObj()
+
+    console.log(this.defaultSortObj)
     this.tableColumn.map((item: any) => {
       // 默认设置值
       if (item.sortable !== undefined) {
-        this.activeSort[item.value] = this.defaultObj[item.value]
+        this.activeSort[item.value] = this.defaultSortObj[item.value]
       }
     })
     this.initIconSort()
