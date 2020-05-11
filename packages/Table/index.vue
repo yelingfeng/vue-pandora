@@ -83,12 +83,17 @@ export default class VTable extends Vue {
   // 默认排序
   private defaultObj: any
 
+  private isStart = true
+
   @Watch('option.data')
   optionDataChange(newval: object[]) {
     this.tableData = newval
     this.$nextTick(() => {
       // this.$forceUpdate()
-      this.initDefaultOrder()
+      if (this.isStart) {
+        this.initDefaultOrder()
+        this.isStart = false
+      }
     })
   }
 

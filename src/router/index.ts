@@ -11,6 +11,10 @@ const constantRouterMap = [
   {
     path: '/default',
     component: () => import('@/views/default.vue')
+  },
+  {
+    path: '/form',
+    component: () => import('@/views/formDemo.vue')
   }
 ]
 

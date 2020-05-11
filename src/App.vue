@@ -1,17 +1,28 @@
 <template>
   <div id="app">
-    <el-row :gutter="20">
-      <el-col :span="16" :offset="4">
-        <h1>Vue-pandora</h1>
-        <p>
-          <router-link to="/default">Go to Default</router-link>
-          |
-          <router-link to="/demo">Go to Demo</router-link>
-        </p>
-      </el-col>
-    </el-row>
     <el-row :gutter="24">
-      <router-view></router-view>
+      <el-col :span="4">
+        <el-menu router default-active="/form" class="el-menu-vertical-demo">
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>Demo</span>
+            </template>
+            <el-menu-item-group>
+              <template slot="title"></template>
+              <el-menu-item index="/default">default</el-menu-item>
+              <el-menu-item index="/demo">demo</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="表单验证">
+              <el-menu-item index="/form">form</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu>
+      </el-col>
+      <el-col :span="20">
+        <h1>Vue-pandora</h1>
+        <router-view></router-view>
+      </el-col>
     </el-row>
   </div>
 </template>

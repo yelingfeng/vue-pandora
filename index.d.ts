@@ -101,5 +101,7 @@ declare namespace Form {
     items: Array<IFormItemOpt>
     // BtnItem
     btns?: Array<IFormItemOpt>
+    // 验证规则
+    rules?: object
   }
 }

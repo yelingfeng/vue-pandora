@@ -8,8 +8,9 @@ import buttonComp from './button.vue'
 import autocompleteComp from './autoComplete.vue'
 import textGroupComp from './textGroup.vue'
 import singleGroupComp from './singleGroup/index.vue'
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
+import { ElForm, ValidateCallback } from 'element-ui/types/form'
 
 @Component({
   components: {
@@ -28,12 +29,17 @@ export default class VForm extends Vue {
   @Prop()
   option: Form.IFormOption
 
+  @Ref() readonly form!: ElForm
+
   private labelPosition = ''
   private labelWidth = ''
+
+  private formVaildModel = Object.create(null)
 
   get formOpt() {
     return this.option
   }
+
   mounted() {
     this.labelPosition = this.option.labelPosition || 'right'
     if (this.option.labelWidth) {
@@ -153,6 +159,17 @@ export default class VForm extends Vue {
     })
   }
 
+  validate(cb: ValidateCallback) {
+    return this.form.validate(cb)
+  }
+  resetFields() {
+    this.form.resetFields()
+  }
+
+  clearValidate(props?: string | string[]) {
+    this.form.clearValidate(props)
+  }
+
   render() {
     let elBtns
     // let me = this
@@ -260,14 +277,17 @@ export default class VForm extends Vue {
         elBtns = <div class="vpandora-right-btns">{elBtns}</div>
       }
     }
+    let formProps = Object.create(null)
+    formProps = {
+      props: {
+        inline: this.formOpt.inline,
+        'label-position': this.labelPosition,
+        'label-width': this.labelWidth
+      }
+    }
     return (
       <div class="vpandora-form">
-        <el-form
-          inline={this.formOpt.inline}
-          label-position={this.labelPosition}
-          label-width={this.labelWidth}
-          ref="form"
-        >
+        <el-form {...formProps} ref="form">
           {elItems}
           {elBtns}
         </el-form>

@@ -10,6 +10,7 @@ Vue.use(ElementUI)
 Vue.use(VuePandora)
 import '../mock/index.ts'
 import './index.css'
+import './_common.less'
 new Vue({
   router,
   render: h => h(App)

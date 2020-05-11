@@ -1,14 +1,12 @@
 <template>
-  <el-row :gutter="22">
-    <el-col :span="16" :offset="4">
-      <VForm :option="formObj" ref="form"></VForm>
-      <VTable
-        :option="tableOpt"
-        :height="tableHeight"
-        @handleSelectionChange="selectionChange"
-      ></VTable>
-    </el-col>
-  </el-row>
+  <div>
+    <VForm :option="formObj" ref="form"></VForm>
+    <VTable
+      :option="tableOpt"
+      :height="tableHeight"
+      @handleSelectionChange="selectionChange"
+    ></VTable>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Ref } from 'vue-property-decorator'

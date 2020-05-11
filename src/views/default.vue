@@ -1,14 +1,12 @@
 <template>
-  <el-row :gutter="22">
-    <el-col :span="16" :offset="4">
-      <VForm :option="formObj" ref="form"></VForm>
-      <VTable
-        :option="tableOpt"
-        :height="tableHeight"
-        @handleSelectionChange="selectionChange"
-      ></VTable>
-    </el-col>
-  </el-row>
+  <div>
+    <VForm :option="formObj" ref="form"></VForm>
+    <VTable
+      :option="tableOpt"
+      :height="tableHeight"
+      @handleSelectionChange="selectionChange"
+    ></VTable>
+  </div>
 </template>
 <script lang="ts">
 // @ is an alias to /src
@@ -150,8 +148,9 @@ export default class Default extends Vue {
       { prop: 'taskName', order: 'descending' },
       { prop: 'taskContent', order: 'ascending' }
     ],
-    sortChange: function(column: object) {
+    sortChange: (column: object) => {
       console.log(column)
+      this.getTableList()
     },
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
@@ -270,6 +269,10 @@ export default class Default extends Vue {
     console.log(1)
   }
   mounted() {
+    this.getTableList()
+  }
+
+  getTableList() {
     axios.get('/api/tablelist').then(resp => {
       const list = resp.data.data.list as Array<object>
       this.tableOpt.data = list

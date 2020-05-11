@@ -59,6 +59,8 @@ export interface IFormOption {
   items: Array<IFormItemOpt>
   // BtnItem
   btns?: Array<IFormItemOpt>
+  // 验证规则
+  rules?: object
 }
 
 export declare class Form extends PandoraUIComponent {
@@ -74,4 +76,10 @@ export declare class Form extends PandoraUIComponent {
   setShow: (data: Array<any>) => void
   // 设置一组是否禁用
   setDisabled: (data: Array<any>) => void
+  // 验证方法
+  validate: Function
+
+  resetFields: Function
+
+  clearValidate: Function
 }
