@@ -43,6 +43,7 @@ export interface IFormItemCompOpt {
   clearable?: boolean
   data?: any[]
   className?: string
+  tooltipDelay: number
   click?: Function | undefined
   change?: Function | undefined
 }

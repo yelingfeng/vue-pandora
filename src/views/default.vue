@@ -114,6 +114,7 @@ export default class Default extends Vue {
           id: 'iconTest',
           type: 'icon',
           title: 'this is icon test',
+          tooltipDelay: 500,
           className: 'el-icon-edit',
           click: this.iconClickAction
         }
@@ -189,6 +190,7 @@ export default class Default extends Vue {
             tooltip: function(row: any) {
               return row.taskContent + '流量链接趋势'
             },
+            tooltipDelay: 500,
             // tooltip: '1流量链接趋势',
             iconName: 'el-icon-eleme    ',
             handlerClick: (row: any) => {

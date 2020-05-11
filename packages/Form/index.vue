@@ -242,7 +242,7 @@ export default class VForm extends Vue {
               props: {
                 placement: 'top',
                 content: '',
-                'open-delay': 1000
+                'open-delay': it.comOpt.tooltipDelay || 1000
               }
             }
             if (it.comOpt.title) {

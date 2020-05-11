@@ -368,7 +368,7 @@ export default class VTable extends Vue {
                 props: {
                   placement: 'top',
                   content: '',
-                  'open-delay': 1000
+                  'open-delay': operate.tooltipDelay || 1000
                 }
               }
               if (operate.tooltip) {

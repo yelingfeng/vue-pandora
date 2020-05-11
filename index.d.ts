@@ -84,6 +84,7 @@ declare namespace Form {
     // 是否显示清除按钮
     clearable?: boolean
     data?: any[]
+    tooltipDelay: number
     className?: string
     click?: Function | undefined
     change?: Function | undefined
