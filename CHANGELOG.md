@@ -1,3 +1,9 @@
+## [1.0.18](https://github.com/yelingfeng/vue-pandora/compare/v1.0.17...v1.0.18) (2020-05-11)
+
+### Features
+
+- **add:** add tooltipDelay prop ([540bd8e](https://github.com/yelingfeng/vue-pandora/commit/540bd8e871a4eeb51d8715b5bd51e2e6a29bc844))
+
 ## [1.0.17](https://github.com/yelingfeng/vue-pandora/compare/v1.0.16...v1.0.17) (2020-05-11)
 
 ### Bug Fixes
