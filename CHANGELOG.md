@@ -1,3 +1,9 @@
+## [1.0.17](https://github.com/yelingfeng/vue-pandora/compare/v1.0.16...v1.0.17) (2020-05-11)
+
+### Bug Fixes
+
+- **fix sortorder:** fix order data loading bug ([c171c15](https://github.com/yelingfeng/vue-pandora/commit/c171c15378a46f5e014275cbdc8564ba305096d4))
+
 ## [1.0.16](https://github.com/yelingfeng/vue-pandora/compare/v1.0.14...v1.0.16) (2020-05-08)
 
 ### Features
