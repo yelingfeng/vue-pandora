@@ -20,6 +20,8 @@ declare namespace Table {
     pagination: boolean
     // 排序
     defaultSort: object[]
+    // 默认排序方向
+    defaultOrder: string
     // 分页参数
     pageOpt: IPageOpt
   }

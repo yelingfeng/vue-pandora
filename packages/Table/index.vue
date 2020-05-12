@@ -25,6 +25,8 @@ const defaultOption: Table.IPageOpt = {
 const ASC = 'ascending'
 const DESC = 'descending'
 
+const DEFAULT_SORT = 'descending'
+
 // 排序字段集合
 const SORT_ARR: string[] = [ASC, DESC]
 
@@ -79,11 +81,13 @@ export default class VTable extends Vue {
   private tableHeight: number | string
 
   // 当前排序
-  private activeSort: any
+  private activeSort: any = {}
   // 默认排序
-  private defaultSortObj: any
+  private defaultSortObj: any = {}
   // 第一次加载初始化状态 完成后 设置false
   private isStart = true
+
+  private _oldActiveSort: any = {}
 
   @Watch('option.data')
   optionDataChange(newval: object[]) {
@@ -107,17 +111,16 @@ export default class VTable extends Vue {
   }
 
   mounted() {
-    this.activeSort = Object.create([])
-    this.defaultSortObj = Object.create([])
     this.setTableHeight(this.height)
     this.tableData = this.option.data
   }
 
   /**
    * 获取默认配置sortable = true的列 对应的order属性
+   * （ 列里定义的sortable=true ）
    * return {object}
    */
-  getDefaultOrderColumn() {
+  _initDefaultOrderColumn() {
     const obj = Object.create([])
     this.tableColumn.map((item: any) => {
       // 配置了开启排序模式
@@ -136,18 +139,29 @@ export default class VTable extends Vue {
   }
 
   initDefaultOrder() {
-    console.log(this.getDefaultOrderColumn())
+    const userColumnOrder = this._initDefaultOrderColumn()
 
     this._initDefSortObj()
 
-    console.log(this.defaultSortObj)
-    this.tableColumn.map((item: any) => {
-      // 默认设置值
-      if (item.sortable !== undefined) {
-        this.activeSort[item.value] = this.defaultSortObj[item.value]
+    for (const column in userColumnOrder) {
+      //  设置默认的排序
+      if (this.defaultSortObj[column]) {
+        userColumnOrder[column] = this.defaultSortObj[column]
       }
-    })
+    }
+    // 存一份副本
+    this._oldActiveSort = Object.assign({}, userColumnOrder)
+    // 存当前排序
+    this.activeSort = Object.assign({}, userColumnOrder)
+
     this.initIconSort()
+  }
+
+  // 初始化sort
+  initSort() {
+    this._clearSortOrderService()
+    this.initDefaultOrder()
+    this.sortChange()
   }
 
   /**
@@ -218,6 +232,11 @@ export default class VTable extends Vue {
    */
   private sortIconClick(e: any, column: any, order: string) {
     const thNode = this.getTargetNode(e)
+    // 如果是单排模式
+    if (this._isSingleModel(this.option.sortMode)) {
+      // 先清空所有activeSort
+      this._clearSortOrderService()
+    }
 
     this.changeSortOrderClass(thNode, order)
     this.sortOrderService(column.property, order)
@@ -232,11 +251,6 @@ export default class VTable extends Vue {
    * @param {string} order 目标排序order
    */
   private changeSortOrderClass(node: any, order: string) {
-    // const lastOrder = getTargetSortKey(sourceOrder)
-    // // 存在则移除上一次的
-    // if (hasClass(node, lastOrder)) {
-    //   removeClass(node, lastOrder)
-    // }
     this.removeAllSortOrderCls(node)
     addClass(node, order)
   }
@@ -276,6 +290,22 @@ export default class VTable extends Vue {
     return node
   }
 
+  // 是否是单排模式
+  private _isSingleModel(sortMode: string) {
+    return sortModeType.SINGLE === sortMode
+  }
+
+  // 获取默认列的order 如果有默认值 取默认 没有默认返回降序
+  private _getDefaultOrder(prop: string) {
+    let order = ''
+    if (this._oldActiveSort[prop]) {
+      order = this._oldActiveSort[prop]
+    } else {
+      order = this.option.defaultOrder || DEFAULT_SORT
+    }
+    return order
+  }
+
   /**
    * 表头事件回调
    */
@@ -284,26 +314,28 @@ export default class VTable extends Vue {
     const thNode = this.getTargetNode(e)
 
     const prop = column.property
-    // 多选模式
     const currentOrder = getCurrentSortKey(thNode.classList)
-    if (currentOrder !== '') {
-      const targetOrder = getTargetSortKey(currentOrder)
 
-      this.changeSortOrderClass(thNode, targetOrder)
-      this.sortOrderService(prop, targetOrder)
-      this.sortChange()
-    } else {
-      let order = ''
-      this.option.defaultSort.forEach((item: any) => {
-        if (item.prop == column.property) order = item.order
-      })
-      // 如果当前没有默认排序 且是单选模式 则设定默认排序
-      if (sortModeType.SINGLE === this.option.sortMode && order !== '') {
-        this.changeSortOrderClass(thNode, order)
-        this.sortOrderService(prop, order)
-        this.sortChange()
-      }
+    let order = ''
+    // 如果是单排模式
+    if (this._isSingleModel(this.option.sortMode)) {
+      // 先清空所有activeSort
+      this._clearSortOrderService()
+      // console.log(currentOrder, this.activeSort)
     }
+
+    // 如果已经存在一个排序状态
+    if (currentOrder !== '') {
+      order = getTargetSortKey(currentOrder)
+    } else {
+      order = this._getDefaultOrder(prop)
+    }
+    // 去改变排序样式
+    this.changeSortOrderClass(thNode, order)
+    // 添加状态
+    this.sortOrderService(prop, order)
+    // 触发回调事件
+    this.sortChange()
   }
 
   /**
@@ -312,16 +344,15 @@ export default class VTable extends Vue {
    * @param {string} order 排序字段
    */
   private sortOrderService(column: string, order: string): void {
-    // 如果是独立排序
-    if (sortModeType.SINGLE === this.option.sortMode) {
-      this.activeSort = {}
-      this.option.defaultSort.forEach((item: any) => {
-        if (item.prop !== column) {
-          this.clearSortOrderCls(item.prop)
-        }
-      })
-    }
     this.activeSort[column] = order
+  }
+
+  // 清除排序activeSort 状态
+  private _clearSortOrderService() {
+    for (const prop in this.activeSort) {
+      this.activeSort[prop] = ''
+      this.clearSortOrderCls(prop)
+    }
   }
 
   /**
@@ -335,6 +366,16 @@ export default class VTable extends Vue {
     })
   }
 
+  // 获取需要返给用户端的 排序值
+  getActiveSortValue() {
+    const obj = Object.create(null)
+    for (const prop in this.activeSort) {
+      if (this.activeSort[prop] !== '') {
+        obj[prop] = this.activeSort[prop]
+      }
+    }
+    return obj
+  }
   /**
    * 排序回调
    */
@@ -342,7 +383,7 @@ export default class VTable extends Vue {
     if (this.option.sortChange && isFunction(this.option.sortChange)) {
       // 判断数组curThead中是否存在当前节点的prop
       // console.log('sortChange ---', this.activeSort)
-      this.option.sortChange(this.activeSort)
+      this.option.sortChange(this.getActiveSortValue())
     }
   }
   /**

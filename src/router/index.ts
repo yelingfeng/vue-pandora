@@ -21,7 +21,7 @@ const constantRouterMap = [
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
-  scrollBehavior: (to, from, savedPosition) => {
+  scrollBehavior: (to: any, from: any, savedPosition: any) => {
     if (savedPosition) {
       return savedPosition
     } else {

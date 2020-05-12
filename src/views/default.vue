@@ -148,10 +148,13 @@ export default class Default extends Vue {
     isHeader: true,
     selection: true,
     // 排序模式 single 独立排序 ,multi 多项排序
-    sortMode: 'single',
+    sortMode: 'multi',
+    // 默认升序还是降序
+    defaultOrder: 'descending',
+    // 默认排序字段列
     defaultSort: [
-      { prop: 'taskName', order: 'descending' }
-      // { prop: 'taskContent', order: 'ascending' }
+      { prop: 'taskName', order: 'descending' },
+      { prop: 'taskContent', order: 'ascending' }
     ],
     sortChange: (column: object) => {
       console.log(column)
@@ -166,10 +169,8 @@ export default class Default extends Vue {
         align: 'center',
         sortable: true
       },
-
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
       { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
-      { name: '任务状态', value: 'taskStatusName', align: 'center' },
       {
         name: '任务内容',
         value: 'taskContent',
@@ -179,6 +180,7 @@ export default class Default extends Vue {
           return cellValue
         }
       },
+      { name: '任务状态', value: 'taskStatusName', align: 'center' },
       { name: '任务结果', value: 'jobResult', align: 'center' },
       {
         name: '操作',
@@ -239,7 +241,7 @@ export default class Default extends Vue {
   tableHeight = '400'
 
   demoClick() {
-    this.table.initIconSort()
+    this.table.initSort()
   }
 
   querySearchAction() {
