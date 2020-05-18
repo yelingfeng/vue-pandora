@@ -43,6 +43,24 @@ export default class FormDemo extends Vue {
         }
       },
       {
+        label: '分线盒复用',
+        type: 'checkbox',
+        disabled: false,
+        comOpt: {
+          id: 'checkboxStartVer',
+          width: 180,
+          value: ['1'],
+          data: [
+            { name: '合1', value: '1' },
+            { name: '合2', value: '2' },
+            { name: '合3', value: '3' }
+          ],
+          change: function(a: any) {
+            console.log(a)
+          }
+        }
+      },
+      {
         label: '所属机房',
         type: 'text',
         required: true,

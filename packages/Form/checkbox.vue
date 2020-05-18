@@ -2,11 +2,12 @@
   <div :style="widthStyle">
     <el-checkbox-group v-model="value" :disabled="option.disabled" @change="changeHandler">
       <el-checkbox
-        v-for="item in option.data"
-        :key="item.value"
+        v-for="(item, index) in option.data"
+        :key="index"
         :disabled="item.disabled"
-        :label="item"
-      ></el-checkbox>
+        :label="item.value"
+        >{{ item.name }}</el-checkbox
+      >
     </el-checkbox-group>
   </div>
 </template>
@@ -21,14 +22,14 @@ import { isFunction } from '@/utils/common'
 export default class VCheckbox extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
-  private value: string | any[]
+  private value: string[] = []
 
   get widthStyle() {
     return {
       width: this.option.width || 12 + 'px'
     }
   }
-  mounted() {
+  created() {
     this.value = this.option.value
   }
   /**
