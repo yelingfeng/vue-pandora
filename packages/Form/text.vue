@@ -6,6 +6,7 @@
     auto-complete="on"
     :style="widthStyle"
     :type="option.type"
+    :maxlength="option.maxlength"
     :rows="option.rows"
   ></el-input>
 </template>

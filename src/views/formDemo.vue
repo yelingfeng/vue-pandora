@@ -13,14 +13,14 @@ export default class FormDemo extends Vue {
 
   @Ref() readonly form!: Form
   formObj: any = {
-    rules: {
-      disBelong: [{ required: true, message: '请选择所属机房', trigger: 'change' }],
-      disBelongEdit: [{ required: true, message: '请填写所属机房', trigger: 'blur' }],
-      disCode: [
-        { required: true, message: '请输入配线架编码', trigger: 'blur' },
-        { min: 3, max: 10, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-      ]
-    },
+    // rules: {
+    //   disBelong: [{ required: true, message: '请选择所属机房', trigger: 'change' }],
+    //   disBelongEdit: [{ required: true, message: '请填写所属机房', trigger: 'blur' }],
+    //   disCode: [
+    //     { required: true, message: '请输入配线架编码', trigger: 'blur' },
+    //     { min: 3, max: 10, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+    //   ]
+    // },
     inline: true,
     labelPosition: 'left',
     labelWidth: '130',
@@ -68,6 +68,7 @@ export default class FormDemo extends Vue {
           id: 'disBelongEdit',
           value: '',
           width: 180,
+          maxlength: 5,
           disabled: false,
           show: false
         }
