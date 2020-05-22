@@ -1,3 +1,9 @@
+## [1.0.21](https://github.com/yelingfeng/vue-pandora/compare/v1.0.20...v1.0.21) (2020-05-22)
+
+### Features
+
+- **add:** add form test maxlength ([a78d76f](https://github.com/yelingfeng/vue-pandora/commit/a78d76fa778acf1f75758002a79e9d4d39f72c78))
+
 ## [1.0.20](https://github.com/yelingfeng/vue-pandora/compare/v1.0.18...v1.0.20) (2020-05-18)
 
 ### Features
