@@ -283,8 +283,8 @@ export default class Demo extends Vue {
         ]
       }
     ],
-    data: [], // 是否分页
-    pagination: true, // 分页参数
+    data: [], //是否分页
+    pagination: true, //分页参数
     pageOpt: {
       currentPage: 1,
       total: 0,
