@@ -92,7 +92,11 @@ export default class VSelect extends Vue {
    */
   changeHandler(val: string) {
     if (this.option.change && isFunction(this.option.change)) {
-      this.option.change(val)
+      let originData = Object.create(null)
+      this.data.forEach((item: any) => {
+        if (item.value === val) originData = Object.assign({}, item)
+      })
+      this.option.change(val, originData)
     }
   }
 }

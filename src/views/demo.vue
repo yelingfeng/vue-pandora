@@ -200,11 +200,14 @@ export default class Demo extends Vue {
           disabled: false,
           data: [
             { name: '全部', value: '0' },
-            { name: '未提交', value: '1' },
-            { name: '已提交', value: '2' },
-            { name: '查询中', value: '3' },
-            { name: '已完成', value: '4' }
-          ]
+            { name: '未提交', value: '1', biz: 'asdasda' },
+            { name: '已提交', value: '2', biz: '12332' },
+            { name: '查询中', value: '3', biz: '23424' },
+            { name: '已完成', value: '4', biz: '4353534' }
+          ],
+          change(v: any, originData: any) {
+            console.log(v, originData)
+          }
         }
       }
     ],
