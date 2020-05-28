@@ -1,6 +1,9 @@
 <template>
   <div>
-    <VForm :option="formObj" ref="form"></VForm>
+    <el-button @click="showDialog">dialog</el-button>
+    <el-dialog title="测试" :visible.sync="dialogFormVisible">
+      <VForm :option="addformObj" ref="addFrom"></VForm>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -11,76 +14,23 @@ import axios from 'axios'
 export default class FormDemo extends Vue {
   private vaildStatus = true
 
-  @Ref() readonly form!: Form
-  formObj: any = {
-    // rules: {
-    //   disBelong: [{ required: true, message: '请选择所属机房', trigger: 'change' }],
-    //   disBelongEdit: [{ required: true, message: '请填写所属机房', trigger: 'blur' }],
-    //   disCode: [
-    //     { required: true, message: '请输入配线架编码', trigger: 'blur' },
-    //     { min: 3, max: 10, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-    //   ]
-    // },
+  dialogFormVisible = false
+
+  @Ref() readonly addFrom!: Form
+  private addformObj: any = {
     inline: true,
     labelPosition: 'left',
-    labelWidth: '130',
+    labelWidth: '120',
     btnPos: 'right',
     items: [
       {
         label: '所属机房',
-        type: 'select',
-        required: true,
+        type: 'text',
+        show: true,
         comOpt: {
           id: 'disBelong',
-          value: '',
           width: 180,
-          disabled: false,
-          data: [
-            { name: '请选择', value: '' },
-            { name: 'T-机房', value: '1' },
-            { name: 'D-机房', value: '2' }
-          ]
-        }
-      },
-      {
-        label: '分线盒复用',
-        type: 'checkbox',
-        disabled: false,
-        comOpt: {
-          id: 'checkboxStartVer',
-          width: 180,
-          value: ['1'],
-          data: [
-            { name: '合1', value: '1' },
-            { name: '合2', value: '2' },
-            { name: '合3', value: '3' }
-          ],
-          change: function(a: any) {
-            console.log(a)
-          }
-        }
-      },
-      {
-        label: '所属机房',
-        type: 'text',
-        required: true,
-        comOpt: {
-          id: 'disBelongEdit',
-          value: '',
-          width: 180,
-          maxlength: 5,
-          disabled: false,
-          show: false
-        }
-      },
-      {
-        label: '配线架编码',
-        type: 'text',
-        required: true,
-        comOpt: {
-          id: 'disCode',
-          width: 180,
-          disabled: false,
+          disabled: true,
           placeholder: '',
           value: ''
         }
@@ -88,10 +38,12 @@ export default class FormDemo extends Vue {
       {
         label: '配线架名称',
         type: 'text',
+        show: true,
         comOpt: {
           id: 'disName',
-          width: 500,
-          disabled: false,
+          width: 180,
+          disabled: true,
+          show: true,
           placeholder: '',
           value: ''
         }
@@ -99,33 +51,84 @@ export default class FormDemo extends Vue {
       {
         label: '配线架机房位置',
         type: 'text',
+        show: true,
         comOpt: {
           id: 'disPos',
           width: 500,
-          disabled: false,
+          disabled: true,
+          show: true,
           placeholder: '',
           value: ''
         }
       },
       {
-        label: '横列数',
+        label: '扩容方式',
+        type: 'radio',
+        show: true,
+        wrap: true, // 换行
+        comOpt: {
+          id: 'disType',
+          value: '1',
+          width: 500,
+          disabled: false,
+          show: true,
+          data: [
+            { name: '横列直列', value: '1' },
+            { name: '模块扩容', value: '2' }
+          ],
+          change: this.addDisTypeChangeHandler
+        }
+      },
+      {
+        label: '原横列数',
         type: 'text',
+        show: true,
         comOpt: {
           id: 'disHor',
           width: 180,
-          disabled: false,
+          disabled: true,
+          show: true,
+          placeholder: '请输入原横列数',
+          value: '1'
+        }
+      },
+      {
+        label: '原直列数',
+        type: 'text',
+        show: true,
+        comOpt: {
+          id: 'disVer',
+          width: 180,
+          disabled: true,
+          show: true,
+          placeholder: '请输入原直列数',
+          value: '2'
+        }
+      },
+      {
+        label: '扩容横列数',
+        type: 'text',
+        show: true,
+        comOpt: {
+          id: 'disAddHor',
+          width: 180,
+          disabled: true,
+          show: true,
+          maxlength: 2,
           placeholder: '仅支持数字',
           value: ''
         }
       },
       {
-        label: '直列数',
+        label: '扩容直列数',
         type: 'text',
-        required: false,
+        show: true,
         comOpt: {
-          id: 'disVer',
+          id: 'disAddVer',
           width: 180,
           disabled: false,
+          show: true,
+          maxlength: 2,
           placeholder: '仅支持数字',
           value: ''
         }
@@ -133,11 +136,13 @@ export default class FormDemo extends Vue {
       {
         label: '每横列块数',
         type: 'text',
-        required: false,
+        show: true,
         comOpt: {
           id: 'disEveryHor',
           width: 180,
           disabled: false,
+          show: true,
+          maxlength: 2,
           placeholder: '仅支持数字',
           value: ''
         }
@@ -145,11 +150,13 @@ export default class FormDemo extends Vue {
       {
         label: '每直列块数',
         type: 'text',
-        required: false,
+        show: true,
         comOpt: {
           id: 'disEveryVer',
           width: 180,
           disabled: false,
+          show: true,
+          maxlength: 2,
           placeholder: '仅支持数字',
           value: ''
         }
@@ -157,45 +164,53 @@ export default class FormDemo extends Vue {
       {
         label: '横列块内端子数',
         type: 'text',
+        show: true,
         comOpt: {
-          id: 'disPointHor',
+          id: 'disBlockPortHor',
           width: 180,
           disabled: true,
+          show: true,
           placeholder: '',
-          value: '128'
+          value: ''
         }
       },
       {
         label: '直列块内端子数',
         type: 'text',
+        show: true,
         comOpt: {
-          id: 'disPointVer',
+          id: 'disBlockPortVer',
           width: 180,
           disabled: true,
+          show: true,
           placeholder: '',
-          value: '100'
-        }
-      },
-      {
-        label: '横列块内起始端子',
-        type: 'text',
-        comOpt: {
-          id: 'disStartHor',
-          width: 180,
-          disabled: false,
-          placeholder: '仅支持字母、数字 如A1、1',
           value: ''
         }
       },
       {
-        label: '直列块内起始端子',
+        label: '横列直列',
         type: 'text',
+        show: false,
         comOpt: {
-          id: 'disStartVer',
-          width: 180,
+          id: 'disHorVer',
+          value: 'xiaofan',
+          width: 500,
           disabled: false,
-          placeholder: '仅支持字母、数字 如A1、1',
-          value: ''
+          placeholder: '请选择横列直列',
+          data: []
+        }
+      },
+      {
+        label: '扩容块数',
+        type: 'text',
+        show: false,
+        comOpt: {
+          id: 'disBlockNumber',
+          width: 500,
+          disabled: false,
+          maxlength: 2,
+          placeholder: '请输入扩容块数',
+          value: 'xiaofanhaha'
         }
       }
     ],
@@ -207,7 +222,7 @@ export default class FormDemo extends Vue {
           value: '取消',
           width: 210,
           disabled: false,
-          click: this.cancleAction
+          click: this.cancleAddAction
         }
       },
       {
@@ -217,15 +232,83 @@ export default class FormDemo extends Vue {
           value: '确定',
           width: 210,
           disabled: false,
-          click: this.ensureAction
+          click: this.ensureAddAction
         }
       }
     ]
   }
+  addDisTypeChangeHandler(val: any) {
+    // 组件目前设置setShow有bug， 会清掉以前的赋值数据， 并且会根据顺序赋值错乱
+    // 目前采用重置各种状态实现
+    if (val === '2') {
+      // 模块扩容
+      this.addFrom.setShow([
+        { id: 'disHor', value: false },
+        { id: 'disVer', value: false },
+        { id: 'disAddHor', value: false },
+        { id: 'disAddVer', value: false },
+        { id: 'disEveryHor', value: false },
+        { id: 'disEveryVer', value: false },
+        { id: 'disBlockPortHor', value: false },
+        { id: 'disBlockPortVer', value: false },
+        { id: 'disHorVer', value: true },
+        { id: 'disBlockNumber', value: true }
+      ])
+
+      // this.addFrom.setDisabled([
+      //   { id: 'disHorVer', value: false },
+      //   { id: 'disBlockNumber', value: false }
+      // ])
+      this.addFrom.setRequired([
+        { id: 'disHorVer', value: true },
+        { id: 'disBlockNumber', value: true }
+      ])
+      // this.addFrom.setValue([
+      //   { id: 'disHorVer', value: '' },
+      //   { id: 'disBlockNumber', value: '' }
+      // ])
+    } else {
+      // 横列直列
+      this.addFrom.setShow([
+        { id: 'disHor', value: true },
+        { id: 'disVer', value: true },
+        { id: 'disAddHor', value: true },
+        { id: 'disAddVer', value: true },
+        { id: 'disEveryHor', value: true },
+        { id: 'disEveryVer', value: true },
+        { id: 'disBlockPortHor', value: true },
+        { id: 'disBlockPortVer', value: true },
+        { id: 'disHorVer', value: false },
+        { id: 'disBlockNumber', value: false }
+      ])
+
+      // this.addFrom.setDisabled([
+      //   { id: 'disHorVer', value: true },
+      //   { id: 'disBlockNumber', value: true }
+      // ])
+
+      // this.addFrom.setShow([
+      //   { id: 'disHorVer', value: false },
+      //   { id: 'disBlockNumber', value: false }
+      // ])
+
+      // 组件bug ， setShow会丢失以前赋值数据
+      this.addFrom.setValue([
+        { id: 'disHor', value: 'dddd' },
+        { id: 'disVer', value: '33333' },
+        // { id: 'disBlockPortHor', value: this.distriInfo.rowBlockPortCount },
+        // { id: 'disBlockPortVer', value: this.distriInfo.lineBlockPortCount },
+        { id: 'disType', value: '1' }
+      ])
+    }
+  }
+  ensureAddAction() {}
+  cancleAddAction() {}
+
   cancleAction() {}
 
   ensureAction() {
-    this.form.validate((valid: any) => {
+    this.addFrom.validate((valid: any) => {
       if (valid) {
         alert('submit!')
       } else {
@@ -234,7 +317,12 @@ export default class FormDemo extends Vue {
       }
     })
   }
-
+  showDialog() {
+    this.dialogFormVisible = true
+    this.$nextTick(() => {
+      this.addDisTypeChangeHandler(1)
+    })
+  }
   mounted() {}
 }
 </script>

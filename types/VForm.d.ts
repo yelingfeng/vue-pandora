@@ -77,6 +77,8 @@ export declare class Form extends PandoraUIComponent {
   setShow: (data: Array<any>) => void
   // 设置一组是否禁用
   setDisabled: (data: Array<any>) => void
+
+  setRequired: (data: Array<any>) => void
   // 验证方法
   validate: Function
 

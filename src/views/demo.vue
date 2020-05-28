@@ -304,7 +304,6 @@ export default class Demo extends Vue {
 
   querySearchAction() {
     const formValue = this.form.getValue()
-    console.log(formValue)
     // 设置textGroup值
     this.form.setShow([
       {
@@ -317,6 +316,12 @@ export default class Demo extends Vue {
     this.form.setRequired([{ id: 'taskName', value: !this.vaildStatus }])
     this.vaildStatus = !this.vaildStatus
 
+    this.form.setShow([
+      {
+        id: 'taskStatusId',
+        value: false
+      }
+    ])
     // 设置下拉框禁用
     this.form.setDisabled([
       {

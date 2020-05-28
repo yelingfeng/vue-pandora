@@ -77,7 +77,10 @@ export default class VForm extends Vue {
       data.forEach(d => {
         if (it.comOpt.id === d.id) {
           this.$nextTick(() => {
-            ;(this.$refs['comp' + index] as any).setValue(d.value)
+            const comp = this.$refs['comp' + index] as any
+            if (comp) {
+              comp.setValue(d.value)
+            }
           })
         }
       })
@@ -94,7 +97,11 @@ export default class VForm extends Vue {
       data.forEach(d => {
         if (it.comOpt.id === d.id) {
           this.$nextTick(() => {
-            ;(this.$refs['comp' + index] as any).setDisabled(d.value)
+            const comp = this.$refs['comp' + index] as any
+            if (comp) {
+              console.log('setDisabled--->' + it.comOpt.id)
+              comp.setDisabled(d.value)
+            }
           })
         }
       })
@@ -150,7 +157,7 @@ export default class VForm extends Vue {
    * @description: 组件是否可显示
    */
   setShow(data: Array<any>) {
-    this.formOpt.items.forEach((item: Form.IFormItemOpt) => {
+    this.formOpt.items.forEach((item: Form.IFormItemOpt, index: number) => {
       data.forEach(d => {
         if (item.comOpt.id === d.id) {
           item.show = d.value
@@ -176,34 +183,36 @@ export default class VForm extends Vue {
     const br = <br />
     const elItems = this.formOpt.items.map((it: Form.IFormItemOpt, index: number) => {
       let comp
-      const ref = 'comp' + index
+      const ref = 'comp-' + it.comOpt.id
+      let comOpt = Object.create(null)
+      comOpt = Object.assign({}, it.comOpt)
       switch (it.type) {
         case 'text':
-          comp = <textComp option={it.comOpt} ref={ref} />
+          comp = <textComp key={ref} option={comOpt} ref={ref} />
           break
         case 'date':
-          comp = <dateComp option={it.comOpt} ref={ref} />
+          comp = <dateComp key={ref} option={comOpt} ref={ref} />
           break
         case 'select':
-          comp = <selectComp option={it.comOpt} ref={ref} />
+          comp = <selectComp key={ref} option={comOpt} ref={ref} />
           break
         case 'radio':
-          comp = <radioComp option={it.comOpt} ref={ref} />
+          comp = <radioComp key={ref} option={comOpt} ref={ref} />
           break
         case 'checkbox':
-          comp = <checkBoxComp option={it.comOpt} ref={ref} />
+          comp = <checkBoxComp key={ref} option={comOpt} ref={ref} />
           break
         case 'button':
-          comp = <buttonComp option={it.comOpt} ref={ref} />
+          comp = <buttonComp key={ref} option={comOpt} ref={ref} />
           break
         case 'autoComplete':
-          comp = <autocompleteComp option={it.comOpt} ref={ref} />
+          comp = <autocompleteComp key={ref} option={comOpt} ref={ref} />
           break
         case 'textGroup':
-          comp = <textGroupComp option={it.comOpt} ref={ref} />
+          comp = <textGroupComp key={ref} option={comOpt} ref={ref} />
           break
         case 'singleGroup':
-          comp = <singleGroupComp option={it.comOpt} ref={ref} />
+          comp = <singleGroupComp key={ref} option={comOpt} ref={ref} />
           break
         default:
           break
