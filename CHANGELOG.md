@@ -1,3 +1,9 @@
+## [1.0.24](https://github.com/yelingfeng/vue-pandora/compare/v1.0.23...v1.0.24) (2020-05-28)
+
+### Bug Fixes
+
+- **form:** fix form ref id ([7d29b27](https://github.com/yelingfeng/vue-pandora/commit/7d29b27e55944630e149d14d7ab7f88554566828))
+
 ## [1.0.23](https://github.com/yelingfeng/vue-pandora/compare/v1.0.22...v1.0.23) (2020-05-28)
 
 ### Bug Fixes
