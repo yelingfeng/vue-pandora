@@ -1,3 +1,10 @@
+## [1.0.23](https://github.com/yelingfeng/vue-pandora/compare/v1.0.22...v1.0.23) (2020-05-28)
+
+### Bug Fixes
+
+- **form item:** fix formItem when this comp to show/hide options error ([d1c9132](https://github.com/yelingfeng/vue-pandora/commit/d1c9132d694d4e4254e1c02dbbcd62f9e754388b))
+- **table column:** fix not option sortable column can to click bug ([5ec103b](https://github.com/yelingfeng/vue-pandora/commit/5ec103b254e4bff3ab3b7d776322f07bc903e79a))
+
 ## [1.0.22](https://github.com/yelingfeng/vue-pandora/compare/v1.0.19...v1.0.22) (2020-05-27)
 
 ### Features
