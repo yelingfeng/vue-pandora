@@ -58,8 +58,8 @@ export default class VForm extends Vue {
     this.formOpt.items.forEach((it: Form.IFormItemOpt, index: number) => {
       if (it.show === undefined || it.show) {
         if (this.$refs['comp' + index]) {
-          if (isFunction((this.$refs['comp' + index] as any).getValue)) {
-            merge(returnData, (this.$refs['comp' + index] as any).getValue())
+          if (isFunction((this.$refs['comp-' + it.comOpt.id] as any).getValue)) {
+            merge(returnData, (this.$refs['comp-' + it.comOpt.id] as any).getValue())
           }
         }
       }
@@ -77,7 +77,7 @@ export default class VForm extends Vue {
       data.forEach(d => {
         if (it.comOpt.id === d.id) {
           this.$nextTick(() => {
-            const comp = this.$refs['comp' + index] as any
+            const comp = this.$refs['comp-' + it.comOpt.id] as any
             if (comp) {
               comp.setValue(d.value)
             }
@@ -97,7 +97,7 @@ export default class VForm extends Vue {
       data.forEach(d => {
         if (it.comOpt.id === d.id) {
           this.$nextTick(() => {
-            const comp = this.$refs['comp' + index] as any
+            const comp = this.$refs['comp-' + it.comOpt.id] as any
             if (comp) {
               comp.setDisabled(d.value)
             }
@@ -130,7 +130,7 @@ export default class VForm extends Vue {
    */
   clearValue() {
     this.formOpt.items.forEach((it: Form.IFormItemOpt, index: number) => {
-      const vm = this.$refs['comp' + index] as any
+      const vm = this.$refs['comp-' + it.comOpt.id] as any
       if (vm && isFunction(vm.setValue)) {
         vm.setValue('')
       }
