@@ -311,9 +311,10 @@ export default class VTable extends Vue {
    */
   handleHeaderClick(column: any, e: any) {
     const target = e.target
-    const thNode = this.getTargetNode(e)
-
     const prop = column.property
+    if (!this.isNeedOrderChange(prop)) return
+
+    const thNode = this.getTargetNode(e)
     const currentOrder = getCurrentSortKey(thNode.classList)
 
     let order = ''
@@ -336,6 +337,15 @@ export default class VTable extends Vue {
     this.sortOrderService(prop, order)
     // 触发回调事件
     this.sortChange()
+  }
+
+  /**
+   * 是否需要触发列排序  change
+   *
+   *  判断配置column中是否有指定的配置项sortable
+   **/
+  isNeedOrderChange(prop: string) {
+    return this._oldActiveSort[prop]
   }
 
   /**

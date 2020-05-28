@@ -99,7 +99,6 @@ export default class VForm extends Vue {
           this.$nextTick(() => {
             const comp = this.$refs['comp' + index] as any
             if (comp) {
-              console.log('setDisabled--->' + it.comOpt.id)
               comp.setDisabled(d.value)
             }
           })
