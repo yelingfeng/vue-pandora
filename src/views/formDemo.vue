@@ -1,9 +1,8 @@
 <template>
   <div>
     <el-button @click="showDialog">dialog</el-button>
-    <el-dialog title="测试" :visible.sync="dialogFormVisible">
-      <VForm :option="addformObj" ref="addFrom"></VForm>
-    </el-dialog>
+    <VForm :option="addformObj" ref="addFrom"></VForm>
+    <el-dialog title="测试" :visible.sync="dialogFormVisible"> </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -302,7 +301,9 @@ export default class FormDemo extends Vue {
       ])
     }
   }
-  ensureAddAction() {}
+  ensureAddAction() {
+    console.log(this.addFrom.getValue())
+  }
   cancleAddAction() {}
 
   cancleAction() {}

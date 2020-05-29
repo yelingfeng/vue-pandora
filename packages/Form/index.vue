@@ -54,13 +54,12 @@ export default class VForm extends Vue {
    * @description: 获取整个form组件所有组件里面的当前值
    */
   getValue() {
-    const returnData: any = {}
+    const returnData: any = Object.create(null)
     this.formOpt.items.forEach((it: Form.IFormItemOpt, index: number) => {
       if (it.show === undefined || it.show) {
-        if (this.$refs['comp' + index]) {
-          if (isFunction((this.$refs['comp-' + it.comOpt.id] as any).getValue)) {
-            merge(returnData, (this.$refs['comp-' + it.comOpt.id] as any).getValue())
-          }
+        const comp = this.$refs['comp-' + it.comOpt.id] as any
+        if (comp && isFunction(comp.getValue)) {
+          merge(returnData, comp.getValue())
         }
       }
     })
