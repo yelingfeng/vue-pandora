@@ -135,7 +135,10 @@ export default class Demo extends Vue {
           disabled: false,
           show: true,
           placeholder: '',
-          value: ''
+          value: '',
+          input(s: any) {
+            console.log(s)
+          }
         }
       },
       {
@@ -235,7 +238,7 @@ export default class Demo extends Vue {
           id: 'query',
           value: '新建',
           width: 210,
-          disabled: false,
+          disabled: true,
           click: this.addSearchAction
         }
       }

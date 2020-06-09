@@ -46,6 +46,7 @@ export interface IFormItemCompOpt {
   tooltipDelay: number
   click?: Function | undefined
   change?: Function | undefined
+  input?: Function | undefined
 }
 
 export interface IFormOption {

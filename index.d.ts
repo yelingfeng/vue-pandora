@@ -90,6 +90,7 @@ declare namespace Form {
     className?: string
     click?: Function | undefined
     change?: Function | undefined
+    input?: Function | undefined
   }
 
   export interface IFormOption {
