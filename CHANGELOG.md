@@ -1,3 +1,9 @@
+## [1.0.26](https://github.com/yelingfeng/vue-pandora/compare/v1.0.25...v1.0.26) (2020-06-09)
+
+### Features
+
+- **add:** text comp add input event ([9c28ca4](https://github.com/yelingfeng/vue-pandora/commit/9c28ca45e6db44be7b0f6c6e7f98472f517267dc))
+
 ## [1.0.25](https://github.com/yelingfeng/vue-pandora/compare/v1.0.21...v1.0.25) (2020-05-29)
 
 ### Bug Fixes
