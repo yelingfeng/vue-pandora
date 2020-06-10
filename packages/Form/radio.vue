@@ -1,5 +1,5 @@
 <template>
-  <el-radio-group v-model="value" :disabled="option.disabled" @change="changeHandler">
+  <el-radio-group v-model="value" :disabled="disabled" @change="changeHandler">
     <el-radio v-for="item in option.data" :key="item.index" :label="item.value">
       {{ item.name }}
     </el-radio>
@@ -16,9 +16,11 @@ export default class VRadio extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
   private value = ''
+  private disabled = false
 
   mounted() {
     this.value = this.option.value || ''
+    this.disabled = this.option.disabled || false
   }
   /**
    * @name: getValue
@@ -39,6 +41,10 @@ export default class VRadio extends Vue {
     if (val !== undefined) {
       this.value = val
     }
+  }
+  // 设置是或否禁用
+  setDisabled(bol: boolean) {
+    this.disabled = bol
   }
   /**
    * @name: changeHandler
