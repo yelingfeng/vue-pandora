@@ -1,3 +1,9 @@
+## [1.0.27](https://github.com/yelingfeng/vue-pandora/compare/v1.0.26...v1.0.27) (2020-06-10)
+
+### Features
+
+- **add:** radio add setDisabled method ([3a42571](https://github.com/yelingfeng/vue-pandora/commit/3a42571a4059af2c032792bdeb6ccb9fdfe7f42e))
+
 ## [1.0.26](https://github.com/yelingfeng/vue-pandora/compare/v1.0.25...v1.0.26) (2020-06-09)
 
 ### Features
