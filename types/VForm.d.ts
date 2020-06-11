@@ -47,6 +47,7 @@ export interface IFormItemCompOpt {
   click?: Function | undefined
   change?: Function | undefined
   input?: Function | undefined
+  blur?: Function | undefined
 }
 
 export interface IFormOption {

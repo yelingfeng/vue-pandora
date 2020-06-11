@@ -107,6 +107,25 @@ export default class VForm extends Vue {
   }
 
   /**
+   * 设置按钮禁用可用
+   */
+  setBtnDisabled(data: Array<any>) {
+    const btns = this.formOpt.btns || []
+    btns.forEach((it: Form.IFormItemOpt, index: number) => {
+      data.forEach(d => {
+        if (it.comOpt.id === d.id) {
+          this.$nextTick(() => {
+            const comp = this.$refs['comp-' + it.comOpt.id] as any
+            if (comp) {
+              comp.setDisabled(d.value)
+            }
+          })
+        }
+      })
+    })
+  }
+
+  /**
    * 动态设置 必填属性状态
    ** @param {data}
    * @return:
@@ -240,7 +259,7 @@ export default class VForm extends Vue {
     if (this.formOpt.btns && isArray(this.formOpt.btns)) {
       elBtns = this.formOpt.btns.map((it: Form.IFormItemOpt, index: number) => {
         let formBox
-        const ref: string = 'btn' + index
+        const ref: string = 'comp-' + it.comOpt.id
         let comp
         if (it.show === undefined || it.show) {
           if (it.comOpt.type && it.comOpt.type === 'icon') {

@@ -9,6 +9,7 @@
     :maxlength="option.maxlength"
     :rows="option.rows"
     @input="inputHandler"
+    @blur="blurHandler"
   ></el-input>
 </template>
 <script lang="ts">
@@ -83,6 +84,15 @@ export default class VInput extends Vue {
   inputHandler(val: string) {
     if (this.option.input && isFunction(this.option.input)) {
       this.option.input(val)
+    }
+  }
+
+  /**
+   * blur事件
+   */
+  blurHandler(e: any) {
+    if (this.option.blur && isFunction(this.option.blur)) {
+      this.option.blur(e)
     }
   }
 }

@@ -138,6 +138,9 @@ export default class Demo extends Vue {
           value: '',
           input(s: any) {
             console.log(s)
+          },
+          blur(e: any) {
+            console.log(e)
           }
         }
       },
@@ -230,15 +233,15 @@ export default class Demo extends Vue {
           value: '查询',
           width: 210,
           disabled: false,
-          click: this.querySearchAction
+          click: this.querySearchAction.bind(this)
         }
       },
       {
         comOpt: {
-          id: 'query',
+          id: 'add',
           value: '新建',
           width: 210,
-          disabled: true,
+          disabled: false,
           click: this.addSearchAction
         }
       }
@@ -306,32 +309,40 @@ export default class Demo extends Vue {
   tableHeight = '400'
 
   querySearchAction() {
-    const formValue = this.form.getValue()
-    // 设置textGroup值
-    this.form.setShow([
+    // const formValue = this.form.getValue()
+    // // 设置textGroup值
+    // this.form.setShow([
+    //   {
+    //     id: 'taskGroup',
+    //     value: !this.vaildStatus
+    //   }
+    // ])
+
+    // 设置禁用
+    this.form.setBtnDisabled([
       {
-        id: 'taskGroup',
-        value: !this.vaildStatus
+        id: 'add',
+        value: true
       }
     ])
 
     // 设置动态必填
-    this.form.setRequired([{ id: 'taskName', value: !this.vaildStatus }])
-    this.vaildStatus = !this.vaildStatus
+    // this.form.setRequired([{ id: 'taskName', value: !this.vaildStatus }])
+    // this.vaildStatus = !this.vaildStatus
 
-    this.form.setShow([
-      {
-        id: 'taskStatusId',
-        value: false
-      }
-    ])
-    // 设置下拉框禁用
-    this.form.setDisabled([
-      {
-        id: 'taskStatusId',
-        value: true
-      }
-    ])
+    // this.form.setShow([
+    //   {
+    //     id: 'taskStatusId',
+    //     value: false
+    //   }
+    // ])
+    // // 设置下拉框禁用
+    // this.form.setDisabled([
+    //   {
+    //     id: 'taskStatusId',
+    //     value: true
+    //   }
+    // ])
   }
   addSearchAction() {
     this.$message.info('add')

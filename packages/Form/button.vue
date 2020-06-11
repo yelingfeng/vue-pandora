@@ -2,7 +2,7 @@
   <el-button
     :type="btnType"
     :size="option.size ? option.size : ''"
-    :disabled="option.disabled"
+    :disabled="disabled"
     @click.native="clickHandler"
   >
     {{ option.value.replace(/^(\W{1})(\W{1})$/, '$1 $2') }}
@@ -25,8 +25,11 @@ export default class VButton extends Vue {
   @Prop() option: Form.IFormItemCompOpt
   private btnType = 'primary'
 
+  private disabled = false
+
   mounted() {
     this.btnType = this.option.type ? this.option.type : 'primary'
+    this.disabled = this.option.disabled || false
   }
   /**
    * @name: clickHandler
@@ -47,6 +50,10 @@ export default class VButton extends Vue {
    */
   getValue() {
     return { [this.option.id]: this.option.value }
+  }
+
+  setDisabled(val: boolean) {
+    this.disabled = val
   }
 }
 </script>
