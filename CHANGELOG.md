@@ -1,3 +1,9 @@
+## [1.0.28](https://github.com/yelingfeng/vue-pandora/compare/v1.0.27...v1.0.28) (2020-06-11)
+
+### Features
+
+- **add:** form change ([f031866](https://github.com/yelingfeng/vue-pandora/commit/f03186697beef5c9b4a673ff793f70ebe4b40f5b))
+
 ## [1.0.27](https://github.com/yelingfeng/vue-pandora/compare/v1.0.26...v1.0.27) (2020-06-10)
 
 ### Features
