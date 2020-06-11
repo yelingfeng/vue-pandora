@@ -10,6 +10,7 @@
     :rows="option.rows"
     @input="inputHandler"
     @blur="blurHandler"
+    @focus="focusHanlder"
   ></el-input>
 </template>
 <script lang="ts">

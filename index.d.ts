@@ -92,6 +92,7 @@ declare namespace Form {
     change?: Function | undefined
     input?: Function | undefined
     blur?: Function | undefined
+    focus?: Function | undefined
   }
 
   export interface IFormOption {
