@@ -96,5 +96,11 @@ export default class VInput extends Vue {
       this.option.blur(e)
     }
   }
+
+  focusHanlder(e: any) {
+    if (this.option.focus && isFunction(this.option.focus)) {
+      this.option.focus(e)
+    }
+  }
 }
 </script>
