@@ -1,3 +1,9 @@
+## [1.0.29](https://github.com/yelingfeng/vue-pandora/compare/v1.0.28...v1.0.29) (2020-06-15)
+
+### Bug Fixes
+
+- **bug:** form setShow br ([c3c09da](https://github.com/yelingfeng/vue-pandora/commit/c3c09da9788edb19565da5fddaa86a8aeb73d5c9))
+
 ## [1.0.28](https://github.com/yelingfeng/vue-pandora/compare/v1.0.27...v1.0.28) (2020-06-11)
 
 ### Features
