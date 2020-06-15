@@ -304,7 +304,8 @@ export default class FormDemo extends Vue {
   ensureAddAction() {
     console.log(this.addFrom.getValue())
 
-    this.addFrom.setDisabled([{ id: 'disType', value: true }])
+    // this.addFrom.setDisabled([{ id: 'disType', value: true }])
+    this.addFrom.setShow([{ id: 'disType', value: false }])
   }
   cancleAddAction() {}
 

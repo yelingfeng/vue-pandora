@@ -246,15 +246,17 @@ export default class VForm extends Vue {
             {requiredBox}
           </el-form-item>
         )
+
+        if (it.wrap) {
+          return (
+            <span>
+              {formBox} {br}
+            </span>
+          )
+        } else {
+          return formBox
+        }
       }
-      if (it.wrap) {
-        return (
-          <span>
-            {formBox} {br}
-          </span>
-        )
-      }
-      return formBox
     })
     if (this.formOpt.btns && isArray(this.formOpt.btns)) {
       elBtns = this.formOpt.btns.map((it: Form.IFormItemOpt, index: number) => {
