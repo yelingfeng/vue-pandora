@@ -25,15 +25,15 @@ export default {
   data() {
     return {
       isShow: false,
-      codeTextBtn: '显示代码'
+      codeTextBtn: '显示代码',
     }
   },
   methods: {
     handleToggleShow() {
       this.isShow = !this.isShow
       this.codeTextBtn = this.isShow ? '隐藏代码' : '显示代码'
-    }
-  }
+    },
+  },
 }
 </script>
 

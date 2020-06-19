@@ -200,6 +200,38 @@ export default class FormDemo extends Vue {
         }
       },
       {
+        type: 'formlist',
+        items: [
+          {
+            label: '横列直列',
+            type: 'text',
+            show: false,
+            comOpt: {
+              id: 'disHorVer',
+              value: 'xiaofan',
+              width: 500,
+              disabled: false,
+              placeholder: '请选择横列直列',
+              data: []
+            }
+          },
+          {
+            label: '直列块内端子数',
+            type: 'text',
+            show: true,
+            comOpt: {
+              id: 'disBlockPortVer',
+              width: 180,
+              disabled: true,
+              show: true,
+              placeholder: '',
+              value: ''
+            }
+          }
+        ]
+      },
+
+      {
         label: '扩容块数',
         type: 'text',
         show: false,

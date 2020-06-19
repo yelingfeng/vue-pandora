@@ -7,6 +7,7 @@ import checkBoxComp from './checkbox.vue'
 import buttonComp from './button.vue'
 import autocompleteComp from './autoComplete.vue'
 import textGroupComp from './textGroup.vue'
+import formListComp from './formList.vue'
 import singleGroupComp from './singleGroup/index.vue'
 import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
@@ -21,6 +22,7 @@ import { ElForm, ValidateCallback } from 'element-ui/types/form'
     checkBoxComp,
     buttonComp,
     textGroupComp,
+    formListComp,
     autocompleteComp,
     singleGroupComp
   }
@@ -230,6 +232,9 @@ export default class VForm extends Vue {
           break
         case 'singleGroup':
           comp = <singleGroupComp key={ref} option={comOpt} ref={ref} />
+          break
+        case 'formList':
+          comp = <formListComp key={ref} option={comOpt} ref={ref} />
           break
         default:
           break

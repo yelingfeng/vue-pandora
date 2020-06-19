@@ -7,6 +7,7 @@ export type ItemType =
   | 'date'
   | 'button'
   | 'radio'
+  | 'formList'
   | 'checkbox'
   | 'autoComplete'
   | 'singleGroup'
@@ -41,6 +42,8 @@ export interface IFormItemCompOpt {
   format?: string
   // 是否显示清除按钮
   clearable?: boolean
+  // formlist items
+  items?: any[]
   data?: any[]
   className?: string
   tooltipDelay: number

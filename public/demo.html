@@ -30,8 +30,8 @@
                 disabled: false,
                 show: true,
                 placeholder: '',
-                value: ''
-              }
+                value: '',
+              },
             },
             {
               label: '任务内容',
@@ -42,8 +42,8 @@
                 disabled: false,
                 show: false,
                 placeholder: '',
-                value: ''
-              }
+                value: '',
+              },
             },
             {
               label: '目标',
@@ -54,8 +54,8 @@
                 disabled: false,
                 show: true,
                 placeholder: '',
-                value: ''
-              }
+                value: '',
+              },
             },
             {
               label: '创建日期',
@@ -67,8 +67,8 @@
                 type: 'datetimerange',
                 disabled: false,
                 width: '210',
-                pickOptions: {}
-              }
+                pickOptions: {},
+              },
             },
             {
               label: '更新日期',
@@ -80,8 +80,8 @@
                 type: 'datetimerange',
                 disabled: false,
                 width: '210',
-                pickOptions: {}
-              }
+                pickOptions: {},
+              },
             },
             {
               label: '任务状态',
@@ -96,9 +96,9 @@
                   { name: '未提交', value: '1' },
                   { name: '已提交', value: '2' },
                   { name: '查询中', value: '3' },
-                  { name: '已完成', value: '4' }
-                ]
-              }
+                  { name: '已完成', value: '4' },
+                ],
+              },
             },
             {
               label: '文件状态',
@@ -113,10 +113,10 @@
                 data: [
                   { name: '全部', value: '0' },
                   { name: '未下载', value: '1' },
-                  { name: '已下载', value: '2' }
-                ]
-              }
-            }
+                  { name: '已下载', value: '2' },
+                ],
+              },
+            },
           ],
           btns: [
             {
@@ -127,8 +127,8 @@
                 disabled: false,
                 click: () => {
                   console.log(1)
-                }
-              }
+                },
+              },
             },
             {
               comOpt: {
@@ -138,10 +138,10 @@
                 disabled: false,
                 click: () => {
                   console.log(2)
-                }
-              }
-            }
-          ]
+                },
+              },
+            },
+          ],
         },
         tableOpt: {
           stripe: true,
@@ -166,25 +166,25 @@
                   disCallBack() {
                     return false
                   },
-                  handlerClick: row => {
+                  handlerClick: (row) => {
                     console.log(row)
-                  }
+                  },
                 },
                 {
                   label: '编辑',
                   type: 'label',
-                  handlerClick: row => {
+                  handlerClick: (row) => {
                     console.log(row)
-                  }
+                  },
                 },
                 {
                   label: '删除',
                   type: 'label',
                   disCallBack(row) {},
-                  handlerClick: row => {}
-                }
-              ]
-            }
+                  handlerClick: (row) => {},
+                },
+              ],
+            },
           ],
           data: [],
           // 是否分页
@@ -194,13 +194,13 @@
             currentPage: 1,
             total: 0,
             pageSizes: [10, 20, 30, 40, 50],
-            pageSize: 10
-          }
-        }
+            pageSize: 10,
+          },
+        },
       },
       mounted() {
         console.log(this)
-      }
+      },
     }).$mount('#app')
   </script>
 </body>

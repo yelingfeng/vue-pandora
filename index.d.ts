@@ -51,6 +51,7 @@ declare namespace Form {
     | 'date'
     | 'button'
     | 'radio'
+    | 'formList'
     | 'checkbox'
     | 'textGroup'
     | 'singleGroup'
@@ -85,6 +86,8 @@ declare namespace Form {
     format?: string
     // 是否显示清除按钮
     clearable?: boolean
+    // formlist items
+    items?: any[] | undefined
     data?: any[]
     tooltipDelay: number
     className?: string
