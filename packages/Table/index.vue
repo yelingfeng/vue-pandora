@@ -525,6 +525,7 @@ export default class VTable extends Vue {
         height: this.tableHeight,
         showHeader: this.option.isHeader,
         stripe: this.option.stripe,
+        'highlight-current-row': this.option.highlightCurrentRow,
         data: this.tableData
       },
       on: {

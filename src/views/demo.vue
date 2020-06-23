@@ -253,6 +253,7 @@ export default class Demo extends Vue {
     defaultSort: [{ prop: 'bureauName', order: 'descending' }],
     sortMode: 'single',
     sortChange: this.handleSortChange,
+    highlightCurrentRow: true,
     column: [
       { name: '序号', value: 'orderNum', fixed: 'left', width: 50, align: 'center' },
       { name: '机房名称', value: 'roomName', fixed: 'left', align: 'center' },

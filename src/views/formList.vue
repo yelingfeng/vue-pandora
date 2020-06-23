@@ -4,7 +4,7 @@
  * @Date: 2020-06-19 11:49:15
  * @LastEditors: niumiaomiao
  * @LastEditTime: 2020-06-20 10:06:02
---> 
+-->
 <template>
   <div>
     <VForm :option="addformObj" ref="addFrom"></VForm>
@@ -100,7 +100,7 @@ export default class FormDemo extends Vue {
     console.log(this.addFrom.getValue())
   }
   mounted() {
-    this.getValue()
+    // this.getValue()
   }
 }
 </script>

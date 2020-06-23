@@ -4,6 +4,8 @@ declare namespace Table {
     stripe: boolean
     // 是否显示表头
     isHeader: boolean
+    // 高亮当前行
+    highlightCurrentRow: boolean
     // 是否显示多选
     selection: boolean
     // 排序模式

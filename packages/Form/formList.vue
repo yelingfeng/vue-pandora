@@ -1,33 +1,16 @@
-<!--
- * @Description: 
- * @Autor: niumiaomiao
- * @Date: 2020-06-19 11:49:15
- * @LastEditors: niumiaomiao
- * @LastEditTime: 2020-06-20 12:05:41
---> 
 <script lang="tsx">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
 import textComp from './text.vue'
 import dateComp from './date.vue'
 import selectComp from './select.vue'
-import radioComp from './radio.vue'
-import checkBoxComp from './checkbox.vue'
 import buttonComp from './button.vue'
-import autocompleteComp from './autoComplete.vue'
-import textGroupComp from './textGroup.vue'
-import singleGroupComp from './singleGroup/index.vue'
 @Component({
   components: {
     textComp,
     dateComp,
     selectComp,
-    radioComp,
-    checkBoxComp,
-    buttonComp,
-    textGroupComp,
-    autocompleteComp,
-    singleGroupComp
+    buttonComp
   }
 })
 export default class VFormList extends Vue {
@@ -47,7 +30,7 @@ export default class VFormList extends Vue {
    * @description: 获取值
    */
   getValue() {
-    return { [this.option.id]: this.childComp }
+    return { [this.option.id]: this.value }
   }
   mounted() {
     // console.log(this.option)
@@ -55,8 +38,8 @@ export default class VFormList extends Vue {
   private addFormList() {
     this.listNum.push('')
   }
-  private cutFormList(val) {
-    this.listNum.splice(val, 1)
+  private cutFormList(index: number) {
+    this.listNum.splice(index, 1)
   }
 
   render(h: any) {
@@ -81,23 +64,8 @@ export default class VFormList extends Vue {
         case 'select':
           comp = <selectComp key={ref} option={comOpt} ref={ref} />
           break
-        case 'radio':
-          comp = <radioComp key={ref} option={comOpt} ref={ref} />
-          break
-        case 'checkbox':
-          comp = <checkBoxComp key={ref} option={comOpt} ref={ref} />
-          break
         case 'button':
           comp = <buttonComp key={ref} option={comOpt} ref={ref} />
-          break
-        case 'autoComplete':
-          comp = <autocompleteComp key={ref} option={comOpt} ref={ref} />
-          break
-        case 'textGroup':
-          comp = <textGroupComp key={ref} option={comOpt} ref={ref} />
-          break
-        case 'singleGroup':
-          comp = <singleGroupComp key={ref} option={comOpt} ref={ref} />
           break
         default:
           break
@@ -117,32 +85,30 @@ export default class VFormList extends Vue {
         return formBox
       }
     })
-    return h(
-      'div',
-      this.listNum.map((item: any, index: number) => {
-        this.listIndex = index
-        let markBox
-        if (index > 0) {
-          markBox = (
-            <span class="formListPlus" on-click={() => this.cutFormList(index)}>
-              -
-            </span>
-          )
-        } else {
-          markBox = (
-            <span class="formListPlus" on-click={() => this.addFormList()}>
-              +
-            </span>
-          )
-        }
-        return (
-          <div id="vpandora-formList">
-            <div class="formListCon">{elItems}</div>
-            {markBox}
-          </div>
+    const formListitems = this.listNum.map((item: any, index: number) => {
+      this.listIndex = index
+      let markBox
+      if (index > 0) {
+        markBox = (
+          <span class="formListPlus" on-click={() => this.cutFormList(index)}>
+            -
+          </span>
         )
-      })
-    )
+      } else {
+        markBox = (
+          <span class="formListPlus" on-click={() => this.addFormList()}>
+            +
+          </span>
+        )
+      }
+      return (
+        <div id="vpandora-formList-item">
+          <div class="formListCon">{elItems}</div>
+          {markBox}
+        </div>
+      )
+    })
+    return <div id="vpandora-formList">{formListitems}</div>
   }
 }
 </script>
