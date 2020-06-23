@@ -55,7 +55,7 @@ export default class FormDemo extends Vue {
               comOpt: {
                 id: 'disBlockPortVer',
                 width: 180,
-                disabled: true,
+                disabled: false,
                 show: true,
                 placeholder: '',
                 value: ''

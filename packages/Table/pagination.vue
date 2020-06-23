@@ -6,6 +6,7 @@
       :current-page.sync="option.currentPage"
       :page-sizes="option.pageSizes"
       :page-size.sync="option.pageSize"
+      :pager-count="option.pageCount"
       :layout="layout"
       :total="option.total"
     ></el-pagination>

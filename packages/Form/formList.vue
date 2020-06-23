@@ -1,10 +1,11 @@
 <script lang="tsx">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction } from '@/utils/common'
+import { isFunction, merge } from '@/utils/common'
 import textComp from './text.vue'
 import dateComp from './date.vue'
 import selectComp from './select.vue'
 import buttonComp from './button.vue'
+import { Divider } from 'element-ui'
 @Component({
   components: {
     textComp,
@@ -17,8 +18,8 @@ export default class VFormList extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
   private value = ''
-  private listNum: any = ['']
-  private listIndex = 0
+  private originItems: any = []
+  private lists: any = []
 
   get childComp() {
     return this.option.items || []
@@ -30,28 +31,64 @@ export default class VFormList extends Vue {
    * @description: 获取值
    */
   getValue() {
+    console.log(this._getFormListvalue())
     return { [this.option.id]: this.value }
   }
-  mounted() {
-    // console.log(this.option)
-  }
-  private addFormList() {
-    this.listNum.push('')
-  }
-  private cutFormList(index: number) {
-    this.listNum.splice(index, 1)
+
+  //
+  _getFormListvalue() {
+    const returnValue = this.lists.map((comps: any, rowIndex: number) => {
+      const rows = comps.map((it: Form.IFormItemOpt, index: number) => {
+        const comp = this.$refs[this.getComKey(rowIndex, index, it.comOpt.id)] as any
+        if (comp) {
+          return comp.getValue()
+        }
+      })
+      return rows
+    })
+    return returnValue
   }
 
-  render(h: any) {
+  getNewItem() {
+    return merge(this.option.items, {})
+  }
+
+  mounted() {
+    // console.log(this.option)
+    this.originItems = merge(this.option.items, {})
+    this.addFormList()
+  }
+  private addFormList() {
+    this.lists.push(this.getNewItem())
+  }
+  private cutFormList(index: number) {
+    this.lists.splice(index, 1)
+  }
+  // 清空formList
+  clearFormList() {}
+
+  /**
+   * 获取formList 行内单个组件的 唯一命名
+   * @param rowIndex 行index
+   * @oaram index  行内index
+   * @param compId  组件id
+   * @return   flItem-comp-${rowIndex}- {compId} - ${index}
+   *
+   */
+  getComKey(rowIndex: number, index: number, compId: string) {
+    return `flItem-comp-${rowIndex}-{compId}-${index}`
+  }
+
+  /**
+   * 遍历一行的form组件
+   * @param comps 组件
+   * @param rowIndex 当前行index
+   */
+  getElItemsBox(comps: any, rowIndex: number) {
     const br = <br />
-    const elItems = this.childComp.map((it: Form.IFormItemOpt, index: number) => {
+    const elItems = comps.map((it: Form.IFormItemOpt, index: number) => {
       let comp
-      let ref = ''
-      if (this.listNum.length > 1) {
-        ref = 'formlist-' + it.comOpt.id + this.listIndex
-      } else {
-        ref = 'formlist-' + it.comOpt.id
-      }
+      const ref = this.getComKey(rowIndex, index, it.comOpt.id)
       let comOpt = Object.create(null)
       comOpt = Object.assign({}, it.comOpt)
       switch (it.type) {
@@ -85,30 +122,37 @@ export default class VFormList extends Vue {
         return formBox
       }
     })
-    const formListitems = this.listNum.map((item: any, index: number) => {
-      this.listIndex = index
-      let markBox
-      if (index > 0) {
-        markBox = (
-          <span class="formListPlus" on-click={() => this.cutFormList(index)}>
-            -
-          </span>
-        )
-      } else {
-        markBox = (
-          <span class="formListPlus" on-click={() => this.addFormList()}>
-            +
-          </span>
-        )
-      }
-      return (
-        <div id="vpandora-formList-item">
-          <div class="formListCon">{elItems}</div>
-          {markBox}
-        </div>
+    const id = `vpandora-formList-item-${rowIndex}`
+
+    let markBox
+    if (rowIndex > 0) {
+      markBox = (
+        <span class="formListPlus" on-click={() => this.cutFormList(rowIndex)}>
+          -
+        </span>
       )
+    } else {
+      markBox = (
+        <span class="formListPlus" on-click={() => this.addFormList()}>
+          +
+        </span>
+      )
+    }
+    return (
+      <div id={id}>
+        <div class="formListCon">{elItems}</div>
+        {markBox}
+      </div>
+    )
+  }
+
+  render(h: any) {
+    // 遍历lists
+    const formItemWrapper = this.lists.map((it: any, index: number) => {
+      const box = this.getElItemsBox(it, index)
+      return box
     })
-    return <div id="vpandora-formList">{formListitems}</div>
+    return <div id="vpandora-formList">{formItemWrapper}</div>
   }
 }
 </script>

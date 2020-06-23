@@ -44,6 +44,8 @@ export interface IPageOpt {
   pageSizes: number[]
   // 当前显示每页条数
   pageSize: number
+  // 最大页码按钮数
+  pageCount: number
   // 分页功能 默认显示完整功能 （可不传）
   layout?: string
 }

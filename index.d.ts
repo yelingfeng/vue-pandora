@@ -38,6 +38,8 @@ declare namespace Table {
     total: number
     // 每页显示条数选择数组
     pageSizes: number[]
+    // 最大页码按钮数
+    pageCount: number
     // 当前显示每页条数
     pageSize: number
     // 分页功能 默认显示完整功能 （可不传）

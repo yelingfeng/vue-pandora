@@ -18,6 +18,7 @@ const defaultOption: Table.IPageOpt = {
   height: PAGE_HEIGHT,
   currentPage: 1,
   total: 0,
+  pageCount: 7,
   pageSizes: [10, 20, 30, 40, 50],
   pageSize: 10
 }
