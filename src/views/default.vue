@@ -146,7 +146,8 @@ export default class Default extends Vue {
   private tableOpt: any = {
     stripe: true,
     isHeader: true,
-    selection: true,
+    // selection: true,
+    selectionMode: 'single',
     // 排序模式 single 独立排序 ,multi 多项排序
     sortMode: 'multi',
     // 默认升序还是降序
@@ -159,6 +160,9 @@ export default class Default extends Vue {
     sortChange: (column: object) => {
       console.log(column)
       this.getTableList()
+    },
+    rowChange: (row: object, index: number) => {
+      console.log(row, index)
     },
     column: [
       { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
@@ -191,38 +195,46 @@ export default class Default extends Vue {
         operations: [
           {
             label: '详情',
-            type: 'icon',
+            type: 'radio',
             // title: '添加一个title属性',
             tooltip: function(row: any) {
               return row.taskContent + '流量链接趋势'
-            },
-            tooltipDelay: 500,
-            // tooltip: '1流量链接趋势',
-            iconName: 'el-icon-eleme    ',
-            handlerClick: (row: any) => {
-              console.log(row)
-            }
-          },
-          {
-            label: '编辑',
-            handlerClick: (row: any) => {
-              console.log(row)
-            }
-          },
-          {
-            label: '删除',
-            disCallBack(row: any) {},
-            handlerClick: (row: any) => {}
-          },
-          {
-            label: '查看',
-            type: 'icon',
-            iconName: 'el-icon-edit',
-            disCallBack(row: any) {},
-            handlerClick: (row: any) => {
-              console.log(row)
             }
           }
+          // {
+          //   label: '详情',
+          //   type: 'icon',
+          //   // title: '添加一个title属性',
+          //   tooltip: function(row: any) {
+          //     return row.taskContent + '流量链接趋势'
+          //   },
+          //   tooltipDelay: 500,
+          //   // tooltip: '1流量链接趋势',
+          //   iconName: 'el-icon-eleme    ',
+          //   handlerClick: (row: any) => {
+          //     console.log(row)
+          //   }
+          // },
+          // {
+          //   label: '编辑',
+          //   handlerClick: (row: any) => {
+          //     console.log(row)
+          //   }
+          // },
+          // {
+          //   label: '删除',
+          //   disCallBack(row: any) {},
+          //   handlerClick: (row: any) => {}
+          // },
+          // {
+          //   label: '查看',
+          //   type: 'icon',
+          //   iconName: 'el-icon-edit',
+          //   disCallBack(row: any) {},
+          //   handlerClick: (row: any) => {
+          //     console.log(row)
+          //   }
+          // }
         ]
       }
     ],

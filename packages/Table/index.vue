@@ -12,7 +12,8 @@ const enum sortModeType {
 }
 const enum OperateType {
   BUTTON = 'button',
-  ICON = 'icon'
+  ICON = 'icon',
+  RADIO = 'radio'
 }
 const defaultOption: Table.IPageOpt = {
   height: PAGE_HEIGHT,
@@ -88,7 +89,13 @@ export default class VTable extends Vue {
   // 第一次加载初始化状态 完成后 设置false
   private isStart = true
 
+  private checked = false
+
   private _oldActiveSort: any = {}
+
+  // 当前行index
+  private _currentRowIndex: number
+  private currentRowObject = {}
 
   @Watch('option.data')
   optionDataChange(newval: object[]) {
@@ -105,6 +112,13 @@ export default class VTable extends Vue {
   @Watch('height')
   heightChange(newval: number) {
     this.setTableHeight(newval)
+  }
+
+  @Watch('currentRowObject')
+  currentRowChange(newVal: object) {
+    if (this.option.rowChange && isFunction(this.option.rowChange)) {
+      this.option.rowChange(newVal, this._currentRowIndex)
+    }
   }
 
   get tableColumn() {
@@ -219,7 +233,7 @@ export default class VTable extends Vue {
    * @return:
    * @description: 表格行点击事件
    */
-  rowClick(row: object, column: object, event: any) {
+  rowClick(row: any, column: object, event: any) {
     if (this.option.rowClick && isFunction(this.option.rowClick)) {
       this.option.rowClick(row, column, event)
     }
@@ -417,6 +431,11 @@ export default class VTable extends Vue {
     this.$emit('handleSizePageChange', val)
   }
 
+  getTemplateRow(row: any, index: number) {
+    this._currentRowIndex = index
+    this.currentRowObject = row
+  }
+
   render() {
     let elColumn: any = {}
     elColumn = this.tableColumn.map((item: any, index: number) => {
@@ -433,6 +452,7 @@ export default class VTable extends Vue {
           formatter: item.formatter
         }
       }
+
       if (item.operations) {
         columnProps.scopedSlots = {
           default: (props: any) => {
@@ -471,7 +491,7 @@ export default class VTable extends Vue {
                     ></i>
                   </el-tooltip>
                 )
-              } else {
+              } else if (OperateType.BUTTON === type) {
                 operateDom = (
                   <el-tooltip {...tooltipProp}>
                     <el-button
@@ -483,6 +503,16 @@ export default class VTable extends Vue {
                     >
                       {operate.label}
                     </el-button>
+                  </el-tooltip>
+                )
+              } else if (OperateType.RADIO == type) {
+                operateDom = (
+                  <el-tooltip {...tooltipProp}>
+                    <el-radio
+                      v-model={this.checked}
+                      label={props.$index}
+                      on-change={() => this.getTemplateRow(props.row, props.$index)}
+                    ></el-radio>
                   </el-tooltip>
                 )
               }
@@ -516,10 +546,16 @@ export default class VTable extends Vue {
       }
       return <el-table-column {...columnProps}></el-table-column>
     })
-    let elColumnSelection
-    if (this.option.selection) {
-      elColumnSelection = <el-table-column type="selection" width="55"></el-table-column>
+
+    const columnList = []
+    columnList.push(elColumn)
+
+    if (this.option.selectionMode !== 'single') {
+      if (this.option.selection) {
+        columnList.push(<el-table-column type="selection" width="55"></el-table-column>)
+      }
     }
+
     // table属性
     const vprops: any = {
       props: {
@@ -538,8 +574,7 @@ export default class VTable extends Vue {
     return (
       <div class="vpandora-table">
         <el-table ref="table" {...vprops}>
-          {elColumnSelection}
-          {elColumn}
+          {columnList}
         </el-table>
         <pagination
           v-show={this.option.pagination}

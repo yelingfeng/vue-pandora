@@ -43,3 +43,7 @@
   overflow: initial;
   position: relative;
 }
+
+.vpandora-table .el-radio__label {
+  display: none;
+}

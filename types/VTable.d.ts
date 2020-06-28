@@ -11,6 +11,8 @@ export interface ITableOption {
   isHeader: boolean
   // 高亮当前行
   highlightCurrentRow: boolean
+  // 选择模式 单选还是多选
+  selectionMode: string
   // 是否显示多选
   selection: boolean
   // 排序模式
@@ -23,6 +25,8 @@ export interface ITableOption {
   rowClick?: (row: object, column: object, event: any) => void
   // 排序事件
   sortChange?: (column: object) => void
+  // 行改变事件
+  rowChange?: (row: object, index: number) => void
   // 是否分页
   pagination: boolean
   // 排序
