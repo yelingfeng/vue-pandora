@@ -35,6 +35,7 @@ export interface UpLoadType {
   showFileList: boolean
   // 是否在选取文件后立即进行上传
   autoUpload: boolean
+  fileList: Array<any>
   httpRequest: Function
   beforeUpload: Function
   onPreview: Function

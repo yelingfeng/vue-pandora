@@ -5,7 +5,7 @@
     :placeholder="placeholder"
     auto-complete="on"
     :style="widthStyle"
-    :type="option.type"
+    :type="type"
     :maxlength="option.maxlength"
     :rows="option.rows"
     @input="inputHandler"
@@ -29,6 +29,7 @@ export default class VInput extends Vue {
   private value = ''
   private placeholder = ''
   private disabled = false
+  private type = 'text'
 
   @Watch('option.value')
   changeValue(newVal: string) {
@@ -40,7 +41,7 @@ export default class VInput extends Vue {
       width: this.option.width + 'px'
     }
   }
-  mounted() {
+  created() {
     this.initFunc()
   }
   /**
@@ -51,6 +52,7 @@ export default class VInput extends Vue {
    */
   initFunc() {
     this.value = this.option.value
+    this.type = this.option.type
     this.disabled = this.option.disabled || false
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请输入内容'
   }

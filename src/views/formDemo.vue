@@ -237,9 +237,10 @@ export default class FormDemo extends Vue {
       {
         label: '扩容块数',
         type: 'text',
-        show: false,
+        show: true,
         comOpt: {
           id: 'disBlockNumber',
+          type: 'textarea',
           width: 500,
           disabled: false,
           maxlength: 2,

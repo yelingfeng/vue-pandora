@@ -1,30 +1,4 @@
-<template>
-  <div class="vpandora-upload-container">
-    <el-upload
-      class="upload-demo"
-      action="#"
-      :http-request="this.option.httpRequest"
-      :before-upload="this.option.beforeUpload"
-      :show-file-list="this.option.showFileList || false"
-      :on-preview="this.option.onPreview"
-      :on-remove="this.option.onRemove"
-      :on-change="this.option.onFileChange"
-      :on-error="this.option.onError"
-      :on-success="this.option.onSuccess"
-      :file-list="this.option.FileList"
-      :auto-upload="this.option.autoUpload || false"
-      :limit="this.option.limit"
-      ref="upload"
-    >
-      <el-button slot="trigger" size="small" class="loadBtn" @click="clearFiles">{{
-        buttonText
-      }}</el-button>
-      <div slot="tip" class="tipBox" v-text="tipText"></div>
-    </el-upload>
-  </div>
-</template>
-
-<script lang="ts">
+<script lang="tsx">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
 
@@ -46,10 +20,14 @@ export default class VUpload extends Vue {
     ;(this.$refs.upload as any).clearFiles()
   }
 
-  mounted() {
+  created() {
     this.uploadOption = this.option.uploadOption
     this.buttonText = this.uploadOption.buttonText
     this.tipText = this.uploadOption.tipText
+  }
+
+  mounted() {
+    // console.log(this.option)
   }
   /**
    * @name: getValue
@@ -59,6 +37,37 @@ export default class VUpload extends Vue {
    */
   getValue() {
     return { [this.option.id]: this.option.value }
+  }
+
+  render(h: any) {
+    let uploadProps = Object.create(null)
+    uploadProps = {
+      props: {
+        limit: this.uploadOption.limit,
+        'http-request': this.uploadOption.httpRequest,
+        'before-upload': this.uploadOption.beforeUpload,
+        'show-file-list': this.uploadOption.showFileList || false,
+        'on-preview': this.uploadOption.onPreview,
+        'on-remove': this.uploadOption.onRemove,
+        'on-change': this.uploadOption.onFileChange,
+        'file-list': this.uploadOption.fileList || [],
+        'auto-upload': this.uploadOption.autoUpload || false
+      }
+    }
+    const button = (
+      <el-button size="small" class="loadBtn" on-click={() => this.clearFiles}>
+        {this.buttonText}
+      </el-button>
+    )
+    const tip = <div class="tipBox">{this.tipText}</div>
+    const upload = (
+      <el-upload class="upload-demo" action="#" ref="upload" {...uploadProps}>
+        {button}
+        {tip}
+      </el-upload>
+    )
+
+    return <div class="vpandora-upload-container">{upload}</div>
   }
 }
 </script>
