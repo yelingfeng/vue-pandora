@@ -21,7 +21,7 @@ export default class FormDemo extends Vue {
   @Ref() readonly addFrom!: Form
   @Watch('addformObj', { deep: true })
   private dataChanged(newVal: any) {
-    console.log('aa', newVal)
+    // console.log('aa', newVal)
     this.getValue()
   }
   private addformObj: any = {

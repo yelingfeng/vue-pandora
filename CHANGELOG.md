@@ -5,6 +5,69 @@
 - **add:** form add upload component and table add selectionPos ([b4fa85c](https://github.com/yelingfeng/vue-pandora/commit/b4fa85c6dd9a4120f3ec577bc8adaddedafcda1f))
 - **update:** add table radio selectionModel single ([4b49785](https://github.com/yelingfeng/vue-pandora/commit/4b497857c14009dae51129f62da3629ee4be8523))
 
+#### 1. Table
+
+新增属性`selectionPos` 复选框位置
+
+类型`string`
+
+| 属性名 | 说明         |
+| ------ | ------------ |
+| top    | 复选框在首列 |
+| end    | 复选框在尾列 |
+
+#### 2. Form
+
+新增组件 `upload`上传组件
+
+```js
+ {
+    label: '附件',
+    type: 'upload',
+    show: true,
+    comOpt: {
+      id: 'uploadComp',
+      uploadOption: {
+        buttonText: '选择文件',
+        tipText: '只能上传jpg、png、gif、bmp、jpeg、doc、docx、pdf、lxs、xlsx、zip、rar文件',
+        limit: 5,
+        // 是否显示已上传文件列表
+        showFileList: false,
+        // 是否在选取文件后立即进行上传
+        autoUpload: false,
+        httpRequest: function() {},
+        beforeUpload: function() {},
+        onPreview: function() {},
+        onRemove: function() {},
+        onFileChange: function() {},
+        onSuccess: function() {}
+      }
+}
+```
+
+| 属性名       | 类型       | 说明                         |
+| ------------ | ---------- | ---------------------------- |
+| buttonText   | `string`   | 按钮显示文字                 |
+| tipText      | `string`   | tip 显示文字                 |
+| limit        | `number`   | 最大允许上传个数             |
+| showFileList | `boolean`  | 是否显示已上传文件列表       |
+| autoUpload   | `boolean`  | 是否在选取文件后立即进行上传 |
+| httpRequest  | `Function` | 参靠 element-ui 文档         |
+| beforeUpload | `Function` | 参靠 element-ui 文档         |
+| onPreview    | `Function` | 参靠 element-ui 文档         |
+| onRemove     | `Function` | 参靠 element-ui 文档         |
+| onFileChange | `Function` | 参靠 element-ui 文档         |
+| onSuccess    | `Function` | 参靠 element-ui 文档         |
+
+## [1.0.31](https://github.com/yelingfeng/vue-pandora/compare/v1.0.29...v1.0.31) (2020-06-28)
+
+### Features
+
+- **add:** formList ([57817c8](https://github.com/yelingfeng/vue-pandora/commit/57817c8609e2e6025187ba67e96ccb21a007b27b))
+- **update:** add formList code ([f24b72f](https://github.com/yelingfeng/vue-pandora/commit/f24b72f3d090bb6e27fa1c57aeb1a6f16eee9c9f))
+- **update:** add table radio selectionModel single ([4b49785](https://github.com/yelingfeng/vue-pandora/commit/4b497857c14009dae51129f62da3629ee4be8523))
+- **update:** update formlist ([9a4e259](https://github.com/yelingfeng/vue-pandora/commit/9a4e259647087a604a2831a94696aa191623250f))
+
 ## [1.0.30](https://github.com/yelingfeng/vue-pandora/compare/v1.0.24...v1.0.30) (2020-06-24)
 
 ### Bug Fixes
