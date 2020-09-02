@@ -146,8 +146,10 @@ export default class Default extends Vue {
   private tableOpt: any = {
     stripe: true,
     isHeader: true,
-    // selection: true,
-    selectionMode: 'single',
+    selection: true,
+    // 复选框位置 前还是后 top ，end
+    selectionPos: 'top',
+    selectionMode: 'multi',
     // 排序模式 single 独立排序 ,multi 多项排序
     sortMode: 'multi',
     // 默认升序还是降序
@@ -185,58 +187,58 @@ export default class Default extends Vue {
         }
       },
       { name: '任务状态', value: 'taskStatusName', align: 'center' },
-      { name: '任务结果', value: 'jobResult', align: 'center' },
-      {
-        name: '操作',
-        value: '',
-        align: 'center',
-        fixed: 'right',
-        width: 150,
-        operations: [
-          {
-            label: '详情',
-            type: 'radio',
-            // title: '添加一个title属性',
-            tooltip: function(row: any) {
-              return row.taskContent + '流量链接趋势'
-            }
-          }
-          // {
-          //   label: '详情',
-          //   type: 'icon',
-          //   // title: '添加一个title属性',
-          //   tooltip: function(row: any) {
-          //     return row.taskContent + '流量链接趋势'
-          //   },
-          //   tooltipDelay: 500,
-          //   // tooltip: '1流量链接趋势',
-          //   iconName: 'el-icon-eleme    ',
-          //   handlerClick: (row: any) => {
-          //     console.log(row)
-          //   }
-          // },
-          // {
-          //   label: '编辑',
-          //   handlerClick: (row: any) => {
-          //     console.log(row)
-          //   }
-          // },
-          // {
-          //   label: '删除',
-          //   disCallBack(row: any) {},
-          //   handlerClick: (row: any) => {}
-          // },
-          // {
-          //   label: '查看',
-          //   type: 'icon',
-          //   iconName: 'el-icon-edit',
-          //   disCallBack(row: any) {},
-          //   handlerClick: (row: any) => {
-          //     console.log(row)
-          //   }
-          // }
-        ]
-      }
+      { name: '任务结果', value: 'jobResult', align: 'center' }
+      // {
+      //   name: '操作',
+      //   value: '',
+      //   align: 'center',
+      //   fixed: 'right',
+      //   width: 150,
+      //   operations: [
+      //     {
+      //       label: '详情',
+      //       type: 'radio',
+      //       // title: '添加一个title属性',
+      //       tooltip: function(row: any) {
+      //         return row.taskContent + '流量链接趋势'
+      //       }
+      //     }
+      //     // {
+      //     //   label: '详情',
+      //     //   type: 'icon',
+      //     //   // title: '添加一个title属性',
+      //     //   tooltip: function(row: any) {
+      //     //     return row.taskContent + '流量链接趋势'
+      //     //   },
+      //     //   tooltipDelay: 500,
+      //     //   // tooltip: '1流量链接趋势',
+      //     //   iconName: 'el-icon-eleme    ',
+      //     //   handlerClick: (row: any) => {
+      //     //     console.log(row)
+      //     //   }
+      //     // },
+      //     // {
+      //     //   label: '编辑',
+      //     //   handlerClick: (row: any) => {
+      //     //     console.log(row)
+      //     //   }
+      //     // },
+      //     // {
+      //     //   label: '删除',
+      //     //   disCallBack(row: any) {},
+      //     //   handlerClick: (row: any) => {}
+      //     // },
+      //     // {
+      //     //   label: '查看',
+      //     //   type: 'icon',
+      //     //   iconName: 'el-icon-edit',
+      //     //   disCallBack(row: any) {},
+      //     //   handlerClick: (row: any) => {
+      //     //     console.log(row)
+      //     //   }
+      //     // }
+      //   ]
+      // }
     ],
     data: [],
     // 是否分页

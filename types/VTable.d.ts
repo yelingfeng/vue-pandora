@@ -13,6 +13,8 @@ export interface ITableOption {
   highlightCurrentRow: boolean
   // 选择模式 单选还是多选
   selectionMode: string
+  // 复现框的位置 前后 top 和 end
+  selectionPos: string
   // 是否显示多选
   selection: boolean
   // 排序模式

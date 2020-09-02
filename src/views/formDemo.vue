@@ -201,6 +201,9 @@ export default class FormDemo extends Vue {
       },
       {
         type: 'formlist',
+        comOpt: {
+          id: 'formList1'
+        },
         items: [
           {
             label: '横列直列',
@@ -243,6 +246,29 @@ export default class FormDemo extends Vue {
           placeholder: '请输入扩容块数',
           value: 'xiaofanhaha'
         }
+      },
+      {
+        label: '附件',
+        type: 'upload',
+        show: true,
+        comOpt: {
+          id: 'uploadComp',
+          uploadOption: {
+            buttonText: '选择文件',
+            tipText: '只能上传jpg、png、gif、bmp、jpeg、doc、docx、pdf、lxs、xlsx、zip、rar文件',
+            limit: 5,
+            //是否显示已上传文件列表
+            showFileList: false,
+            // 是否在选取文件后立即进行上传
+            autoUpload: false,
+            httpRequest: function() {},
+            beforeUpload: function() {},
+            onPreview: function() {},
+            onRemove: function() {},
+            onFileChange: function() {},
+            onSuccess: function() {}
+          }
+        }
       }
     ],
     btns: [
@@ -270,94 +296,86 @@ export default class FormDemo extends Vue {
   }
   addDisTypeChangeHandler(val: any) {
     // 组件目前设置setShow有bug， 会清掉以前的赋值数据， 并且会根据顺序赋值错乱
-    // 目前采用重置各种状态实现
-    if (val === '2') {
-      // 模块扩容
-      this.addFrom.setShow([
-        { id: 'disHor', value: false },
-        { id: 'disVer', value: false },
-        { id: 'disAddHor', value: false },
-        { id: 'disAddVer', value: false },
-        { id: 'disEveryHor', value: false },
-        { id: 'disEveryVer', value: false },
-        { id: 'disBlockPortHor', value: false },
-        { id: 'disBlockPortVer', value: false },
-        { id: 'disHorVer', value: true },
-        { id: 'disBlockNumber', value: true }
-      ])
-
-      // this.addFrom.setDisabled([
-      //   { id: 'disHorVer', value: false },
-      //   { id: 'disBlockNumber', value: false }
-      // ])
-      this.addFrom.setRequired([
-        { id: 'disHorVer', value: true },
-        { id: 'disBlockNumber', value: true }
-      ])
-      // this.addFrom.setValue([
-      //   { id: 'disHorVer', value: '' },
-      //   { id: 'disBlockNumber', value: '' }
-      // ])
-    } else {
-      // 横列直列
-      this.addFrom.setShow([
-        { id: 'disHor', value: true },
-        { id: 'disVer', value: true },
-        { id: 'disAddHor', value: true },
-        { id: 'disAddVer', value: true },
-        { id: 'disEveryHor', value: true },
-        { id: 'disEveryVer', value: true },
-        { id: 'disBlockPortHor', value: true },
-        { id: 'disBlockPortVer', value: true },
-        { id: 'disHorVer', value: false },
-        { id: 'disBlockNumber', value: false }
-      ])
-
-      // this.addFrom.setDisabled([
-      //   { id: 'disHorVer', value: true },
-      //   { id: 'disBlockNumber', value: true }
-      // ])
-
-      // this.addFrom.setShow([
-      //   { id: 'disHorVer', value: false },
-      //   { id: 'disBlockNumber', value: false }
-      // ])
-
-      // 组件bug ， setShow会丢失以前赋值数据
-      this.addFrom.setValue([
-        { id: 'disHor', value: 'dddd' },
-        { id: 'disVer', value: '33333' },
-        // { id: 'disBlockPortHor', value: this.distriInfo.rowBlockPortCount },
-        // { id: 'disBlockPortVer', value: this.distriInfo.lineBlockPortCount },
-        { id: 'disType', value: '1' }
-      ])
-    }
+    // // 目前采用重置各种状态实现
+    // if (val === '2') {
+    //   // 模块扩容
+    //   this.addFrom.setShow([
+    //     { id: 'disHor', value: false },
+    //     { id: 'disVer', value: false },
+    //     { id: 'disAddHor', value: false },
+    //     { id: 'disAddVer', value: false },
+    //     { id: 'disEveryHor', value: false },
+    //     { id: 'disEveryVer', value: false },
+    //     { id: 'disBlockPortHor', value: false },
+    //     { id: 'disBlockPortVer', value: false },
+    //     { id: 'disHorVer', value: true },
+    //     { id: 'disBlockNumber', value: true }
+    //   ])
+    //   // this.addFrom.setDisabled([
+    //   //   { id: 'disHorVer', value: false },
+    //   //   { id: 'disBlockNumber', value: false }
+    //   // ])
+    //   this.addFrom.setRequired([
+    //     { id: 'disHorVer', value: true },
+    //     { id: 'disBlockNumber', value: true }
+    //   ])
+    //   // this.addFrom.setValue([
+    //   //   { id: 'disHorVer', value: '' },
+    //   //   { id: 'disBlockNumber', value: '' }
+    //   // ])
+    // } else {
+    //   // 横列直列
+    //   this.addFrom.setShow([
+    //     { id: 'disHor', value: true },
+    //     { id: 'disVer', value: true },
+    //     { id: 'disAddHor', value: true },
+    //     { id: 'disAddVer', value: true },
+    //     { id: 'disEveryHor', value: true },
+    //     { id: 'disEveryVer', value: true },
+    //     { id: 'disBlockPortHor', value: true },
+    //     { id: 'disBlockPortVer', value: true },
+    //     { id: 'disHorVer', value: false },
+    //     { id: 'disBlockNumber', value: false }
+    //   ])
+    //   // this.addFrom.setDisabled([
+    //   //   { id: 'disHorVer', value: true },
+    //   //   { id: 'disBlockNumber', value: true }
+    //   // ])
+    //   // this.addFrom.setShow([
+    //   //   { id: 'disHorVer', value: false },
+    //   //   { id: 'disBlockNumber', value: false }
+    //   // ])
+    //   // 组件bug ， setShow会丢失以前赋值数据
+    //   this.addFrom.setValue([
+    //     { id: 'disHor', value: 'dddd' },
+    //     { id: 'disVer', value: '33333' },
+    //     // { id: 'disBlockPortHor', value: this.distriInfo.rowBlockPortCount },
+    //     // { id: 'disBlockPortVer', value: this.distriInfo.lineBlockPortCount },
+    //     { id: 'disType', value: '1' }
+    //   ])
+    // }
   }
   ensureAddAction() {
-    console.log(this.addFrom.getValue())
-
+    // console.log(this.addFrom.getValue())
     // this.addFrom.setDisabled([{ id: 'disType', value: true }])
-    this.addFrom.setShow([{ id: 'disType', value: false }])
+    // this.addFrom.setShow([{ id: 'disType', value: false }])
   }
   cancleAddAction() {}
 
   cancleAction() {}
 
   ensureAction() {
-    this.addFrom.validate((valid: any) => {
-      if (valid) {
-        alert('submit!')
-      } else {
-        console.log('error submit!!')
-        return false
-      }
-    })
+    // this.addFrom.validate((valid: any) => {
+    //   if (valid) {
+    //     alert('submit!')
+    //   } else {
+    //     console.log('error submit!!')
+    //     return false
+    //   }
+    // })
   }
   showDialog() {
     this.dialogFormVisible = true
-    this.$nextTick(() => {
-      this.addDisTypeChangeHandler(1)
-    })
   }
   mounted() {}
 }

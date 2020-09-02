@@ -24,6 +24,12 @@ const defaultOption: Table.IPageOpt = {
   pageSize: 10
 }
 
+// 复选框位置类型
+const enum selectionPosType {
+  TOP = 'top',
+  END = 'end'
+}
+
 const ASC = 'ascending'
 const DESC = 'descending'
 
@@ -552,7 +558,12 @@ export default class VTable extends Vue {
 
     if (this.option.selectionMode !== 'single') {
       if (this.option.selection) {
-        columnList.push(<el-table-column type="selection" width="55"></el-table-column>)
+        const selectionElement = <el-table-column type="selection" width="55"></el-table-column>
+        if (selectionPosType.TOP === this.option.selectionPos) {
+          columnList.unshift(selectionElement)
+        } else {
+          columnList.push(selectionElement)
+        }
       }
     }
 

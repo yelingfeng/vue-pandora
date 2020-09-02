@@ -7,6 +7,7 @@ export type ItemType =
   | 'date'
   | 'button'
   | 'radio'
+  | 'upload'
   | 'formList'
   | 'checkbox'
   | 'autoComplete'
@@ -23,6 +24,23 @@ export interface IFormItemOpt {
   wrap?: boolean
   show?: boolean | null
   comOpt: IFormItemCompOpt
+}
+
+// 上传类型
+export interface UpLoadType {
+  buttonText: string
+  tipText: string
+  limit: number
+  // 是否显示已上传文件列表
+  showFileList: boolean
+  // 是否在选取文件后立即进行上传
+  autoUpload: boolean
+  httpRequest: Function
+  beforeUpload: Function
+  onPreview: Function
+  onRemove: Function
+  onFileChange: Function
+  onSuccess: Function
 }
 
 /**
@@ -47,6 +65,8 @@ export interface IFormItemCompOpt {
   data?: any[]
   className?: string
   tooltipDelay: number
+
+  uploadOption: UpLoadType
   click?: Function | undefined
   change?: Function | undefined
   input?: Function | undefined

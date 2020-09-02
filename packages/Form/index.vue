@@ -9,6 +9,7 @@ import autocompleteComp from './autoComplete.vue'
 import textGroupComp from './textGroup.vue'
 import formListComp from './formList.vue'
 import singleGroupComp from './singleGroup/index.vue'
+import uploadComp from './upload.vue'
 import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
 import { ElForm, ValidateCallback } from 'element-ui/types/form'
@@ -19,6 +20,7 @@ import { ElForm, ValidateCallback } from 'element-ui/types/form'
     dateComp,
     selectComp,
     radioComp,
+    uploadComp,
     checkBoxComp,
     buttonComp,
     textGroupComp,
@@ -235,6 +237,9 @@ export default class VForm extends Vue {
           break
         case 'formList':
           comp = <formListComp key={ref} option={comOpt} ref={ref} />
+          break
+        case 'upload':
+          comp = <uploadComp key={ref} option={comOpt} ref={ref} />
           break
         default:
           break

@@ -8,6 +8,8 @@ declare namespace Table {
     highlightCurrentRow: boolean
     // 是否显示多选
     selection: boolean
+    // 复现框的位置 前后 top 和 end
+    selectionPos: string
     // 选择模式 单选还是多选
     selectionMode: string
     // 排序模式
@@ -59,6 +61,7 @@ declare namespace Form {
     | 'date'
     | 'button'
     | 'radio'
+    | 'upload'
     | 'formList'
     | 'checkbox'
     | 'textGroup'
@@ -75,6 +78,23 @@ declare namespace Form {
     wrap?: boolean
     show?: boolean | null
     comOpt: IFormItemCompOpt
+  }
+
+  // 上传类型
+  export interface UpLoadType {
+    buttonText: string
+    tipText: string
+    limit: number
+    // 是否显示已上传文件列表
+    showFileList: boolean
+    // 是否在选取文件后立即进行上传
+    autoUpload: boolean
+    httpRequest: Function
+    beforeUpload: Function
+    onPreview: Function
+    onRemove: Function
+    onFileChange: Function
+    onSuccess: Function
   }
 
   /**
@@ -99,6 +119,8 @@ declare namespace Form {
     data?: any[]
     tooltipDelay: number
     className?: string
+    // 上传option
+    uploadOption: UpLoadType
     click?: Function | undefined
     change?: Function | undefined
     input?: Function | undefined
