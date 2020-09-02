@@ -52,12 +52,12 @@
 | limit        | `number`   | 最大允许上传个数             |
 | showFileList | `boolean`  | 是否显示已上传文件列表       |
 | autoUpload   | `boolean`  | 是否在选取文件后立即进行上传 |
-| httpRequest  | `Function` | 参靠 element-ui 文档         |
-| beforeUpload | `Function` | 参靠 element-ui 文档         |
-| onPreview    | `Function` | 参靠 element-ui 文档         |
-| onRemove     | `Function` | 参靠 element-ui 文档         |
-| onFileChange | `Function` | 参靠 element-ui 文档         |
-| onSuccess    | `Function` | 参靠 element-ui 文档         |
+| httpRequest  | `Function` | 参考 element-ui 文档         |
+| beforeUpload | `Function` | 参考 element-ui 文档         |
+| onPreview    | `Function` | 参考 element-ui 文档         |
+| onRemove     | `Function` | 参考 element-ui 文档         |
+| onFileChange | `Function` | 参考 element-ui 文档         |
+| onSuccess    | `Function` | 参考 element-ui 文档         |
 
 ## [1.0.31](https://github.com/yelingfeng/vue-pandora/compare/v1.0.29...v1.0.31) (2020-06-28)
 
