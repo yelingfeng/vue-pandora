@@ -1,3 +1,9 @@
+## [1.0.34](https://github.com/yelingfeng/vue-pandora/compare/v1.0.33...v1.0.34) (2020-09-04)
+
+### Features
+
+- **daterange:** add props ([ac56933](https://github.com/yelingfeng/vue-pandora/commit/ac569334ad95e631f3b0c446af774beb40c17cf1))
+
 ## [1.0.33](https://github.com/yelingfeng/vue-pandora/compare/v1.0.32...v1.0.33) (2020-09-02)
 
 ### Bug Fixes
