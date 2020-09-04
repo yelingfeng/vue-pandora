@@ -117,6 +117,8 @@ export default class Demo extends Vue {
     }
   ]
 
+  defaultTime: string[] = ['2020-09-04 08:00:00', '2020-09-04 10:00:00']
+
   @Ref() readonly form!: VForm
   formObj: any = {
     inline: true,
@@ -192,7 +194,12 @@ export default class Demo extends Vue {
           value: '',
           type: 'datetimerange',
           disabled: false,
-          width: '210',
+          width: '310',
+          startplaceholder: '开始',
+          endplaceholder: '结束',
+          rangeSeparator: '至',
+          align: 'right',
+          defaultTime: this.defaultTime,
           pickOptions: {}
         }
       },

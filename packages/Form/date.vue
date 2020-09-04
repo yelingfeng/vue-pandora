@@ -7,9 +7,11 @@
       :editable="false"
       v-if="type == 'datetime'"
       v-model="curValue"
+      align="align"
       type="datetime"
       @change="changeHandler"
       placeholder="选择日期时间"
+      :default-time="option.defaultTime"
       :picker-options="option.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
@@ -22,6 +24,11 @@
       v-model="curValue"
       type="datetimerange"
       placeholder="选择日期时间"
+      align="align"
+      :range-separator="option.rangeSeparator"
+      :default-time="option.defaultTime"
+      :start-placeholder="option.startplaceholder"
+      :end-placeholder="option.endplaceholder"
       :picker-options="option.pickOptions"
       @change="changeHandler"
       :style="widthStyle"
@@ -34,8 +41,10 @@
       v-if="type == 'datetimeMinute'"
       v-model="curValue"
       type="datetime"
+      align="align"
       @change="changeHandler"
       placeholder="选择日期时间"
+      :default-time="option.defaultTime"
       :picker-options="option.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
@@ -47,8 +56,10 @@
       v-if="type == 'date'"
       v-model="curValue"
       type="date"
+      align="align"
       @change="changeHandler"
       placeholder="选择日期"
+      :default-time="option.defaultTime"
       :picker-options="option.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
@@ -77,6 +88,7 @@ export default class VDate extends Vue {
   private type = ''
   private clearable = true
   private formatDate = ''
+  private align = ''
 
   get widthStyle() {
     return {
@@ -84,7 +96,7 @@ export default class VDate extends Vue {
     }
   }
 
-  mounted() {
+  created() {
     this.initFunc()
   }
 
@@ -97,6 +109,7 @@ export default class VDate extends Vue {
   initFunc() {
     this.curValue = this.option.value
     this.type = this.option.type
+    this.align = this.option.align || 'left'
     this.typeFormat(this.type)
     this.clearable = this.option.clearable || false
   }

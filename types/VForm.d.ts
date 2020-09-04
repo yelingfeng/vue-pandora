@@ -59,6 +59,8 @@ export interface IFormItemCompOpt {
   pickOptions?: object
   // 设置日期显示格式
   format?: string
+  // 日期align
+  align?: string
   // 是否显示清除按钮
   clearable?: boolean
   // formlist items
