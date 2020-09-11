@@ -1,3 +1,9 @@
+## [1.0.35](https://github.com/yelingfeng/vue-pandora/compare/v1.0.34...v1.0.35) (2020-09-11)
+
+### Features
+
+- **update:** select focus event ([c301d64](https://github.com/yelingfeng/vue-pandora/commit/c301d640c2a43f418810fd9b0f8826acd4d77936))
+
 ## [1.0.34](https://github.com/yelingfeng/vue-pandora/compare/v1.0.33...v1.0.34) (2020-09-04)
 
 ### Features
