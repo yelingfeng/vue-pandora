@@ -6,6 +6,8 @@
     :filterable="option.filterable"
     :multiple="option.multiple"
     @change="changeHandler"
+    @focus="focusHandler"
+    @blur="blurHandler"
     :placeholder="placeholder"
     :style="widthStyle"
   >
@@ -97,6 +99,29 @@ export default class VSelect extends Vue {
         if (item.value === val) originData = Object.assign({}, item)
       })
       this.option.change(val, originData)
+    }
+  }
+
+  /**
+   *
+   **/
+  focusHandler(event: any) {
+    if (this.option.focus && isFunction(this.option.focus)) {
+      let originData = Object.create(null)
+      this.data.forEach((item: any) => {
+        if (item.value === this.value) originData = Object.assign({}, item)
+      })
+      this.option.focus(this.value, originData)
+    }
+  }
+
+  blurHandler(event: any) {
+    if (this.option.blur && isFunction(this.option.blur)) {
+      let originData = Object.create(null)
+      this.data.forEach((item: any) => {
+        if (item.value === this.value) originData = Object.assign({}, item)
+      })
+      this.option.blur(this.value, originData)
     }
   }
 }

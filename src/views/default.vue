@@ -102,6 +102,12 @@ export default class Default extends Vue {
           value: '0',
           width: 210,
           disabled: false,
+          focus: function(val: any, origindata: any) {
+            console.log(val, origindata)
+          },
+          blur: function(val: any, origindata: any) {
+            // console.log(val, origindata)
+          },
           data: [
             { name: '全部', value: '0' },
             { name: '未提交', value: '1' },
