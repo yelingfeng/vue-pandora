@@ -522,6 +522,15 @@ export default class VTable extends Vue {
                   </el-tooltip>
                 )
               }
+              // 增加操作列回调 如果false 不显示
+              if (
+                operate.showCallback &&
+                isFunction(operate.showCallback) &&
+                !operate.showCallback(props.row, props.$index)
+              ) {
+                operateDom = null
+              }
+
               return operateDom
             })
             return operations

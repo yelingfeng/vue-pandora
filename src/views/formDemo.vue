@@ -8,6 +8,7 @@
 <script lang="ts">
 import { Component, Vue, Ref } from 'vue-property-decorator'
 import { Form } from './../../types/VForm'
+import { Message } from 'element-ui'
 import axios from 'axios'
 @Component({})
 export default class FormDemo extends Vue {
@@ -261,9 +262,22 @@ export default class FormDemo extends Vue {
             //是否显示已上传文件列表
             showFileList: false,
             // 是否在选取文件后立即进行上传
-            autoUpload: false,
-            httpRequest: function() {},
-            beforeUpload: function() {},
+            autoUpload: true,
+            httpRequest: function(file: any) {
+              console.log(file)
+            },
+            beforeUpload: function(file: any) {
+              console.log(file)
+              // 判断文件格式
+              if (file.name.split('.')[1] != 'xls' && file.name.split('.')[1] != 'xlsx') {
+                Message({
+                  type: 'error',
+                  customClass: 'customMessage',
+                  message: '文件格式必须为xls、xlsx格式！'
+                })
+                return false
+              }
+            },
             onPreview: function() {},
             onRemove: function() {},
             onFileChange: function() {},

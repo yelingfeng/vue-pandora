@@ -269,16 +269,25 @@ export default class Demo extends Vue {
       { name: '机房地址', value: 'roomAddress', align: 'center' },
       {
         name: '相关操作',
-        value: '',
         align: 'center',
         fixed: 'right',
         width: 150,
         operations: [
           {
+            label: '自定义',
+            type: 'icon',
+            tooltip: '自定义',
+            iconName: 'el-icon-user',
+            showCallback(row: any, index: number) {
+              console.log(row, index)
+              return row.orderNum !== 4
+            }
+          },
+          {
             label: '修改',
             type: 'icon',
             title: '修改',
-            iconName: 'el-icon-edit tableIcon',
+            iconName: 'el-icon-eleme',
             disCallBack() {
               return false
             },
@@ -288,7 +297,7 @@ export default class Demo extends Vue {
             label: '删除',
             type: 'icon',
             title: '删除',
-            iconName: 'el-icon-delete tableIcon',
+            iconName: 'el-icon-delete',
             disCallBack() {
               return false
             },
