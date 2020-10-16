@@ -1,3 +1,9 @@
+## [1.0.36](https://github.com/yelingfeng/vue-pandora/compare/v1.0.35...v1.0.36) (2020-10-16)
+
+### Features
+
+- **update:** add table operate callback ([235858e](https://github.com/yelingfeng/vue-pandora/commit/235858e7fe0caec6297260f21b5b18236c417f5b))
+
 ## [1.0.35](https://github.com/yelingfeng/vue-pandora/compare/v1.0.34...v1.0.35) (2020-09-11)
 
 ### Features
