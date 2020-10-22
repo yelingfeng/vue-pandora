@@ -99,9 +99,12 @@ export default class Default extends Vue {
         type: 'select',
         comOpt: {
           id: 'taskStatusId',
-          value: '0',
+          value: ['0', '1'],
           width: 210,
+          collapseTags: true,
+          multiple: true,
           disabled: false,
+          change: function(val: any) {},
           focus: function(val: any, origindata: any) {
             console.log(val, origindata)
           },
@@ -156,6 +159,10 @@ export default class Default extends Vue {
     // 复选框位置 前还是后 top ，end
     selectionPos: 'top',
     selectionMode: 'multi',
+    // selectable: function(row: any, index: any) {
+    //   console.log(row, index)
+    //   return index !== 4
+    // },
     // 排序模式 single 独立排序 ,multi 多项排序
     sortMode: 'multi',
     // 默认升序还是降序
@@ -173,7 +180,13 @@ export default class Default extends Vue {
       console.log(row, index)
     },
     column: [
-      { name: '序号', value: 'index', fixed: 'left', width: 50, align: 'center' },
+      {
+        name: '序号',
+        value: 'index',
+        fixed: 'left',
+        width: 50,
+        align: 'center'
+      },
       {
         name: '任务名称',
         value: 'taskName',

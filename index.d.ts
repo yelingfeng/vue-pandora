@@ -8,6 +8,8 @@ declare namespace Table {
     highlightCurrentRow: boolean
     // 是否显示多选
     selection: boolean
+    // 是否可选中的回调
+    selectable: (row: object, index: number) => void
     // 复现框的位置 前后 top 和 end
     selectionPos: string
     // 选择模式 单选还是多选
@@ -111,6 +113,8 @@ declare namespace Form {
     disabled?: boolean
     placeholder?: string
     pickOptions?: object
+    // 是否多选
+    multiple: boolean
     // 设置日期显示格式
     format?: string
     // 日期align

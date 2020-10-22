@@ -17,6 +17,8 @@ export interface ITableOption {
   selectionPos: string
   // 是否显示多选
   selection: boolean
+  // 是否可选中的回调
+  selectable: (row: object, index: number) => void
   // 排序模式
   sortMode: string
   // 表格表头数据

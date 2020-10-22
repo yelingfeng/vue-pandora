@@ -567,7 +567,13 @@ export default class VTable extends Vue {
 
     if (this.option.selectionMode !== 'single') {
       if (this.option.selection) {
-        const selectionElement = <el-table-column type="selection" width="55"></el-table-column>
+        const selectionElement = (
+          <el-table-column
+            type="selection"
+            width="55"
+            selectable={this.option.selectable || undefined}
+          ></el-table-column>
+        )
         if (selectionPosType.TOP === this.option.selectionPos) {
           columnList.unshift(selectionElement)
         } else {

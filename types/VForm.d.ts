@@ -57,6 +57,8 @@ export interface IFormItemCompOpt {
   disabled?: boolean
   placeholder?: string
   pickOptions?: object
+  // 是否多选
+  multiple: boolean
   // 设置日期显示格式
   format?: string
   // 日期align

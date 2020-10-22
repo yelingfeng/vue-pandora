@@ -5,6 +5,7 @@
     :disabled="disabled"
     :filterable="option.filterable"
     :multiple="option.multiple"
+    :collapseTags="option.collapseTags"
     @change="changeHandler"
     @focus="focusHandler"
     @blur="blurHandler"
@@ -23,13 +24,16 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
+
+type selectType = string | string[]
+
 @Component({
   components: {}
 })
 export default class VSelect extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
-  private value = ''
+  private value: selectType = ''
   private disabled = false
   private placeholder = ''
   private data: object[] = []
@@ -55,8 +59,12 @@ export default class VSelect extends Vue {
    * @description: 组件初始化函数
    */
   initFunc() {
+    if (this.option.multiple) {
+      this.value = []
+    } else {
+      this.value = ''
+    }
     this.data = this.option.data || []
-    this.value = this.option.value
     this.disabled = this.option.disabled || false
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请选择-text'
   }
@@ -92,7 +100,7 @@ export default class VSelect extends Vue {
    * @return:
    * @description: 选中值发生变化时触发
    */
-  changeHandler(val: string) {
+  changeHandler(val: string, data: any) {
     if (this.option.change && isFunction(this.option.change)) {
       let originData = Object.create(null)
       this.data.forEach((item: any) => {
