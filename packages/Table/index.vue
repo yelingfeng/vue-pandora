@@ -487,6 +487,9 @@ export default class VTable extends Vue {
               }
 
               let operateDom
+              const label = isFunction(operate.formatter)
+                ? operate.formatter(props.row, props.$index)
+                : operate.label
               if (OperateType.ICON === type) {
                 operateDom = (
                   <el-tooltip {...tooltipProp}>
@@ -507,7 +510,7 @@ export default class VTable extends Vue {
                       disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
                       on-click={() => operate.handlerClick(props.row, props.$index)}
                     >
-                      {operate.label}
+                      {label}
                     </el-button>
                   </el-tooltip>
                 )

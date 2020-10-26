@@ -302,6 +302,14 @@ export default class Demo extends Vue {
               return false
             },
             handlerClick: this.deleteInfo
+          },
+          {
+            label: '删除',
+            type: 'button',
+            formatter(row: any, index: number) {
+              return index === 4 ? '123' : row.roomName
+            },
+            handlerClick: this.deleteInfo
           }
         ]
       }
