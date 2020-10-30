@@ -31,7 +31,7 @@ export default class VFormList extends Vue {
    * @description: 获取值
    */
   getValue() {
-    console.log(this._getFormListvalue())
+    // console.log(this._getFormListvalue())
     return { [this.option.id]: this.value }
   }
 

@@ -156,6 +156,8 @@ export default class Demo extends Vue {
           width: 210,
           disabled: false,
           placeholder: '',
+          type: 'password',
+          autocomplete: 'on',
           value: ''
         }
       },
@@ -306,6 +308,9 @@ export default class Demo extends Vue {
           {
             label: '删除',
             type: 'button',
+            disCallBack(row: any, index: number) {
+              return index === 3
+            },
             formatter(row: any, index: number) {
               return index === 4 ? '123' : row.roomName
             },

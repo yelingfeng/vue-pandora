@@ -3,7 +3,7 @@
     v-model="value"
     :disabled="disabled"
     :placeholder="placeholder"
-    auto-complete="on"
+    :autocomplete="option.autocomplete || 'off'"
     :style="widthStyle"
     :type="type"
     :maxlength="option.maxlength"
