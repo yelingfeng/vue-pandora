@@ -1,3 +1,9 @@
+## [1.0.39](https://github.com/yelingfeng/vue-pandora/compare/v1.0.38...v1.0.39) (2020-10-30)
+
+### Features
+
+- **update:** form add ([59fa903](https://github.com/yelingfeng/vue-pandora/commit/59fa9037b5b3b0f011f6dc310291dd30d7bd540b))
+
 ## [1.0.38](https://github.com/yelingfeng/vue-pandora/compare/v1.0.36...v1.0.38) (2020-10-26)
 
 ### Features
