@@ -154,9 +154,11 @@ export default class VTable extends Vue {
 
   // 初始化 装载默认得排序对象
   private _initDefSortObj(): void {
-    this.option.defaultSort.forEach((item: any) => {
-      this.defaultSortObj[item.prop] = item.order
-    })
+    if (this.option.defaultSort) {
+      this.option.defaultSort.forEach((item: any) => {
+        this.defaultSortObj[item.prop] = item.order
+      })
+    }
   }
 
   initDefaultOrder() {
