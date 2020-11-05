@@ -1,3 +1,10 @@
+## [1.0.40](https://github.com/yelingfeng/vue-pandora/compare/v1.0.39...v1.0.40) (2020-11-05)
+
+### Features
+
+- **add storybook:** add demo sb ([76e82e6](https://github.com/yelingfeng/vue-pandora/commit/76e82e6b19a624ee29e798448b8058c6a06a668f))
+- **update:** update form ([28a6d78](https://github.com/yelingfeng/vue-pandora/commit/28a6d78a59909c384e8e9200d82e1c3b6843ee43))
+
 ## [1.0.39](https://github.com/yelingfeng/vue-pandora/compare/v1.0.38...v1.0.39) (2020-10-30)
 
 ### Features
