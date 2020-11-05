@@ -184,7 +184,73 @@ export default class Demo extends Vue {
           type: 'datetimerange',
           disabled: false,
           width: '210',
-          pickOptions: {}
+          change(v: any) {
+            console.log(v)
+          },
+          dateOption: {
+            startplaceholder: '开始日期',
+            endplaceholder: '结束日期',
+            pickOptions: {}
+          }
+        }
+      },
+      {
+        label: '测试日期',
+        type: 'date',
+        comOpt: {
+          id: 'queryTest',
+          value: '',
+          type: 'date',
+          disabled: false,
+          width: '210',
+          change(v: any) {
+            console.log(v)
+          },
+          dateOption: {
+            startplaceholder: '开始日期',
+            endplaceholder: '结束日期',
+            pickOptions: {}
+          }
+        }
+      },
+      {
+        label: '测试年-日期',
+        type: 'date',
+        comOpt: {
+          id: 'queryTestYear',
+          value: '',
+          type: 'year',
+          disabled: false,
+          width: '210',
+          change(v: any) {
+            console.log(v)
+          }
+        }
+      },
+      {
+        label: '测试月-日期',
+        type: 'date',
+        comOpt: {
+          id: 'queryTestMonth',
+          type: 'month',
+          width: '210',
+          change(v: any) {
+            console.log(v)
+          }
+        }
+      },
+      {
+        label: '测试周-日期',
+        type: 'date',
+        comOpt: {
+          id: 'queryTestWeek',
+          value: '',
+          type: 'week',
+          disabled: false,
+          width: '210',
+          input(v: any) {
+            console.log(v)
+          }
         }
       },
       {

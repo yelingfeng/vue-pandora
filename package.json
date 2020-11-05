@@ -16,7 +16,10 @@
     "docs:build": "vuepress build docs",
     "commit": "git-cz",
     "test": "jest",
+    "DN": "rimraf ./node_modules/",
+    "test:docs": "cd storybook-static &&  python -m SimpleHTTPServer 3333 ",
     "sb": "start-storybook -p 9001 -c .storybook",
+    "sb:build": "build-storybook",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "docs:push": "node  ./build/ghpage-push.ts",
     "publish": "npm publish"
@@ -29,7 +32,7 @@
   "dependencies": {
     "core-js": "3.6.5",
     "dayjs": "^1.8.23",
-    "element-ui": "^2.13.0"
+    "element-ui": "^2.14.0"
   },
   "devDependencies": {
     "@babel/runtime": "^7.9.2",
@@ -79,6 +82,7 @@
     "prettier": "^1.19.1",
     "prismjs": "^1.22.0",
     "raw-loader": "^4.0.2",
+    "rimraf": "^3.0.2",
     "storybook-addon-jsx": "^7.3.4",
     "ts-jest": "^25.3.1",
     "typescript": "~3.7.5",

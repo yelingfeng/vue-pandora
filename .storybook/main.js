@@ -1,15 +1,4 @@
 const vueConfig = require('@vue/cli-service/webpack.config.js')
-
-// const prism = require('markdown-it-prism')
-// const highlightLines = require('markdown-it-highlight-lines')
-// const linkAttributes = require('markdown-it-link-attributes')
-
-// require('prismjs/components/prism-typescript')
-// require('prismjs/components/prism-javascript')
-// require('prismjs/components/prism-json')
-// require('prismjs/components/prism-jsx')
-// require('prismjs/components/prism-tsx')
-// require('prismjs/components/prism-bash')
 const path = require('path')
 
 module.exports = {
@@ -17,9 +6,7 @@ module.exports = {
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-actions',
-    '@storybook/addon-docs',
     '@storybook/addon-storysource',
-    '@storybook/addon-knobs',
     '@storybook/addon-controls'
   ],
   webpackFinal: async (config, { configType }) => {

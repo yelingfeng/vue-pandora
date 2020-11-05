@@ -5,14 +5,15 @@
       :clearable="clearable"
       :disabled="option.disabled"
       :editable="false"
+      :value-format="formatDate"
       v-if="type == 'datetime'"
       v-model="curValue"
       align="align"
       type="datetime"
       @change="changeHandler"
-      placeholder="选择日期时间"
-      :default-time="option.defaultTime"
-      :picker-options="option.pickOptions"
+      :placeholder="placeholder"
+      :default-time="dateOption.defaultTime"
+      :picker-options="dateOption.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
     <el-date-picker
@@ -20,16 +21,17 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
+      :value-format="formatDate"
       v-if="type == 'datetimerange'"
       v-model="curValue"
       type="datetimerange"
-      placeholder="选择日期时间"
+      :placeholder="placeholder"
       align="align"
-      :range-separator="option.rangeSeparator"
-      :default-time="option.defaultTime"
-      :start-placeholder="option.startplaceholder"
-      :end-placeholder="option.endplaceholder"
-      :picker-options="option.pickOptions"
+      :range-separator="dateOption.rangeSeparator"
+      :default-time="dateOption.defaultTime"
+      :start-placeholder="dateOption.startplaceholder"
+      :end-placeholder="dateOption.endplaceholder"
+      :picker-options="dateOption.pickOptions"
       @change="changeHandler"
       :style="widthStyle"
     ></el-date-picker>
@@ -38,14 +40,15 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
+      :value-format="formatDate"
       v-if="type == 'datetimeMinute'"
       v-model="curValue"
-      type="datetime"
+      type="datetimeMinute"
       align="align"
       @change="changeHandler"
-      placeholder="选择日期时间"
-      :default-time="option.defaultTime"
-      :picker-options="option.pickOptions"
+      :placeholder="placeholder"
+      :default-time="dateOption.defaultTime"
+      :picker-options="dateOption.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
     <el-date-picker
@@ -53,21 +56,71 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
+      :value-format="formatDate"
       v-if="type == 'date'"
       v-model="curValue"
       type="date"
       align="align"
       @change="changeHandler"
-      placeholder="选择日期"
-      :default-time="option.defaultTime"
-      :picker-options="option.pickOptions"
+      :placeholder="placeholder"
+      :default-time="dateOption.defaultTime"
+      :picker-options="dateOption.pickOptions"
+      :style="widthStyle"
+    ></el-date-picker>
+    <el-date-picker
+      :format="formatDate"
+      :clearable="clearable"
+      :disabled="option.disabled"
+      :editable="false"
+      :value-format="formatDate"
+      v-if="type == 'year'"
+      v-model="curValue"
+      align="align"
+      type="year"
+      @change="changeHandler"
+      :placeholder="placeholder"
+      :default-time="dateOption.defaultTime"
+      :picker-options="dateOption.pickOptions"
+      :style="widthStyle"
+    ></el-date-picker>
+    <el-date-picker
+      :format="formatDate"
+      :clearable="clearable"
+      :disabled="option.disabled"
+      :editable="false"
+      :value-format="formatDate"
+      v-if="type == 'month'"
+      v-model="curValue"
+      align="align"
+      type="month"
+      @change="changeHandler"
+      :placeholder="placeholder"
+      :default-time="dateOption.defaultTime"
+      :picker-options="dateOption.pickOptions"
+      :style="widthStyle"
+    ></el-date-picker>
+    <el-date-picker
+      :format="formatDate"
+      :clearable="clearable"
+      :disabled="option.disabled"
+      :editable="false"
+      :value-format="formatDate"
+      v-if="type == 'week'"
+      v-model="curValue"
+      align="align"
+      type="week"
+      @change="changeHandler"
+      :placeholder="placeholder"
+      :default-time="dateOption.defaultTime"
+      :picker-options="dateOption.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
   </div>
 </template>
+
 <script lang="ts">
 import dayjs from 'dayjs'
-import { isFunction } from '@/utils/common'
+import { isArray, isFunction } from '@/utils/common'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
@@ -84,11 +137,13 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
  */
 export default class VDate extends Vue {
   @Prop() option: Form.IFormItemCompOpt
+  private dateOption: Form.DateOptionType
   private curValue: string | Array<string> = ''
   private type = ''
   private clearable = true
   private formatDate = ''
   private align = ''
+  private placeholder = '请选择日期'
 
   get widthStyle() {
     return {
@@ -110,8 +165,10 @@ export default class VDate extends Vue {
     this.curValue = this.option.value
     this.type = this.option.type
     this.align = this.option.align || 'left'
-    this.typeFormat(this.type)
-    this.clearable = this.option.clearable || false
+    this.dateOption = this.option.dateOption || {}
+    this.clearable = this.dateOption.clearable || false
+    this.placeholder = this.option.placeholder || '请选择日期'
+    this.typeFormat()
   }
   /**
    * @name: setValue
@@ -131,8 +188,15 @@ export default class VDate extends Vue {
    * @description: 	用户确认选定的值时触发	组件绑定值。
    */
   changeHandler(val: string) {
+    // console.log(val)
     if (this.option.change && isFunction(this.option.change)) {
       this.option.change(val)
+    }
+  }
+
+  inputHandler(val: string) {
+    if (this.option.input && isFunction(this.option.input)) {
+      this.option.input(val)
     }
   }
   /**
@@ -142,22 +206,7 @@ export default class VDate extends Vue {
    * @description: 获取日期当前值
    */
   getValue() {
-    let format
-    switch (this.type) {
-      case 'datetime':
-        format = 'YYYY-MM-DD HH:mm:ss'
-        break
-      case 'datetimerange':
-        format = 'YYYY-MM-DD HH:mm:ss'
-        break
-      case 'datetimeMinute':
-        format = 'YYYY-MM-DD HH:mm'
-        break
-      case 'date':
-        format = 'YYYY-MM-DD'
-        break
-      default:
-    }
+    const format = this.dateformatHandler()
     if (this.curValue === '' || !this.curValue) {
       return { [this.option.id]: this.curValue || '' }
     }
@@ -169,32 +218,51 @@ export default class VDate extends Vue {
     }
     return { [this.option.id]: dayjs(this.curValue).format(format) }
   }
+
+  /**
+   * 日期格式处理 根据type类型
+   **/
+  dateformatHandler() {
+    let format = ''
+    switch (this.type) {
+      case 'datetime':
+        format = 'yyyy-MM-dd HH:mm:ss'
+        break
+      case 'datetimerange':
+        format = 'yyyy-MM-dd HH:mm:ss'
+        break
+      case 'datetimeMinute':
+        format = 'yyyy-MM-dd HH:mm'
+        break
+      case 'date':
+        format = 'yyyy-MM-dd'
+        break
+      case 'year':
+        format = 'yyyy'
+        break
+      case 'month':
+        format = 'M'
+        break
+      case 'week':
+        format = 'W'
+        break
+      default:
+    }
+    return format
+  }
+
   /**
    * @name:typeFormat
    * @param {val} this.type的值
    * @return:
    * @description:
    */
-  typeFormat(val: string) {
-    if (this.option.format) {
-      this.formatDate = this.option.format
+  typeFormat() {
+    if (this.dateOption.format) {
+      this.formatDate = this.dateOption.format
       return
     }
-    switch (val) {
-      case 'datetime':
-        this.formatDate = 'yyyy-MM-dd HH:mm:ss'
-        break
-      case 'datetimerange':
-        this.formatDate = 'yyyy-MM-dd HH:mm:ss'
-        break
-      case 'datetimeMinute':
-        this.formatDate = 'yyyy-MM-dd HH:mm'
-        break
-      case 'date':
-        this.formatDate = 'yyyy-MM-dd'
-        break
-      default:
-    }
+    this.formatDate = this.dateformatHandler()
   }
 }
 </script>

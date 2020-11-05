@@ -44,6 +44,20 @@ export interface UpLoadType {
   onSuccess: Function
 }
 
+// 日期类型
+export interface DateOptionType {
+  pickOptions?: object
+  // 设置日期显示格式
+  format?: string
+  // 范围选择时选中日期所使用的当日内具体时刻
+  defaultTime?: string[]
+  // 是否显示清除按钮
+  clearable?: boolean
+  rangeSeparator?: string
+  startplaceholder?: string
+  endplaceholder?: string
+}
+
 /**
  * form 每个item对应内部组件接口类型
  */
@@ -51,27 +65,26 @@ export interface IFormItemCompOpt {
   id: string
   value: string | any
   type: string
-  title?: string
   width?: string | number
+  title?: string
   isAll?: boolean
   disabled?: boolean
   placeholder?: string
-  pickOptions?: object
   // 是否多选
   multiple: boolean
   // 设置日期显示格式
   format?: string
   // 日期align
   align?: string
-  // 是否显示清除按钮
-  clearable?: boolean
   // formlist items
-  items?: any[]
+  items?: any[] | undefined
   data?: any[]
-  className?: string
   tooltipDelay: number
-
-  uploadOption: UpLoadType
+  className?: string
+  // 日期option
+  dateOption?: DateOptionType
+  // 上传option
+  uploadOption?: UpLoadType
   click?: Function | undefined
   change?: Function | undefined
   input?: Function | undefined

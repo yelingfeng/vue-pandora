@@ -21,7 +21,7 @@ export default class VUpload extends Vue {
   }
 
   created() {
-    this.uploadOption = this.option.uploadOption
+    this.uploadOption = this.option.uploadOption || {}
     this.buttonText = this.uploadOption.buttonText
     this.tipText = this.uploadOption.tipText
   }
