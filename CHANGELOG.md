@@ -1,3 +1,10 @@
+## [1.0.42](https://github.com/yelingfeng/vue-pandora/compare/v1.0.41...v1.0.42) (2020-11-06)
+
+### Features
+
+- **update:** add form casacde ([ad686d7](https://github.com/yelingfeng/vue-pandora/commit/ad686d7274ee43474c06ce5f26fdff94ad0a7e64))
+- **update:** version ([cbd844d](https://github.com/yelingfeng/vue-pandora/commit/cbd844d25563482cd010d90da1f1c91d65ec8ecd))
+
 ## [1.0.41](https://github.com/yelingfeng/vue-pandora/compare/v1.0.40...v1.0.41) (2020-11-06)
 
 ## [1.0.40](https://github.com/yelingfeng/vue-pandora/compare/v1.0.39...v1.0.40) (2020-11-05)
