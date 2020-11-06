@@ -216,7 +216,11 @@ export default class VDate extends Vue {
           dayjs(this.curValue[0]).format(format) + ',' + dayjs(this.curValue[1]).format(format)
       }
     }
-    return { [this.option.id]: dayjs(this.curValue).format(format) }
+    let value = dayjs(this.curValue).format(format)
+    if (/year|month|week/.test(this.type)) {
+      value = this.curValue
+    }
+    return { [this.option.id]: value }
   }
 
   /**
