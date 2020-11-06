@@ -1,3 +1,9 @@
+## [1.0.43](https://github.com/yelingfeng/vue-pandora/compare/v1.0.42...v1.0.43) (2020-11-06)
+
+### Bug Fixes
+
+- **update:** date getvalue method ([6b2a355](https://github.com/yelingfeng/vue-pandora/commit/6b2a355517bf0c3b16ab95442fc9ee60486a6293))
+
 ## [1.0.42](https://github.com/yelingfeng/vue-pandora/compare/v1.0.41...v1.0.42) (2020-11-06)
 
 ### Features
