@@ -1,5 +1,4 @@
 import { addParameters } from '@storybook/vue'
-// import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import Vue from 'vue'
 
 import ElementUI from 'element-ui'
@@ -17,8 +16,6 @@ Vue.use(VuePandora)
 addParameters({
   options: {
     theme
-    // hierarchySeparator: /\//,
-    // hierarchyRootSeparator: /\|/,
   }
 })
 

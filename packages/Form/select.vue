@@ -64,6 +64,7 @@ export default class VSelect extends Vue {
     } else {
       this.value = ''
     }
+    this.value = this.option.value
     this.data = this.option.data || []
     this.disabled = this.option.disabled || false
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请选择-text'

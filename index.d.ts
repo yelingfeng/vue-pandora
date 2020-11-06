@@ -66,6 +66,7 @@ declare namespace Form {
     | 'upload'
     | 'formList'
     | 'checkbox'
+    | 'cascade'
     | 'textGroup'
     | 'singleGroup'
     | 'autoComplete'
@@ -113,6 +114,14 @@ declare namespace Form {
     startplaceholder?: string
     endplaceholder?: string
   }
+  // 级联配置类型
+  export interface CascadeOptionType {
+    options?: object[]
+    props?: object
+    size?: string
+    showAllLevels?: boolean
+    separator?: string
+  }
 
   /**
    * form 每个item对应内部组件接口类型
@@ -126,6 +135,7 @@ declare namespace Form {
     isAll?: boolean
     disabled?: boolean
     placeholder?: string
+    clearable?: boolean
     // 是否多选
     multiple: boolean
     // 日期align
@@ -139,6 +149,8 @@ declare namespace Form {
     dateOption?: DateOptionType
     // 上传option
     uploadOption: UpLoadType
+    // 级联类型
+    cascadeOption?: CascadeOptionType
     click?: Function | undefined
     change?: Function | undefined
     input?: Function | undefined

@@ -2,12 +2,18 @@ const vueConfig = require('@vue/cli-service/webpack.config.js')
 const path = require('path')
 
 module.exports = {
-  stories: ['../stories/*.stories.@(js|ts|tsx|mdx|md)'],
+  stories: ['../stories/**/*.stories.@(js|ts|tsx|mdx|md)'],
+  logLevel: 'debug',
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-actions',
+    '@storybook/addon-docs',
+    '@storybook/addon-controls',
     '@storybook/addon-storysource',
-    '@storybook/addon-controls'
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
+    '@storybook/addon-knobs',
+    '@storybook/addon-viewport',
+    '@storybook/addon-backgrounds',
+    '@storybook/addon-a11y'
   ],
   webpackFinal: async (config, { configType }) => {
     const defaultConfig = {

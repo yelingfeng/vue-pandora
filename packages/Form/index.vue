@@ -10,6 +10,7 @@ import textGroupComp from './textGroup.vue'
 import formListComp from './formList.vue'
 import singleGroupComp from './singleGroup/index.vue'
 import uploadComp from './upload.vue'
+import cascadeComp from './cascade.vue'
 import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
 import { ElForm, ValidateCallback } from 'element-ui/types/form'
@@ -22,6 +23,7 @@ import { ElForm, ValidateCallback } from 'element-ui/types/form'
     radioComp,
     uploadComp,
     checkBoxComp,
+    cascadeComp,
     buttonComp,
     textGroupComp,
     formListComp,
@@ -240,6 +242,9 @@ export default class VForm extends Vue {
           break
         case 'upload':
           comp = <uploadComp key={ref} option={comOpt} ref={ref} />
+          break
+        case 'cascade':
+          comp = <cascadeComp key={ref} option={comOpt} ref={ref} />
           break
         default:
           break
