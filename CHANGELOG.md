@@ -1,3 +1,9 @@
+## [1.0.44](https://github.com/yelingfeng/vue-pandora/compare/v1.0.43...v1.0.44) (2020-11-09)
+
+### Bug Fixes
+
+- **date:** fix dayjs format ([b864ba5](https://github.com/yelingfeng/vue-pandora/commit/b864ba52837390dd0c26d434233160f687b22df1))
+
 ## [1.0.43](https://github.com/yelingfeng/vue-pandora/compare/v1.0.42...v1.0.43) (2020-11-06)
 
 ### Bug Fixes
