@@ -168,6 +168,9 @@ export default class VDate extends Vue {
     this.dateOption = this.option.dateOption || {}
     this.clearable = this.dateOption.clearable || false
     this.placeholder = this.option.placeholder || '请选择日期'
+    if (this.dateOption.format) {
+      this.formatDate = this.dateOption.format
+    }
     this.typeFormat()
   }
   /**
@@ -206,7 +209,7 @@ export default class VDate extends Vue {
    * @description: 获取日期当前值
    */
   getValue() {
-    const format = this.dateformatHandler()
+    const format = this.dateformatHandler(true)
     if (this.curValue === '' || !this.curValue) {
       return { [this.option.id]: this.curValue || '' }
     }
@@ -225,30 +228,38 @@ export default class VDate extends Vue {
 
   /**
    * 日期格式处理 根据type类型
+   *
+   * @param {boolean} isDayjs dayjs的格式化 跟element-ui有冲突 主要在YYYY dd
    **/
-  dateformatHandler() {
+  dateformatHandler(isDayjs = false) {
     let format = ''
+    const YEAR = isDayjs ? 'YYYY' : 'yyyy'
+    const DAY = isDayjs ? 'DD' : 'dd'
+    const HOUR = isDayjs ? 'HH' : 'hh'
+    const DATE = `${YEAR}-MM-${DAY}`
+    const DATETIMEMINUTE = `${DATE} ${HOUR}:mm`
+    const DATETIME = `${DATETIMEMINUTE}:ss`
     switch (this.type) {
       case 'datetime':
-        format = 'yyyy-MM-dd HH:mm:ss'
+        format = DATETIME
         break
       case 'datetimerange':
-        format = 'yyyy-MM-dd HH:mm:ss'
+        format = DATETIME
         break
       case 'datetimeMinute':
-        format = 'yyyy-MM-dd HH:mm'
+        format = DATETIMEMINUTE
         break
       case 'date':
-        format = 'yyyy-MM-dd'
+        format = DATE
         break
       case 'year':
-        format = 'yyyy'
+        format = YEAR
         break
       case 'month':
         format = 'M'
         break
       case 'week':
-        format = 'W'
+        format = 'WW'
         break
       default:
     }
@@ -262,11 +273,7 @@ export default class VDate extends Vue {
    * @description:
    */
   typeFormat() {
-    if (this.dateOption.format) {
-      this.formatDate = this.dateOption.format
-      return
-    }
-    this.formatDate = this.dateformatHandler()
+    this.formatDate = this.dateformatHandler(false)
   }
 }
 </script>
