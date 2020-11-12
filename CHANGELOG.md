@@ -1,3 +1,9 @@
+## [1.0.45](https://github.com/yelingfeng/vue-pandora/compare/v1.0.44...v1.0.45) (2020-11-12)
+
+### Bug Fixes
+
+- **update:** fix cascade setItemData method ([915e453](https://github.com/yelingfeng/vue-pandora/commit/915e4530ea72f1e14845047bb010591b09079622))
+
 ## [1.0.44](https://github.com/yelingfeng/vue-pandora/compare/v1.0.43...v1.0.44) (2020-11-09)
 
 ### Bug Fixes
