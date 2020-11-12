@@ -33,6 +33,7 @@ export default class VCascade extends Vue {
   private disabled = false
   private placeholder = ''
   private cascadeOptions: Form.CascadeOptionType = {}
+  private data = []
 
   get widthStyle() {
     return {
@@ -40,8 +41,12 @@ export default class VCascade extends Vue {
     }
   }
 
-  // @Watch('option.data')
-  // renderData(newVal: any) {}
+  @Watch('option.data')
+  renderData(newVal: any) {
+    if (newVal && newVal.length) {
+      this.cascadeOptions.options = newVal
+    }
+  }
 
   mounted() {
     this.initFunc()

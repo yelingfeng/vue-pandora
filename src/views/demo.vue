@@ -464,8 +464,9 @@ export default class Demo extends Vue {
           placeholder: '请输入',
           disabled: false,
           value: '',
+          data: [],
           cascadeOption: {
-            options: this.cascadeOp
+            options: []
           }
         }
       },
@@ -548,15 +549,20 @@ export default class Demo extends Vue {
         }
       },
       {
-        label: '测试周-日期',
-        type: 'date',
+        label: '测试Radio',
+        type: 'radio',
+        required: true,
         comOpt: {
-          id: 'queryTestWeek',
-          value: '',
-          type: 'week',
+          id: 'queryRadio',
+          value: '1',
           disabled: false,
           width: '210',
-          input(v: any) {
+          data: [
+            { value: '1', name: 'B1' },
+            { value: '2', name: 'B2' },
+            { value: '3', name: 'B3' }
+          ],
+          change(v: any) {
             console.log(v)
           }
         }
@@ -763,6 +769,8 @@ export default class Demo extends Vue {
   }
   mounted() {
     this.tableOpt.data = this.listData
+
+    this.form.setItemData('cascadeTest', this.cascadeOp)
   }
 }
 </script>
