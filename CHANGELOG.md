@@ -1,3 +1,9 @@
+## [1.0.46](https://github.com/yelingfeng/vue-pandora/compare/v1.0.45...v1.0.46) (2020-11-13)
+
+### Bug Fixes
+
+- **cascade:** fix cascade setDisabled ([c0231a7](https://github.com/yelingfeng/vue-pandora/commit/c0231a7a1aa48805ad53cd55b8a32ba95157f2ea))
+
 ## [1.0.45](https://github.com/yelingfeng/vue-pandora/compare/v1.0.44...v1.0.45) (2020-11-12)
 
 ### Bug Fixes
