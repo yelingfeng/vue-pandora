@@ -1,0 +1,26 @@
+{
+  "name": "@pandora/table",
+  "version": "2.0.0-alpha.1",
+  "main": "lib/index.js",
+  "description": "@pandora/table",
+  "author": "yelingfeng <yelingfeng521@gmail.com>",
+  "homepage": "https://github.com/yelingfeng/vue-pandora#readme",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yelingfeng/vue-pandora.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/yelingfeng/vue-pandora/issues"
+  }
+}
