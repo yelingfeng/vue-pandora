@@ -452,7 +452,8 @@ export default class Demo extends Vue {
               name: '3月',
               value: 3
             }
-          ]
+          ],
+          change: this.changeDisabled.bind(this)
         }
       },
       {
@@ -711,6 +712,12 @@ export default class Demo extends Vue {
   editInfo() {}
 
   deleteInfo() {}
+
+  changeDisabled(prop: any) {
+    console.log(prop)
+
+    this.form.setDisabled([{ id: 'cascadeTest', value: prop === 1 }])
+  }
 
   handleSortChange(result: any) {
     console.log(result)

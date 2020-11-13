@@ -5,7 +5,7 @@
     :props="cascadeOptions.props"
     :size="cascadeOptions.size"
     :placeholder="option.placeholder"
-    :disabled="option.disabled"
+    :disabled="disabled"
     :show-all-levels="cascadeOptions.showAllLevels"
     :separator="cascadeOptions.separator"
     @change="changeHandler"
