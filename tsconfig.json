@@ -1,22 +1,27 @@
 {
   "compilerOptions": {
+    "target": "es6",
+    "rootDir": ".",
     "baseUrl": ".",
     "module": "ESNext",
-    "declaration": true,
     "noImplicitAny": false,
     "removeComments": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "declaration": true,
+    "declarationDir": "./types",
     "jsx": "preserve",
     "noLib": false,
-    "target": "es6",
     "sourceMap": true,
     "lib": ["ESNext", "DOM"],
-    "paths": {
-      "@pandora/*": ["packages/*/src"]
-    },
     "allowSyntheticDefaultImports": true
   },
-  "include": ["packages/*"],
-  "exclude": ["node_modules"]
+  "include": ["packages"],
+  "exclude": [
+    "node_modules",
+    "**/**/*.test.ts",
+    "**/**/*.stories.tsx",
+    "**/**/*.md",
+    "packages/_docs"
+  ]
 }

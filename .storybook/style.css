@@ -1,0 +1,227 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "github-markdown-css";
+@import "./prismtheme.css";
+
+#demo {
+  padding: 2em 3em;
+  background: #282828;
+}
+
+#demo::after {
+  content: 'Demo';
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  opacity: 0.2;
+}
+
+#demo button {
+  @apply px-4 py-1 text-black bg-green-400 border-b-4 border-green-600 rounded;
+}
+
+#demo button:hover {
+  @apply bg-green-500 border-green-700;
+}
+
+#demo button.orange {
+  @apply px-4 py-1 text-black bg-orange-400 border-b-4 border-orange-600 rounded;
+}
+
+#demo button.orange:hover {
+  @apply bg-orange-500 border-orange-700;
+}
+
+#demo button[disabled] {
+  @apply text-gray-600 bg-gray-400 border-gray-600 opacity-50;
+}
+
+#demo input {
+  @apply block w-full px-4 py-2 mx-1 my-2 leading-tight text-white bg-transparent border border-gray-600 rounded appearance-none;
+}
+
+#demo input:focus {
+  @apply border-green-500 outline-none;
+} 
+
+#demo p {
+  padding: 0.3rem 0.5rem;
+  font-size: 1.1em;
+}
+
+#demo note {
+  display: block;
+  opacity: 0.5;
+  padding: 0.5rem 0.5rem 0.8rem 0.5rem;
+}
+
+#showcase #info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#showcase #info #title {
+  font-size: 1.4em;
+}
+
+#showcase #info #meta {
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+#showcase #info #meta span {
+  padding: 0 10px;
+}
+
+html, body, div, .markdown-body {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+}
+
+.markdown-body,
+.sb-show-main {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.markdown-body pre {
+  position: relative;
+}
+
+.sb-show-main a,
+.markdown-body a {
+  color: #42b883;
+  transition: color 300ms ease;
+}
+
+a.router-link-exact-active {
+  color: #999;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.fade-enter-active {
+  animation: fade 300ms ease;
+}
+
+.fade-leave-active {
+  animation: fade 300ms ease reverse;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.markdown-body img {
+  background-color: transparent;
+  box-sizing: inherit;
+  display: inline-block;
+}
+
+.markdown-body table {
+  margin: 1em 0;
+}
+
+.markdown-body table td,
+.markdown-body table th {
+  border-color: transparent !important;
+}
+
+.markdown-body table thead tr th {
+  border-bottom: 2px solid #dfe2e5 !important;
+}
+
+.markdown-body table tr {
+  background: transparent;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.markdown-body blockquote {
+  color: #8c97a3;
+}
+
+li {
+  list-style: disc;
+}
+
+.highlighted-line {
+  display: block;
+  margin: 0 -1em;
+  padding: 0 1em;
+  background-color: #2c2c2c;
+}
+
+.markdown-body code {
+  background-color: rgba(27,31,35,.3);
+}
+
+.markdown-body pre,
+pre[class*='language-'],
+code[class*='language-'] {
+  font-family: 'Fira Code', Menlo, Andale Mono, Consolas, Courier, monospace;
+  font-size: 85%;
+}
+
+.markdown-body pre {
+  hyphens: none;
+  background-color: #282828;
+  color: #d5c4a1;
+}
+
+code[class*='language-']::before {
+  position: absolute;
+  z-index: 3;
+  top: 0.8em;
+  right: 1em;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+code[class*='language-javascript']::before {
+  content: 'js';
+}
+
+code[class*='language-jsx']::before {
+  content: 'jsx';
+}
+
+code[class*='language-typescript']::before {
+  content: 'ts';
+}
+
+code[class*='language-tsx']::before {
+  content: 'tsx';
+}
+
+button {
+  margin: 0.3em;
+  padding: 0.3em 0.6em;
+}
