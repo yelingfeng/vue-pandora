@@ -1,3 +1,9 @@
+## [1.0.47](https://github.com/yelingfeng/vue-pandora/compare/v1.0.46...v1.0.47) (2020-11-19)
+
+### Features
+
+- **update:** add checkbox upload setDisabled method ([e72c48b](https://github.com/yelingfeng/vue-pandora/commit/e72c48bcd64308fd9b91cc74d298dfbeabdf8f3a))
+
 ## [1.0.46](https://github.com/yelingfeng/vue-pandora/compare/v1.0.45...v1.0.46) (2020-11-13)
 
 ### Bug Fixes
