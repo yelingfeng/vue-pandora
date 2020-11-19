@@ -1,0 +1,95 @@
+{
+  "shared": {
+    "info": {
+      "name": "shared",
+      "display": "Shared utilities"
+    },
+    "dir": "packages/shared",
+    "categories": {}
+  },
+  "core": {
+    "info": {
+      "name": "core",
+      "display": "VueUse",
+      "description": "Collection of essential Vue Composition API"
+    },
+    "dir": "packages/core",
+    "categories": {}
+  },
+  "integrations": {
+    "info": {
+      "name": "integrations",
+      "display": "Integrations",
+      "description": "Integration wrappers for utility libraries",
+      "addon": true,
+      "external": [
+        "axios",
+        "universal-cookie",
+        "http"
+      ],
+      "globals": {
+        "axios": "axios",
+        "universal-cookie": "UniversalCookie"
+      }
+    },
+    "dir": "packages/integrations",
+    "docs": "https://vueuse.js.org/?path=/story/add-ons-integrations--read-me",
+    "categories": {}
+  },
+  "rxjs": {
+    "info": {
+      "name": "rxjs",
+      "display": "RxJS",
+      "description": "Enables RxJS reactive functions in Vue",
+      "addon": true,
+      "external": [
+        "rxjs",
+        "rxjs/operators"
+      ],
+      "globals": {
+        "rxjs": "rxjs",
+        "rxjs/operators": "rxjs.operator"
+      }
+    },
+    "dir": "packages/rxjs",
+    "docs": "https://vueuse.js.org/?path=/story/add-ons-rxjs--read-me",
+    "categories": {}
+  },
+  "firebase": {
+    "info": {
+      "name": "firebase",
+      "display": "Firebase",
+      "description": "Enables realtime bindings for Firebase",
+      "addon": true,
+      "external": [
+        "firebase",
+        "firebase/app"
+      ],
+      "globals": {
+        "firebase": "firebase",
+        "firebase/app": "firebase"
+      }
+    },
+    "dir": "packages/firebase",
+    "docs": "https://vueuse.js.org/?path=/story/add-ons-firebase--read-me",
+    "categories": {}
+  },
+  "i18n": {
+    "info": {
+      "name": "i18n",
+      "display": "i18n",
+      "deprecated": true,
+      "description": "[deprecated] Composition wrapper for vue-i18n",
+      "addon": true,
+      "external": [
+        "vue-i18n"
+      ],
+      "globals": {
+        "vue-i18n": "VueI18n"
+      }
+    },
+    "dir": "packages/i18n",
+    "docs": "https://vueuse.js.org/?path=/story/add-ons-i18n--read-me",
+    "categories": {}
+  }
+}

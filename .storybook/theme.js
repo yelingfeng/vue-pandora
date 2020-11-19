@@ -1,7 +1,7 @@
 import { create } from '@storybook/theming/create'
 
 export default create({
-  base: 'dark',
+  base: 'light',
   colorPrimary: '#35495e',
   colorSecondary: '#42b883',
   brandTitle: 'VuePandor@2.0',

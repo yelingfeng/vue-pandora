@@ -6,7 +6,6 @@
 
 #demo {
   padding: 2em 3em;
-  background: #282828;
 }
 
 #demo::after {
@@ -17,13 +16,13 @@
   opacity: 0.2;
 }
 
-#demo button {
+/* #demo button {
   @apply px-4 py-1 text-black bg-green-400 border-b-4 border-green-600 rounded;
 }
 
 #demo button:hover {
   @apply bg-green-500 border-green-700;
-}
+} */
 
 #demo button.orange {
   @apply px-4 py-1 text-black bg-orange-400 border-b-4 border-orange-600 rounded;
@@ -81,7 +80,7 @@ html, body, div, .markdown-body {
 
 .markdown-body,
 .sb-show-main {
-  color: rgba(255, 255, 255, 0.8);
+  /* color: rgba(255, 255, 255, 0.8); */
 }
 
 .markdown-body {
@@ -180,7 +179,7 @@ li {
 }
 
 .markdown-body code {
-  background-color: rgba(27,31,35,.3);
+  /* background-color: rgba(27,31,35,.3); */
 }
 
 .markdown-body pre,
@@ -192,7 +191,7 @@ code[class*='language-'] {
 
 .markdown-body pre {
   hyphens: none;
-  background-color: #282828;
+  /* background-color: #282828; */
   color: #d5c4a1;
 }
 

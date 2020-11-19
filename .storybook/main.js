@@ -12,7 +12,16 @@ require('prismjs/components/prism-bash')
 module.exports = {
   stories: ['../packages/**/*.stories.@(js|ts|tsx|mdx|md)'],
   logLevel: 'debug',
-  addons: ['@storybook/addon-docs', '@storybook/addon-storysource'],
+  addons: [
+    // '@storybook/addon-docs', 
+    '@storybook/addon-storysource',
+    '@storybook/addon-controls',
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
+    '@storybook/addon-knobs',
+    '@storybook/addon-viewport',
+    '@storybook/addon-backgrounds',
+  ],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.md$/,
@@ -40,9 +49,9 @@ module.exports = {
             ],
           },
         },
-        {
-          loader: require.resolve('../scripts/types-loader'),
-        },
+        // {
+        //   loader: require.resolve('../scripts/types-loader'),
+        // },
       ],
     })
 
@@ -60,13 +69,10 @@ module.exports = {
                 },
               ],
               ['@vue/babel-plugin-jsx'],
-              [
-                'component',
-                {
-                  libraryName: 'element-plus',
-                  styleLibraryName: 'theme-chalk',
-                },
-              ],
+              [ 
+                "import", 
+                { "libraryName": "ant-design-vue"}
+              ]
             ],
             presets: ['@babel/env', '@babel/typescript'],
           },
@@ -77,7 +83,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.stories\.jsx?$/,
       loader: require.resolve('@storybook/source-loader'),
-      include: [path.resolve(__dirname, '../stories')],
+      include: [path.resolve(__dirname, '../packages')],
       enforce: 'pre',
     })
     config.module.rules.push({

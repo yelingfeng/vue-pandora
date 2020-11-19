@@ -1,152 +1,205 @@
-/*
-
-Name:       Base16 Gruvbox Dark
-Author:     Gordon Chiam (https://github.com/gchiam)
-
-Prism template by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/prism/)
-Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
-
-*/
-
 code[class*="language-"],
 pre[class*="language-"] {
-  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-  font-size: 14px;
-  line-height: 1.375;
-  direction: ltr;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	color: #eee;
+	background: #2f2f2f;
+	font-family: Roboto Mono, monospace;
+	font-size: 1em;
+	line-height: 1.5em;
 
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
 
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-  background: #282828;
-  color: #d5c4a1;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  text-shadow: none;
-  background: #bdae93;
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
+	background: #363636;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-  text-shadow: none;
-  background: #bdae93;
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+	background: #363636;
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
-}
-
-/* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
+	white-space: normal;
+	border-radius: 0.2em;
+	padding: 0.1em;
 }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #ebdbb2;
-  opacity: 0.4;
+pre[class*="language-"] {
+	overflow: auto;
+	position: relative;
+	margin: 0.5em 0;
+	padding: 1.25em 1em;
 }
 
-.token.punctuation {
-  color: #d5c4a1;
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
+	color: #fd9170;
 }
 
-.token.namespace {
-  opacity: .7;
+[class*="language-"] .namespace {
+	opacity: 0.7;
 }
 
-.token.operator,
-.token.boolean,
-.token.number {
-  color: #d65d0e;
-}
-.token.property,
-.token.builtin {
-  color: #d79921;
-}
-.token.tag,
-.token.string {
-  color: #458588;
-}
-.token.function {
-  color: #689d6a;
-}
-.token.selector {
-  color: #b16286;
-}
-.token.attr-name {
-  color: #d65d0e;
-}
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-  color: #689d6a;
-}
-
-.token.attr-value,
-.token.keyword,
-.token.control,
-.token.directive,
-.token.unit {
-  color: #98971a;
-}
-
-.token.statement,
-.token.regex,
 .token.atrule {
-  color: #689d6a;
+	color: #c792ea;
 }
 
-.token.placeholder,
-.token.variable {
-  color: #458588;
+.token.attr-name {
+	color: #ffcb6b;
+}
+
+.token.attr-value {
+	color: #a5e844;
+}
+
+.token.attribute {
+	color: #a5e844;
+}
+
+.token.boolean {
+	color: #c792ea;
+}
+
+.token.builtin {
+	color: #ffcb6b;
+}
+
+.token.cdata {
+	color: #80cbc4;
+}
+
+.token.char {
+	color: #80cbc4;
+}
+
+.token.class {
+	color: #ffcb6b;
+}
+
+.token.class-name {
+	color: #f2ff00;
+}
+
+.token.comment {
+	color: #616161;
+}
+
+.token.constant {
+	color: #c792ea;
 }
 
 .token.deleted {
-  text-decoration: line-through;
+	color: #ff6666;
 }
 
-.token.inserted {
-  border-bottom: 1px dotted #fbf1c7;
-  text-decoration: none;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-
-.token.important {
-  color: #cc241d;
+.token.doctype {
+	color: #616161;
 }
 
 .token.entity {
-  cursor: help;
+	color: #ff6666;
 }
 
-pre > code.highlight {
-  outline: .4em solid #cc241d;
-  outline-offset: .4em;
+.token.function {
+	color: #c792ea;
+}
+
+.token.hexcode {
+	color: #f2ff00;
+}
+
+.token.id {
+	color: #c792ea;
+	font-weight: bold;
+}
+
+.token.important {
+	color: #c792ea;
+	font-weight: bold;
+}
+
+.token.inserted {
+	color: #80cbc4;
+}
+
+.token.keyword {
+	color: #c792ea;
+}
+
+.token.number {
+	color: #fd9170;
+}
+
+.token.operator {
+	color: #89ddff;
+}
+
+.token.prolog {
+	color: #616161;
+}
+
+.token.property {
+	color: #80cbc4;
+}
+
+.token.pseudo-class {
+	color: #a5e844;
+}
+
+.token.pseudo-element {
+	color: #a5e844;
+}
+
+.token.punctuation {
+	color: #89ddff;
+}
+
+.token.regex {
+	color: #f2ff00;
+}
+
+.token.selector {
+	color: #ff6666;
+}
+
+.token.string {
+	color: #a5e844;
+}
+
+.token.symbol {
+	color: #c792ea;
+}
+
+.token.tag {
+	color: #ff6666;
+}
+
+.token.unit {
+	color: #fd9170;
+}
+
+.token.url {
+	color: #ff6666;
+}
+
+.token.variable {
+	color: #ff6666;
 }
