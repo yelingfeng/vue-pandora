@@ -1,6 +1,6 @@
 <template>
   <div :style="widthStyle">
-    <el-checkbox-group v-model="value" :disabled="option.disabled" @change="changeHandler">
+    <el-checkbox-group v-model="value" :disabled="disabled" @change="changeHandler">
       <el-checkbox
         v-for="(item, index) in option.data"
         :key="index"
@@ -23,6 +23,7 @@ export default class VCheckbox extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
   private value: string[] = []
+  private disabled = false
 
   get widthStyle() {
     return {
@@ -31,6 +32,7 @@ export default class VCheckbox extends Vue {
   }
   created() {
     this.value = this.option.value
+    this.disabled = this.option.disabled || false
   }
   /**
    * @name: getValue
@@ -50,6 +52,12 @@ export default class VCheckbox extends Vue {
   setValue(val: any[]) {
     this.value = val
   }
+
+  // 设置是或否禁用
+  setDisabled(bol: boolean) {
+    this.disabled = bol
+  }
+
   /**
    * @name: changeHandler
    * @param {val}

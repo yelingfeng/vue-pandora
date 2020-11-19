@@ -569,6 +569,57 @@ export default class Demo extends Vue {
         }
       },
       {
+        label: '测试checkbox',
+        type: 'radio',
+        required: true,
+        comOpt: {
+          id: 'queryCheckbox',
+          value: '1',
+          disabled: false,
+          width: '210',
+          data: [
+            { value: '1', name: 'CHECK1' },
+            { value: '2', name: 'CHECK2' },
+            { value: '3', name: 'CHECK3' }
+          ],
+          change(v: any) {
+            console.log(v)
+          }
+        }
+      },
+      {
+        label: '附件',
+        type: 'upload',
+        show: true,
+        comOpt: {
+          id: 'uploadComp',
+          disabled: false,
+          uploadOption: {
+            buttonText: '选择文件',
+            tipText: '只能上传jpg、png、gif、bmp、jpeg、doc、docx、pdf、lxs、xlsx、zip、rar文件',
+            limit: 5,
+            //是否显示已上传文件列表
+            showFileList: false,
+            // 是否在选取文件后立即进行上传
+            autoUpload: true,
+            httpRequest: function(file: any) {
+              console.log(file)
+            },
+            beforeUpload: function(file: any) {
+              console.log(file)
+              // 判断文件格式
+              if (file.name.split('.')[1] != 'xls' && file.name.split('.')[1] != 'xlsx') {
+                return false
+              }
+            },
+            onPreview: function() {},
+            onRemove: function() {},
+            onFileChange: function() {},
+            onSuccess: function() {}
+          }
+        }
+      },
+      {
         label: '更新日期',
         type: 'date',
         comOpt: {

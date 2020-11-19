@@ -15,15 +15,22 @@ export default class VUpload extends Vue {
 
   private buttonText = '选择'
   private tipText = '只能上传xls...'
+  private disabled = false
 
   clearFiles() {
     ;(this.$refs.upload as any).clearFiles()
+  }
+
+  // 设置是或否禁用
+  setDisabled(bol: boolean) {
+    this.disabled = bol
   }
 
   created() {
     this.uploadOption = this.option.uploadOption || {}
     this.buttonText = this.uploadOption.buttonText
     this.tipText = this.uploadOption.tipText
+    this.disabled = this.option.disabled || false
   }
 
   mounted() {
@@ -51,7 +58,8 @@ export default class VUpload extends Vue {
         'on-remove': this.uploadOption.onRemove,
         'on-change': this.uploadOption.onFileChange,
         'file-list': this.uploadOption.fileList || [],
-        'auto-upload': this.uploadOption.autoUpload || false
+        'auto-upload': this.uploadOption.autoUpload || false,
+        disabled: this.disabled
       }
     }
     const button = (
