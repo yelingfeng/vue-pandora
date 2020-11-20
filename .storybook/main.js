@@ -13,7 +13,7 @@ module.exports = {
   stories: ['../packages/**/*.stories.@(js|ts|tsx|mdx|md)'],
   logLevel: 'debug',
   addons: [
-    // '@storybook/addon-docs', 
+    '@storybook/addon-docs',
     '@storybook/addon-storysource',
     '@storybook/addon-controls',
     '@storybook/addon-actions',
@@ -69,10 +69,20 @@ module.exports = {
                 },
               ],
               ['@vue/babel-plugin-jsx'],
+              [
+                'babel-plugin-root-import',
+                {
+                  "paths": [
+                    {
+                      "rootPathSuffix": "./",
+                      "rootPathPrefix": "@/"
+                    }
+                  ]
+                }
+              ],
               [ 
-                "import", 
-                { "libraryName": "ant-design-vue"}
-              ]
+                'import', { libraryName: 'ant-design-vue' }
+              ],
             ],
             presets: ['@babel/env', '@babel/typescript'],
           },
@@ -81,8 +91,8 @@ module.exports = {
     })
 
     config.module.rules.push({
-      test: /\.stories\.jsx?$/,
-      loader: require.resolve('@storybook/source-loader'),
+      test: /\.stories\.tsx?$/,
+      loader: require.resolve('@storybook/addon-storysource/loader'),
       include: [path.resolve(__dirname, '../packages')],
       enforce: 'pre',
     })

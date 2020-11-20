@@ -1,4 +1,4 @@
-import { defineDemo } from '../../_docs'
+import { defineDemo } from '@/packages/_docs'
 import { FormDemo } from './index'
 defineDemo(
   {

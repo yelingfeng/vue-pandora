@@ -1,27 +1,33 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "rootDir": ".",
-    "baseUrl": ".",
     "module": "ESNext",
-    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/":["./*"],
+      "@/packages/*": ["packages/*"]
+    },
     "removeComments": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true,
     "declarationDir": "./types",
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
     "jsx": "preserve",
     "noLib": false,
     "sourceMap": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "pretty": true,
     "lib": ["ESNext", "DOM"],
+    "allowJs": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["packages"],
   "exclude": [
     "node_modules",
-    "**/**/*.test.ts",
-    "**/**/*.stories.tsx",
-    "**/**/*.md",
-    "packages/_docs"
+    "dist"
   ]
 }
