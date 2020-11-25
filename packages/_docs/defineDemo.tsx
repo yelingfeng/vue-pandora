@@ -2,7 +2,8 @@ import { storiesOf } from '@andoshin11/storybook-vue3'
 import { defineComponent } from 'vue'
 import { ShowDocs } from './showdocs'
 import { transformKnobs } from './transformKnobs'
-import { withKnobs,boolean, text, select, } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
+// import { action } from '@storybook/addon-actions';
 export function defineDemo(
   {
     module, 
@@ -14,21 +15,23 @@ export function defineDemo(
   Demo?: any,
 ) {
   const Wrapper = defineComponent({
-    setup() {
-
-      const _controlProps = transformKnobs(control)
-      console.log(_controlProps)
+    render(){
+      let _controlProps = {}
+      if(control && Object.keys(control).length){
+        _controlProps = transformKnobs(control)
+      }
       // @ts-ignore
       const Docs: any = <ShowDocs md={docs} />
-      return () =>
+      return (
         <div>
-          {Demo ? (
+        {Demo ? (
             <div id="demo">
               <Demo {..._controlProps}/>
             </div>
           ) : null}
           {Docs}
         </div>
+      )
     }
   })
   storiesOf(category, module)

@@ -6,7 +6,7 @@ import { number, object, boolean, text, select, date, array, color } from '@stor
 export const transformKnobs = (control:object) => {
     let knobs = Object.create(null)
     for(const prop in control){
-      const _ctrl = control[prop]['control']
+      const _ctrl = control[prop]
       const type = _ctrl.type
       if(type === 'select'){
         knobs[prop] = select(prop,_ctrl.options,_ctrl.default)

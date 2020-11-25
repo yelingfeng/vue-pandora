@@ -1,11 +1,12 @@
 import { defineDemo } from '@/packages/_docs'
-import { FormDemo } from './index'
+import { Form } from './index'
 defineDemo(
   {
     name: 'formDemo',
     category: 'FORM',
     docs: require('./index.md'),
+    control:{},
     module,
   },
-  FormDemo,
+  Form,
 )

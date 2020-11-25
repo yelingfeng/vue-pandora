@@ -13,14 +13,14 @@ module.exports = {
   stories: ['../packages/**/*.stories.@(js|ts|tsx|mdx|md)'],
   logLevel: 'debug',
   addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-storysource',
-    '@storybook/addon-controls',
+    // '@storybook/addon-docs',
+    // '@storybook/addon-controls',
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-knobs',
     '@storybook/addon-viewport',
     '@storybook/addon-backgrounds',
+    '@storybook/addon-storysource'
   ],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
@@ -92,10 +92,19 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.stories\.tsx?$/,
-      loader: require.resolve('@storybook/addon-storysource/loader'),
-      include: [path.resolve(__dirname, '../packages')],
+      use:[
+        {
+          loader: require.resolve('@storybook/source-loader'),
+          options: {
+            loaderOptions: {
+              injectStoryParameters: false,
+            },
+          }
+        }
+      ],
       enforce: 'pre',
-    })
+    });
+
     config.module.rules.push({
       test: /\.css$/,
       use: [
@@ -114,6 +123,9 @@ module.exports = {
         },
       ],
     })
+    config.resolve.alias = Object.assign(config.resolve.alias, {
+      '@': path.resolve(__dirname, '../packages')
+    });
 
     return config
   },

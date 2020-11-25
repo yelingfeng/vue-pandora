@@ -1,14 +1,13 @@
 import { defineDemo } from '@/packages/_docs'
-import vButton from './index'
-import { ButtonControl } from './props'
+import Text from './index'
+import { TextControl } from './props'
 export default defineDemo(
   {
-    name: 'Button',
+    name: 'Text',
     category: 'FORM',
     docs: require('./index.md'),
-    control: ButtonControl,
+    control: TextControl,
     module,
   },
-  vButton,
+  Text,
 )
-

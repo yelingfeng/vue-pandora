@@ -9,7 +9,6 @@
       <el-col :span="16" :offset="4">
         <h1>Vue-pandora</h1>
         <VForm :option="formObj" ref="form"></VForm>
-        <VTable :option="tableOpt" :height="tableHeight"></VTable>
       </el-col>
     </el-row>
   </div>
@@ -146,67 +145,7 @@
         },
       ],
     }
-    private tableOpt: any = {
-      stripe: true,
-      column: [
-        {
-          name: '序号',
-          value: 'index',
-          fixed: 'left',
-          width: 50,
-          align: 'center',
-        },
-        { name: '任务名称', value: 'taskName', fixed: 'left', align: 'center' },
-        { name: '创建时间', value: 'createTime', align: 'center' },
-        { name: '更新时间', value: 'updateTime', align: 'center' },
-        { name: '任务状态', value: 'taskStatusName', align: 'center' },
-        { name: '任务内容', value: 'taskContent', align: 'center' },
-        { name: '任务结果', value: 'jobResult', align: 'center' },
-        {
-          name: '操作',
-          value: '',
-          align: 'center',
-          fixed: 'right',
-          width: 150,
-          operations: [
-            {
-              label: '详情',
-              type: 'label',
-              disCallBack() {
-                return false
-              },
-              handlerClick: (row: any) => {
-                console.log(row)
-              },
-            },
-            {
-              label: '编辑',
-              type: 'label',
-              handlerClick: (row: any) => {
-                console.log(row)
-              },
-            },
-            {
-              label: '删除',
-              type: 'label',
-              disCallBack(row: any) {},
-              handlerClick: (row: any) => {},
-            },
-          ],
-        },
-      ],
-      data: [],
-      // 是否分页
-      pagination: true,
-      // 分页参数
-      pageOpt: {
-        currentPage: 1,
-        total: 0,
-        pageSizes: [10, 20, 30, 40, 50],
-        pageSize: 10,
-      },
-    }
-    tableHeight = 400
+    
 
     querySearchAction() {
       const searchValue = this.form.getValue()
@@ -216,12 +155,6 @@
       this.$message.info('add action')
     }
 
-    mounted() {
-      axios.get('/api/tablelist').then((resp) => {
-        const list = resp.data.data.list as Array<object>
-        this.tableOpt.data = list
-      })
-    }
   }
 </script>
 

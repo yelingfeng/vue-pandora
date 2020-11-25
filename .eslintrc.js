@@ -13,10 +13,12 @@ module.exports = {
     node: true,
   },
   plugins: ['@typescript-eslint'],
-  // extends: [
-  //   'plugin:@typescript-eslint/recommended',
-  //   'plugin:vue/vue3-recommended',
-  // ],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'prettier/@typescript-eslint', 
+    'plugin:prettier/recommended',
+  ],
   rules: {
     'global-require': 0,
     'import/no-dynamic-require': 0,

@@ -1,15 +1,23 @@
 import { defineComponent } from 'vue'
 import { Button } from 'ant-design-vue'
-import ButtonDefaultProps from './defaultProps';
+import { isFunction } from '@/packages/_util/index'
+import { ButtonPropTypes } from './props';
 /**
  * button component
  */
 const VButton = defineComponent({
   name : 'v-button',
-  props: ButtonDefaultProps(),
+  props: ButtonPropTypes(),
   setup(props){
-    return () => <Button {...props}>{props.label}</Button>
-  }
+    const clickHandler = (e:Event)=>{
+      if(isFunction(props.click)){
+          props.click(e)
+      }
+      return 
+    }
+    return () => <Button {...props} onClick={clickHandler}>{props.label}</Button>
+  },
+
 })
 
 export default VButton
