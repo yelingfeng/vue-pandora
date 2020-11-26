@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button.vue renders correctly 1`] = `
+<button label="default Btn" class="ant-btn ant-btn-default" type="button">
+  <!----><span>default Btn</span>
+</button>
+`;
