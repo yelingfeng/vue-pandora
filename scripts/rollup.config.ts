@@ -1,6 +1,7 @@
 
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
+import vue from 'rollup-plugin-vue'
 import dts from 'rollup-plugin-dts'
 import { activePackages } from './packages'
 
@@ -8,12 +9,10 @@ const configs = []
 
 for (const { globals, name, display, external } of activePackages) {
   const umdGlobals = {
-    'vue-demi': 'VueDemi',
-    '@vueuse/shared': 'VueUseShared',
-    '@vueuse/core': 'VueUse',
+    '@pandora/Form': 'VuePandoraForm',
     ...(globals || {}),
   }
-  const umdName = name === 'core' ? 'VueUse' : `VueUse${display}`
+  const umdName = name === 'core' ? 'VuePandora' : `VuePandora${display}`
 
   configs.push({
     input: `packages/${name}/index.ts`,
@@ -52,12 +51,18 @@ for (const { globals, name, display, external } of activePackages) {
           compilerOptions: {
             declaration: false,
           },
+          'exclude': [
+            'node_modules',
+            '__tests__',
+          ],
         },
+        clean: true
       }),
+      vue()
     ],
     external: [
-      'vue-demi',
-      '@vueuse/shared',
+      'vue',
+      'ant-design-vue',
       ...(external || []),
     ],
   })

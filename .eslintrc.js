@@ -22,6 +22,7 @@ module.exports = {
     'global-require': 0,
     'import/no-dynamic-require': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-empty-interface':0,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-empty-function': 0,

@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import Button from './components/button';
+import Button from './components/button/src/index';
 
 export const FormJx = (a: number, b: number) => {
   return a + b
@@ -30,4 +30,4 @@ export const Form = defineComponent({
         <Button {...button2}></Button>
       </div>
   }
-})
+}) 

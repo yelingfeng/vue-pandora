@@ -7,14 +7,19 @@ import { ControlType }  from '@/packages/_util/compPropsType';
 const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'danger', 'link');
 export type ButtonType = typeof ButtonTypes[number];
 
-// 按钮 尺寸
+// button 尺寸
 const ButtonSizes = tuple('large', 'default', 'small');
 export type ButtonSize = typeof ButtonSizes[number];
+
+// button 形状
+const ButtonShapes = tuple('circle','circle-outline', 'round');
+export type ButtonShape = typeof ButtonShapes[number]
 
 // button 属性定义
 export const ButtonPropTypes = ()=>({
     type: PropTypes.oneOf(ButtonTypes).def('default'),
     size :PropTypes.oneOf(ButtonSizes).def('default'),
+    shape:PropTypes.oneOf(ButtonShapes),
     disabled:PropTypes.looseBool.def(false),
     label : PropTypes.string.def('default Btn'),
     click : PropTypes.func
@@ -36,6 +41,12 @@ export const ButtonControl:ControlType = {
       'large', 'default', 'small'
     ],
     default:'default'
+  },
+  shape:{
+    type:'select',
+    options:[
+      '-', 'circle', 'round','circle-outline'
+    ]
   },
   disabled: {
     type: 'boolean',

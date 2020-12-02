@@ -1,12 +1,12 @@
-import { defineComponent } from 'vue'
-import { Button } from 'ant-design-vue'
+import { defineComponent  } from 'vue'
 import { isFunction } from '@/packages/_util/index'
 import { ButtonPropTypes } from './props';
+import { Button } from 'ant-design-vue'
 /**
  * button component
  */
 const VButton = defineComponent({
-  name : 'v-button',
+  name : 'VButton',
   props: ButtonPropTypes(),
   setup(props){
     const clickHandler = (e:Event)=>{
@@ -16,8 +16,7 @@ const VButton = defineComponent({
       return 
     }
     return () => <Button {...props} onClick={clickHandler}>{props.label}</Button>
-  },
-
-})
+  }
+}) 
 
 export default VButton
