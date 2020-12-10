@@ -94,7 +94,8 @@ export default class FormDemo extends Vue {
             { name: '横列直列', value: '1' },
             { name: '模块扩容', value: '2' }
           ],
-          change: this.getNameAction
+          change: this.getNameAction,
+          input: this.getNameInput
         }
       },
       {
@@ -390,6 +391,9 @@ export default class FormDemo extends Vue {
   }
   getNameAction(val: any) {
     console.log('名称', val)
+  }
+  getNameInput(val: any) {
+      console.log('input', val)
   }
   ensureAddAction() {
     // console.log(this.addFrom.getValue())

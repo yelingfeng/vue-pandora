@@ -3,7 +3,7 @@
  * @Autor: niumiaomiao
  * @Date: 2020-12-10 14:22:55
  * @LastEditors: niumiaomiao
- * @LastEditTime: 2020-12-10 15:40:58
+ * @LastEditTime: 2020-12-10 16:00:47
 -->
 <template>
   <el-autocomplete
@@ -53,6 +53,9 @@ export default class VAutocomplete extends Vue {
   querySearch(queryString: string, cb: Function) {
     const data = this.autoList
     const results = queryString ? data.filter(this.createFilter(queryString)) : data
+    if (this.option.input && isFunction(this.option.input)) {
+      this.option.input(queryString)
+    }
     // 调用 callback 返回建议列表的数据
     cb(results)
   }
