@@ -80,6 +80,24 @@ export default class FormDemo extends Vue {
         }
       },
       {
+        label: '扩容名称',
+        type: 'autoComplete',
+        show: true,
+        wrap: true, // 换行
+        comOpt: {
+          id: 'disName',
+          value: '1',
+          width: 500,
+          disabled: false,
+          show: true,
+          data: [
+            { name: '横列直列', value: '1' },
+            { name: '模块扩容', value: '2' }
+          ],
+          change: this.getNameAction
+        }
+      },
+      {
         label: '原横列数',
         type: 'text',
         show: true,
@@ -369,6 +387,9 @@ export default class FormDemo extends Vue {
     //     { id: 'disType', value: '1' }
     //   ])
     // }
+  }
+  getNameAction(val: any) {
+    console.log('名称', val)
   }
   ensureAddAction() {
     // console.log(this.addFrom.getValue())
