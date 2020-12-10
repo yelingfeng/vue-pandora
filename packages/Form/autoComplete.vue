@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Autor: niumiaomiao
+ * @Date: 2020-12-10 14:22:55
+ * @LastEditors: niumiaomiao
+ * @LastEditTime: 2020-12-10 16:00:47
+-->
 <template>
   <el-autocomplete
     v-model="value"
@@ -6,11 +13,13 @@
     :disabled="option.disabled"
     :fetch-suggestions="querySearch"
     :trigger-on-focus="option.onFocus || false"
+    @change="changeHandler"
   ></el-autocomplete>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import { isFunction } from '@/utils/common'
 @Component({
   components: {}
 })
@@ -44,6 +53,9 @@ export default class VAutocomplete extends Vue {
   querySearch(queryString: string, cb: Function) {
     const data = this.autoList
     const results = queryString ? data.filter(this.createFilter(queryString)) : data
+    if (this.option.input && isFunction(this.option.input)) {
+      this.option.input(queryString)
+    }
     // 调用 callback 返回建议列表的数据
     cb(results)
   }
@@ -72,6 +84,17 @@ export default class VAutocomplete extends Vue {
    */
   setValue(val: string) {
     if (val !== undefined) this.value = val
+  }
+  /**
+   * @name:
+   * @param {val}
+   * @return:
+   * @description: 绑定值发生变化事件
+   */
+  changeHandler(val: string) {
+    if (this.option.change && isFunction(this.option.change)) {
+      this.option.change(val)
+    }
   }
 }
 </script>
