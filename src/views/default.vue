@@ -78,7 +78,9 @@ export default class Default extends Vue {
           type: 'datetimerange',
           disabled: false,
           width: '210',
-          pickOptions: {}
+          pickOptions: {
+            format: 'yyyy-MM-dd HH:mm:ss'
+          }
         }
       },
       {

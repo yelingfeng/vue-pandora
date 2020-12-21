@@ -146,7 +146,7 @@ declare namespace Form {
     tooltipDelay: number
     className?: string
     // 日期option
-    dateOption?: DateOptionType
+    pickOptions?: DateOptionType
     // 上传option
     uploadOption: UpLoadType
     // 级联类型
