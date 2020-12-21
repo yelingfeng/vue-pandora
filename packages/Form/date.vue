@@ -165,13 +165,14 @@ export default class VDate extends Vue {
     this.curValue = this.option.value
     this.type = this.option.type
     this.align = this.option.align || 'left'
-    this.dateOption = this.option.dateOption || {}
+    this.dateOption = this.option.pickOptions || {}
     this.clearable = this.dateOption.clearable || false
     this.placeholder = this.option.placeholder || '请选择日期'
     if (this.dateOption.format) {
       this.formatDate = this.dateOption.format
+    } else {
+        this.typeFormat()
     }
-    this.typeFormat()
   }
   /**
    * @name: setValue
