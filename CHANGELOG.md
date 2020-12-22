@@ -1,3 +1,9 @@
+## [1.0.49](https://github.com/yelingfeng/vue-pandora/compare/v1.0.48...v1.0.49) (2020-12-22)
+
+### Bug Fixes
+
+- **fix date bug:** date ([6139aa5](https://github.com/yelingfeng/vue-pandora/commit/6139aa51c8698d968e27ac7914f0112fcccbacc8))
+
 ## [1.0.48](https://github.com/yelingfeng/vue-pandora/compare/v1.0.37...v1.0.48) (2020-12-10)
 
 ### Bug Fixes
