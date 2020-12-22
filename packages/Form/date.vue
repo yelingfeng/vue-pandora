@@ -171,7 +171,7 @@ export default class VDate extends Vue {
     if (this.dateOption.format) {
       this.formatDate = this.dateOption.format
     } else {
-        this.typeFormat()
+      this.typeFormat()
     }
   }
   /**
