@@ -570,11 +570,11 @@ export default class Demo extends Vue {
       },
       {
         label: '测试checkbox',
-        type: 'radio',
+        type: 'checkbox',
         required: true,
         comOpt: {
           id: 'queryCheckbox',
-          value: '1',
+          value: ['1', '2', '3'],
           disabled: false,
           width: '210',
           data: [
@@ -704,51 +704,81 @@ export default class Demo extends Vue {
       {
         name: '相关操作',
         align: 'center',
-        fixed: 'right',
-        width: 150,
+        // fixed: 'right',
+        width: 180,
+        showOverflowTooltip: false,
         operations: [
           {
-            label: '自定义',
-            type: 'icon',
-            tooltip: '自定义',
-            iconName: 'el-icon-user',
-            showCallback(row: any, index: number) {
-              return row.orderNum !== 4
-            }
-          },
-          {
             label: '修改',
-            type: 'icon',
-            title: '修改',
-            iconName: 'el-icon-eleme',
-            disCallBack() {
-              return false
-            },
-            handlerClick: this.editInfo
+            tooltip: false,
+            handlerClick: this.handleEdit
           },
           {
             label: '删除',
-            type: 'icon',
-            title: '删除',
-            iconName: 'el-icon-delete',
-            disCallBack() {
-              return false
-            },
-            handlerClick: this.deleteInfo
+            tooltip: false,
+            handlerClick: this.deleteEvent
           },
           {
-            label: '删除',
-            type: 'button',
-            disCallBack(row: any, index: number) {
-              return index === 3
+            label: '启用',
+            tooltip: false,
+            disCallBack(rows: any, index: any) {
+              return rows.isChecked
             },
-            formatter(row: any, index: number) {
-              return index === 4 ? '123' : row.roomName
+            handlerClick: this.switchEvent
+          },
+          {
+            label: '禁用',
+            tooltip: false,
+            disCallBack(rows: any, index: any) {
+              return !rows.isChecked
             },
-            handlerClick: this.deleteInfo
+            handlerClick: this.switchEvent
           }
         ]
       }
+      // operations: [
+      //   {
+      //     label: '自定义',
+      //     type: 'icon',
+      //     tooltip: '自定义',
+      //     iconName: 'el-icon-user',
+      //     showCallback(row: any, index: number) {
+      //       return row.orderNum !== 4
+      //     }
+      //   },
+      //   {
+      //     label: '修改',
+      //     type: 'icon',
+      //     title: '修改',
+      //     iconName: 'el-icon-eleme',
+      //     disCallBack() {
+      //       return false
+      //     },
+      //     handlerClick: this.editInfo
+      //   },
+      //   {
+      //     label: '删除',
+      //     type: 'icon',
+      //     title: '删除',
+      //     iconName: 'el-icon-delete',
+      //     disCallBack() {
+      //       return false
+      //     },
+      //     handlerClick: this.deleteInfo
+      //   },
+      //   {
+      //     label: '删除',
+      //     type: 'button',
+      //     disCallBack(row: any, index: number) {
+      //       return index === 3
+      //     },
+      //     formatter(row: any, index: number) {
+      //       return index === 4 ? '123' : row.roomName
+      //     },
+      //     handlerClick: this.deleteInfo
+      //   }
+      // ]
+      // }
     ],
     data: [], //是否分页
     pagination: true, //分页参数
@@ -759,6 +789,11 @@ export default class Demo extends Vue {
       pageSize: 10
     }
   }
+
+  handleEdit() {}
+  switchEvent() {}
+
+  deleteEvent() {}
 
   editInfo() {}
 

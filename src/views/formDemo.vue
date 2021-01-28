@@ -393,7 +393,7 @@ export default class FormDemo extends Vue {
     console.log('名称', val)
   }
   getNameInput(val: any) {
-      console.log('input', val)
+    console.log('input', val)
   }
   ensureAddAction() {
     // console.log(this.addFrom.getValue())
