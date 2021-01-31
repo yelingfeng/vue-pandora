@@ -17,7 +17,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
 
 @Component({
-  components: {},
+  components: {}
 })
 export default class VCheckbox extends Vue {
   @Prop() option: Form.IFormItemCompOpt
@@ -27,7 +27,7 @@ export default class VCheckbox extends Vue {
 
   get widthStyle() {
     return {
-      width: this.option.width || 12 + 'px',
+      width: this.option.width || 12 + 'px'
     }
   }
   created() {

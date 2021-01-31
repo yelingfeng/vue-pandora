@@ -460,6 +460,28 @@ export default class VTable extends Vue {
           formatter: item.formatter
         }
       }
+      // 图片列
+      if (item.image) {
+        columnProps.scopedSlots = {
+          default: (props: any) => {
+            let dom = null
+            let imageProp = Object.create(null)
+            let url = ''
+            if (item.formatter && isFunction(item.formatter)) {
+              url = item.formatter(props.row, props.$index)
+            }
+            imageProp = {
+              props: {
+                src: url,
+                fit: item.fit || 'fit'
+              }
+            }
+            const style = item.style || 'width: 16px, height: 16px'
+            dom = <el-image style={style} {...imageProp}></el-image>
+            return dom
+          }
+        }
+      }
 
       if (item.operations) {
         columnProps.scopedSlots = {
