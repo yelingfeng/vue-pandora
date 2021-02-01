@@ -444,149 +444,164 @@ export default class VTable extends Vue {
     this.currentRowObject = row
   }
 
+  // 渲染一列处理
+  renderColumnProp(item: any, index: number) {
+    let columnProps = Object.create(null)
+    columnProps = {
+      props: {
+        prop: item.value,
+        label: item.name,
+        width: item.width,
+        fixed: item.fixed,
+        align: item.align,
+        'min-width': item.minWidth,
+        'show-overflow-tooltip': true,
+        formatter: item.formatter
+      }
+    }
+    // 图片列
+    if (item.image) {
+      columnProps.scopedSlots = {
+        default: (props: any) => {
+          let dom = null
+          let imageProp = Object.create(null)
+          let url = ''
+          if (item.formatter && isFunction(item.formatter)) {
+            url = item.formatter(props.row, props.$index)
+          }
+          imageProp = {
+            props: {
+              src: url,
+              fit: item.fit || 'fit'
+            }
+          }
+          const style = item.style || 'width: 16px, height: 16px'
+          dom = <el-image style={style} {...imageProp}></el-image>
+          return dom
+        }
+      }
+    }
+
+    if (item.operations) {
+      columnProps.scopedSlots = {
+        default: (props: any) => {
+          const operations = item.operations.map((operate: any, index: number) => {
+            const type = operate.type || 'button'
+            let tooltipProp = Object.create(null)
+            tooltipProp = {
+              props: {
+                placement: 'top',
+                content: '',
+                'open-delay': operate.tooltipDelay || 1000
+              }
+            }
+            if (operate.tooltip) {
+              if (isFunction(operate.tooltip)) {
+                tooltipProp.props.content = operate.tooltip(props.row, props.$index)
+              } else if (typeof operate.tooltip === 'string') {
+                tooltipProp.props.content = operate.tooltip
+              } else if (operate.title && operate.title != '') {
+                tooltipProp.props.content = operate.title
+              } else {
+                tooltipProp.props.content = operate.label
+              }
+            } else {
+              tooltipProp.props.disabled = true
+            }
+
+            let operateDom
+            const label = isFunction(operate.formatter)
+              ? operate.formatter(props.row, props.$index)
+              : operate.label
+            if (OperateType.ICON === type) {
+              operateDom = (
+                <el-tooltip {...tooltipProp}>
+                  <i
+                    key={index}
+                    class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
+                    on-click={() => operate.handlerClick(props.row, props.$index)}
+                  ></i>
+                </el-tooltip>
+              )
+            } else if (OperateType.BUTTON === type) {
+              operateDom = (
+                <el-tooltip {...tooltipProp}>
+                  <el-button
+                    type="text"
+                    size="mini"
+                    key={index}
+                    disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+                    on-click={() => operate.handlerClick(props.row, props.$index)}
+                  >
+                    {label}
+                  </el-button>
+                </el-tooltip>
+              )
+            } else if (OperateType.RADIO == type) {
+              operateDom = (
+                <el-tooltip {...tooltipProp}>
+                  <el-radio
+                    v-model={this.checked}
+                    label={props.$index}
+                    on-change={() => this.getTemplateRow(props.row, props.$index)}
+                  ></el-radio>
+                </el-tooltip>
+              )
+            }
+            // 增加操作列回调 如果false 不显示
+            if (
+              operate.showCallback &&
+              isFunction(operate.showCallback) &&
+              !operate.showCallback(props.row, props.$index)
+            ) {
+              operateDom = null
+            }
+
+            return operateDom
+          })
+          return operations
+        }
+      }
+    } else if (item.sortable) {
+      columnProps.scopedSlots = {
+        header: (props: any) => {
+          const column = props.column
+          const customHeader = (
+            <div relId={column.property}>
+              {column.label}
+              <span class="caret-wrapper">
+                <i
+                  class="sort-caret ascending"
+                  on-click={(e: any) => this.sortIconClick(e, column, 'ascending')}
+                ></i>
+                <i
+                  class="sort-caret descending"
+                  on-click={(e: any) => this.sortIconClick(e, column, 'descending')}
+                ></i>
+              </span>
+            </div>
+          )
+          return customHeader
+        }
+      }
+    }
+    return columnProps
+  }
+
   render() {
     let elColumn: any = {}
     elColumn = this.tableColumn.map((item: any, index: number) => {
-      let columnProps = Object.create(null)
-      columnProps = {
-        props: {
-          prop: item.value,
-          label: item.name,
-          width: item.width,
-          fixed: item.fixed,
-          align: item.align,
-          'min-width': item.minWidth,
-          'show-overflow-tooltip': true,
-          formatter: item.formatter
-        }
+      let elColumn = null
+      let childColumn = null
+      if (item.columns && item.columns.length) {
+        childColumn = item.columns.map((it: any, i: number) => {
+          return <el-table-column {...this.renderColumnProp(it, i)}></el-table-column>
+        })
       }
-      // 图片列
-      if (item.image) {
-        columnProps.scopedSlots = {
-          default: (props: any) => {
-            let dom = null
-            let imageProp = Object.create(null)
-            let url = ''
-            if (item.formatter && isFunction(item.formatter)) {
-              url = item.formatter(props.row, props.$index)
-            }
-            imageProp = {
-              props: {
-                src: url,
-                fit: item.fit || 'fit'
-              }
-            }
-            const style = item.style || 'width: 16px, height: 16px'
-            dom = <el-image style={style} {...imageProp}></el-image>
-            return dom
-          }
-        }
-      }
-
-      if (item.operations) {
-        columnProps.scopedSlots = {
-          default: (props: any) => {
-            const operations = item.operations.map((operate: any, index: number) => {
-              const type = operate.type || 'button'
-              let tooltipProp = Object.create(null)
-              tooltipProp = {
-                props: {
-                  placement: 'top',
-                  content: '',
-                  'open-delay': operate.tooltipDelay || 1000
-                }
-              }
-              if (operate.tooltip) {
-                if (isFunction(operate.tooltip)) {
-                  tooltipProp.props.content = operate.tooltip(props.row, props.$index)
-                } else if (typeof operate.tooltip === 'string') {
-                  tooltipProp.props.content = operate.tooltip
-                } else if (operate.title && operate.title != '') {
-                  tooltipProp.props.content = operate.title
-                } else {
-                  tooltipProp.props.content = operate.label
-                }
-              } else {
-                tooltipProp.props.disabled = true
-              }
-
-              let operateDom
-              const label = isFunction(operate.formatter)
-                ? operate.formatter(props.row, props.$index)
-                : operate.label
-              if (OperateType.ICON === type) {
-                operateDom = (
-                  <el-tooltip {...tooltipProp}>
-                    <i
-                      key={index}
-                      class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
-                      on-click={() => operate.handlerClick(props.row, props.$index)}
-                    ></i>
-                  </el-tooltip>
-                )
-              } else if (OperateType.BUTTON === type) {
-                operateDom = (
-                  <el-tooltip {...tooltipProp}>
-                    <el-button
-                      type="text"
-                      size="mini"
-                      key={index}
-                      disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
-                      on-click={() => operate.handlerClick(props.row, props.$index)}
-                    >
-                      {label}
-                    </el-button>
-                  </el-tooltip>
-                )
-              } else if (OperateType.RADIO == type) {
-                operateDom = (
-                  <el-tooltip {...tooltipProp}>
-                    <el-radio
-                      v-model={this.checked}
-                      label={props.$index}
-                      on-change={() => this.getTemplateRow(props.row, props.$index)}
-                    ></el-radio>
-                  </el-tooltip>
-                )
-              }
-              // 增加操作列回调 如果false 不显示
-              if (
-                operate.showCallback &&
-                isFunction(operate.showCallback) &&
-                !operate.showCallback(props.row, props.$index)
-              ) {
-                operateDom = null
-              }
-
-              return operateDom
-            })
-            return operations
-          }
-        }
-      } else if (item.sortable) {
-        columnProps.scopedSlots = {
-          header: (props: any) => {
-            const column = props.column
-            const customHeader = (
-              <div relId={column.property}>
-                {column.label}
-                <span class="caret-wrapper">
-                  <i
-                    class="sort-caret ascending"
-                    on-click={(e: any) => this.sortIconClick(e, column, 'ascending')}
-                  ></i>
-                  <i
-                    class="sort-caret descending"
-                    on-click={(e: any) => this.sortIconClick(e, column, 'descending')}
-                  ></i>
-                </span>
-              </div>
-            )
-            return customHeader
-          }
-        }
-      }
-      return <el-table-column {...columnProps}></el-table-column>
+      elColumn = (
+        <el-table-column {...this.renderColumnProp(item, index)}>{childColumn}</el-table-column>
+      )
+      return elColumn
     })
 
     const columnList = []

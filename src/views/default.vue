@@ -190,22 +190,28 @@ export default class Default extends Vue {
         align: 'center'
       },
       {
-        name: '任务名称',
-        value: 'taskName',
-        fixed: 'left',
+        name: '嵌套测试',
         align: 'center',
-        sortable: true
-      },
-      {
-        name: '图标',
-        value: 'appBase',
-        align: 'left',
-        width: 50,
-        image: true,
-        style: 'width:16px; height: 16px',
-        formatter: function(row: any, index: any) {
-          return `data:image/png;base64,${row.appBase}`
-        }
+        columns: [
+          {
+            name: '任务名称',
+            value: 'taskName',
+            fixed: 'left',
+            align: 'center',
+            sortable: true
+          },
+          {
+            name: '图标',
+            value: 'appBase',
+            align: 'left',
+            width: 50,
+            image: true,
+            style: 'width:16px; height: 16px',
+            formatter: function(row: any, index: any) {
+              return `data:image/png;base64,${row.appBase}`
+            }
+          }
+        ]
       },
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
       { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
