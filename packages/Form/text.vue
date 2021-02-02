@@ -6,6 +6,7 @@
     :autocomplete="option.autocomplete || 'off'"
     :style="widthStyle"
     :type="type"
+    :clearable="option.clearable || true"
     :maxlength="option.maxlength"
     :rows="option.rows"
     @input="inputHandler"
