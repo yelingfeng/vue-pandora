@@ -1,3 +1,9 @@
+## [1.0.55](https://github.com/yelingfeng/vue-pandora/compare/v1.0.54...v1.0.55) (2021-02-02)
+
+### Features
+
+- **add:** form date 新增 daterange 属性 ([e92b305](https://github.com/yelingfeng/vue-pandora/commit/e92b30504d30474fb26420d5df21b927f818f0d1))
+
 ## [1.0.54](https://github.com/yelingfeng/vue-pandora/compare/v1.0.53...v1.0.54) (2021-02-02)
 
 ### Features
