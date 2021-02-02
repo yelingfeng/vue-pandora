@@ -1,3 +1,9 @@
+## [1.0.57](https://github.com/yelingfeng/vue-pandora/compare/v1.0.56...v1.0.57) (2021-02-02)
+
+### Features
+
+- **update:** update 表格 combo 的容器类样式 ([1567f80](https://github.com/yelingfeng/vue-pandora/commit/1567f80ec35840a335917a959ad11dca853acb3e))
+
 ## [1.0.56](https://github.com/yelingfeng/vue-pandora/compare/v1.0.55...v1.0.56) (2021-02-02)
 
 ### Features
