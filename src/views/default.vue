@@ -75,7 +75,7 @@ export default class Default extends Vue {
           id: 'queryCreateTime',
           clearable: false,
           value: '',
-          type: 'datetimerange',
+          type: 'daterange',
           disabled: false,
           width: '210',
           pickOptions: {
