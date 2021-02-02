@@ -1,3 +1,9 @@
+## [1.0.56](https://github.com/yelingfeng/vue-pandora/compare/v1.0.55...v1.0.56) (2021-02-02)
+
+### Features
+
+- **update:** fix date daterange 类型 formater 问题 ([010e506](https://github.com/yelingfeng/vue-pandora/commit/010e5064fa4077f509977619751b229a1dacc887))
+
 ## [1.0.55](https://github.com/yelingfeng/vue-pandora/compare/v1.0.54...v1.0.55) (2021-02-02)
 
 ### Features
