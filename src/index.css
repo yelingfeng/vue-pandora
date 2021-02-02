@@ -20,6 +20,16 @@
   height: 100%;
 }
 
+.vpandora-table .combo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vpandora-table .combo-wrapper .el-image {
+  margin-right: 7px;
+}
+
 .vpandora-pagination {
   width: 100%;
   margin-top: 10px;
@@ -48,8 +58,7 @@
   display: none;
 }
 
-
-.vpandora-upload-container{
+.vpandora-upload-container {
   position: relative;
 }
 
@@ -61,8 +70,8 @@
   height: 30px;
   line-height: 26px;
   font-size: 14px;
-  border:1px solid #409EFF;
-  color: #409EFF;
+  border: 1px solid #409eff;
+  color: #409eff;
   padding: 2px 15px;
   border-radius: 0px;
 }

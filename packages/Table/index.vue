@@ -509,7 +509,7 @@ export default class VTable extends Vue {
             }
             return node
           })
-          return vnodes
+          return <div class="combo-wrapper">{vnodes}</div>
         }
       }
     }
