@@ -272,6 +272,9 @@ export default class VDate extends Vue {
       case 'date':
         format = DATE
         break
+      case 'daterange':
+        format = DATE
+        break
       case 'year':
         format = YEAR
         break
