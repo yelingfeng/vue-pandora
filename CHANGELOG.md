@@ -1,3 +1,9 @@
+## [1.0.54](https://github.com/yelingfeng/vue-pandora/compare/v1.0.53...v1.0.54) (2021-02-02)
+
+### Features
+
+- **update:** input add clearable ([bbe7c5a](https://github.com/yelingfeng/vue-pandora/commit/bbe7c5add11af8e13a1ea039ace4ac01a3e67c7b))
+
 ## [1.0.53](https://github.com/yelingfeng/vue-pandora/compare/v1.0.51...v1.0.53) (2021-02-02)
 
 ### Features
