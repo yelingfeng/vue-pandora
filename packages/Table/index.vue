@@ -5,6 +5,7 @@ const PAGE_HEIGHT = 50
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
 import pagination from './pagination.vue'
+import { CreateElement } from 'vue/types/umd'
 // 排序模式
 const enum sortModeType {
   SINGLE = 'single',
@@ -445,19 +446,26 @@ export default class VTable extends Vue {
   }
 
   // 渲染一列处理
-  renderColumnProp(item: any, index: number) {
+  renderColumnProp(item: any) {
     let columnProps = Object.create(null)
+    const tableOp = this.tableColumn
+    const _getDefaultOp = (item: any) => {
+      return Object.assign(
+        {},
+        {
+          prop: item.value,
+          label: item.name,
+          width: item.width,
+          fixed: item.fixed,
+          align: item.align,
+          'min-width': item.minWidth,
+          'show-overflow-tooltip': true,
+          formatter: item.formatter
+        }
+      )
+    }
     columnProps = {
-      props: {
-        prop: item.value,
-        label: item.name,
-        width: item.width,
-        fixed: item.fixed,
-        align: item.align,
-        'min-width': item.minWidth,
-        'show-overflow-tooltip': true,
-        formatter: item.formatter
-      }
+      props: _getDefaultOp(item)
     }
     // 图片列
     if (item.image) {
@@ -478,6 +486,30 @@ export default class VTable extends Vue {
           const style = item.style || 'width: 16px, height: 16px'
           dom = <el-image style={style} {...imageProp}></el-image>
           return dom
+        }
+      }
+    }
+    // 组合 对象 跟字符串 2种模式
+    if (item.combo && item.combo.length) {
+      const h = this.$createElement
+      columnProps.scopedSlots = {
+        default: (props: any) => {
+          const vnodes = item.combo.map((it: any, index: number) => {
+            let node = null
+            if (it instanceof Object) {
+              if (it.formatter && isFunction(it.formatter) && it.name === 'el-image') {
+                it.props.src = it.formatter(props.row, props.$index)
+              }
+              node = h(it.name, {
+                props: it.props,
+                style: it.style
+              })
+            } else if (typeof it === 'string') {
+              node = h('span', {}, [props.row[it]])
+            }
+            return node
+          })
+          return vnodes
         }
       }
     }
@@ -595,12 +627,10 @@ export default class VTable extends Vue {
       let childColumn = null
       if (item.columns && item.columns.length) {
         childColumn = item.columns.map((it: any, i: number) => {
-          return <el-table-column {...this.renderColumnProp(it, i)}></el-table-column>
+          return <el-table-column {...this.renderColumnProp(it)}></el-table-column>
         })
       }
-      elColumn = (
-        <el-table-column {...this.renderColumnProp(item, index)}>{childColumn}</el-table-column>
-      )
+      elColumn = <el-table-column {...this.renderColumnProp(item)}>{childColumn}</el-table-column>
       return elColumn
     })
 

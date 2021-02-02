@@ -190,6 +190,26 @@ export default class Default extends Vue {
         align: 'center'
       },
       {
+        name: '任务名称',
+        value: 'taskName',
+        fixed: 'left',
+        align: 'center',
+        combo: [
+          {
+            name: 'el-image',
+            style: 'width:20px; height: 20px',
+            props: {
+              // src:
+              //   'data:image/png;base64,R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='
+            },
+            formatter: function(row: any, index: any) {
+              return `data:image/png;base64,${row.appBase}`
+            }
+          },
+          'taskName'
+        ]
+      },
+      {
         name: '嵌套测试',
         align: 'center',
         columns: [
