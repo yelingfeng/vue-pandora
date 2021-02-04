@@ -139,6 +139,7 @@ export default class Default extends Vue {
           id: 'query',
           value: '查询',
           width: 210,
+          icon: 'el-icon-search',
           disabled: false,
           click: this.querySearchAction
         }
@@ -147,6 +148,7 @@ export default class Default extends Vue {
         comOpt: {
           id: 'query',
           value: '新建',
+          icon: 'el-icon-plus',
           width: 210,
           disabled: false,
           click: this.addSearchAction

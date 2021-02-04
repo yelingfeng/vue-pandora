@@ -3,6 +3,7 @@
     :type="btnType"
     :size="option.size ? option.size : ''"
     :disabled="disabled"
+    :icon="option.icon ? option.icon : ''"
     @click.native="clickHandler"
   >
     {{ option.value.replace(/^(\W{1})(\W{1})$/, '$1 $2') }}
