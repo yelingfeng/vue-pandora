@@ -240,10 +240,10 @@ export default class Default extends Vue {
       {
         name: '任务内容',
         value: 'taskContent',
-        sortable: true,
+        sortable: false,
         align: 'center',
-        formatter: function(row: any, column: any, cellValue: any, index: any) {
-          return cellValue
+        formatter: function(row: any, index: any) {
+          return `<b>${row.taskContent}</b>`
         }
       },
       { name: '任务状态', value: 'taskStatusName', align: 'center' },

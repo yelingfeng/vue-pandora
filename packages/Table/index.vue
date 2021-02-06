@@ -445,156 +445,197 @@ export default class VTable extends Vue {
     this.currentRowObject = row
   }
 
+  // 图片处理
+  _imageVNodeRender(props: any, item: any) {
+    let dom = null
+    let imageProp = Object.create(null)
+    let url = ''
+    if (item.formatter && isFunction(item.formatter)) {
+      url = item.formatter(props.row, props.$index)
+    }
+    imageProp = {
+      props: {
+        src: url,
+        fit: item.fit || 'fit'
+      }
+    }
+    const style = item.style || 'width: 16px, height: 16px'
+    dom = <el-image style={style} {...imageProp}></el-image>
+    return dom
+  }
+
+  /**
+   * 组合node渲染 (对象 、字符串 )2种模式
+   * {
+      name: 'el-image',
+      style: 'width:20px; height: 20px',
+      props: {
+        src:
+      },
+      formatter: function(row: any, index: any) {
+        return `data:image/png;base64,${row.appBase}`
+      }
+      },
+    'taskName'
+   *
+   */
+  _comboVNodeRender(props: any, item: any) {
+    const vnodes = item.combo.map((it: any, index: number) => {
+      let node = null
+      if (it instanceof Object) {
+        if (it.formatter && isFunction(it.formatter) && it.name === 'el-image') {
+          it.props.src = it.formatter(props.row, props.$index)
+        }
+        node = this.$createElement(it.name, {
+          props: it.props,
+          style: it.style
+        })
+      } else if (typeof it === 'string') {
+        node = this.$createElement('span', {}, [props.row[it]])
+      }
+      return node
+    })
+    return <div class="combo-wrapper">{vnodes}</div>
+  }
+
+  /**
+   * 操作列vnode渲染
+   */
+  _operationsVNodeRender(props: any, item: any) {
+    const operations = item.operations.map((operate: any, index: number) => {
+      const type = operate.type || 'button'
+      let tooltipProp = Object.create(null)
+      tooltipProp = {
+        props: {
+          placement: 'top',
+          content: '',
+          'open-delay': operate.tooltipDelay || 1000
+        }
+      }
+      if (operate.tooltip) {
+        if (isFunction(operate.tooltip)) {
+          tooltipProp.props.content = operate.tooltip(props.row, props.$index)
+        } else if (typeof operate.tooltip === 'string') {
+          tooltipProp.props.content = operate.tooltip
+        } else if (operate.title && operate.title != '') {
+          tooltipProp.props.content = operate.title
+        } else {
+          tooltipProp.props.content = operate.label
+        }
+      } else {
+        tooltipProp.props.disabled = true
+      }
+
+      let operateDom
+      const label = isFunction(operate.formatter)
+        ? operate.formatter(props.row, props.$index)
+        : operate.label
+      if (OperateType.ICON === type) {
+        operateDom = (
+          <el-tooltip {...tooltipProp}>
+            <i
+              key={index}
+              class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
+              on-click={() => operate.handlerClick(props.row, props.$index)}
+            ></i>
+          </el-tooltip>
+        )
+      } else if (OperateType.BUTTON === type) {
+        operateDom = (
+          <el-tooltip {...tooltipProp}>
+            <el-button
+              type="text"
+              size="mini"
+              key={index}
+              disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+              on-click={() => operate.handlerClick(props.row, props.$index)}
+            >
+              {label}
+            </el-button>
+          </el-tooltip>
+        )
+      } else if (OperateType.RADIO == type) {
+        operateDom = (
+          <el-tooltip {...tooltipProp}>
+            <el-radio
+              v-model={this.checked}
+              label={props.$index}
+              on-change={() => this.getTemplateRow(props.row, props.$index)}
+            ></el-radio>
+          </el-tooltip>
+        )
+      }
+      // 增加操作列回调 如果false 不显示
+      if (
+        operate.showCallback &&
+        isFunction(operate.showCallback) &&
+        !operate.showCallback(props.row, props.$index)
+      ) {
+        operateDom = null
+      }
+
+      return operateDom
+    })
+    return operations
+  }
+
   // 渲染一列处理
   renderColumnProp(item: any) {
     let columnProps = Object.create(null)
     const tableOp = this.tableColumn
-    const _getDefaultOp = (item: any) => {
+    const _getDefaultOp = (it: any) => {
       return Object.assign(
         {},
         {
-          prop: item.value,
-          label: item.name,
-          width: item.width,
-          fixed: item.fixed,
-          align: item.align,
-          'min-width': item.minWidth,
+          prop: it.value,
+          label: it.name,
+          width: it.width,
+          fixed: it.fixed,
+          align: it.align,
+          'min-width': it.minWidth,
           'show-overflow-tooltip': true,
-          formatter: item.formatter
+          formatter: it.formatter
         }
       )
     }
     columnProps = {
       props: _getDefaultOp(item)
     }
+
     // 图片列
     if (item.image) {
       columnProps.scopedSlots = {
         default: (props: any) => {
-          let dom = null
-          let imageProp = Object.create(null)
-          let url = ''
-          if (item.formatter && isFunction(item.formatter)) {
-            url = item.formatter(props.row, props.$index)
-          }
-          imageProp = {
-            props: {
-              src: url,
-              fit: item.fit || 'fit'
-            }
-          }
-          const style = item.style || 'width: 16px, height: 16px'
-          dom = <el-image style={style} {...imageProp}></el-image>
-          return dom
+          return this._imageVNodeRender(props, item)
         }
       }
     }
-    // 组合 对象 跟字符串 2种模式
-    if (item.combo && item.combo.length) {
-      const h = this.$createElement
+    // 组合
+    else if (item.combo && item.combo.length) {
       columnProps.scopedSlots = {
         default: (props: any) => {
-          const vnodes = item.combo.map((it: any, index: number) => {
-            let node = null
-            if (it instanceof Object) {
-              if (it.formatter && isFunction(it.formatter) && it.name === 'el-image') {
-                it.props.src = it.formatter(props.row, props.$index)
-              }
-              node = h(it.name, {
-                props: it.props,
-                style: it.style
-              })
-            } else if (typeof it === 'string') {
-              node = h('span', {}, [props.row[it]])
-            }
-            return node
-          })
-          return <div class="combo-wrapper">{vnodes}</div>
+          return this._comboVNodeRender(props, item)
+        }
+      }
+    }
+    // 操作列
+    else if (item.operations) {
+      columnProps.scopedSlots = {
+        default: (props: any) => {
+          return this._operationsVNodeRender(props, item)
         }
       }
     }
 
-    if (item.operations) {
+    if (item.formatter && isFunction(item.formatter)) {
       columnProps.scopedSlots = {
         default: (props: any) => {
-          const operations = item.operations.map((operate: any, index: number) => {
-            const type = operate.type || 'button'
-            let tooltipProp = Object.create(null)
-            tooltipProp = {
-              props: {
-                placement: 'top',
-                content: '',
-                'open-delay': operate.tooltipDelay || 1000
-              }
-            }
-            if (operate.tooltip) {
-              if (isFunction(operate.tooltip)) {
-                tooltipProp.props.content = operate.tooltip(props.row, props.$index)
-              } else if (typeof operate.tooltip === 'string') {
-                tooltipProp.props.content = operate.tooltip
-              } else if (operate.title && operate.title != '') {
-                tooltipProp.props.content = operate.title
-              } else {
-                tooltipProp.props.content = operate.label
-              }
-            } else {
-              tooltipProp.props.disabled = true
-            }
-
-            let operateDom
-            const label = isFunction(operate.formatter)
-              ? operate.formatter(props.row, props.$index)
-              : operate.label
-            if (OperateType.ICON === type) {
-              operateDom = (
-                <el-tooltip {...tooltipProp}>
-                  <i
-                    key={index}
-                    class={operate.iconName ? operate.iconName : 'el-icon-s-order'}
-                    on-click={() => operate.handlerClick(props.row, props.$index)}
-                  ></i>
-                </el-tooltip>
-              )
-            } else if (OperateType.BUTTON === type) {
-              operateDom = (
-                <el-tooltip {...tooltipProp}>
-                  <el-button
-                    type="text"
-                    size="mini"
-                    key={index}
-                    disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
-                    on-click={() => operate.handlerClick(props.row, props.$index)}
-                  >
-                    {label}
-                  </el-button>
-                </el-tooltip>
-              )
-            } else if (OperateType.RADIO == type) {
-              operateDom = (
-                <el-tooltip {...tooltipProp}>
-                  <el-radio
-                    v-model={this.checked}
-                    label={props.$index}
-                    on-change={() => this.getTemplateRow(props.row, props.$index)}
-                  ></el-radio>
-                </el-tooltip>
-              )
-            }
-            // 增加操作列回调 如果false 不显示
-            if (
-              operate.showCallback &&
-              isFunction(operate.showCallback) &&
-              !operate.showCallback(props.row, props.$index)
-            ) {
-              operateDom = null
-            }
-
-            return operateDom
-          })
-          return operations
+          return <div domPropsInnerHTML={item.formatter(props.row, props.$index)} />
         }
       }
-    } else if (item.sortable) {
+    }
+
+    if (item.sortable) {
       columnProps.scopedSlots = {
         header: (props: any) => {
           const column = props.column
