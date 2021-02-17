@@ -5,7 +5,6 @@ const PAGE_HEIGHT = 50
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
 import pagination from './pagination.vue'
-import { CreateElement } from 'vue/types/umd'
 // 排序模式
 const enum sortModeType {
   SINGLE = 'single',
