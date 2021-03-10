@@ -3,17 +3,17 @@ declare namespace Table {
     // 是否隔行变色
     stripe: boolean
     // 是否显示表头
-    isHeader: boolean
+    isHeader?: boolean
     // 高亮当前行
-    highlightCurrentRow: boolean
+    highlightCurrentRow?: boolean
     // 是否显示多选
     selection: boolean
     // 是否可选中的回调
-    selectable: (row: object, index: number) => void
+    selectable?: (row: object, index: number) => void
     // 复现框的位置 前后 top 和 end
-    selectionPos: string
+    selectionPos?: string
     // 选择模式 单选还是多选
-    selectionMode: string
+    selectionMode?: string
     // 排序模式
     sortMode: string
     // 表格表头数据
@@ -29,9 +29,9 @@ declare namespace Table {
     // 是否分页
     pagination: boolean
     // 排序
-    defaultSort: object[]
+    defaultSort?: object[]
     // 默认排序方向
-    defaultOrder: string
+    defaultOrder?: string
     // 分页参数
     pageOpt: IPageOpt
   }
@@ -39,7 +39,7 @@ declare namespace Table {
   // 分页参数
   export interface IPageOpt {
     // 分页高度
-    height: number
+    height?: number
     // 当前页
     currentPage: number
     // 总数

@@ -25,7 +25,6 @@
     "publish": "npm publish"
   },
   "files": [
-    "packages",
     "lib",
     "types"
   ],

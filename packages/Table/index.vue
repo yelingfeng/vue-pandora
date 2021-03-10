@@ -212,7 +212,7 @@ export default class VTable extends Vue {
    * @description: 计算表格高度
    */
   setTableHeight(val: number | string) {
-    let paginationHeight
+    let paginationHeight: any
     if (typeof val === 'string') {
       paginationHeight = val
       this.tableHeight = paginationHeight
