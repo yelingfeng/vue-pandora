@@ -137,18 +137,18 @@ declare namespace Form {
     placeholder?: string
     clearable?: boolean
     // 是否多选
-    multiple: boolean
+    multiple?: boolean
     // 日期align
     align?: string
     // formlist items
     items?: any[] | undefined
     data?: any[]
-    tooltipDelay: number
+    tooltipDelay?: number
     className?: string
     // 日期option
     dateOption?: DateOptionType
     // 上传option
-    uploadOption: UpLoadType
+    uploadOption?: UpLoadType
     // 级联类型
     cascadeOption?: CascadeOptionType
     click?: Function | undefined

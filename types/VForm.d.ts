@@ -79,7 +79,7 @@ export interface IFormItemCompOpt {
   disabled?: boolean
   placeholder?: string
   // 是否多选
-  multiple: boolean
+  multiple?: boolean
   // 设置日期显示格式
   format?: string
   // 日期align
@@ -87,7 +87,7 @@ export interface IFormItemCompOpt {
   // formlist items
   items?: any[] | undefined
   data?: any[]
-  tooltipDelay: number
+  tooltipDelay?: number
   className?: string
   // 日期option
   dateOption?: DateOptionType
