@@ -57,3 +57,48 @@ export interface IPageOpt {
   // 分页功能 默认显示完整功能 （可不传）
   layout?: string
 }
+
+type operationType = 'button' | 'icon' | 'radio'
+
+// 操作列接口
+interface IOperation {
+  label: string
+  type: operationType
+  title?: string
+  iconName: string
+  tooltip?: string
+  tooltipDelay?: number
+  formatter?: () => void
+  disCallBack?: () => void
+  handlerClick?: (e: any) => void
+  //  增加操作列回调 如果false 不显示
+  showCallback?: () => void
+}
+
+/**
+ * column 类型
+ */
+export interface IPandoraTableColumn {
+  name: string
+  value: string
+  width?: number
+  minWidth?: number
+  sortable?: boolean | string
+  align?: string
+  formatter?: (row: any) => void
+  fixed?: string | boolean
+  operations?: IOperation[]
+}
+
+/**
+ * 排序相关参数 类型
+ */
+export interface ISortOption {
+  defaultSort: Record<string, any>[]
+  sortChange?: (row: any) => void
+}
+
+export type PandoraTableOption = Omit<ITableOption, 'data' | 'column'> & {
+  data: [] | unknown
+  column: IPandoraTableColumn[]
+}

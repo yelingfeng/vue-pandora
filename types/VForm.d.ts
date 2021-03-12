@@ -106,7 +106,7 @@ export interface IFormOption {
   // 行内表单模式
   inline?: boolean
   // 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width
-  labelPosition?: lP
+  labelPosition?: lP | undefined
   // 表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto
   labelWidth?: string
   btnPos?: string
@@ -140,3 +140,8 @@ export declare class Form extends PandoraUIComponent {
 
   clearValidate: Function
 }
+
+export interface IPandoraFormItems extends IFormItemOpt {
+  comOpt: any
+}
+export type PandoraFormOption = Omit<Required<IFormOption>, 'rules'>
