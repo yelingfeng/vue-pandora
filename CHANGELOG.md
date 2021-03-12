@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/yelingfeng/vue-pandora/compare/v1.1.1...v1.1.2) (2021-03-12)
+
+### Features
+
+- **update types:** add vform\vtable.d.ts interface/type ([ff7e1ec](https://github.com/yelingfeng/vue-pandora/commit/ff7e1ec076efee327eadd490cfd6b9860324fba9))
+
 ## [1.1.1](https://github.com/yelingfeng/vue-pandora/compare/v1.1.0...v1.1.1) (2021-03-12)
 
 # [1.1.0](https://github.com/yelingfeng/vue-pandora/compare/v1.0.58...v1.1.0) (2021-03-12)
