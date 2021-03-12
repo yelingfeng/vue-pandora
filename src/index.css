@@ -1,11 +1,15 @@
 .vpandora-form {
   position: relative;
+  display: flex;
+}
+
+.vpandora-form-items{
+
 }
 
 .vpandora-right-btns {
-  position: absolute;
-  right: 10px;
-  bottom: 0;
+ display: flex;
+ align-items: center;
 }
 
 .vpandora-form-required {

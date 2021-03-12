@@ -11,7 +11,7 @@ import { isFunction } from '@/utils/common'
 export default class VUpload extends Vue {
   @Prop() option: Form.IFormItemCompOpt
 
-  private uploadOption: Form.UpLoadType
+  private uploadOption: Readonly<Form.UpLoadType>
 
   private buttonText = '选择'
   private tipText = '只能上传xls...'
@@ -28,8 +28,8 @@ export default class VUpload extends Vue {
 
   created() {
     this.uploadOption = this.option.uploadOption || {}
-    this.buttonText = this.uploadOption.buttonText
-    this.tipText = this.uploadOption.tipText
+    this.buttonText = this.uploadOption.buttonText || ''
+    this.tipText = this.uploadOption.tipText || ''
     this.disabled = this.option.disabled || false
   }
 

@@ -85,20 +85,20 @@ declare namespace Form {
 
   // 上传类型
   export interface UpLoadType {
-    buttonText: string
-    tipText: string
-    limit: number
+    buttonText?: string
+    tipText?: string
+    limit?: number
     // 是否显示已上传文件列表
-    showFileList: boolean
+    showFileList?: boolean
     // 是否在选取文件后立即进行上传
-    autoUpload: boolean
-    fileList: Array<any>
-    httpRequest: Function
-    beforeUpload: Function
-    onPreview: Function
-    onRemove: Function
-    onFileChange: Function
-    onSuccess: Function
+    autoUpload?: boolean
+    fileList?: Array<any>
+    httpRequest?: Function
+    beforeUpload?: Function
+    onPreview?: Function
+    onRemove?: Function
+    onFileChange?: Function
+    onSuccess?: Function
   }
 
   // 日期类型

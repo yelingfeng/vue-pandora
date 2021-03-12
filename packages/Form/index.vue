@@ -276,7 +276,6 @@ export default class VForm extends Vue {
     })
     if (this.formOpt.btns && isArray(this.formOpt.btns)) {
       elBtns = this.formOpt.btns.map((it: Form.IFormItemOpt, index: number) => {
-        let formBox
         const ref: string = 'comp-' + it.comOpt.id
         let comp
         if (it.show === undefined || it.show) {
@@ -305,21 +304,14 @@ export default class VForm extends Vue {
           } else {
             comp = <buttonComp option={it.comOpt} ref={ref} />
           }
-          formBox = <el-form-item label={it.label}>{comp}</el-form-item>
+          // formBox = <el-form-item label={it.label}>{comp}</el-form-item>
         }
 
-        if (it.wrap) {
-          return (
-            <span>
-              {formBox} {br}
-            </span>
-          )
-        }
-        return formBox
+        return comp
       })
-      if (this.formOpt.btnPos === 'right') {
-        elBtns = <div class="vpandora-right-btns">{elBtns}</div>
-      }
+      // if (this.formOpt.btnPos === 'right') {
+      //   elBtns = <div class="vpandora-right-btns">{elBtns}</div>
+      // }
     }
     let formProps = Object.create(null)
     formProps = {
@@ -331,10 +323,12 @@ export default class VForm extends Vue {
     }
     return (
       <div class="vpandora-form">
-        <el-form {...formProps} ref="form">
-          {elItems}
-          {elBtns}
-        </el-form>
+        <div class="vpandora-form-items">
+          <el-form {...formProps} ref="form">
+            {elItems}
+          </el-form>
+        </div>
+        <div class="vpandora-right-btns">{elBtns}</div>
       </div>
     )
   }
