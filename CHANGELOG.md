@@ -1,3 +1,9 @@
+## [1.1.5](https://github.com/yelingfeng/vue-pandora/compare/v1.1.4...v1.1.5) (2021-03-28)
+
+### Features
+
+- **update:** fix ([3ba44f5](https://github.com/yelingfeng/vue-pandora/commit/3ba44f500817c98cc3a2dcd164ed56e751571e0c))
+
 ## [1.1.4](https://github.com/yelingfeng/vue-pandora/compare/v1.1.3...v1.1.4) (2021-03-28)
 
 ## [1.1.3](https://github.com/yelingfeng/vue-pandora/compare/v1.0.63...v1.1.3) (2021-03-28)
