@@ -1,5 +1,7 @@
 import VForm from './packages/Form/index.vue'
 import VTable from './packages/Table/index.vue'
+import { usePandoraForm } from './packages/__hooks/usePandoraForm'
+import { usePandoraTable } from './packages/__hooks/usePandoraTable'
 import Vue from 'vue'
 import './src/index.css'
 const install = function(vue: typeof Vue, opts = {}) {
@@ -12,7 +14,7 @@ const VuePandora = {
   VForm,
   VTable
 }
-export { VForm, VTable }
+export { VForm, VTable, usePandoraForm, usePandoraTable }
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
