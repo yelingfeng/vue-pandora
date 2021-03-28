@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from '@vue/composition-api'
-import { usePandoraTable } from './../../packages/__hooks/usePandoraTable'
-import { usePandoraForm } from './../../packages/__hooks/usePandoraForm'
+import { usePandoraTable } from '@/__hooks/usePandoraTable'
+import { usePandoraForm } from '@/__hooks/usePandoraForm'
 import { getFormItems } from './pandora/formConfig'
 import {
   getTableColumns,
