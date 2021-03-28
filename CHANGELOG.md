@@ -1,3 +1,5 @@
+## [1.1.4](https://github.com/yelingfeng/vue-pandora/compare/v1.1.3...v1.1.4) (2021-03-28)
+
 ## [1.1.3](https://github.com/yelingfeng/vue-pandora/compare/v1.0.63...v1.1.3) (2021-03-28)
 
 ### Features
