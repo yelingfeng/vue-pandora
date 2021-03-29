@@ -9,9 +9,9 @@
     :clearable="option.clearable || true"
     :maxlength="option.maxlength"
     :rows="option.rows"
-    @input="inputHandler"
     @blur="blurHandler"
     @focus="focusHanlder"
+    @input="isNumberInput ? (value = value.replace(/^(0+)|[^\d]+/g, '')) : inputHandler"
   ></el-input>
 </template>
 <script lang="ts">
@@ -31,6 +31,8 @@ export default class VInput extends Vue {
   private placeholder = ''
   private disabled = false
   private type = 'text'
+  // 是否是数字文本框
+  private isNumberInput = false
 
   @Watch('option.value')
   changeValue(newVal: string) {
@@ -55,8 +57,12 @@ export default class VInput extends Vue {
     this.value = this.option.value
     this.type = this.option.type
     this.disabled = this.option.disabled || false
+    this.isNumberInput = this.option.isNumberInput || false
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请输入内容'
   }
+
+  handlerNumber() {}
+
   /**
    * @name: getValue
    * @param {type}

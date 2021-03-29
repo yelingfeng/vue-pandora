@@ -1,4 +1,8 @@
 declare namespace Table {
+  export interface ISummaryOption {
+    sumText?: string
+    summaryMethod?: (param: any) => any[]
+  }
   export interface ITableOption {
     // 是否隔行变色
     stripe: boolean
@@ -32,6 +36,8 @@ declare namespace Table {
     defaultSort?: object[]
     // 默认排序方向
     defaultOrder?: string
+    // 汇总行属性
+    summary?: ISummaryOption
     // 分页参数
     pageOpt: IPageOpt
   }
@@ -133,6 +139,8 @@ declare namespace Form {
     width?: string | number
     title?: string
     isAll?: boolean
+    // 是否是数字文本框
+    isNumberInput?: boolean
     disabled?: boolean
     placeholder?: string
     clearable?: boolean

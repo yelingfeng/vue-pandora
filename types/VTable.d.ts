@@ -4,6 +4,11 @@ export declare class Table extends PandoraUIComponent {
   setTableHeight(val: number): void
 }
 
+export interface ISummaryOption {
+  sumText?: string
+  summaryMethod?: (param: any) => any[]
+}
+
 export interface ITableOption {
   // 是否隔行变色
   stripe?: boolean
@@ -37,6 +42,10 @@ export interface ITableOption {
   defaultSort?: object[]
   // 默认排序方向
   defaultOrder?: string
+
+  // 汇总行属性
+  summary?: ISummaryOption
+
   // 分页参数
   pageOpt: IPageOpt
 }

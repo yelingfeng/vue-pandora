@@ -38,10 +38,10 @@ module.exports = {
 
     // remove vue-cli-service's progress output
     config.plugins.delete('progress')
-  },
-  configureWebpack: {
-    output: {
-      libraryExport: 'default'
-    }
   }
+  // configureWebpack: {
+  //   output: {
+  //     libraryExport: 'default'
+  //   }
+  // }
 }

@@ -405,6 +405,7 @@ export default class Demo extends Vue {
           width: 210,
           disabled: false,
           show: true,
+          isNumberInput: true,
           placeholder: '',
           value: '',
           input(s: any) {
@@ -695,6 +696,37 @@ export default class Demo extends Vue {
     sortMode: 'single',
     sortChange: this.handleSortChange,
     highlightCurrentRow: true,
+    // 汇总航
+    summary: {
+      sumText: '提现总数',
+      summaryMethod: function(param: any) {
+        const { columns, data } = param
+        const sums: any = []
+        columns.forEach((column: any, index: number) => {
+          if (index === 0) {
+            sums[index] = '提现总数'
+            return
+          }
+          const values = data.map((item: any) => Number(item[column.property]))
+          if (!values.every((value: any) => isNaN(value))) {
+            sums[index] = values.reduce((prev: any, curr: any) => {
+              const value = Number(curr)
+              if (!isNaN(value)) {
+                return prev + curr
+              } else {
+                return prev
+              }
+            }, 0)
+            sums[index] += ' 元'
+          } else {
+            sums[index] = 'N/A'
+          }
+        })
+        console.log(sums)
+        const s = ['', '', '', '提现总数', '0 元', '']
+        return s
+      }
+    },
     column: [
       { name: '序号', value: 'orderNum', fixed: 'left', width: 50, align: 'center' },
       { name: '机房名称', value: 'roomName', fixed: 'left', align: 'center' },

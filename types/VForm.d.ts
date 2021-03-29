@@ -76,6 +76,8 @@ export interface IFormItemCompOpt {
   width?: string | number
   title?: string
   isAll?: boolean
+  // 是否是数字文本框
+  isNumberInput?: boolean
   disabled?: boolean
   placeholder?: string
   // 是否多选

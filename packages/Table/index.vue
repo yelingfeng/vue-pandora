@@ -709,6 +709,15 @@ export default class VTable extends Vue {
         'header-click': this.handleHeaderClick
       }
     }
+    if (this.option.summary) {
+      const { sumText, summaryMethod } = this.option.summary
+      vprops.props['show-summary'] = true
+      vprops.props['sum-text'] = sumText
+      if (isFunction(summaryMethod)) {
+        vprops.props['summary-method'] = summaryMethod
+      }
+    }
+
     return (
       <div class="vpandora-table">
         <el-table ref="table" {...vprops}>
