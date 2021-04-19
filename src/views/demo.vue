@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VForm :option="formObj" ref="form"></VForm>
+    <VForm :option="formObj" ref="form" isShow="isFormShow"></VForm>
     <VTable
       :option="tableOpt"
       :height="tableHeight"
@@ -15,6 +15,8 @@ import axios from 'axios'
 @Component({})
 export default class Demo extends Vue {
   private vaildStatus = true
+
+  private isFormShow = true
 
   private listData: any = [
     {

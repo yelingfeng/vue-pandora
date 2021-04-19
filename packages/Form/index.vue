@@ -35,6 +35,9 @@ export default class VForm extends Vue {
   @Prop()
   option: Form.IFormOption
 
+  @Prop({ default: true })
+  isShow: true
+
   @Ref() readonly form!: ElForm
 
   private labelPosition = ''
@@ -321,7 +324,7 @@ export default class VForm extends Vue {
         'label-width': this.labelWidth
       }
     }
-    return (
+    const vDom = (
       <div class="vpandora-form">
         <div class="vpandora-form-items">
           <el-form {...formProps} ref="form">
@@ -331,6 +334,7 @@ export default class VForm extends Vue {
         <div class="vpandora-right-btns">{elBtns}</div>
       </div>
     )
+    return this.isShow ? vDom : ''
   }
 }
 </script>
