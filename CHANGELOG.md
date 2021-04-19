@@ -1,3 +1,9 @@
+## [1.1.7](https://github.com/yelingfeng/vue-pandora/compare/v1.1.6...v1.1.7) (2021-04-19)
+
+### Features
+
+- **add form prop:** isShow Prop ([63acf02](https://github.com/yelingfeng/vue-pandora/commit/63acf02d42474985711fd0517447ced7c9f163cd))
+
 ## [1.1.6](https://github.com/yelingfeng/vue-pandora/compare/v1.1.2...v1.1.6) (2021-03-29)
 
 ### Features
