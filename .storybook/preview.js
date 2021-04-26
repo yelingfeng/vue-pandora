@@ -14,6 +14,14 @@ Vue.use(ElementUI)
 Vue.use(VuePandora)
 
 addParameters({
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  backgrounds: {
+    default: 'light',
+    values: [
+      { name: 'light', value: 'rgba(63, 131, 249, 0.05)' },
+      { name: 'black', value: '#081528' }
+    ]
+  },
   options: {
     theme
   }

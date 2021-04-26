@@ -16,7 +16,6 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
-
 const defaultCascadeOption = {
   size: 'medium',
   showAllLevels: true,

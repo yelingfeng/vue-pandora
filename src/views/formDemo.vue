@@ -7,7 +7,6 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Ref } from 'vue-property-decorator'
-import { Form } from './../../types/VForm'
 import { Message } from 'element-ui'
 import axios from 'axios'
 @Component({})
@@ -16,7 +15,7 @@ export default class FormDemo extends Vue {
 
   dialogFormVisible = false
 
-  @Ref() readonly addFrom!: Form
+  @Ref() readonly addFrom!: any
   private addformObj: any = {
     inline: true,
     labelPosition: 'left',

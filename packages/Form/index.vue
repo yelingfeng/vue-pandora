@@ -13,7 +13,7 @@ import uploadComp from './upload.vue'
 import cascadeComp from './cascade.vue'
 import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
 import { isFunction, isArray, merge } from '@/utils/common'
-import { ElForm, ValidateCallback } from 'element-ui/types/form'
+// import { ElForm, ValidateCallback } from 'element-ui/types/form'
 
 @Component({
   components: {
@@ -38,7 +38,7 @@ export default class VForm extends Vue {
   @Prop({ default: true })
   isShow: true
 
-  @Ref() readonly form!: ElForm
+  @Ref() readonly form!: any
 
   private labelPosition = ''
   private labelWidth = ''
@@ -193,7 +193,7 @@ export default class VForm extends Vue {
     })
   }
 
-  validate(cb: ValidateCallback) {
+  validate(cb: any) {
     return this.form.validate(cb)
   }
   resetFields() {

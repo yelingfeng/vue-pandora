@@ -1,11 +1,10 @@
 <script lang="tsx">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction, merge } from '@/utils/common'
+import { Component, Vue, Prop } from 'vue-property-decorator'
+import { merge } from '@/utils/common'
 import textComp from './text.vue'
 import dateComp from './date.vue'
 import selectComp from './select.vue'
 import buttonComp from './button.vue'
-import { Divider } from 'element-ui'
 @Component({
   components: {
     textComp,

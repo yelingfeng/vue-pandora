@@ -1,10 +1,3 @@
-<!--
- * @Description: 
- * @Autor: niumiaomiao
- * @Date: 2020-06-19 11:49:15
- * @LastEditors: niumiaomiao
- * @LastEditTime: 2020-06-20 10:06:02
--->
 <template>
   <div>
     <VForm :option="addformObj" ref="addFrom"></VForm>
@@ -12,13 +5,12 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Ref, Watch } from 'vue-property-decorator'
-import { Form } from './../../types/VForm'
 import axios from 'axios'
 @Component({})
 export default class FormDemo extends Vue {
   private vaildStatus = true
 
-  @Ref() readonly addFrom!: Form
+  @Ref() readonly addFrom!: any
   @Watch('addformObj', { deep: true })
   private dataChanged(newVal: any) {
     // console.log('aa', newVal)

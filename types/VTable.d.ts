@@ -111,3 +111,17 @@ export type PandoraTableOption = Omit<ITableOption, 'data' | 'column'> & {
   data: [] | unknown
   column: IPandoraTableColumn[]
 }
+
+// 页签table类型
+export interface ITabTables {
+  getTableColumns: object
+  getTableSortOption: object
+  getTableHttp: object
+}
+
+// 基础Table配置
+export interface IBaseTables {
+  columns: Record<string, any>[]
+  data: Record<string, any>[]
+  config?: ITableOption
+}

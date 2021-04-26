@@ -4,17 +4,9 @@ const PAGE_HEIGHT = 50
 
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
+import { SortModeType, SelectionPosType, OperateType } from '@/utils/enum'
 import pagination from './pagination.vue'
-// 排序模式
-const enum sortModeType {
-  SINGLE = 'single',
-  MULTI = 'multi'
-}
-const enum OperateType {
-  BUTTON = 'button',
-  ICON = 'icon',
-  RADIO = 'radio'
-}
+
 const defaultOption: Table.IPageOpt = {
   height: PAGE_HEIGHT,
   currentPage: 1,
@@ -22,12 +14,6 @@ const defaultOption: Table.IPageOpt = {
   pageCount: 7,
   pageSizes: [10, 20, 30, 40, 50],
   pageSize: 10
-}
-
-// 复选框位置类型
-const enum selectionPosType {
-  TOP = 'top',
-  END = 'end'
 }
 
 const ASC = 'ascending'
@@ -315,7 +301,7 @@ export default class VTable extends Vue {
 
   // 是否是单排模式
   private _isSingleModel(sortMode: string) {
-    return sortModeType.SINGLE === sortMode
+    return SortModeType.SINGLE === sortMode
   }
 
   // 获取默认列的order 如果有默认值 取默认 没有默认返回降序
@@ -686,7 +672,7 @@ export default class VTable extends Vue {
             selectable={this.option.selectable || undefined}
           ></el-table-column>
         )
-        if (selectionPosType.TOP === this.option.selectionPos) {
+        if (SelectionPosType.TOP === this.option.selectionPos) {
           columnList.unshift(selectionElement)
         } else {
           columnList.push(selectionElement)
