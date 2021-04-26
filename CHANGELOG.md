@@ -1,3 +1,9 @@
+## [1.1.8](https://github.com/yelingfeng/vue-pandora/compare/v1.1.7...v1.1.8) (2021-04-26)
+
+### Features
+
+- **add:** add rollup build ([8c42cff](https://github.com/yelingfeng/vue-pandora/commit/8c42cff1ecda92618dc2a73d1642d505665f7680))
+
 ## [1.1.7](https://github.com/yelingfeng/vue-pandora/compare/v1.1.6...v1.1.7) (2021-04-19)
 
 ### Features
