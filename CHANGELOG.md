@@ -1,3 +1,9 @@
+## [1.1.10](https://github.com/yelingfeng/vue-pandora/compare/v1.1.9...v1.1.10) (2021-05-08)
+
+### Features
+
+- **update:** fix table image icon error ([103a3d2](https://github.com/yelingfeng/vue-pandora/commit/103a3d2db05a186fb782280cd9a7a1af48a55de0))
+
 ## [1.1.9](https://github.com/yelingfeng/vue-pandora/compare/v1.1.8...v1.1.9) (2021-04-28)
 
 ## [1.1.8](https://github.com/yelingfeng/vue-pandora/compare/v1.1.7...v1.1.8) (2021-04-26)
