@@ -441,7 +441,8 @@ export default class VTable extends Vue {
     imageProp = {
       props: {
         src: url,
-        fit: item.fit || 'fit'
+        fit: item.fit || 'fit',
+        lazy: true
       }
     }
     const style = item.style || 'width: 16px, height: 16px'
@@ -468,13 +469,20 @@ export default class VTable extends Vue {
     const vnodes = item.combo.map((it: any, index: number) => {
       let node = null
       if (it instanceof Object) {
-        if (it.formatter && isFunction(it.formatter) && it.name === 'el-image') {
-          it.props.src = it.formatter(props.row, props.$index)
-        }
-        node = this.$createElement(it.name, {
+        let propsCfg = Object.create(null)
+        propsCfg = {
           props: it.props,
           style: it.style
-        })
+        }
+        if (it.formatter && isFunction(it.formatter) && it.name === 'el-image') {
+          propsCfg.props.src = it.formatter(props.row, props.$index)
+          propsCfg.scopedSlots = {
+            error: (props: any) => {
+              return <div class="image-slot"></div>
+            }
+          }
+        }
+        node = this.$createElement(it.name, propsCfg)
       } else if (typeof it === 'string') {
         node = this.$createElement('span', {}, [props.row[it]])
       }

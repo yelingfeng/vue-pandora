@@ -205,7 +205,7 @@ export default class Default extends Vue {
               //   'data:image/png;base64,R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='
             },
             formatter: function(row: any, index: any) {
-              return `data:image/png;base64,${row.appBase}`
+              return `data:image/png;base64,${row.appBase}asdsa`
             }
           },
           'taskName'
