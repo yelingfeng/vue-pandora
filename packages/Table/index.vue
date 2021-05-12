@@ -498,9 +498,7 @@ export default class VTable extends Vue {
     let tooltipProps = Object.create(null)
     tooltipProps = {
       props: {
-        placement: 'bottom',
-        trigger: 'click',
-        'visible-arrow': false,
+        placement: 'top',
         content: <div domPropsInnerHTML={content} />
       }
     }
@@ -625,7 +623,7 @@ export default class VTable extends Vue {
           fixed: it.fixed,
           align: it.align,
           'min-width': it.minWidth,
-          // 'show-overflow-tooltip': true,
+          'show-overflow-tooltip': true,
           formatter: it.formatter
         }
       )
