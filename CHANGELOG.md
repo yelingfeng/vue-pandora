@@ -1,3 +1,9 @@
+## [1.1.11](https://github.com/yelingfeng/vue-pandora/compare/v1.1.10...v1.1.11) (2021-05-12)
+
+### Features
+
+- **add:** table custom iconList col ([adc8a84](https://github.com/yelingfeng/vue-pandora/commit/adc8a8486cee17fa2950ebb314a03471c6a1ae8c))
+
 ## [1.1.10](https://github.com/yelingfeng/vue-pandora/compare/v1.1.9...v1.1.10) (2021-05-08)
 
 ### Features
