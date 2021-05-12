@@ -1,3 +1,9 @@
+## [1.1.12](https://github.com/yelingfeng/vue-pandora/compare/v1.1.11...v1.1.12) (2021-05-12)
+
+### Features
+
+- **update:** fix table tooltip ([124e76b](https://github.com/yelingfeng/vue-pandora/commit/124e76be5b435bcba62641eecadcdb7312815f4d))
+
 ## [1.1.11](https://github.com/yelingfeng/vue-pandora/compare/v1.1.10...v1.1.11) (2021-05-12)
 
 ### Features
