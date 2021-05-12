@@ -16,6 +16,9 @@ import { Component, Vue, Ref } from 'vue-property-decorator'
 import VForm from '../../packages/Form/index.vue'
 import VTable from '../../packages/Table/index.vue'
 import axios from 'axios'
+
+const iconStyle = { display: 'inline-block', fontSize: '18px', color: '#1890ff' }
+
 @Component({})
 export default class Default extends Vue {
   private vaildStatus = true
@@ -205,7 +208,7 @@ export default class Default extends Vue {
               //   'data:image/png;base64,R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='
             },
             formatter: function(row: any, index: any) {
-              return `data:image/png;base64,${row.appBase}asdsa`
+              return `data:image/png;base64,${row.appBase}`
             }
           },
           'taskName'
@@ -228,15 +231,40 @@ export default class Default extends Vue {
             align: 'left',
             width: 50,
             image: true,
-            style: 'width:16px; height: 16px',
-            formatter: function(row: any, index: any) {
-              return `data:image/png;base64,${row.appBase}`
-            }
+            style: 'width:16px; height: 16px'
+            // formatter: function(row: any, index: any) {
+            //   return `data:image/png;base64,${row.appBase}`
+            // }
           }
         ]
       },
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
       { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
+      {
+        name: '权限测试',
+        value: 'permissionList',
+        align: 'center',
+        popFormatter(row) {
+          console.log(row)
+          const result = row.permissionList.map(item => {
+            const nums = item.nums
+            const time = item.lastTime
+            const name = item.permissionName
+            let dom = `<span style='font-size:16px'>${name}</span>`
+            dom += '</br>'
+            dom += `访问次数:${nums};最近访问:${time}`
+            return `<div>${dom}</div>`
+          })
+          return result
+        },
+        iconList: [
+          { class: 'el-icon-message', key: 'Sms', style: iconStyle },
+          { class: 'el-icon-user', key: 'Contacts', style: iconStyle },
+          { class: 'el-icon-microphone', key: 'MediaRecorder', style: iconStyle },
+          { class: 'el-icon-camera', key: 'AutoCamera', style: iconStyle },
+          { class: 'el-icon-location-information', key: 'GetLocationInfo', style: iconStyle }
+        ]
+      },
       {
         name: '任务内容',
         value: 'taskContent',

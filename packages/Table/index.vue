@@ -492,6 +492,45 @@ export default class VTable extends Vue {
   }
 
   /**
+   * content 显示内容
+   */
+  _getTooltipProps(content) {
+    let tooltipProps = Object.create(null)
+    tooltipProps = {
+      props: {
+        placement: 'bottom',
+        trigger: 'click',
+        'visible-arrow': false,
+        content: <div domPropsInnerHTML={content} />
+      }
+    }
+    return tooltipProps
+  }
+
+  /**
+   * 字体图标列集合vnode渲染
+   */
+  _iconListVNodeRender(props: any, item: any) {
+    const vnodes = item.iconList.map((it: any, index: number) => {
+      let node = null
+      if (it instanceof Object) {
+        let propsCfg = Object.create(null)
+        propsCfg = {
+          class: it.class,
+          key: it.key,
+          style: it.style
+        }
+        node = this.$createElement('i', propsCfg)
+      }
+      return node
+    })
+    const iconListNode = <div class="icon-list">{vnodes}</div>
+    const tProps = this._getTooltipProps(item.popFormatter(props.row))
+    const tooltip = <el-tooltip {...tProps}>{iconListNode}</el-tooltip>
+    return tooltip
+  }
+
+  /**
    * 操作列vnode渲染
    */
   _operationsVNodeRender(props: any, item: any) {
@@ -586,7 +625,7 @@ export default class VTable extends Vue {
           fixed: it.fixed,
           align: it.align,
           'min-width': it.minWidth,
-          'show-overflow-tooltip': true,
+          // 'show-overflow-tooltip': true,
           formatter: it.formatter
         }
       )
@@ -608,6 +647,14 @@ export default class VTable extends Vue {
       columnProps.scopedSlots = {
         default: (props: any) => {
           return this._comboVNodeRender(props, item)
+        }
+      }
+    }
+    // 字体图标组合列
+    else if (item.iconList) {
+      columnProps.scopedSlots = {
+        default: (props: any) => {
+          return this._iconListVNodeRender(props, item)
         }
       }
     }
