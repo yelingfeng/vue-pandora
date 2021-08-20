@@ -494,7 +494,8 @@ export default class VTable extends Vue {
   /**
    * content 显示内容
    */
-  _getTooltipProps(content) {
+  _getTooltipProps(content = '') {
+    // console.log(content)
     let tooltipProps = Object.create(null)
     tooltipProps = {
       props: {
@@ -572,17 +573,17 @@ export default class VTable extends Vue {
         )
       } else if (OperateType.BUTTON === type) {
         operateDom = (
-          <el-tooltip {...tooltipProp}>
-            <el-button
-              type="text"
-              size="mini"
-              key={index}
-              disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
-              on-click={() => operate.handlerClick(props.row, props.$index)}
-            >
-              {label}
-            </el-button>
-          </el-tooltip>
+          <div class="vpandora-table-operate-button">
+            <el-tooltip {...tooltipProp}>
+              <el-button
+                key={index}
+                disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+                on-click={() => operate.handlerClick(props.row, props.$index)}
+              >
+                {label}
+              </el-button>
+            </el-tooltip>
+          </div>
         )
       } else if (OperateType.RADIO == type) {
         operateDom = (

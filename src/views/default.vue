@@ -245,7 +245,7 @@ export default class Default extends Vue {
         value: 'permissionList',
         align: 'center',
         popFormatter(row) {
-          console.log(row)
+          // console.log(row)
           const result = row.permissionList.map(item => {
             const nums = item.nums
             const time = item.lastTime
@@ -255,7 +255,7 @@ export default class Default extends Vue {
             dom += `访问次数:${nums};最近访问:${time}`
             return `<div>${dom}</div>`
           })
-          return result
+          return result.join('<br/>')
         },
         iconList: [
           { class: 'el-icon-message', key: 'Sms', style: iconStyle },
@@ -275,58 +275,60 @@ export default class Default extends Vue {
         }
       },
       { name: '任务状态', value: 'taskStatusName', align: 'center' },
-      { name: '任务结果', value: 'jobResult', align: 'center' }
-      // {
-      //   name: '操作',
-      //   value: '',
-      //   align: 'center',
-      //   fixed: 'right',
-      //   width: 150,
-      //   operations: [
-      //     {
-      //       label: '详情',
-      //       type: 'radio',
-      //       // title: '添加一个title属性',
-      //       tooltip: function(row: any) {
-      //         return row.taskContent + '流量链接趋势'
-      //       }
-      //     }
-      //     // {
-      //     //   label: '详情',
-      //     //   type: 'icon',
-      //     //   // title: '添加一个title属性',
-      //     //   tooltip: function(row: any) {
-      //     //     return row.taskContent + '流量链接趋势'
-      //     //   },
-      //     //   tooltipDelay: 500,
-      //     //   // tooltip: '1流量链接趋势',
-      //     //   iconName: 'el-icon-eleme    ',
-      //     //   handlerClick: (row: any) => {
-      //     //     console.log(row)
-      //     //   }
-      //     // },
-      //     // {
-      //     //   label: '编辑',
-      //     //   handlerClick: (row: any) => {
-      //     //     console.log(row)
-      //     //   }
-      //     // },
-      //     // {
-      //     //   label: '删除',
-      //     //   disCallBack(row: any) {},
-      //     //   handlerClick: (row: any) => {}
-      //     // },
-      //     // {
-      //     //   label: '查看',
-      //     //   type: 'icon',
-      //     //   iconName: 'el-icon-edit',
-      //     //   disCallBack(row: any) {},
-      //     //   handlerClick: (row: any) => {
-      //     //     console.log(row)
-      //     //   }
-      //     // }
-      //   ]
-      // }
+      { name: '任务结果', value: 'jobResult', align: 'center' },
+      {
+        name: '操作',
+        value: '',
+        align: 'center',
+        fixed: 'right',
+        width: 200,
+        operations: [
+          {
+            label: '详情',
+            type: 'radio',
+            // title: '添加一个title属性',
+            tooltip: function(row: any) {
+              return row.taskContent + '流量链接趋势'
+            }
+          },
+          {
+            label: '详情',
+            type: 'icon',
+            // title: '添加一个title属性',
+            tooltip: function(row: any) {
+              return row.taskContent + '流量链接趋势'
+            },
+            tooltipDelay: 500,
+            // tooltip: '1流量链接趋势',
+            iconName: 'el-icon-eleme    ',
+            handlerClick: (row: any) => {
+              console.log(row)
+            }
+          },
+          {
+            label: '编辑',
+            type: 'button',
+            handlerClick: (row: any) => {
+              console.log(row)
+            }
+          },
+          {
+            label: '删除',
+            type: 'button',
+            disCallBack(row: any) {},
+            handlerClick: (row: any) => {}
+          },
+          {
+            label: '查看',
+            type: 'icon',
+            iconName: 'el-icon-edit',
+            disCallBack(row: any) {},
+            handlerClick: (row: any) => {
+              console.log(row)
+            }
+          }
+        ]
+      }
     ],
     data: [],
     // 是否分页
