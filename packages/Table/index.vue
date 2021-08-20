@@ -573,17 +573,16 @@ export default class VTable extends Vue {
         )
       } else if (OperateType.BUTTON === type) {
         operateDom = (
-          <div class="vpandora-table-operate-button">
-            <el-tooltip {...tooltipProp}>
-              <el-button
-                key={index}
-                disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
-                on-click={() => operate.handlerClick(props.row, props.$index)}
-              >
-                {label}
-              </el-button>
-            </el-tooltip>
-          </div>
+          <el-tooltip {...tooltipProp}>
+            <el-button
+              key={index}
+              class="vpandora-table-operateButton"
+              disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+              on-click={() => operate.handlerClick(props.row, props.$index)}
+            >
+              {label}
+            </el-button>
+          </el-tooltip>
         )
       } else if (OperateType.RADIO == type) {
         operateDom = (
