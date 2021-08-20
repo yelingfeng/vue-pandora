@@ -1,3 +1,9 @@
+## [1.1.13](https://github.com/yelingfeng/vue-pandora/compare/v1.1.12...v1.1.13) (2021-08-20)
+
+### Features
+
+- **table:** update table operate button column ([1af1138](https://github.com/yelingfeng/vue-pandora/commit/1af1138c65cf9b18c5d33b7965c1013ec35dbc13))
+
 ## [1.1.12](https://github.com/yelingfeng/vue-pandora/compare/v1.1.11...v1.1.12) (2021-05-12)
 
 ### Features

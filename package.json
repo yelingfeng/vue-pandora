@@ -1,6 +1,6 @@
 {
   "name": "vue-pandora",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "A component library of custom secondary encapsulation about element-ui",
   "main": "./lib/vuepandora.umd.js",
   "module": "./lib/vuepandora.common.js",
