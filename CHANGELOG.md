@@ -1,3 +1,9 @@
+## [1.1.14](https://github.com/yelingfeng/vue-pandora/compare/v1.1.13...v1.1.14) (2021-08-20)
+
+### Features
+
+- **table:** fix last code ([b727fc0](https://github.com/yelingfeng/vue-pandora/commit/b727fc0034e5a14b1137b6892ca99254d6273fbb))
+
 ## [1.1.13](https://github.com/yelingfeng/vue-pandora/compare/v1.1.12...v1.1.13) (2021-08-20)
 
 ### Features
