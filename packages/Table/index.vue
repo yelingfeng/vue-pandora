@@ -4,7 +4,7 @@ const PAGE_HEIGHT = 50
 
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
-import { SortModeType, SelectionPosType, OperateType } from '@/utils/enum'
+import { SortModeType, OperateType } from '@/utils/enum'
 import pagination from './pagination.vue'
 
 const defaultOption: Table.IPageOpt = {
@@ -609,15 +609,22 @@ export default class VTable extends Vue {
     return operations
   }
 
+  indexChange(idx: number) {
+    const { currentPage, pageSize } = this.option.pageOpt
+    const num = currentPage > 1 ? idx + 1 + (currentPage - 1) * pageSize : idx + 1
+    return num
+  }
+
   // 渲染一列处理
   renderColumnProp(item: any) {
     let columnProps = Object.create(null)
     const tableOp = this.tableColumn
     const _getDefaultOp = (it: any) => {
-      return Object.assign(
+      const obj = Object.assign(
         {},
         {
           prop: it.value,
+          type: it.type,
           label: it.name,
           width: it.width,
           fixed: it.fixed,
@@ -627,6 +634,10 @@ export default class VTable extends Vue {
           formatter: it.formatter
         }
       )
+      if (it.type === 'index') {
+        obj['index'] = this.indexChange
+      }
+      return obj
     }
     columnProps = {
       props: _getDefaultOp(item)
@@ -716,22 +727,22 @@ export default class VTable extends Vue {
     const columnList = []
     columnList.push(elColumn)
 
-    if (this.option.selectionMode !== 'single') {
-      if (this.option.selection) {
-        const selectionElement = (
-          <el-table-column
-            type="selection"
-            width="55"
-            selectable={this.option.selectable || undefined}
-          ></el-table-column>
-        )
-        if (SelectionPosType.TOP === this.option.selectionPos) {
-          columnList.unshift(selectionElement)
-        } else {
-          columnList.push(selectionElement)
-        }
-      }
-    }
+    // if (this.option.selectionMode !== 'single') {
+    //   if (this.option.selection) {
+    //     const selectionElement = (
+    //       <el-table-column
+    //         type="selection"
+    //         width="55"
+    //         selectable={this.option.selectable || undefined}
+    //       ></el-table-column>
+    //     )
+    //     if (SelectionPosType.TOP === this.option.selectionPos) {
+    //       columnList.unshift(selectionElement)
+    //     } else {
+    //       columnList.push(selectionElement)
+    //     }
+    //   }
+    // }
 
     // table属性
     const vprops: any = {

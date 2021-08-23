@@ -92,6 +92,7 @@ export interface IPandoraTableColumn {
   value: string
   width?: number
   minWidth?: number
+  type?: 'selection' | 'index' | 'expand'
   sortable?: boolean | string
   align?: string
   formatter?: (row: any) => void

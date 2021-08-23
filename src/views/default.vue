@@ -7,6 +7,8 @@
       :option="tableOpt"
       :height="tableHeight"
       @handleSelectionChange="selectionChange"
+      @handleSizePageChange="handleSizeChange"
+      @handleCurrentPageChange="handleCurrentChange"
     ></VTable>
   </div>
 </template>
@@ -162,10 +164,10 @@ export default class Default extends Vue {
   private tableOpt: any = {
     stripe: true,
     isHeader: true,
-    selection: true,
-    // 复选框位置 前还是后 top ，end
-    selectionPos: 'top',
-    selectionMode: 'multi',
+    // selection: true,
+    // // 复选框位置 前还是后 top ，end
+    // selectionPos: 'top',
+    // selectionMode: 'multi',
     // selectable: function(row: any, index: any) {
     //   console.log(row, index)
     //   return index !== 4
@@ -188,8 +190,15 @@ export default class Default extends Vue {
     },
     column: [
       {
+        name: '',
+        type: 'selection',
+        fixed: 'left',
+        width: 50,
+        align: 'center'
+      },
+      {
         name: '序号',
-        value: 'index',
+        type: 'index',
         fixed: 'left',
         width: 50,
         align: 'center'
@@ -240,31 +249,31 @@ export default class Default extends Vue {
       },
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
       { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
-      {
-        name: '权限测试',
-        value: 'permissionList',
-        align: 'center',
-        popFormatter(row) {
-          // console.log(row)
-          const result = row.permissionList.map(item => {
-            const nums = item.nums
-            const time = item.lastTime
-            const name = item.permissionName
-            let dom = `<span style='font-size:16px'>${name}</span>`
-            dom += '</br>'
-            dom += `访问次数:${nums};最近访问:${time}`
-            return `<div>${dom}</div>`
-          })
-          return result.join('<br/>')
-        },
-        iconList: [
-          { class: 'el-icon-message', key: 'Sms', style: iconStyle },
-          { class: 'el-icon-user', key: 'Contacts', style: iconStyle },
-          { class: 'el-icon-microphone', key: 'MediaRecorder', style: iconStyle },
-          { class: 'el-icon-camera', key: 'AutoCamera', style: iconStyle },
-          { class: 'el-icon-location-information', key: 'GetLocationInfo', style: iconStyle }
-        ]
-      },
+      // {
+      //   name: '权限测试',
+      //   value: 'permissionList',
+      //   align: 'center',
+      //   popFormatter(row) {
+      //     // console.log(row)
+      //     const result = row.permissionList.map(item => {
+      //       const nums = item.nums
+      //       const time = item.lastTime
+      //       const name = item.permissionName
+      //       let dom = `<span style='font-size:16px'>${name}</span>`
+      //       dom += '</br>'
+      //       dom += `访问次数:${nums};最近访问:${time}`
+      //       return `<div>${dom}</div>`
+      //     })
+      //     return result.join('<br/>')
+      //   },
+      //   iconList: [
+      //     { class: 'el-icon-message', key: 'Sms', style: iconStyle },
+      //     { class: 'el-icon-user', key: 'Contacts', style: iconStyle },
+      //     { class: 'el-icon-microphone', key: 'MediaRecorder', style: iconStyle },
+      //     { class: 'el-icon-camera', key: 'AutoCamera', style: iconStyle },
+      //     { class: 'el-icon-location-information', key: 'GetLocationInfo', style: iconStyle }
+      //   ]
+      // },
       {
         name: '任务内容',
         value: 'taskContent',
@@ -348,6 +357,16 @@ export default class Default extends Vue {
     this.table.initSort()
   }
 
+  handleSizeChange(val) {
+    console.log(val)
+    this.getTableList()
+  }
+
+  handleCurrentChange(val) {
+    console.log(val)
+    this.getTableList()
+  }
+
   querySearchAction() {
     const formValue = this.form.getValue()
     console.log(formValue)
@@ -390,8 +409,10 @@ export default class Default extends Vue {
 
   getTableList() {
     axios.get('/api/tablelist').then(resp => {
-      const list = resp.data.data.list as Array<object>
+      const { data, totals } = resp.data
+      const list = data.list as Array<object>
       this.tableOpt.data = list
+      this.tableOpt.pageOpt.total = totals
     })
   }
 }

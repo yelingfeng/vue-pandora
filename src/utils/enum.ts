@@ -8,9 +8,3 @@ export const enum OperateType {
   ICON = 'icon',
   RADIO = 'radio'
 }
-
-// 复选框位置类型
-export const enum SelectionPosType {
-  TOP = 'top',
-  END = 'end'
-}

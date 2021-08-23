@@ -1,9 +1,9 @@
 import Mock from 'mockjs'
 Mock.mock('/api/tablelist', 'get', {
   data: {
-    'list|10': [
+    'list|20': [
       {
-        index: '@increment(1)',
+        // index: '@increment(1)',
         taskName: '@ctitle(4)',
         createTime: '@datetime()',
         updateTime: '@datetime()',
@@ -36,5 +36,6 @@ Mock.mock('/api/tablelist', 'get', {
     ]
   },
   message: '查询成功！',
-  status: '200'
+  status: '200',
+  totals: 10000
 })
