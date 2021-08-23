@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/yelingfeng/vue-pandora/compare/v1.2.0...v1.2.1) (2021-08-23)
+
+### Features
+
+- **table:** new column props type ([70d666a](https://github.com/yelingfeng/vue-pandora/commit/70d666a0515b33c968d0be53276bdf15c7d46c67))
+
 # [1.2.0](https://github.com/yelingfeng/vue-pandora/compare/v1.1.14...v1.2.0) (2021-08-23)
 
 ## [1.1.14](https://github.com/yelingfeng/vue-pandora/compare/v1.1.13...v1.1.14) (2021-08-20)
