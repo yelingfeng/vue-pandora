@@ -4,6 +4,10 @@
 
 - **table:** add table custom-column links ([f48eedb](https://github.com/yelingfeng/vue-pandora/commit/f48eedb2928d6cf626eee1079226e67493a553a9))
 
+  1. 修复表单 input 数字类型不能输入 0 的 bug
+  2. table 新增 links 字段 用于表格多内容链接处理
+  3. 去掉 table 默认 tooltip 列新增 showTooltip 属性自行添加 tooltip
+
 ## [1.2.1](https://github.com/yelingfeng/vue-pandora/compare/v1.2.0...v1.2.1) (2021-08-23)
 
 ### Features
