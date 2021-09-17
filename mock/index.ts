@@ -5,6 +5,10 @@ Mock.mock('/api/tablelist', 'get', {
       {
         // index: '@increment(1)',
         taskName: '@ctitle(4)',
+        taskName2: [
+          { tid: 'task001', tname: '任务AAAAAA' },
+          { tid: 'task002', tname: '任务BBBBBBB' }
+        ],
         createTime: '@datetime()',
         updateTime: '@datetime()',
         taskStatusName: '@order("1","2","3")',

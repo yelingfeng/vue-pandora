@@ -530,6 +530,41 @@ export default class VTable extends Vue {
   }
 
   /**
+   * 多数据 link节点处理
+   */
+  _LinksVNodeRender(props: any, item: any) {
+    // console.log(props, item)
+    const links = props.row[item.value]
+    const result = []
+    const attrProps = Object.assign(
+      {
+        type: 'primary'
+      },
+      item.links.props
+    )
+    // 数据映射
+    const dataRef = Object.assign({ value: 'value', name: 'name' }, item.links.dataRef)
+    if (links && links.length) {
+      const separatorNode = <el-divider direction="vertical"></el-divider>
+      links.map((link: any, index: number) => {
+        let propsCfg = Object.create(null)
+        propsCfg = {
+          props: attrProps,
+          on: {
+            click: e => item.links.click(link, e)
+          }
+        }
+        const node = <el-link {...propsCfg}>{link[dataRef.name]}</el-link>
+        result.push(node)
+        if (index !== links.length - 1) {
+          result.push(separatorNode)
+        }
+      })
+    }
+    return result
+  }
+
+  /**
    * 操作列vnode渲染
    */
   _operationsVNodeRender(props: any, item: any) {
@@ -630,7 +665,7 @@ export default class VTable extends Vue {
           fixed: it.fixed,
           align: it.align,
           'min-width': it.minWidth,
-          'show-overflow-tooltip': true,
+          'show-overflow-tooltip': it.showTooltip || false,
           formatter: it.formatter
         }
       )
@@ -667,6 +702,15 @@ export default class VTable extends Vue {
         }
       }
     }
+    // 操作列模式 支持多数据排列
+    else if (item.links) {
+      columnProps.scopedSlots = {
+        default: (props: any) => {
+          return this._LinksVNodeRender(props, item)
+        }
+      }
+    }
+
     // 操作列
     else if (item.operations) {
       columnProps.scopedSlots = {

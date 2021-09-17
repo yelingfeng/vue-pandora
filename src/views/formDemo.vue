@@ -130,9 +130,10 @@ export default class FormDemo extends Vue {
         comOpt: {
           id: 'disAddHor',
           width: 180,
-          disabled: true,
+          disabled: false,
           show: true,
           maxlength: 2,
+          isNumberInput: true,
           placeholder: '仅支持数字',
           value: ''
         }

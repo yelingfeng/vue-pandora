@@ -204,6 +204,25 @@ export default class Default extends Vue {
         align: 'center'
       },
       {
+        name: '任务名称2',
+        value: 'taskName2',
+        fixed: 'left',
+        width: 200,
+        align: 'center',
+        links: {
+          dataRef: {
+            value: 'tid',
+            name: 'tname'
+          },
+          props: {
+            type: 'danger'
+          },
+          click: (row: any, e: any) => {
+            console.log(row, e)
+          }
+        }
+      },
+      {
         name: '任务名称',
         value: 'taskName',
         fixed: 'left',

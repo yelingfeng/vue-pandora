@@ -11,7 +11,7 @@
     :rows="option.rows"
     @blur="blurHandler"
     @focus="focusHanlder"
-    @input="isNumberInput ? (value = value.replace(/^(0+)|[^\d]+/g, '')) : inputHandler"
+    @input="isNumberInput ? (value = value.replace(/[^\d]+/g, '')) : inputHandler"
   ></el-input>
 </template>
 <script lang="ts">
