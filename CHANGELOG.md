@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/yelingfeng/vue-pandora/compare/v1.2.1...v1.2.2) (2021-09-17)
+
+### Features
+
+- **table:** add table custom-column links ([f48eedb](https://github.com/yelingfeng/vue-pandora/commit/f48eedb2928d6cf626eee1079226e67493a553a9))
+
 ## [1.2.1](https://github.com/yelingfeng/vue-pandora/compare/v1.2.0...v1.2.1) (2021-08-23)
 
 ### Features
