@@ -6,6 +6,10 @@
 
 A component library of custom secondary encapsulation about element-ui
 
+## WARNING
+
+请更新最新v1.2版本 ,v1.1之前npm删除了
+
 ## Install
 
 ```node
