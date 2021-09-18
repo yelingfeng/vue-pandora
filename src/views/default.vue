@@ -209,6 +209,7 @@ export default class Default extends Vue {
         fixed: 'left',
         width: 200,
         align: 'center',
+        showTooltip: false,
         links: {
           dataRef: {
             value: 'tid',

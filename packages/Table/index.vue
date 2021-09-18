@@ -665,7 +665,7 @@ export default class VTable extends Vue {
           fixed: it.fixed,
           align: it.align,
           'min-width': it.minWidth,
-          'show-overflow-tooltip': it.showTooltip || false,
+          'show-overflow-tooltip': it.showTooltip ?? true,
           formatter: it.formatter
         }
       )
@@ -771,22 +771,22 @@ export default class VTable extends Vue {
     const columnList = []
     columnList.push(elColumn)
 
-    // if (this.option.selectionMode !== 'single') {
-    //   if (this.option.selection) {
-    //     const selectionElement = (
-    //       <el-table-column
-    //         type="selection"
-    //         width="55"
-    //         selectable={this.option.selectable || undefined}
-    //       ></el-table-column>
-    //     )
-    //     if (SelectionPosType.TOP === this.option.selectionPos) {
-    //       columnList.unshift(selectionElement)
-    //     } else {
-    //       columnList.push(selectionElement)
-    //     }
-    //   }
-    // }
+    if (this.option.selectionMode !== 'single') {
+      if (this.option.selection) {
+        const selectionElement = (
+          <el-table-column
+            type="selection"
+            width="55"
+            selectable={this.option.selectable || undefined}
+          ></el-table-column>
+        )
+        if ('top' === this.option.selectionPos) {
+          columnList.unshift(selectionElement)
+        } else {
+          columnList.push(selectionElement)
+        }
+      }
+    }
 
     // table属性
     const vprops: any = {
