@@ -677,10 +677,11 @@ export default class VTable extends Vue {
     columnProps = {
       props: _getDefaultOp(item)
     }
-
+    let defaultSlot = {}
+    let headerSlot = {}
     // 图片列
     if (item.image) {
-      columnProps.scopedSlots = {
+      defaultSlot = {
         default: (props: any) => {
           return this._imageVNodeRender(props, item)
         }
@@ -688,7 +689,7 @@ export default class VTable extends Vue {
     }
     // 组合
     else if (item.combo && item.combo.length) {
-      columnProps.scopedSlots = {
+      defaultSlot = {
         default: (props: any) => {
           return this._comboVNodeRender(props, item)
         }
@@ -696,7 +697,7 @@ export default class VTable extends Vue {
     }
     // 字体图标组合列
     else if (item.iconList) {
-      columnProps.scopedSlots = {
+      defaultSlot = {
         default: (props: any) => {
           return this._iconListVNodeRender(props, item)
         }
@@ -704,7 +705,7 @@ export default class VTable extends Vue {
     }
     // 操作列模式 支持多数据排列
     else if (item.links) {
-      columnProps.scopedSlots = {
+      defaultSlot = {
         default: (props: any) => {
           return this._LinksVNodeRender(props, item)
         }
@@ -713,7 +714,7 @@ export default class VTable extends Vue {
 
     // 操作列
     else if (item.operations) {
-      columnProps.scopedSlots = {
+      defaultSlot = {
         default: (props: any) => {
           return this._operationsVNodeRender(props, item)
         }
@@ -721,7 +722,7 @@ export default class VTable extends Vue {
     }
 
     if (item.formatter && isFunction(item.formatter)) {
-      columnProps.scopedSlots = {
+      defaultSlot = {
         default: (props: any) => {
           return <div domPropsInnerHTML={item.formatter(props.row, props.$index)} />
         }
@@ -729,7 +730,7 @@ export default class VTable extends Vue {
     }
 
     if (item.sortable) {
-      columnProps.scopedSlots = {
+      headerSlot = {
         header: (props: any) => {
           const column = props.column
           const customHeader = (
@@ -751,6 +752,11 @@ export default class VTable extends Vue {
         }
       }
     }
+    columnProps.scopedSlots = {
+      ...defaultSlot,
+      ...headerSlot
+    }
+
     return columnProps
   }
 
