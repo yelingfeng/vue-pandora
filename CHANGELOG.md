@@ -1,3 +1,9 @@
+## [1.2.4](https://github.com/yelingfeng/vue-pandora/compare/v1.2.3...v1.2.4) (2021-09-18)
+
+### Bug Fixes
+
+- **table:** fix table column formatter bug ([9e3781c](https://github.com/yelingfeng/vue-pandora/commit/9e3781cc47e0f9bb49f63de762b76ee03c10f853))
+
 ## [1.2.3](https://github.com/yelingfeng/vue-pandora/compare/v1.1.5...v1.2.3) (2021-09-18)
 
 ### Bug Fixes
