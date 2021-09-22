@@ -119,6 +119,10 @@ declare namespace Form {
     rangeSeparator?: string
     startplaceholder?: string
     endplaceholder?: string
+    // element valueFormat
+    valueFormat?: string
+    // range getValue的分隔符属性
+    valueSeparator?: string
   }
   // 级联配置类型
   export interface CascadeOptionType {

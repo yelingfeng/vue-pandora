@@ -5,7 +5,7 @@
       :clearable="clearable"
       :disabled="option.disabled"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'datetime'"
       v-model="curValue"
       align="align"
@@ -21,7 +21,7 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'daterange'"
       v-model="curValue"
       type="daterange"
@@ -40,7 +40,7 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'datetimerange'"
       v-model="curValue"
       type="datetimerange"
@@ -59,7 +59,7 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'datetimeMinute'"
       v-model="curValue"
       type="datetimeMinute"
@@ -75,7 +75,7 @@
       :disabled="option.disabled"
       :clearable="clearable"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'date'"
       v-model="curValue"
       type="date"
@@ -91,7 +91,7 @@
       :clearable="clearable"
       :disabled="option.disabled"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'year'"
       v-model="curValue"
       align="align"
@@ -107,7 +107,7 @@
       :clearable="clearable"
       :disabled="option.disabled"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'month'"
       v-model="curValue"
       align="align"
@@ -123,7 +123,7 @@
       :clearable="clearable"
       :disabled="option.disabled"
       :editable="false"
-      :value-format="formatDate"
+      :value-format="valueFormat"
       v-if="type == 'week'"
       v-model="curValue"
       align="align"
@@ -163,6 +163,8 @@ export default class VDate extends Vue {
   private formatDate = ''
   private align = ''
   private placeholder = '请选择日期'
+  private valueFormat = ''
+  private valueSeparator = ''
 
   get widthStyle() {
     return {
@@ -187,6 +189,8 @@ export default class VDate extends Vue {
     this.dateOption = this.option.dateOption || {}
     this.clearable = this.dateOption.clearable || false
     this.placeholder = this.option.placeholder || '请选择日期'
+    this.valueFormat = this.dateOption?.valueFormat || ''
+    this.valueSeparator = this.dateOption?.valueSeparator ?? ','
     if (this.dateOption.format) {
       this.formatDate = this.dateOption.format
     } else {
@@ -222,6 +226,15 @@ export default class VDate extends Vue {
       this.option.input(val)
     }
   }
+
+  _valueFormat(val) {
+    const format = this.dateformatHandler(true)
+    if (this.valueFormat !== '') {
+      return val
+    } else {
+      dayjs(val).format(format)
+    }
+  }
   /**
    * @name: getValue
    * @param {type}
@@ -229,18 +242,23 @@ export default class VDate extends Vue {
    * @description: 获取日期当前值
    */
   getValue() {
-    const format = this.dateformatHandler(true)
     if (this.curValue === '' || !this.curValue) {
-      return { [this.option.id]: this.curValue || '' }
+      return { [this.option.id]: this._valueFormat(this.curValue) || '' }
     }
+
     if (this.curValue instanceof Array) {
       return {
         [this.option.id]:
-          dayjs(this.curValue[0]).format(format) + ',' + dayjs(this.curValue[1]).format(format)
+          this._valueFormat(this.curValue[0]) +
+          this.valueSeparator +
+          this._valueFormat(this.curValue[1])
       }
     }
-    let value = dayjs(this.curValue).format(format)
-    if (/year|month|week/.test(this.type)) {
+    let value = ''
+    if (this.valueFormat === '') {
+      const format = this.dateformatHandler(true)
+      value = dayjs(this.curValue).format(format)
+    } else {
       value = this.curValue
     }
     return { [this.option.id]: value }

@@ -84,7 +84,7 @@ export default class Default extends Vue {
           disabled: false,
           width: '210',
           pickOptions: {
-            format: 'yyyy-MM-dd HH:mm:ss'
+            valueFormat: 'yyyy-MM-dd HH:mm:ss'
           }
         }
       },

@@ -503,7 +503,9 @@ export default class Demo extends Vue {
           dateOption: {
             startplaceholder: '开始日期',
             endplaceholder: '结束日期',
-            pickOptions: {}
+            pickOptions: {},
+            valueSeparator: '.',
+            valueFormat: 'timestamp'
           }
         }
       },
@@ -522,12 +524,13 @@ export default class Demo extends Vue {
           dateOption: {
             startplaceholder: '开始日期',
             endplaceholder: '结束日期',
-            pickOptions: {}
+            pickOptions: {},
+            valueFormat: 'yyyy-MM-dd'
           }
         }
       },
       {
-        label: '测试年-日期',
+        label: '测试年',
         type: 'date',
         comOpt: {
           id: 'queryTestYear',
@@ -535,13 +538,16 @@ export default class Demo extends Vue {
           type: 'year',
           disabled: false,
           width: '210',
+          dateOption: {
+            valueFormat: 'yyyy'
+          },
           change(v: any) {
             console.log(v)
           }
         }
       },
       {
-        label: '测试月-日期',
+        label: '测试月',
         type: 'date',
         comOpt: {
           id: 'queryTestMonth',
@@ -549,6 +555,10 @@ export default class Demo extends Vue {
           width: '210',
           change(v: any) {
             console.log(v)
+          },
+          dateOption: {
+            format: 'M',
+            valueFormat: 'MM'
           }
         }
       },
