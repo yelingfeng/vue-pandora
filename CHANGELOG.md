@@ -1,3 +1,9 @@
+## [1.2.6](https://github.com/yelingfeng/vue-pandora/compare/v1.2.5...v1.2.6) (2021-09-26)
+
+### Bug Fixes
+
+- **table:** fix table no data error ([a96a8ad](https://github.com/yelingfeng/vue-pandora/commit/a96a8ad888efa62e68ddb3902e667ddd78179359))
+
 ## [1.2.5](https://github.com/yelingfeng/vue-pandora/compare/v1.2.2...v1.2.5) (2021-09-22)
 
 ### Bug Fixes
