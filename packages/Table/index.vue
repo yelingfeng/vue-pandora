@@ -149,7 +149,6 @@ export default class VTable extends Vue {
 
   initDefaultOrder() {
     const userColumnOrder = this._initDefaultOrderColumn()
-    console.log(userColumnOrder)
     this._initDefSortObj()
 
     for (const column in userColumnOrder) {
