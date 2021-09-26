@@ -149,7 +149,7 @@ export default class VTable extends Vue {
 
   initDefaultOrder() {
     const userColumnOrder = this._initDefaultOrderColumn()
-
+    console.log(userColumnOrder)
     this._initDefSortObj()
 
     for (const column in userColumnOrder) {
@@ -354,6 +354,7 @@ export default class VTable extends Vue {
    *  判断配置column中是否有指定的配置项sortable
    **/
   isNeedOrderChange(prop: string) {
+    if (!this._oldActiveSort) return false
     return this._oldActiveSort[prop]
   }
 

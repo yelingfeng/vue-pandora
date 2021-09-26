@@ -12,6 +12,7 @@
               <template slot="title"></template>
               <el-menu-item index="/default">default</el-menu-item>
               <el-menu-item index="/demo">demo</el-menu-item>
+              <el-menu-item index="/tableDemo">tableDemo</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="表单验证">
               <el-menu-item index="/form">form</el-menu-item>
