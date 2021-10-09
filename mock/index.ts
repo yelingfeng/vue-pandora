@@ -9,6 +9,8 @@ Mock.mock('/api/tablelist', 'get', {
           { tid: 'task001', tname: '任务AAAAAA' },
           { tid: 'task002', tname: '任务BBBBBBB' }
         ],
+        vd_count: '@increment(1)',
+        ivd_count: '@increment(1)',
         createTime: '@datetime()',
         updateTime: '@datetime()',
         taskStatusName: '@order("1","2","3")',

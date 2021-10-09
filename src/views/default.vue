@@ -84,7 +84,7 @@ export default class Default extends Vue {
           disabled: false,
           width: '210',
           pickOptions: {
-            format: 'yyyy-MM-dd HH:mm:ss'
+            valueFormat: 'yyyy-MM-dd HH:mm:ss'
           }
         }
       },
@@ -179,7 +179,9 @@ export default class Default extends Vue {
     // 默认排序字段列
     defaultSort: [
       { prop: 'taskName', order: 'descending' },
-      { prop: 'taskContent', order: 'ascending' }
+      { prop: 'taskContent', order: 'ascending' },
+      { prop: 'vd_count', order: 'ascending' },
+      { prop: 'ivd_count', order: 'ascending' }
     ],
     sortChange: (column: object) => {
       console.log(column)
@@ -203,6 +205,8 @@ export default class Default extends Vue {
         width: 50,
         align: 'center'
       },
+      { name: '采集总数', value: 'vd_count', minWidth: 70, sortable: true },
+      { name: '违规总数', value: 'ivd_count', minWidth: 70, sortable: true },
       {
         name: '任务名称2',
         value: 'taskName2',
