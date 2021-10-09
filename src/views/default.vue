@@ -173,7 +173,7 @@ export default class Default extends Vue {
     //   return index !== 4
     // },
     // 排序模式 single 独立排序 ,multi 多项排序
-    sortMode: 'multi',
+    sortMode: 'single',
     // 默认升序还是降序
     defaultOrder: 'descending',
     // 默认排序字段列
