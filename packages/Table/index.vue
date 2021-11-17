@@ -808,7 +808,8 @@ export default class VTable extends Vue {
         'row-click': this.rowClick,
         'selection-change': this.handleSelectionChange,
         'header-click': this.handleHeaderClick
-      }
+      },
+      directives: [{ name: 'loading', value: this.option.loading || false }]
     }
     if (this.option.summary) {
       const { sumText, summaryMethod } = this.option.summary
