@@ -233,20 +233,20 @@ export default class Default extends Vue {
         value: 'taskName',
         // fixed: 'left',
         align: 'center',
-        // combo: [
-        //   {
-        //     name: 'el-image',
-        //     style: 'width:20px; height: 20px',
-        //     props: {
-        //       // src:
-        //       //   'data:image/png;base64,R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='
-        //     },
-        //     formatter: function(row: any, index: any) {
-        //       return `data:image/png;base64,${row.appBase}`
-        //     }
-        //   },
-        //   'taskName'
-        // ]
+        combo: [
+          {
+            name: 'el-image',
+            style: 'width:20px; height: 20px',
+            props: {
+              // src:
+              //   'data:image/png;base64,R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='
+            },
+            formatter: function(row: any, index: any) {
+              return `data:image/png;base64,${row.appBase}`
+            }
+          },
+          'taskName'
+        ],
         sortable: true,
         formatter: (row: any) => {
           return `<span style='color:#1890ff;cursor:pointer;'>${row.taskName}</span>`
@@ -285,6 +285,7 @@ export default class Default extends Vue {
         minWidth: '300',
         imageList: true,
         imageConfig: {
+          lazy: true,
           style: 'width: 50px; height: 50px;',
           basePath: 'http://124.126.19.246:9004/v1/resource/image/'
         }

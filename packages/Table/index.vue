@@ -441,8 +441,8 @@ export default class VTable extends Vue {
     imageProp = {
       props: {
         src: url,
-        fit: item.fit || 'fit',
-        lazy: true
+        fit: item.fit ?? 'fit',
+        lazy: item.lazy ?? false
       }
     }
     const style = item.style || 'width: 16px, height: 16px'
@@ -454,7 +454,7 @@ export default class VTable extends Vue {
    * 图片集合处理
    */
   _imageListVNodeRender(props: any, item: any) {
-    const { style, basePath } = item.imageConfig
+    const { style, basePath, lazy, fit } = item.imageConfig
     const _style = style || 'width: 16px; height: 16px'
     // 获得图片数据
     const sourceData = props.row[props.column.property] ?? []
@@ -462,15 +462,13 @@ export default class VTable extends Vue {
       const imageProp = {
         props: {
           src: `${basePath}${it}`,
-          fit: 'fit',
-          lazy: true
+          fit: fit ?? 'fit',
+          lazy: lazy ?? false
         },
         style: _style
       }
-      console.log(imageProp)
       return <el-image {...imageProp}></el-image>
     })
-    // console.log(sourceData, style)
     return imagesList
   }
 
