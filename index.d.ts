@@ -4,6 +4,8 @@ declare namespace Table {
     summaryMethod?: (param: any) => any[]
   }
   export interface ITableOption {
+    // loading
+    loading: boolean
     // 是否隔行变色
     stripe: boolean
     // 是否显示表头

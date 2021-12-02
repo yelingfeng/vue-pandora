@@ -164,6 +164,7 @@ export default class Default extends Vue {
   private tableOpt: any = {
     stripe: true,
     isHeader: true,
+    loading: true,
     // selection: true,
     // // 复选框位置 前还是后 top ，end
     // selectionPos: 'top',
@@ -433,6 +434,10 @@ export default class Default extends Vue {
   }
   mounted() {
     this.getTableList()
+
+    setTimeout(() => {
+      this.tableOpt.loading = false
+    }, 2000)
   }
 
   getTableList() {
