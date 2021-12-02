@@ -1,3 +1,9 @@
+## [1.2.9](https://github.com/yelingfeng/vue-pandora/compare/v1.2.8...v1.2.9) (2021-12-02)
+
+### Features
+
+- **table:** fix imagesList lazy ([e4940f6](https://github.com/yelingfeng/vue-pandora/commit/e4940f6ca954722a296a96fb90ab03b435935884))
+
 ## [1.2.8](https://github.com/yelingfeng/vue-pandora/compare/v1.2.6...v1.2.8) (2021-12-02)
 
 ### Bug Fixes
