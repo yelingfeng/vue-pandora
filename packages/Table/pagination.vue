@@ -17,8 +17,10 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component
 export default class PagerStyles extends Vue {
-  @Prop()
-  option: Table.IPageOpt
+  option: Table.IPageOpt = {
+    currentPage: 1,
+    pageSize: 10
+  }
 
   private layout = this.option.layout
     ? this.option.layout

@@ -202,7 +202,7 @@ export default class Default extends Vue {
       {
         name: '序号',
         type: 'index',
-        fixed: 'left',
+        // fixed: 'left',
         width: 50,
         align: 'center'
       },
@@ -231,7 +231,7 @@ export default class Default extends Vue {
       {
         name: '任务名称',
         value: 'taskName',
-        fixed: 'left',
+        // fixed: 'left',
         align: 'center',
         // combo: [
         //   {
@@ -259,7 +259,7 @@ export default class Default extends Vue {
           {
             name: '任务名称',
             value: 'taskName',
-            fixed: 'left',
+            // fixed: 'left',
             align: 'center',
             sortable: true
           },
@@ -278,6 +278,17 @@ export default class Default extends Vue {
       },
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
       { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
+      {
+        name: '图片截图',
+        value: 'imageList',
+        align: 'center',
+        minWidth: '300',
+        imageList: true,
+        imageConfig: {
+          style: 'width: 50px; height: 50px;',
+          basePath: 'http://124.126.19.246:9004/v1/resource/image/'
+        }
+      },
       // {
       //   name: '权限测试',
       //   value: 'permissionList',

@@ -16,6 +16,7 @@ Mock.mock('/api/tablelist', 'get', {
         taskStatusName: '@order("1","2","3")',
         taskContent: '@cparagraph(1)',
         jobResult: '@cword(2, 8)',
+        imageList: ['0', '1', '2'],
         permissionList: [
           {
             permissionId: 'Sms',

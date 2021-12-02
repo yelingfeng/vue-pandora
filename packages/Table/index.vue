@@ -451,6 +451,30 @@ export default class VTable extends Vue {
   }
 
   /**
+   * 图片集合处理
+   */
+  _imageListVNodeRender(props: any, item: any) {
+    const { style, basePath } = item.imageConfig
+    const _style = style || 'width: 16px; height: 16px'
+    // 获得图片数据
+    const sourceData = props.row[props.column.property] ?? []
+    const imagesList = sourceData.map((it: any) => {
+      const imageProp = {
+        props: {
+          src: `${basePath}${it}`,
+          fit: 'fit',
+          lazy: true
+        },
+        style: _style
+      }
+      console.log(imageProp)
+      return <el-image {...imageProp}></el-image>
+    })
+    // console.log(sourceData, style)
+    return imagesList
+  }
+
+  /**
    * 组合node渲染 (对象 、字符串 )2种模式
    * {
       name: 'el-image',
@@ -684,6 +708,14 @@ export default class VTable extends Vue {
       defaultSlot = {
         default: (props: any) => {
           return this._imageVNodeRender(props, item)
+        }
+      }
+    }
+    // 图片集合
+    else if (item.imageList) {
+      defaultSlot = {
+        default: (props: any) => {
+          return this._imageListVNodeRender(props, item)
         }
       }
     }

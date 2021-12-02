@@ -49,15 +49,15 @@ declare namespace Table {
     // 分页高度
     height?: number
     // 当前页
-    currentPage: number
+    currentPage?: number
     // 总数
-    total: number
+    total?: number
     // 每页显示条数选择数组
-    pageSizes: number[]
+    pageSizes?: number[]
     // 最大页码按钮数
-    pageCount: number
+    pageCount?: number
     // 当前显示每页条数
-    pageSize: number
+    pageSize?: number
     // 分页功能 默认显示完整功能 （可不传）
     layout?: string
   }
