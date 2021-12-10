@@ -1,3 +1,9 @@
+## [1.2.10](https://github.com/yelingfeng/vue-pandora/compare/v1.2.9...v1.2.10) (2021-12-10)
+
+### Bug Fixes
+
+- **form:** fix datetimerange getValue undefined ([70e63b8](https://github.com/yelingfeng/vue-pandora/commit/70e63b87023e1dd94874eac76a49b90927fa8d5c))
+
 ## [1.2.9](https://github.com/yelingfeng/vue-pandora/compare/v1.2.8...v1.2.9) (2021-12-02)
 
 ### Features
