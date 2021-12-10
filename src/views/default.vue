@@ -18,7 +18,7 @@ import { Component, Vue, Ref } from 'vue-property-decorator'
 import VForm from '../../packages/Form/index.vue'
 import VTable from '../../packages/Table/index.vue'
 import axios from 'axios'
-
+import dayjs from 'dayjs'
 const iconStyle = { display: 'inline-block', fontSize: '18px', color: '#1890ff' }
 
 @Component({})
@@ -61,18 +61,60 @@ export default class Default extends Vue {
         }
       },
       {
-        label: '文本Group',
-        type: 'textGroup',
-        required: true,
-        show: true,
+        label: '时间：',
+        type: 'date',
         comOpt: {
-          id: 'taskGroup',
-          width: 310,
+          id: 'time',
+          clearable: false,
+          value: [
+            dayjs()
+              .subtract(7, 'day')
+              .format('YYYY-MM-DD HH:mm:ss'),
+            dayjs().format('YYYY-MM-DD HH:mm:ss')
+          ],
+          type: 'datetimerange',
           disabled: false,
-          placeholder: '',
-          value: '1,2'
+          startplaceholder: '开始时间',
+          endplaceholder: '结束时间',
+          rangeSeparator: '至',
+          // defaultTime:['00:00:00', '23:59:59'],
+          pickOptions: {
+            // disabledDate: this.startDisable,
+            shortcuts: [
+              {
+                text: '近24小时',
+                onClick(picker) {
+                  const end = new Date()
+                  const start = new Date()
+                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 1)
+                  // const end = dayjs().format('YYYY-MM-DD HH:mm:ss HH:mm:ss');
+                  // const start = dayjs().subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss HH:mm:ss');
+                  picker.$emit('pick', [start, end])
+                }
+              },
+              {
+                text: '近1周',
+                onClick(picker) {
+                  const end = new Date()
+                  const start = new Date()
+                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+                  picker.$emit('pick', [start, end])
+                }
+              },
+              {
+                text: '近1月',
+                onClick(picker) {
+                  const end = new Date()
+                  const start = new Date()
+                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+                  picker.$emit('pick', [start, end])
+                }
+              }
+            ]
+          }
         }
       },
+
       {
         label: '创建日期',
         type: 'date',

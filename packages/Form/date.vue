@@ -232,7 +232,7 @@ export default class VDate extends Vue {
     if (this.valueFormat !== '') {
       return val
     } else {
-      dayjs(val).format(format)
+      return dayjs(val).format(format)
     }
   }
   /**
