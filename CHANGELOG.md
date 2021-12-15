@@ -1,3 +1,9 @@
+## [1.2.11](https://github.com/yelingfeng/vue-pandora/compare/v1.2.10...v1.2.11) (2021-12-15)
+
+### Bug Fixes
+
+- **table:** fix pager bug ([dc87fc7](https://github.com/yelingfeng/vue-pandora/commit/dc87fc7d2ad1bb15abcae77779491c7a56a4a608))
+
 ## [1.2.10](https://github.com/yelingfeng/vue-pandora/compare/v1.2.9...v1.2.10) (2021-12-10)
 
 ### Bug Fixes
