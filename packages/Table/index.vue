@@ -848,8 +848,6 @@ export default class VTable extends Vue {
         vprops.props['summary-method'] = summaryMethod
       }
     }
-
-    const page = merge(defaultOption, this.option.pageOpt)
     return (
       <div class="vpandora-table">
         <el-table ref="table" {...vprops}>
@@ -857,7 +855,7 @@ export default class VTable extends Vue {
         </el-table>
         <pagination
           v-show={this.option.pagination}
-          option={page}
+          option={this.option.pageOpt}
           ref="pagination"
           on-handleSizeChange={this.handleSizeChange}
           on-handleCurrentChange={this.handleCurrentChange}

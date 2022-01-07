@@ -8,22 +8,24 @@
       :page-size.sync="option.pageSize"
       :pager-count="option.pageCount"
       :layout="layoutStr"
-      :total="option.total"
+      :total.sync="option.total"
     ></el-pagination>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
-@Component({})
-export default class PagerComp extends Vue {
+@Component
+export default class PagerStyles extends Vue {
   @Prop()
   option: Table.IPageOpt
+
   private layoutStr = 'total, sizes, prev, pager, next, jumper'
-  onCreated() {
+  created() {
     if (this.option?.layout) {
       this.layoutStr = this.option?.layout
     }
+    // console.log(this.option.total)
   }
 
   handleSizeChange(val: number) {
