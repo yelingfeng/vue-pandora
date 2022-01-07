@@ -1,3 +1,9 @@
+## [1.2.24](https://github.com/yelingfeng/vue-pandora/compare/v1.2.23...v1.2.24) (2022-01-07)
+
+### Bug Fixes
+
+- **table:** fix pager ([b9978ee](https://github.com/yelingfeng/vue-pandora/commit/b9978eeb54342624fffa669e958c3b9905d4237c))
+
 ## [1.2.23](https://github.com/yelingfeng/vue-pandora/compare/v1.2.22...v1.2.23) (2022-01-07)
 
 ### Bug Fixes
