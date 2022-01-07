@@ -829,7 +829,7 @@ export default class Demo extends Vue {
     pagination: true, //分页参数
     pageOpt: {
       currentPage: 1,
-      total: 0,
+      total: 100,
       pageSizes: [10, 20, 30, 40, 50],
       pageSize: 10
     }

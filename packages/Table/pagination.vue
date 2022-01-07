@@ -15,16 +15,15 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
-@Component
-export default class PagerStyles extends Vue {
+@Component({})
+export default class PagerComp extends Vue {
   @Prop()
   option: Table.IPageOpt
-
-  private layoutStr = ''
-  onMounted() {
-    this.layoutStr = this.option.layout
-      ? this.option.layout
-      : 'total, sizes, prev, pager, next, jumper'
+  private layoutStr = 'total, sizes, prev, pager, next, jumper'
+  onCreated() {
+    if (this.option?.layout) {
+      this.layoutStr = this.option?.layout
+    }
   }
 
   handleSizeChange(val: number) {

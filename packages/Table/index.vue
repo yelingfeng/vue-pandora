@@ -3,7 +3,7 @@
 const PAGE_HEIGHT = 50
 
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction, hasClass, removeClass, addClass, trim } from '@/utils/common'
+import { isFunction, hasClass, removeClass, addClass, trim, merge } from '@/utils/common'
 import { SortModeType, OperateType } from '@/utils/enum'
 import pagination from './pagination.vue'
 
@@ -849,6 +849,7 @@ export default class VTable extends Vue {
       }
     }
 
+    const page = merge(defaultOption, this.option.pageOpt)
     return (
       <div class="vpandora-table">
         <el-table ref="table" {...vprops}>
@@ -856,7 +857,7 @@ export default class VTable extends Vue {
         </el-table>
         <pagination
           v-show={this.option.pagination}
-          option={this.option.pageOpt || defaultOption}
+          option={page}
           ref="pagination"
           on-handleSizeChange={this.handleSizeChange}
           on-handleCurrentChange={this.handleCurrentChange}
