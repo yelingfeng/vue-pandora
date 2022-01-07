@@ -1,3 +1,9 @@
+## [1.2.22](https://github.com/yelingfeng/vue-pandora/compare/v1.2.11...v1.2.22) (2022-01-07)
+
+### Bug Fixes
+
+- **table:** fix table option props warning ([82a2b5b](https://github.com/yelingfeng/vue-pandora/commit/82a2b5bfed9d536ebe50880dfdd9092682c31616))
+
 ## [1.2.11](https://github.com/yelingfeng/vue-pandora/compare/v1.2.10...v1.2.11) (2021-12-15)
 
 ### Bug Fixes
