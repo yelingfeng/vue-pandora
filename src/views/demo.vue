@@ -441,6 +441,7 @@ export default class Demo extends Vue {
           width: 310,
           disabled: false,
           placeholder: '',
+          clearable: true,
           value: 3,
           data: [
             {
