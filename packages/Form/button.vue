@@ -15,6 +15,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { isFunction } from '@/utils/common'
 
 @Component({
+  name: 'VButton',
   components: {}
 })
 /**

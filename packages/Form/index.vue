@@ -16,6 +16,7 @@ import { isFunction, isArray, merge } from '@/utils/common'
 // import { ElForm, ValidateCallback } from 'element-ui/types/form'
 
 @Component({
+  name: 'VForm',
   components: {
     textComp,
     dateComp,

@@ -471,6 +471,9 @@ export default class Demo extends Vue {
           value: '',
           data: [],
           cascadeOption: {
+            props: {
+              checkStrictly: true
+            },
             options: []
           }
         }
@@ -828,10 +831,10 @@ export default class Demo extends Vue {
     data: [], //是否分页
     pagination: true, //分页参数
     pageOpt: {
-      currentPage: 1,
-      total: 100,
-      pageSizes: [10, 20, 30, 40, 50],
-      pageSize: 10
+      // currentPage: 1,
+      // total: 100,
+      // pageSizes: [10, 20, 30, 40, 50],
+      // pageSize: 10
     }
   }
 

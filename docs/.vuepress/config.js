@@ -1,8 +1,9 @@
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 const BASE_URL = IS_PROD ? '/vue-pandora/' : '/'
+const title = `Vue-pandora@1.x`
 module.exports = {
   base: BASE_URL,
-  title: 'Vue-pandora',
+  title: title,
   description: 'A component library of custom secondary encapsulation about element-ui', //描述
   port: '4444',
   markdown: {
@@ -15,14 +16,14 @@ module.exports = {
         text: '首页',
         link: '/'
       },
-      {
-        text: '指南',
-        link: '/guide/'
-      },
-      {
-        text: '使用',
-        link: '/usage/'
-      },
+      // {
+      //   text: '指南',
+      //   link: '/guide/'
+      // },
+      // {
+      //   text: '使用',
+      //   link: '/usage/'
+      // },
       {
         text: 'API',
         link: '/api/'

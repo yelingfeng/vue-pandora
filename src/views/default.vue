@@ -233,6 +233,36 @@ export default class Default extends Vue {
     rowChange: (row: object, index: number) => {
       console.log(row, index)
     },
+    summary: {
+      sumText: '总计',
+      summaryMethod: function(param: any) {
+        const { columns, data } = param
+        const sums: any = []
+        columns.forEach((column: any, index: number) => {
+          if (index === 0) {
+            sums[index] = '总计'
+            return
+          }
+          const values = data.map((item: any) => Number(item[column.property]))
+          if (!values.every((value: any) => isNaN(value))) {
+            sums[index] = values.reduce((prev: any, curr: any) => {
+              const value = Number(curr)
+              if (!isNaN(value)) {
+                return prev + curr
+              } else {
+                return prev
+              }
+            }, 0)
+            sums[index] += ''
+          } else {
+            sums[index] = ' '
+          }
+        })
+        // console.log(sums)
+        // const s = ['提现总数', '', '', '', '', '']
+        return sums
+      }
+    },
     column: [
       {
         name: '',
@@ -427,7 +457,7 @@ export default class Default extends Vue {
     pagination: true,
     // 分页参数
     pageOpt: {
-      height: 40,
+      height: 20,
       currentPage: 1,
       total: 0,
       pageSizes: [10, 20, 30, 40, 50],

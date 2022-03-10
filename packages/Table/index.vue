@@ -1,11 +1,17 @@
 <script lang="tsx">
-// 分页高度
-const PAGE_HEIGHT = 50
-
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim, merge } from '@/utils/common'
 import { SortModeType, OperateType } from '@/utils/enum'
 import pagination from './pagination.vue'
+
+const ASC = 'ascending'
+const DESC = 'descending'
+// 分页高度
+const PAGE_HEIGHT = 50
+const DEFAULT_SORT = 'descending'
+
+// 排序字段集合
+const SORT_ARR: string[] = [ASC, DESC]
 
 const defaultOption: Table.IPageOpt = {
   height: PAGE_HEIGHT,
@@ -15,14 +21,6 @@ const defaultOption: Table.IPageOpt = {
   pageSizes: [10, 20, 30, 40, 50],
   pageSize: 10
 }
-
-const ASC = 'ascending'
-const DESC = 'descending'
-
-const DEFAULT_SORT = 'descending'
-
-// 排序字段集合
-const SORT_ARR: string[] = [ASC, DESC]
 
 // 获取指定order的 非当前排序字段
 const getTargetSortKey = (order: string) => {

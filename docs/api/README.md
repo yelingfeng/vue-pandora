@@ -94,19 +94,8 @@ items: [
 
 ## Table
 
-### TableOption
-
-| 属性        | 类型                                              | 说明         |
-| :---------- | ------------------------------------------------- | ------------ |
-| stripe      | boolean                                           | 是否隔行变色 |
-| isHeader    | boolean                                           | 是否显示表头 |
-| selection   | boolean                                           | 是否显示多选 |
-| column      | object[]                                          | 表格表头数据 |
-| data        | object[]                                          | 表格数据     |
-| rowClick    | (row: object, column: object, event: any) => void | 行点击事件   |
-| defaultSort | object                                            | 默认排序     |
-| pagination  | boolean                                           | 是否分页     |
-| pageOpt     | `IPageOpt`                                        | 分页参数     |
+表格属性
+完整例子：
 
 ```ts
 private tableOpt: any = {
@@ -172,15 +161,224 @@ private tableOpt: any = {
  }
 ```
 
-### IPageOpt
+### `stripe`
 
-分页配置属性
+- 类型： `Boolean`
+- 默认： `false`
 
-| 属性        | 类型     | 说明                 |
-| :---------- | -------- | -------------------- |
-| height      | number   | 分页高度             |
-| currentPage | number   | 当前页               |
-| total       | number   | 总数                 |
-| pageSizes   | number[] | 每页显示条数选择数组 |
-| pageSize    | number   | 当前显示每页条数     |
-| layout      | string   |                      | 分页功能 默认显示完整功能 （可不传） |
+是否隔行变色
+
+### `loading`
+
+- 类型： `Boolean`
+- 默认： `false`
+
+是否显示`loading`
+
+### `isHeader`
+
+- 类型： `Boolean`
+- 默认： `true`
+
+是否显示表头
+
+### `selection`
+
+- 类型： `Boolean`
+- 默认： `false`
+
+是否显示`selection`列 包括复选或者单选
+
+### `selectionMode`
+
+- 类型： `string`
+- 默认值： `空`
+- 可选值: `single`|`multi`
+
+选择模式 单选还是多选 搭配 `selection` 属性使用
+
+### `selectionPos`
+
+- 类型： `string`
+- 默认值： `空`
+- 可选择: `top` 首列 | `end` 尾列
+
+复现框的位置 在列前还是列后 搭配 `selection` 属性使用
+
+例子
+
+```ts
+const tableOption = {
+  selection: true,
+  selectionPos: 'top',
+  selectionMode: 'multi'
+}
+```
+
+### `selectable`
+
+- 类型： `{Function} (row: object, index: number) => void`
+- `row` 行数据
+- `index` 列 index
+
+`selection`列 回调处理 可细化每行的`selection`项
+
+例子
+
+```ts
+  selectable: function(row: any, index: any) {
+    return index !== 4
+  }
+```
+
+### `sortMode`
+
+- 类型： `string`
+- 默认值： `空`
+- 可选值: `'single'` | `'multi'`
+
+排序模式 支持二种排列模式 多列和单列
+
+### `defaultSort`
+
+- 类型： `Array`
+
+默认排序字段列配置
+
+```ts
+defaultSort: [
+  { prop: 'age', order: 'descending' },
+  { prop: 'user', order: 'ascending' },
+  { prop: 'phone', order: 'ascending' }
+]
+```
+
+### `defaultOrder`
+
+- 类型： `string`
+- 默认值:`'descending'`
+
+默认排序方向 配置优先级
+
+> `defaultSort` > `defaultOrder`
+
+### `sortChange`
+
+- 类型： `{Function} (column: object) => void`
+
+- `column`值: `{Object} key:`排序列定义 ,`value:`对应排序值 `descending` 还是 `ascending` 搭配`defaultSort`使用
+
+排序回调事件
+
+### `highlightCurrentRow`
+
+- 类型: 同`element-ui`
+
+### `rowClick`
+
+- 类型： `{Function} (row: any, column: object, event: any) => void`
+
+行点击事件
+
+### `handleSelectionChange`
+
+- 类型： `{Function} (val: any)`
+
+复选框回调事件
+
+### `pagination`
+
+- 类型: `Boolean`
+- 默认值: `true`
+
+是否显示分页
+
+### `pageOpt`
+
+- 类型: `IPageOpt`
+- 默认值: `{}`
+
+### `column`
+
+- 类型: `Array{Object}`
+- 默认值: `[]`
+
+Table `Column` 数据配置说明
+
+### `data`
+
+- 类型: `Array{Object}`
+- 默认值: `[]`
+
+数据
+
+### `summary`
+
+- 类型: `ISummaryOption`
+
+汇总行属性
+
+## IPageOpt
+
+分页配置属性,同`element-ui`
+
+| 属性        | 类型     | 说明                                                                         |
+| :---------- | -------- | ---------------------------------------------------------------------------- |
+| height      | number   | 分页高度                                                                     |
+| currentPage | number   | 当前页 1                                                                     |
+| total       | number   | 总数 0                                                                       |
+| pageCount   | number   | 7                                                                            |
+| pageSizes   | number[] | 每页显示条数选择数组 [10, 20, 30, 40, 50]                                    |
+| pageSize    | number   | 当前显示每页条数 10                                                          |
+| layout      | string   | 分页功能 默认显示完整功能 total, sizes, prev, pager, next, jumper （可不传） |
+
+### `height`
+
+- 类型: `number`
+- 默认值: `50`
+
+分页整体容器高度
+
+### `currentPage`
+
+- 类型: `number`
+- 默认值: `1`
+
+当前页
+
+### `total`
+
+- 类型: `number`
+- 默认值: `0`
+
+总数
+
+### `pageCount`
+
+- 类型: `number`
+- 默认值: `7`
+
+总数
+
+### `pageSize`
+
+- 类型: `number`
+- 默认值: `10`
+
+当前显示每页条数
+
+### `pageSizes`
+
+- 类型: `number[]`
+- 默认值: `[10, 20, 30, 40, 50]`
+
+每页显示条数选择数组
+
+### `layout`
+
+- 类型: `string`
+- 默认值: `total, sizes, prev, pager, next, jumper`
+
+分页功能 默认显示完整功能 （可不传）
+
+## ISummaryOption
