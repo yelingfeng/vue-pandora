@@ -34,9 +34,24 @@ module.exports = {
         items: [{ text: 'vue-pandora', link: 'https://github.com/yelingfeng/vue-pandora' }]
       }
     ],
+    sidebar: {
+      '/api/': [
+        {
+          title: '表单',
+          collapsable: true,
+          path: 'form'
+        },
+        {
+          title: '表格',
+          collapsable: true,
+          path: 'table'
+        }
+      ]
+    }
+
     // 添加侧边栏
-    sidebar: 'auto',
-    sidebarDepth: 2
+    // sidebar: 'auto',
+    // sidebarDepth: 2
   },
   plugins: [
     '@vuepress/back-to-top',
