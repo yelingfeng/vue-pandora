@@ -1,4 +1,4 @@
-## Table
+# 基础配置
 
 表格属性 主要包括基础属于同`element-ui`相同，自身属性包括`data`,`column`,`pageOpt`等
 
@@ -55,35 +55,35 @@ export default {
 :::
 </demo-block>
 
-### `stripe`
+## `stripe`
 
 - 类型： `Boolean`
 - 默认： `false`
 
 是否隔行变色
 
-### `loading`
+## `loading`
 
 - 类型： `Boolean`
 - 默认： `false`
 
 是否显示`loading`
 
-### `isHeader`
+## `isHeader`
 
 - 类型： `Boolean`
 - 默认： `true`
 
 是否显示表头
 
-### `selection`
+## `selection`
 
 - 类型： `Boolean`
 - 默认： `false`
 
 是否显示`selection`列 包括复选或者单选
 
-### `selectionMode`
+## `selectionMode`
 
 - 类型： `string`
 - 默认值： `空`
@@ -91,7 +91,7 @@ export default {
 
 选择模式 单选还是多选 搭配 `selection` 属性使用
 
-### `selectionPos`
+## `selectionPos`
 
 - 类型： `string`
 - 默认值： `空`
@@ -109,7 +109,7 @@ const tableOption = {
 }
 ```
 
-### `selectable`
+## `selectable`
 
 - 类型： `{Function} (row: object, index: number) => void`
 - `row` 行数据
@@ -125,7 +125,7 @@ const tableOption = {
   }
 ```
 
-### `sortMode`
+## `sortMode`
 
 - 类型： `string`
 - 默认值： `空`
@@ -133,7 +133,7 @@ const tableOption = {
 
 排序模式 支持二种排列模式 多列和单列
 
-### `defaultSort`
+## `defaultSort`
 
 - 类型： `Array`
 
@@ -147,7 +147,7 @@ defaultSort: [
 ]
 ```
 
-### `defaultOrder`
+## `defaultOrder`
 
 - 类型： `string`
 - 默认值:`'descending'`
@@ -156,7 +156,7 @@ defaultSort: [
 
 > `defaultSort` > `defaultOrder`
 
-### `sortChange`
+## `sortChange`
 
 - 类型： `{Function} (column: object) => void`
 
@@ -164,204 +164,53 @@ defaultSort: [
 
 排序回调事件
 
-### `highlightCurrentRow`
+## `highlightCurrentRow`
 
 - 类型: 同`element-ui`
 
-### `rowClick`
+## `rowClick`
 
 - 类型： `{Function} (row: any, column: object, event: any) => void`
 
 行点击事件
 
-### `handleSelectionChange`
+## `handleSelectionChange`
 
 - 类型： `{Function} (val: any)`
 
 复选框回调事件
 
-### `pagination`
+## `pagination`
 
 - 类型: `Boolean`
 - 默认值: `true`
 
 是否显示分页
 
-### `pageOpt`
+## `pageOpt`
 
 - 类型: `IPageOpt`
 - 默认值: `{}`
 
 分页属性配置对象
 
-### `column`
+## `column`
 
 - 类型: `Array{Object}`
 - 默认值: `[]`
 
 Table `Column` 数据配置说明
 
-### `data`
+## `data`
 
 - 类型: `Array{Object}`
 - 默认值: `[]`
 
 数据
 
-### `summary`
+## `summary`
 
 - 类型: `Object{} ISummaryOption`
 - 默认值： `{}`
 
 汇总行属性
-
-## Table Column 说明
-
-`column`字段使用说明
-
-```ts
-column: [
-  {
-    name: '',
-    type: 'selection',
-    fixed: 'left',
-    width: 50,
-    align: 'center'
-  },
-  {
-    name: '序号',
-    type: 'index',
-    // fixed: 'left',
-    width: 50,
-    align: 'center'
-  },
-  { name: '采集总数', value: 'vd_count', minWidth: 70, sortable: true },
-  { name: '违规总数', value: 'ivd_count', minWidth: 70, sortable: true }
-]
-```
-
-### `type`
-
-- 类型: `String`
-- 默认值： `空`
-- 可选值: `'selection'|'index'`
-
-可设置`selection` 属性 同`element-ui`
-
-### `name`
-
-- 类型: `String`
-- 默认值： `空`
-
-列名称
-
-### `value`
-
-- 类型: `String`
-- 默认值： `空`
-
-对应业务字段值
-
-### `width`
-
-- 类型: `Number`
-- 默认值： ``
-
-列宽度,同`element-ui`
-
-### `fixed`
-
-- 类型: `String`
-- 默认值： ``
-
-锁列 同`element-ui`
-
-### `align`
-
-- 类型: `String`
-- 默认值： `空`
-
-位置属性 居中、 居左、 居右,同`element-ui`
-
-### `minWidth`
-
-- 类型: `Number`
-- 默认值： ``
-
-列最小宽度 同`element-ui`
-
-### `sortable`
-
-- 类型: `Boolean`
-- 默认值： `false`
-
-开启后 采用插件固有排序模式 详情参考`sortMode`相关属性
-
-### `showTooltip`
-
-- 类型: `Boolean`
-- 默认值： `true`
-
-tooltip 、默认为`element-ui show-overflow-tooltip` 属性
-
-### `formatter`
-
-- 类型: `{Function} (row: any) => void`
-- `row`: 列数据
-
-formatter 格式化处理 同`element-ui`
-
-## IPageOpt 接口
-
-分页配置属性,同`element-ui`
-
-### `height`
-
-- 类型: `number`
-- 默认值: `50`
-
-分页整体容器高度
-
-### `currentPage`
-
-- 类型: `number`
-- 默认值: `1`
-
-当前页
-
-### `total`
-
-- 类型: `number`
-- 默认值: `0`
-
-总数
-
-### `pageCount`
-
-- 类型: `number`
-- 默认值: `7`
-
-总数
-
-### `pageSize`
-
-- 类型: `number`
-- 默认值: `10`
-
-当前显示每页条数
-
-### `pageSizes`
-
-- 类型: `number[]`
-- 默认值: `[10, 20, 30, 40, 50]`
-
-每页显示条数选择数组
-
-### `layout`
-
-- 类型: `string`
-- 默认值: `total, sizes, prev, pager, next, jumper`
-
-分页功能 默认显示完整功能 （可不传）
-
-## ISummaryOption 接口

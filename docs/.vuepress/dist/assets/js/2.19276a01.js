@@ -1,7 +1,7 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [2],
   {
-    600: function(t, e, n) {
+    706: function(t, e, n) {
       'use strict'
       n.d(e, 'd', function() {
         return i
@@ -13,10 +13,10 @@
           return s
         }),
         n.d(e, 'f', function() {
-          return u
+          return l
         }),
         n.d(e, 'g', function() {
-          return l
+          return u
         }),
         n.d(e, 'h', function() {
           return c
@@ -25,21 +25,21 @@
           return h
         }),
         n.d(e, 'e', function() {
-          return f
+          return p
         }),
         n.d(e, 'k', function() {
-          return p
+          return f
         }),
         n.d(e, 'l', function() {
           return d
         }),
         n.d(e, 'c', function() {
-          return v
+          return m
         }),
         n.d(e, 'j', function() {
-          return m
+          return v
         })
-      n(56), n(87), n(601), n(602), n(231), n(86), n(130), n(38)
+      n(51), n(74), n(275), n(274), n(169), n(73), n(75), n(40)
       var i = /#.*$/,
         r = /\.(md|html)$/,
         a = /\/$/,
@@ -49,23 +49,23 @@
           .replace(i, '')
           .replace(r, '')
       }
-      function u(t) {
+      function l(t) {
         return s.test(t)
       }
-      function l(t) {
+      function u(t) {
         return /^mailto:/.test(t)
       }
       function c(t) {
         return /^tel:/.test(t)
       }
       function h(t) {
-        if (u(t)) return t
+        if (l(t)) return t
         var e = t.match(i),
           n = e ? e[0] : '',
           r = o(t)
         return a.test(r) ? t : r + '.html' + n
       }
-      function f(t, e) {
+      function p(t, e) {
         var n = decodeURIComponent(t.hash),
           r = (function(t) {
             var e = t.match(i)
@@ -73,8 +73,8 @@
           })(e)
         return (!r || n === r) && o(t.path) === o(e)
       }
-      function p(t, e, n) {
-        if (u(e)) return { type: 'external', path: e }
+      function f(t, e, n) {
+        if (l(e)) return { type: 'external', path: e }
         n &&
           (e = (function(t, e, n) {
             var i = t.charAt(0)
@@ -103,7 +103,7 @@
         if ('auto' === (t.frontmatter.sidebar || s.sidebar || a.sidebar)) return g(t)
         var o = s.sidebar || a.sidebar
         if (o) {
-          var u = (function(t, e) {
+          var l = (function(t, e) {
               if (Array.isArray(e)) return { base: '/', config: e }
               for (var n in e)
                 if (0 === ((i = t), /(\.html|\/)$/.test(i) ? i : i + '/').indexOf(encodeURI(n)))
@@ -111,19 +111,19 @@
               var i
               return {}
             })(e, o),
-            l = u.base,
-            c = u.config
+            u = l.base,
+            c = l.config
           return 'auto' === c
             ? g(t)
             : c
             ? c.map(function(t) {
                 return (function t(e, n, i) {
                   var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 1
-                  if ('string' == typeof e) return p(n, e, i)
-                  if (Array.isArray(e)) return Object.assign(p(n, e[0], i), { title: e[1] })
+                  if ('string' == typeof e) return f(n, e, i)
+                  if (Array.isArray(e)) return Object.assign(f(n, e[0], i), { title: e[1] })
                   var a = e.children || []
                   return 0 === a.length && e.path
-                    ? Object.assign(p(n, e.path, i), { title: e.title })
+                    ? Object.assign(f(n, e.path, i), { title: e.title })
                     : {
                         type: 'group',
                         path: e.path,
@@ -135,14 +135,14 @@
                         }),
                         collapsable: !1 !== e.collapsable
                       }
-                })(t, r, l)
+                })(t, r, u)
               })
             : []
         }
         return []
       }
       function g(t) {
-        var e = v(t.headers || [])
+        var e = m(t.headers || [])
         return [
           {
             type: 'group',
@@ -161,7 +161,7 @@
           }
         ]
       }
-      function v(t) {
+      function m(t) {
         var e
         return (
           (t = t.map(function(t) {
@@ -174,395 +174,42 @@
           })
         )
       }
-      function m(t) {
+      function v(t) {
         return Object.assign(t, { type: t.items && t.items.length ? 'links' : 'link' })
       }
     },
-    601: function(t, e, n) {
-      'use strict'
-      var i = n(228),
-        r = n(9),
-        a = n(88),
-        s = n(23),
-        o = n(26),
-        u = n(57),
-        l = n(229),
-        c = n(230)
-      i('match', function(t, e, n) {
-        return [
-          function(e) {
-            var n = o(this),
-              i = null == e ? void 0 : u(e, t)
-            return i ? i.call(e, n) : new RegExp(e)[t](s(n))
-          },
-          function(t) {
-            var i = r(this),
-              o = s(t),
-              u = n(e, i, o)
-            if (u.done) return u.value
-            if (!i.global) return c(i, o)
-            var h = i.unicode
-            i.lastIndex = 0
-            for (var f, p = [], d = 0; null !== (f = c(i, o)); ) {
-              var g = s(f[0])
-              ;(p[d] = g), '' === g && (i.lastIndex = l(o, a(i.lastIndex), h)), d++
-            }
-            return 0 === d ? null : p
-          }
-        ]
-      })
-    },
-    602: function(t, e, n) {
-      'use strict'
-      var i = n(228),
-        r = n(225),
-        a = n(9),
-        s = n(26),
-        o = n(630),
-        u = n(229),
-        l = n(88),
-        c = n(23),
-        h = n(57),
-        f = n(230),
-        p = n(90),
-        d = n(227),
-        g = n(0),
-        v = d.UNSUPPORTED_Y,
-        m = [].push,
-        b = Math.min
-      i(
-        'split',
-        function(t, e, n) {
-          var i
-          return (
-            (i =
-              'c' == 'abbc'.split(/(b)*/)[1] ||
-              4 != 'test'.split(/(?:)/, -1).length ||
-              2 != 'ab'.split(/(?:ab)*/).length ||
-              4 != '.'.split(/(.?)(.?)/).length ||
-              '.'.split(/()()/).length > 1 ||
-              ''.split(/.?/).length
-                ? function(t, n) {
-                    var i = c(s(this)),
-                      a = void 0 === n ? 4294967295 : n >>> 0
-                    if (0 === a) return []
-                    if (void 0 === t) return [i]
-                    if (!r(t)) return e.call(i, t, a)
-                    for (
-                      var o,
-                        u,
-                        l,
-                        h = [],
-                        f =
-                          (t.ignoreCase ? 'i' : '') +
-                          (t.multiline ? 'm' : '') +
-                          (t.unicode ? 'u' : '') +
-                          (t.sticky ? 'y' : ''),
-                        d = 0,
-                        g = new RegExp(t.source, f + 'g');
-                      (o = p.call(g, i)) &&
-                      !(
-                        (u = g.lastIndex) > d &&
-                        (h.push(i.slice(d, o.index)),
-                        o.length > 1 && o.index < i.length && m.apply(h, o.slice(1)),
-                        (l = o[0].length),
-                        (d = u),
-                        h.length >= a)
-                      );
-
-                    )
-                      g.lastIndex === o.index && g.lastIndex++
-                    return (
-                      d === i.length ? (!l && g.test('')) || h.push('') : h.push(i.slice(d)),
-                      h.length > a ? h.slice(0, a) : h
-                    )
-                  }
-                : '0'.split(void 0, 0).length
-                ? function(t, n) {
-                    return void 0 === t && 0 === n ? [] : e.call(this, t, n)
-                  }
-                : e),
-            [
-              function(e, n) {
-                var r = s(this),
-                  a = null == e ? void 0 : h(e, t)
-                return a ? a.call(e, r, n) : i.call(c(r), e, n)
-              },
-              function(t, r) {
-                var s = a(this),
-                  h = c(t),
-                  p = n(i, s, h, r, i !== e)
-                if (p.done) return p.value
-                var d = o(s, RegExp),
-                  g = s.unicode,
-                  m =
-                    (s.ignoreCase ? 'i' : '') +
-                    (s.multiline ? 'm' : '') +
-                    (s.unicode ? 'u' : '') +
-                    (v ? 'g' : 'y'),
-                  k = new d(v ? '^(?:' + s.source + ')' : s, m),
-                  _ = void 0 === r ? 4294967295 : r >>> 0
-                if (0 === _) return []
-                if (0 === h.length) return null === f(k, h) ? [h] : []
-                for (var x = 0, C = 0, y = []; C < h.length; ) {
-                  k.lastIndex = v ? 0 : C
-                  var $,
-                    L = f(k, v ? h.slice(C) : h)
-                  if (null === L || ($ = b(l(k.lastIndex + (v ? C : 0)), h.length)) === x)
-                    C = u(h, C, g)
-                  else {
-                    if ((y.push(h.slice(x, C)), y.length === _)) return y
-                    for (var w = 1; w <= L.length - 1; w++)
-                      if ((y.push(L[w]), y.length === _)) return y
-                    C = x = $
-                  }
-                }
-                return y.push(h.slice(x)), y
-              }
-            ]
-          )
-        },
-        !!g(function() {
-          var t = /(?:)/,
-            e = t.exec
-          t.exec = function() {
-            return e.apply(this, arguments)
-          }
-          var n = 'ab'.split(t)
-          return 2 !== n.length || 'a' !== n[0] || 'b' !== n[1]
-        }),
-        v
-      )
-    },
-    603: function(t, e, n) {},
-    604: function(t, e, n) {
-      'use strict'
-      var i = n(2),
-        r = n(240).trim
-      i(
-        { target: 'String', proto: !0, forced: n(632)('trim') },
-        {
-          trim: function() {
-            return r(this)
-          }
-        }
-      )
-    },
-    605: function(t, e, n) {
-      var i = n(12),
-        r = n(4),
-        a = n(131),
-        s = n(239),
-        o = n(29),
-        u = n(11).f,
-        l = n(41).f,
-        c = n(225),
-        h = n(23),
-        f = n(226),
-        p = n(227),
-        d = n(27),
-        g = n(0),
-        v = n(8),
-        m = n(40).enforce,
-        b = n(633),
-        k = n(1),
-        _ = n(232),
-        x = n(233),
-        C = k('match'),
-        y = r.RegExp,
-        $ = y.prototype,
-        L = /^\?<[^\s\d!#%&*+<=>@^][^\s!#%&*+<=>@^]*>/,
-        w = /a/g,
-        O = /a/g,
-        S = new y(w) !== w,
-        I = p.UNSUPPORTED_Y,
-        E =
-          i &&
-          (!S ||
-            I ||
-            _ ||
-            x ||
-            g(function() {
-              return (O[C] = !1), y(w) != w || y(O) == O || '/a/i' != y(w, 'i')
-            }))
-      if (a('RegExp', E)) {
-        for (
-          var j = function(t, e) {
-              var n,
-                i,
-                r,
-                a,
-                u,
-                l,
-                p = this instanceof j,
-                d = c(t),
-                g = void 0 === e,
-                b = [],
-                k = t
-              if (!p && d && g && t.constructor === j) return t
-              if (
-                ((d || t instanceof j) &&
-                  ((t = t.source), g && (e = ('flags' in k) ? k.flags : f.call(k))),
-                (t = void 0 === t ? '' : h(t)),
-                (e = void 0 === e ? '' : h(e)),
-                (k = t),
-                _ &&
-                  ('dotAll' in w) &&
-                  (i = !!e && e.indexOf('s') > -1) &&
-                  (e = e.replace(/s/g, '')),
-                (n = e),
-                I &&
-                  ('sticky' in w) &&
-                  (r = !!e && e.indexOf('y') > -1) &&
-                  (e = e.replace(/y/g, '')),
-                x &&
-                  ((t = (a = (function(t) {
-                    for (
-                      var e,
-                        n = t.length,
-                        i = 0,
-                        r = '',
-                        a = [],
-                        s = {},
-                        o = !1,
-                        u = !1,
-                        l = 0,
-                        c = '';
-                      i <= n;
-                      i++
-                    ) {
-                      if ('\\' === (e = t.charAt(i))) e += t.charAt(++i)
-                      else if (']' === e) o = !1
-                      else if (!o)
-                        switch (!0) {
-                          case '[' === e:
-                            o = !0
-                            break
-                          case '(' === e:
-                            L.test(t.slice(i + 1)) && ((i += 2), (u = !0)), (r += e), l++
-                            continue
-                          case '>' === e && u:
-                            if ('' === c || v(s, c))
-                              throw new SyntaxError('Invalid capture group name')
-                            ;(s[c] = !0), a.push([c, l]), (u = !1), (c = '')
-                            continue
-                        }
-                      u ? (c += e) : (r += e)
-                    }
-                    return [r, a]
-                  })(t))[0]),
-                  (b = a[1])),
-                (u = s(y(t, e), p ? this : $, j)),
-                (i || r || b.length) &&
-                  ((l = m(u)),
-                  i &&
-                    ((l.dotAll = !0),
-                    (l.raw = j(
-                      (function(t) {
-                        for (var e, n = t.length, i = 0, r = '', a = !1; i <= n; i++)
-                          '\\' !== (e = t.charAt(i))
-                            ? a || '.' !== e
-                              ? ('[' === e ? (a = !0) : ']' === e && (a = !1), (r += e))
-                              : (r += '[\\s\\S]')
-                            : (r += e + t.charAt(++i))
-                        return r
-                      })(t),
-                      n
-                    ))),
-                  r && (l.sticky = !0),
-                  b.length && (l.groups = b)),
-                t !== k)
-              )
-                try {
-                  o(u, 'source', '' === k ? '(?:)' : k)
-                } catch (t) {}
-              return u
-            },
-            P = function(t) {
-              ;(t in j) ||
-                u(j, t, {
-                  configurable: !0,
-                  get: function() {
-                    return y[t]
-                  },
-                  set: function(e) {
-                    y[t] = e
-                  }
-                })
-            },
-            A = l(y),
-            N = 0;
-          A.length > N;
-
-        )
-          P(A[N++])
-        ;($.constructor = j), (j.prototype = $), d(r, 'RegExp', j)
-      }
-      b('RegExp')
-    },
-    606: function(t, e, n) {
-      'use strict'
-      var i = n(89).PROPER,
-        r = n(27),
-        a = n(9),
-        s = n(23),
-        o = n(0),
-        u = n(226),
-        l = RegExp.prototype,
-        c = l.toString,
-        h = o(function() {
-          return '/a/b' != c.call({ source: 'a', flags: 'b' })
-        }),
-        f = i && 'toString' != c.name
-      ;(h || f) &&
-        r(
-          RegExp.prototype,
-          'toString',
-          function() {
-            var t = a(this),
-              e = s(t.source),
-              n = t.flags
-            return (
-              '/' +
-              e +
-              '/' +
-              s(void 0 === n && t instanceof RegExp && !('flags' in l) ? u.call(t) : n)
-            )
-          },
-          { unsafe: !0 }
-        )
-    },
-    607: function(t, e, n) {},
-    608: function(t, e, n) {},
-    609: function(t, e, n) {},
-    610: function(t, e, n) {},
-    611: function(t, e, n) {},
-    612: function(t, e, n) {},
-    613: function(t, e) {
+    707: function(t, e, n) {},
+    708: function(t, e, n) {},
+    709: function(t, e, n) {},
+    710: function(t, e, n) {},
+    711: function(t, e, n) {},
+    712: function(t, e, n) {},
+    713: function(t, e, n) {},
+    714: function(t, e) {
       t.exports = function(t) {
         return null == t
       }
     },
-    614: function(t, e, n) {},
-    615: function(t, e, n) {},
-    616: function(t, e, n) {},
-    617: function(t, e, n) {},
-    618: function(t, e, n) {},
-    619: function(t, e, n) {},
-    625: function(t, e, n) {
+    715: function(t, e, n) {},
+    716: function(t, e, n) {},
+    717: function(t, e, n) {},
+    718: function(t, e, n) {},
+    719: function(t, e, n) {},
+    720: function(t, e, n) {},
+    725: function(t, e, n) {
       'use strict'
       n.r(e)
-      var i = n(600),
+      var i = n(706),
         r = {
           name: 'SidebarGroup',
-          components: { DropdownTransition: n(626).a },
+          components: { DropdownTransition: n(726).a },
           props: ['item', 'open', 'collapsable', 'depth'],
           beforeCreate: function() {
-            this.$options.components.SidebarLinks = n(625).default
+            this.$options.components.SidebarLinks = n(725).default
           },
           methods: { isActive: i.e }
         },
-        a = (n(645), n(32)),
+        a = (n(740), n(39)),
         s = Object(a.a)(
           r,
           function() {
@@ -647,7 +294,7 @@
           null,
           null
         ).exports
-      n(646), n(86)
+      n(741), n(73)
       function o(t, e, n, i, r) {
         var a = {
           props: { to: e, activeClass: '', exactActiveClass: '' },
@@ -655,7 +302,7 @@
         }
         return r > 2 && (a.style = { 'padding-left': r + 'rem' }), t('RouterLink', a, n)
       }
-      function u(t, e, n, r, a) {
+      function l(t, e, n, r, a) {
         var s = arguments.length > 5 && void 0 !== arguments[5] ? arguments[5] : 1
         return !e || s > a
           ? null
@@ -663,15 +310,15 @@
               'ul',
               { class: 'sidebar-sub-headers' },
               e.map(function(e) {
-                var l = Object(i.e)(r, n + '#' + e.slug)
+                var u = Object(i.e)(r, n + '#' + e.slug)
                 return t('li', { class: 'sidebar-sub-header' }, [
-                  o(t, n + '#' + e.slug, e.title, l, e.level - 1),
-                  u(t, e.children, n, r, a, s + 1)
+                  o(t, n + '#' + e.slug, e.title, u, e.level - 1),
+                  l(t, e.children, n, r, a, s + 1)
                 ])
               })
             )
       }
-      var l = {
+      var u = {
         functional: !0,
         props: ['item', 'sidebarDepth'],
         render: function(t, e) {
@@ -679,18 +326,18 @@
             r = n.$page,
             a = (n.$site, n.$route),
             s = n.$themeConfig,
-            l = n.$themeLocaleConfig,
+            u = n.$themeLocaleConfig,
             c = e.props,
             h = c.item,
-            f = c.sidebarDepth,
-            p = Object(i.e)(a, h.path),
+            p = c.sidebarDepth,
+            f = Object(i.e)(a, h.path),
             d =
               'auto' === h.type
-                ? p ||
+                ? f ||
                   h.children.some(function(t) {
                     return Object(i.e)(a, h.basePath + '#' + t.slug)
                   })
-                : p,
+                : f,
             g =
               'external' === h.type
                 ? (function(t, e, n) {
@@ -704,20 +351,20 @@
                     )
                   })(t, h.path, h.title || h.path)
                 : o(t, h.path, h.title || h.path, d),
-            v = [r.frontmatter.sidebarDepth, f, l.sidebarDepth, s.sidebarDepth, 1].find(function(
+            m = [r.frontmatter.sidebarDepth, p, u.sidebarDepth, s.sidebarDepth, 1].find(function(
               t
             ) {
               return void 0 !== t
             }),
-            m = l.displayAllHeaders || s.displayAllHeaders
+            v = u.displayAllHeaders || s.displayAllHeaders
           return 'auto' === h.type
-            ? [g, u(t, h.children, h.basePath, a, v)]
-            : (d || m) && h.headers && !i.d.test(h.path)
-            ? [g, u(t, Object(i.c)(h.headers), h.path, a, v)]
+            ? [g, l(t, h.children, h.basePath, a, m)]
+            : (d || v) && h.headers && !i.d.test(h.path)
+            ? [g, l(t, Object(i.c)(h.headers), h.path, a, m)]
             : g
         }
       }
-      n(647)
+      n(742)
       function c(t, e) {
         if ('group' === e.type) {
           var n = e.path && Object(i.e)(t, e.path),
@@ -732,7 +379,7 @@
           name: 'SidebarLinks',
           components: {
             SidebarGroup: s,
-            SidebarLink: Object(a.a)(l, void 0, void 0, !1, null, null, null).exports
+            SidebarLink: Object(a.a)(u, void 0, void 0, !1, null, null, null).exports
           },
           props: ['items', 'depth', 'sidebarDepth', 'initialOpenGroupIndex'],
           data: function() {
@@ -765,7 +412,7 @@
             }
           }
         },
-        f = Object(a.a)(
+        p = Object(a.a)(
           h,
           function() {
             var t = this,
@@ -811,9 +458,9 @@
           null,
           null
         )
-      e.default = f.exports
+      e.default = p.exports
     },
-    626: function(t, e, n) {
+    726: function(t, e, n) {
       'use strict'
       var i = {
           name: 'DropdownTransition',
@@ -826,7 +473,7 @@
             }
           }
         },
-        r = (n(637), n(32)),
+        r = (n(732), n(39)),
         a = Object(r.a)(
           i,
           function() {
@@ -853,12 +500,12 @@
         )
       e.a = a.exports
     },
-    627: function(t, e, n) {
+    727: function(t, e, n) {
       'use strict'
       var i = n(2),
-        r = n(628)
+        r = n(283)
       i(
-        { target: 'String', proto: !0, forced: n(629)('link') },
+        { target: 'String', proto: !0, forced: n(284)('link') },
         {
           link: function(t) {
             return r(this, 'a', 'href', t)
@@ -866,86 +513,23 @@
         }
       )
     },
-    628: function(t, e, n) {
-      var i = n(26),
-        r = n(23),
-        a = /"/g
-      t.exports = function(t, e, n, s) {
-        var o = r(i(t)),
-          u = '<' + e
-        return (
-          '' !== n && (u += ' ' + n + '="' + r(s).replace(a, '&quot;') + '"'),
-          u + '>' + o + '</' + e + '>'
-        )
-      }
-    },
-    629: function(t, e, n) {
-      var i = n(0)
-      t.exports = function(t) {
-        return i(function() {
-          var e = ''[t]('"')
-          return e !== e.toLowerCase() || e.split('"').length > 3
-        })
-      }
-    },
-    630: function(t, e, n) {
-      var i = n(9),
-        r = n(242),
-        a = n(1)('species')
-      t.exports = function(t, e) {
-        var n,
-          s = i(t).constructor
-        return void 0 === s || null == (n = i(s)[a]) ? e : r(n)
-      }
-    },
-    631: function(t, e, n) {
+    728: function(t, e, n) {
       'use strict'
-      n(603)
+      n(707)
     },
-    632: function(t, e, n) {
-      var i = n(89).PROPER,
-        r = n(0),
-        a = n(241)
-      t.exports = function(t) {
-        return r(function() {
-          return !!a[t]() || '​᠎' !== '​᠎'[t]() || (i && a[t].name !== t)
-        })
-      }
-    },
-    633: function(t, e, n) {
-      'use strict'
-      var i = n(28),
-        r = n(11),
-        a = n(1),
-        s = n(12),
-        o = a('species')
-      t.exports = function(t) {
-        var e = i(t),
-          n = r.f
-        s &&
-          e &&
-          !e[o] &&
-          n(e, o, {
-            configurable: !0,
-            get: function() {
-              return this
-            }
-          })
-      }
-    },
-    634: function(t, e, n) {
+    729: function(t, e, n) {
       'use strict'
       var i,
         r = n(2),
-        a = n(33).f,
-        s = n(88),
-        o = n(23),
-        u = n(133),
-        l = n(26),
-        c = n(134),
-        h = n(39),
-        f = ''.endsWith,
-        p = Math.min,
+        a = n(35).f,
+        s = n(53),
+        o = n(15),
+        l = n(171),
+        u = n(20),
+        c = n(172),
+        h = n(52),
+        p = ''.endsWith,
+        f = Math.min,
         d = c('endsWith')
       r(
         {
@@ -955,70 +539,70 @@
         },
         {
           endsWith: function(t) {
-            var e = o(l(this))
-            u(t)
+            var e = o(u(this))
+            l(t)
             var n = arguments.length > 1 ? arguments[1] : void 0,
               i = e.length,
-              r = void 0 === n ? i : p(s(n), i),
+              r = void 0 === n ? i : f(s(n), i),
               a = o(t)
-            return f ? f.call(e, a, r) : e.slice(r - a.length, r) === a
+            return p ? p.call(e, a, r) : e.slice(r - a.length, r) === a
           }
         }
       )
     },
-    635: function(t, e, n) {
+    730: function(t, e, n) {
       'use strict'
-      n(607)
+      n(708)
     },
-    636: function(t, e, n) {
+    731: function(t, e, n) {
       'use strict'
-      n(608)
+      n(709)
     },
-    637: function(t, e, n) {
+    732: function(t, e, n) {
       'use strict'
-      n(609)
+      n(710)
     },
-    638: function(t, e, n) {
+    733: function(t, e, n) {
       'use strict'
-      n(610)
+      n(711)
     },
-    639: function(t, e, n) {
+    734: function(t, e, n) {
       'use strict'
-      n(611)
+      n(712)
     },
-    640: function(t, e, n) {
+    735: function(t, e, n) {
       'use strict'
-      n(612)
+      n(713)
     },
-    641: function(t, e, n) {
+    736: function(t, e, n) {
       'use strict'
-      n(614)
+      n(715)
     },
-    642: function(t, e, n) {
-      var i = n(42),
-        r = n(17),
-        a = n(34)
+    737: function(t, e, n) {
+      var i = n(55),
+        r = n(26),
+        a = n(41)
       t.exports = function(t) {
         return 'string' == typeof t || (!r(t) && a(t) && '[object String]' == i(t))
       }
     },
-    643: function(t, e, n) {
+    738: function(t, e, n) {
       'use strict'
-      n(615)
+      n(716)
     },
-    644: function(t, e, n) {
+    739: function(t, e, n) {
       'use strict'
-      n(616)
+      n(717)
     },
-    645: function(t, e, n) {
+    740: function(t, e, n) {
       'use strict'
-      n(617)
+      n(718)
     },
-    646: function(t, e, n) {
+    741: function(t, e, n) {
       'use strict'
       var i = n(2),
-        r = n(58).find,
-        a = n(132),
+        r = n(54).find,
+        a = n(107),
         s = !0
       'find' in [] &&
         Array(1).find(function() {
@@ -1034,19 +618,19 @@
         ),
         a('find')
     },
-    647: function(t, e, n) {
+    742: function(t, e, n) {
       'use strict'
-      n(618)
+      n(719)
     },
-    648: function(t, e, n) {
+    743: function(t, e, n) {
       'use strict'
-      n(619)
+      n(720)
     },
-    654: function(t, e, n) {
+    748: function(t, e, n) {
       'use strict'
       n.r(e)
-      n(627), n(129)
-      var i = n(600),
+      n(727), n(106)
+      var i = n(706),
         r = {
           name: 'NavLink',
           props: { item: { required: !0 } },
@@ -1096,7 +680,7 @@
             }
           }
         },
-        a = n(32),
+        a = n(39),
         s = Object(a.a)(
           r,
           function() {
@@ -1149,8 +733,8 @@
             }
           }
         },
-        u =
-          (n(631),
+        l =
+          (n(728),
           Object(a.a)(
             o,
             function() {
@@ -1228,7 +812,7 @@
                     ? n('div', { staticClass: 'footer' }, [
                         t._v('\n    ' + t._s(t.data.footer) + '\n  ')
                       ])
-                    : t._e()
+                    : n('Content', { staticClass: 'footer', attrs: { 'slot-key': 'footer' } })
                 ],
                 1
               )
@@ -1239,32 +823,32 @@
             null,
             null
           ).exports),
-        l =
-          (n(604),
-          n(38),
-          n(56),
-          n(601),
-          n(234),
-          n(235),
-          n(231),
-          n(87),
-          n(605),
-          n(606),
-          n(86),
-          n(602),
-          n(634),
-          n(237)),
-        c = n.n(l),
+        u =
+          (n(278),
+          n(40),
+          n(51),
+          n(275),
+          n(279),
+          n(280),
+          n(169),
+          n(74),
+          n(276),
+          n(277),
+          n(73),
+          n(274),
+          n(729),
+          n(281)),
+        c = n.n(u),
         h = function(t, e) {
           var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
             i = c()(e, 'title', '')
           return (
             c()(e, 'frontmatter.tags') && (i += ' '.concat(e.frontmatter.tags.join(' '))),
             n && (i += ' '.concat(n)),
-            f(t, i)
+            p(t, i)
           )
         },
-        f = function(t, e) {
+        p = function(t, e) {
           var n = function(t) {
               return t.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
             },
@@ -1293,7 +877,7 @@
             'gi'
           ).test(e)
         },
-        p = {
+        f = {
           name: 'SearchBox',
           data: function() {
             return { query: '', focused: !1, focusIndex: 0, placeholder: void 0 }
@@ -1319,10 +903,10 @@
                     if (h(t, s)) r.push(s)
                     else if (s.headers)
                       for (var o = 0; o < s.headers.length && !(r.length >= n); o++) {
-                        var u = s.headers[o]
-                        u.title &&
-                          h(t, s, u.title) &&
-                          r.push(Object.assign({}, s, { path: s.path + '#' + u.slug, header: u }))
+                        var l = s.headers[o]
+                        l.title &&
+                          h(t, s, l.title) &&
+                          r.push(Object.assign({}, s, { path: s.path + '#' + l.slug, header: l }))
                       }
                 }
                 return r
@@ -1386,9 +970,9 @@
           }
         },
         d =
-          (n(635),
+          (n(730),
           Object(a.a)(
-            p,
+            f,
             function() {
               var t = this,
                 e = t.$createElement,
@@ -1499,7 +1083,7 @@
             null
           ).exports),
         g =
-          (n(636),
+          (n(731),
           Object(a.a)(
             {},
             function() {
@@ -1547,13 +1131,13 @@
             null,
             null
           ).exports),
-        v = n(54),
-        m = (n(236), n(626)),
-        b = n(238),
+        m = n(71),
+        v = (n(170), n(726)),
+        b = n(282),
         k = n.n(b),
         _ = {
           name: 'DropdownLink',
-          components: { NavLink: s, DropdownTransition: m.a },
+          components: { NavLink: s, DropdownTransition: v.a },
           props: { item: { required: !0 } },
           data: function() {
             return { open: !1 }
@@ -1581,7 +1165,7 @@
           }
         },
         x =
-          (n(638),
+          (n(733),
           {
             name: 'NavLinks',
             components: {
@@ -1714,7 +1298,7 @@
                       items: Object.keys(e).map(function(a) {
                         var s,
                           o = e[a],
-                          u = (r[a] && r[a].label) || o.lang
+                          l = (r[a] && r[a].label) || o.lang
                         return (
                           o.lang === t.$lang
                             ? (s = n)
@@ -1722,11 +1306,11 @@
                               i.some(function(t) {
                                 return t.path === s
                               }) || (s = a)),
-                          { text: u, link: s }
+                          { text: l, link: s }
                         )
                       })
                     }
-                  return [].concat(Object(v.a)(this.userNav), [a])
+                  return [].concat(Object(m.a)(this.userNav), [a])
                 }
                 return this.userNav
               },
@@ -1758,7 +1342,7 @@
             }
           }),
         C =
-          (n(639),
+          (n(734),
           Object(a.a)(
             x,
             function() {
@@ -1809,10 +1393,10 @@
             null,
             null
           ).exports)
-      function y(t, e) {
+      function $(t, e) {
         return t.ownerDocument.defaultView.getComputedStyle(t, null)[e]
       }
-      var $ = {
+      var L = {
           name: 'Navbar',
           components: { SidebarButton: g, NavLinks: C, SearchBox: d, AlgoliaSearchBox: {} },
           data: function() {
@@ -1828,7 +1412,7 @@
           },
           mounted: function() {
             var t = this,
-              e = parseInt(y(this.$el, 'paddingLeft')) + parseInt(y(this.$el, 'paddingRight')),
+              e = parseInt($(this.$el, 'paddingLeft')) + parseInt($(this.$el, 'paddingRight')),
               n = function() {
                 document.documentElement.clientWidth < 719
                   ? (t.linksWrapMaxWidth = null)
@@ -1840,10 +1424,10 @@
             n(), window.addEventListener('resize', n, !1)
           }
         },
-        L =
-          (n(640),
+        y =
+          (n(735),
           Object(a.a)(
-            $,
+            L,
             function() {
               var t = this,
                 e = t.$createElement,
@@ -1908,7 +1492,7 @@
             null,
             null
           ).exports),
-        w = n(613),
+        w = n(714),
         O = n.n(w),
         S = {
           name: 'PageEdit',
@@ -1934,9 +1518,9 @@
                 a = e.docsBranch,
                 s = void 0 === a ? 'master' : a,
                 o = e.docsRepo,
-                u = void 0 === o ? n : o
-              return t && u && this.$page.relativePath
-                ? this.createEditLink(n, u, r, s, this.$page.relativePath)
+                l = void 0 === o ? n : o
+              return t && l && this.$page.relativePath
+                ? this.createEditLink(n, l, r, s, this.$page.relativePath)
                 : null
             },
             editLinkText: function() {
@@ -1973,7 +1557,7 @@
           }
         },
         I =
-          (n(641),
+          (n(736),
           Object(a.a)(
             S,
             function() {
@@ -2019,24 +1603,24 @@
             null,
             null
           ).exports),
-        E = n(642),
-        j = n.n(E),
-        P = {
+        j = n(737),
+        E = n.n(j),
+        N = {
           name: 'PageNav',
           props: ['sidebarItems'],
           computed: {
             prev: function() {
-              return N(A.PREV, this)
+              return A(T.PREV, this)
             },
             next: function() {
-              return N(A.NEXT, this)
+              return A(T.NEXT, this)
             }
           }
         }
-      var A = {
+      var T = {
         NEXT: {
           resolveLink: function(t, e) {
-            return T(t, e, 1)
+            return P(t, e, 1)
           },
           getThemeLinkConfig: function(t) {
             return t.nextLinks
@@ -2047,7 +1631,7 @@
         },
         PREV: {
           resolveLink: function(t, e) {
-            return T(t, e, -1)
+            return P(t, e, -1)
           },
           getThemeLinkConfig: function(t) {
             return t.prevLinks
@@ -2057,21 +1641,21 @@
           }
         }
       }
-      function N(t, e) {
+      function A(t, e) {
         var n = e.$themeConfig,
           r = e.$page,
           a = e.$route,
           s = e.$site,
           o = e.sidebarItems,
-          u = t.resolveLink,
-          l = t.getThemeLinkConfig,
+          l = t.resolveLink,
+          u = t.getThemeLinkConfig,
           c = t.getPageLinkConfig,
-          h = l(n),
-          f = c(r),
-          p = O()(f) ? h : f
-        return !1 === p ? void 0 : j()(p) ? Object(i.k)(s.pages, p, a.path) : u(r, o)
+          h = u(n),
+          p = c(r),
+          f = O()(p) ? h : p
+        return !1 === f ? void 0 : E()(f) ? Object(i.k)(s.pages, f, a.path) : l(r, o)
       }
-      function T(t, e, n) {
+      function P(t, e, n) {
         var i = []
         !(function t(e, n) {
           for (var i = 0, r = e.length; i < r; i++)
@@ -2082,14 +1666,14 @@
           if ('page' === a.type && a.path === decodeURIComponent(t.path)) return i[r + n]
         }
       }
-      var R = P,
-        D =
-          (n(643),
+      var D = N,
+        H =
+          (n(738),
           {
             components: {
               PageEdit: I,
               PageNav: Object(a.a)(
-                R,
+                D,
                 function() {
                   var t = this,
                     e = t.$createElement,
@@ -2190,10 +1774,10 @@
             },
             props: ['sidebarItems']
           }),
-        U =
-          (n(644),
+        R =
+          (n(739),
           Object(a.a)(
-            D,
+            H,
             function() {
               var t = this,
                 e = t.$createElement,
@@ -2221,20 +1805,20 @@
             null,
             null
           ).exports),
-        H = {
+        U = {
           name: 'Sidebar',
-          components: { SidebarLinks: n(625).default, NavLinks: C },
+          components: { SidebarLinks: n(725).default, NavLinks: C },
           props: ['items']
         },
         W =
-          (n(648),
+          (n(743),
           {
             name: 'Layout',
             components: {
-              Home: u,
-              Page: U,
+              Home: l,
+              Page: R,
               Sidebar: Object(a.a)(
-                H,
+                U,
                 function() {
                   var t = this.$createElement,
                     e = this._self._c || t
@@ -2259,7 +1843,7 @@
                 null,
                 null
               ).exports,
-              Navbar: L
+              Navbar: y
             },
             data: function() {
               return { isSidebarOpen: !1 }

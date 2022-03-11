@@ -37,21 +37,20 @@ module.exports = {
     sidebar: {
       '/api/': [
         {
-          title: '表单',
-          collapsable: true,
-          path: 'form'
+          title: 'Table',
+          collapsable: false,
+          children: ['tableBase', 'tableColumn', 'tablePager']
         },
         {
-          title: '表格',
+          title: 'Form',
           collapsable: true,
-          path: 'table'
+          path: 'form'
         }
       ]
-    }
-
+    },
     // 添加侧边栏
     // sidebar: 'auto',
-    // sidebarDepth: 2
+    sidebarDepth: 3
   },
   plugins: [
     '@vuepress/back-to-top',
