@@ -4,8 +4,8 @@
     758: function(t, a, s) {
       'use strict'
       s.r(a)
-      var e = s(39),
-        n = Object(e.a)(
+      var n = s(39),
+        e = Object(n.a)(
           {},
           function() {
             var t = this,
@@ -15,9 +15,11 @@
               'ContentSlotsDistributor',
               { attrs: { 'slot-key': t.$parent.slotKey } },
               [
-                s('h2', { attrs: { id: 'table' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#table' } }, [t._v('#')]),
-                  t._v(' Table')
+                s('h1', { attrs: { id: '基础配置' } }, [
+                  s('a', { staticClass: 'header-anchor', attrs: { href: '#基础配置' } }, [
+                    t._v('#')
+                  ]),
+                  t._v(' 基础配置')
                 ]),
                 t._v(' '),
                 s('p', [
@@ -863,7 +865,7 @@
                   [s('p', [t._v('这是一个基础的 demo 例子')])]
                 ),
                 t._v(' '),
-                s('h3', { attrs: { id: 'stripe' } }, [
+                s('h2', { attrs: { id: 'stripe' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#stripe' } }, [t._v('#')]),
                   t._v(' '),
                   s('code', [t._v('stripe')])
@@ -877,7 +879,7 @@
                 t._v(' '),
                 s('p', [t._v('是否隔行变色')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'loading' } }, [
+                s('h2', { attrs: { id: 'loading' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#loading' } }, [
                     t._v('#')
                   ]),
@@ -893,7 +895,7 @@
                 t._v(' '),
                 s('p', [t._v('是否显示'), s('code', [t._v('loading')])]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'isheader' } }, [
+                s('h2', { attrs: { id: 'isheader' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#isheader' } }, [
                     t._v('#')
                   ]),
@@ -909,7 +911,7 @@
                 t._v(' '),
                 s('p', [t._v('是否显示表头')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'selection' } }, [
+                s('h2', { attrs: { id: 'selection' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#selection' } }, [
                     t._v('#')
                   ]),
@@ -929,7 +931,7 @@
                   t._v('列 包括复选或者单选')
                 ]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'selectionmode' } }, [
+                s('h2', { attrs: { id: 'selectionmode' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#selectionmode' } }, [
                     t._v('#')
                   ]),
@@ -956,7 +958,7 @@
                   t._v(' 属性使用')
                 ]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'selectionpos' } }, [
+                s('h2', { attrs: { id: 'selectionpos' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#selectionpos' } }, [
                     t._v('#')
                   ]),
@@ -1014,7 +1016,7 @@
                     ])
                   ])
                 ]),
-                s('h3', { attrs: { id: 'selectable' } }, [
+                s('h2', { attrs: { id: 'selectable' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#selectable' } }, [
                     t._v('#')
                   ]),
@@ -1077,7 +1079,7 @@
                     ])
                   ])
                 ]),
-                s('h3', { attrs: { id: 'sortmode' } }, [
+                s('h2', { attrs: { id: 'sortmode' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#sortmode' } }, [
                     t._v('#')
                   ]),
@@ -1100,7 +1102,7 @@
                 t._v(' '),
                 s('p', [t._v('排序模式 支持二种排列模式 多列和单列')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'defaultsort' } }, [
+                s('h2', { attrs: { id: 'defaultsort' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#defaultsort' } }, [
                     t._v('#')
                   ]),
@@ -1172,7 +1174,7 @@
                     ])
                   ])
                 ]),
-                s('h3', { attrs: { id: 'defaultorder' } }, [
+                s('h2', { attrs: { id: 'defaultorder' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#defaultorder' } }, [
                     t._v('#')
                   ]),
@@ -1196,7 +1198,7 @@
                   ])
                 ]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'sortchange' } }, [
+                s('h2', { attrs: { id: 'sortchange' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#sortchange' } }, [
                     t._v('#')
                   ]),
@@ -1232,7 +1234,7 @@
                 t._v(' '),
                 s('p', [t._v('排序回调事件')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'highlightcurrentrow' } }, [
+                s('h2', { attrs: { id: 'highlightcurrentrow' } }, [
                   s(
                     'a',
                     { staticClass: 'header-anchor', attrs: { href: '#highlightcurrentrow' } },
@@ -1244,7 +1246,7 @@
                 t._v(' '),
                 s('ul', [s('li', [t._v('类型: 同'), s('code', [t._v('element-ui')])])]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'rowclick' } }, [
+                s('h2', { attrs: { id: 'rowclick' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#rowclick' } }, [
                     t._v('#')
                   ]),
@@ -1261,7 +1263,7 @@
                 t._v(' '),
                 s('p', [t._v('行点击事件')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'handleselectionchange' } }, [
+                s('h2', { attrs: { id: 'handleselectionchange' } }, [
                   s(
                     'a',
                     { staticClass: 'header-anchor', attrs: { href: '#handleselectionchange' } },
@@ -1275,7 +1277,7 @@
                 t._v(' '),
                 s('p', [t._v('复选框回调事件')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'pagination' } }, [
+                s('h2', { attrs: { id: 'pagination' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#pagination' } }, [
                     t._v('#')
                   ]),
@@ -1291,7 +1293,7 @@
                 t._v(' '),
                 s('p', [t._v('是否显示分页')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'pageopt' } }, [
+                s('h2', { attrs: { id: 'pageopt' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#pageopt' } }, [
                     t._v('#')
                   ]),
@@ -1307,7 +1309,7 @@
                 t._v(' '),
                 s('p', [t._v('分页属性配置对象')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'column' } }, [
+                s('h2', { attrs: { id: 'column' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#column' } }, [t._v('#')]),
                   t._v(' '),
                   s('code', [t._v('column')])
@@ -1321,7 +1323,7 @@
                 t._v(' '),
                 s('p', [t._v('Table '), s('code', [t._v('Column')]), t._v(' 数据配置说明')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'data' } }, [
+                s('h2', { attrs: { id: 'data' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#data' } }, [t._v('#')]),
                   t._v(' '),
                   s('code', [t._v('data')])
@@ -1335,7 +1337,7 @@
                 t._v(' '),
                 s('p', [t._v('数据')]),
                 t._v(' '),
-                s('h3', { attrs: { id: 'summary' } }, [
+                s('h2', { attrs: { id: 'summary' } }, [
                   s('a', { staticClass: 'header-anchor', attrs: { href: '#summary' } }, [
                     t._v('#')
                   ]),
@@ -1349,433 +1351,7 @@
                   s('li', [t._v('默认值： '), s('code', [t._v('{}')])])
                 ]),
                 t._v(' '),
-                s('p', [t._v('汇总行属性')]),
-                t._v(' '),
-                s('h2', { attrs: { id: 'table-column-说明' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#table-column-说明' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' Table Column 说明')
-                ]),
-                t._v(' '),
-                s('p', [s('code', [t._v('column')]), t._v('字段使用说明')]),
-                t._v(' '),
-                s('div', { staticClass: 'language-ts extra-class' }, [
-                  s('pre', { pre: !0, attrs: { class: 'language-ts' } }, [
-                    s('code', [
-                      t._v('column'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('[')]),
-                      t._v('\n  '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('{')]),
-                      t._v('\n    name'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [t._v("''")]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    type'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                        t._v("'selection'")
-                      ]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    fixed'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [t._v("'left'")]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    width'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token number' } }, [t._v('50')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    align'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [t._v("'center'")]),
-                      t._v('\n  '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('}')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n  '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('{')]),
-                      t._v('\n    name'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [t._v("'序号'")]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    type'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [t._v("'index'")]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    '),
-                      s('span', { pre: !0, attrs: { class: 'token comment' } }, [
-                        t._v("// fixed: 'left',")
-                      ]),
-                      t._v('\n    width'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token number' } }, [t._v('50')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n    align'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [t._v("'center'")]),
-                      t._v('\n  '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('}')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n  '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('{')]),
-                      t._v(' name'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                        t._v("'采集总数'")
-                      ]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v(' value'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                        t._v("'vd_count'")
-                      ]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v(' minWidth'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token number' } }, [t._v('70')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v(' sortable'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token boolean' } }, [t._v('true')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('}')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v('\n  '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('{')]),
-                      t._v(' name'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                        t._v("'违规总数'")
-                      ]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v(' value'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                        t._v("'ivd_count'")
-                      ]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v(' minWidth'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token number' } }, [t._v('70')]),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(',')]),
-                      t._v(' sortable'),
-                      s('span', { pre: !0, attrs: { class: 'token operator' } }, [t._v(':')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token boolean' } }, [t._v('true')]),
-                      t._v(' '),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v('}')]),
-                      t._v('\n'),
-                      s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [t._v(']')]),
-                      t._v('\n')
-                    ])
-                  ])
-                ]),
-                s('h3', { attrs: { id: 'type' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#type' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('type')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('String')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： '), s('code', [t._v('空')])]),
-                  t._v(' '),
-                  s('li', [t._v('可选值: '), s('code', [t._v("'selection'|'index'")])])
-                ]),
-                t._v(' '),
-                s('p', [
-                  t._v('可设置'),
-                  s('code', [t._v('selection')]),
-                  t._v(' 属性 同'),
-                  s('code', [t._v('element-ui')])
-                ]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'name' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#name' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('name')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('String')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： '), s('code', [t._v('空')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('列名称')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'value' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#value' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('value')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('String')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： '), s('code', [t._v('空')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('对应业务字段值')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'width' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#width' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('width')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('Number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： ``')])
-                ]),
-                t._v(' '),
-                s('p', [t._v('列宽度,同'), s('code', [t._v('element-ui')])]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'fixed' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#fixed' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('fixed')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('String')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： ``')])
-                ]),
-                t._v(' '),
-                s('p', [t._v('锁列 同'), s('code', [t._v('element-ui')])]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'align' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#align' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('align')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('String')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： '), s('code', [t._v('空')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('位置属性 居中、 居左、 居右,同'), s('code', [t._v('element-ui')])]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'minwidth' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#minwidth' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('minWidth')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('Number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： ``')])
-                ]),
-                t._v(' '),
-                s('p', [t._v('列最小宽度 同'), s('code', [t._v('element-ui')])]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'sortable' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#sortable' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('sortable')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('Boolean')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： '), s('code', [t._v('false')])])
-                ]),
-                t._v(' '),
-                s('p', [
-                  t._v('开启后 采用插件固有排序模式 详情参考'),
-                  s('code', [t._v('sortMode')]),
-                  t._v('相关属性')
-                ]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'showtooltip' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#showtooltip' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('showTooltip')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('Boolean')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值： '), s('code', [t._v('true')])])
-                ]),
-                t._v(' '),
-                s('p', [
-                  t._v('tooltip 、默认为'),
-                  s('code', [t._v('element-ui show-overflow-tooltip')]),
-                  t._v(' 属性')
-                ]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'formatter' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#formatter' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('formatter')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('{Function} (row: any) => void')])]),
-                  t._v(' '),
-                  s('li', [s('code', [t._v('row')]), t._v(': 列数据')])
-                ]),
-                t._v(' '),
-                s('p', [t._v('formatter 格式化处理 同'), s('code', [t._v('element-ui')])]),
-                t._v(' '),
-                s('h2', { attrs: { id: 'ipageopt-接口' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#ipageopt-接口' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' IPageOpt 接口')
-                ]),
-                t._v(' '),
-                s('p', [t._v('分页配置属性,同'), s('code', [t._v('element-ui')])]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'height' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#height' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('height')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值: '), s('code', [t._v('50')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('分页整体容器高度')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'currentpage' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#currentpage' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('currentPage')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值: '), s('code', [t._v('1')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('当前页')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'total' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#total' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('total')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值: '), s('code', [t._v('0')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('总数')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'pagecount' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#pagecount' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('pageCount')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值: '), s('code', [t._v('7')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('总数')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'pagesize' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#pagesize' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('pageSize')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('number')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值: '), s('code', [t._v('10')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('当前显示每页条数')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'pagesizes' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#pagesizes' } }, [
-                    t._v('#')
-                  ]),
-                  t._v(' '),
-                  s('code', [t._v('pageSizes')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('number[]')])]),
-                  t._v(' '),
-                  s('li', [t._v('默认值: '), s('code', [t._v('[10, 20, 30, 40, 50]')])])
-                ]),
-                t._v(' '),
-                s('p', [t._v('每页显示条数选择数组')]),
-                t._v(' '),
-                s('h3', { attrs: { id: 'layout' } }, [
-                  s('a', { staticClass: 'header-anchor', attrs: { href: '#layout' } }, [t._v('#')]),
-                  t._v(' '),
-                  s('code', [t._v('layout')])
-                ]),
-                t._v(' '),
-                s('ul', [
-                  s('li', [t._v('类型: '), s('code', [t._v('string')])]),
-                  t._v(' '),
-                  s('li', [
-                    t._v('默认值: '),
-                    s('code', [t._v('total, sizes, prev, pager, next, jumper')])
-                  ])
-                ]),
-                t._v(' '),
-                s('p', [t._v('分页功能 默认显示完整功能 （可不传）')]),
-                t._v(' '),
-                s('h2', { attrs: { id: 'isummaryoption-接口' } }, [
-                  s(
-                    'a',
-                    { staticClass: 'header-anchor', attrs: { href: '#isummaryoption-接口' } },
-                    [t._v('#')]
-                  ),
-                  t._v(' ISummaryOption 接口')
-                ])
+                s('p', [t._v('汇总行属性')])
               ],
               1
             )
@@ -1786,7 +1362,7 @@
           null,
           null
         )
-      a.default = n.exports
+      a.default = e.exports
     }
   }
 ])

@@ -206,7 +206,9 @@ export default class Default extends Vue {
   private tableOpt: any = {
     stripe: true,
     isHeader: true,
+    border: true,
     loading: true,
+    size: 'mini',
     // selection: true,
     // // 复选框位置 前还是后 top ，end
     // selectionPos: 'top',

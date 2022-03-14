@@ -12,6 +12,8 @@ export const formOptionProp: PandoraFormOption = {
 export const tableOptionProp: PandoraTableOption = {
   stripe: true,
   selection: false,
+  border: false,
+  size: '',
   // selectionPos: 'top',
   defaultSort: [],
   sortChange: undefined,

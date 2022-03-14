@@ -10,10 +10,18 @@ export interface ISummaryOption {
 }
 
 export interface ITableOption {
+  // loading
+  loading?: boolean
   // 是否隔行变色
   stripe?: boolean
   // 是否显示表头
   isHeader?: boolean
+  // border是否带有纵向边框
+  border?: boolean
+  // Table 的尺寸
+  size?: string
+  // 列的宽度是否自撑开
+  fit?: boolean
   // 高亮当前行
   highlightCurrentRow?: boolean
   // 选择模式 单选还是多选
@@ -25,7 +33,7 @@ export interface ITableOption {
   // 是否可选中的回调
   selectable?: (row: object, index: number) => void
   // 排序模式
-  sortMode: string
+  sortMode?: string
   // 表格表头数据
   column: object[]
   // 表格数据
@@ -37,7 +45,7 @@ export interface ITableOption {
   // 行改变事件
   rowChange?: (row: object, index: number) => void
   // 是否分页
-  pagination: boolean
+  pagination?: boolean
   // 排序
   defaultSort?: object[]
   // 默认排序方向
@@ -47,7 +55,7 @@ export interface ITableOption {
   summary?: ISummaryOption
 
   // 分页参数
-  pageOpt: IPageOpt
+  pageOpt?: IPageOpt
 }
 
 // 分页参数

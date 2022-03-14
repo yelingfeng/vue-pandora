@@ -5,9 +5,15 @@ declare namespace Table {
   }
   export interface ITableOption {
     // loading
-    loading: boolean
+    loading?: boolean
     // 是否隔行变色
-    stripe: boolean
+    stripe?: boolean
+    // border是否带有纵向边框
+    border?: boolean
+    // Table 的尺寸
+    size?: string
+    // 列的宽度是否自撑开
+    fit?: boolean
     // 是否显示表头
     isHeader?: boolean
     // 高亮当前行

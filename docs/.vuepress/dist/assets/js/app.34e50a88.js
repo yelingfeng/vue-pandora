@@ -49,17 +49,19 @@
               {
                 2: '19276a01',
                 3: '40783fa4',
-                4: '3e410ca8',
-                5: '994a4786',
-                6: 'ded50e51',
+                4: '92dd9d74',
+                5: 'b1c575b3',
+                6: 'c2e23abd',
                 7: 'd3cca896',
                 8: '12e5ac6e',
-                9: 'd7b03988',
-                10: '2d9ecae1',
-                11: 'e3efc5f1',
-                12: '888d884a',
-                13: '55470031',
-                14: '9d7271c0'
+                9: 'e39b39ab',
+                10: '1af48094',
+                11: 'a0fe1b00',
+                12: '15130934',
+                13: '4efe057c',
+                14: '9c113d95',
+                15: '4a2066c7',
+                16: '8b9bd677'
               }[e] +
               '.js'
             )
@@ -103977,23 +103979,29 @@
           }
         }),
       Je = {
-        'v-718dfd58': function() {
-          return n.e(9).then(n.bind(null, 754))
+        'v-6fe7b01f': function() {
+          return n.e(14).then(n.bind(null, 754))
         },
-        'v-21bd70ba': function() {
+        'v-b32347b2': function() {
           return n.e(13).then(n.bind(null, 755))
         },
-        'v-b0df82a0': function() {
-          return n.e(14).then(n.bind(null, 756))
-        },
-        'v-14b9d081': function() {
-          return n.e(11).then(n.bind(null, 757))
-        },
-        'v-3918aeb2': function() {
-          return n.e(12).then(n.bind(null, 758))
+        'v-718dfd58': function() {
+          return n.e(9).then(n.bind(null, 756))
         },
         'v-260de33e': function() {
-          return n.e(10).then(n.bind(null, 759))
+          return n.e(10).then(n.bind(null, 757))
+        },
+        'v-20f2c1f2': function() {
+          return n.e(12).then(n.bind(null, 758))
+        },
+        'v-21bd70ba': function() {
+          return n.e(15).then(n.bind(null, 759))
+        },
+        'v-b0df82a0': function() {
+          return n.e(16).then(n.bind(null, 760))
+        },
+        'v-14b9d081': function() {
+          return n.e(11).then(n.bind(null, 761))
         }
       }
     function et(e) {
@@ -104358,6 +104366,22 @@
     })(Ft, 'mixins', Mt)
     var Bt = [
         {
+          name: 'v-6fe7b01f',
+          path: '/api/tablePager.html',
+          component: Ft,
+          beforeEnter: function(e, t, n) {
+            _t('Layout', 'v-6fe7b01f').then(n)
+          }
+        },
+        {
+          name: 'v-b32347b2',
+          path: '/api/tableColumn.html',
+          component: Ft,
+          beforeEnter: function(e, t, n) {
+            _t('Layout', 'v-b32347b2').then(n)
+          }
+        },
+        {
           name: 'v-718dfd58',
           path: '/',
           component: Ft,
@@ -104366,6 +104390,23 @@
           }
         },
         { path: '/index.html', redirect: '/' },
+        {
+          name: 'v-260de33e',
+          path: '/api/',
+          component: Ft,
+          beforeEnter: function(e, t, n) {
+            _t('Layout', 'v-260de33e').then(n)
+          }
+        },
+        { path: '/api/index.html', redirect: '/api/' },
+        {
+          name: 'v-20f2c1f2',
+          path: '/api/tableBase.html',
+          component: Ft,
+          beforeEnter: function(e, t, n) {
+            _t('Layout', 'v-20f2c1f2').then(n)
+          }
+        },
         {
           name: 'v-21bd70ba',
           path: '/guide/',
@@ -104392,23 +104433,6 @@
             _t('Layout', 'v-14b9d081').then(n)
           }
         },
-        {
-          name: 'v-3918aeb2',
-          path: '/api/table.html',
-          component: Ft,
-          beforeEnter: function(e, t, n) {
-            _t('Layout', 'v-3918aeb2').then(n)
-          }
-        },
-        {
-          name: 'v-260de33e',
-          path: '/api/',
-          component: Ft,
-          beforeEnter: function(e, t, n) {
-            _t('Layout', 'v-260de33e').then(n)
-          }
-        },
-        { path: '/api/index.html', redirect: '/api/' },
         { path: '*', component: Ft }
       ],
       Ut = {
@@ -104417,6 +104441,43 @@
         base: '/vue-pandora/',
         headTags: [],
         pages: [
+          {
+            title: 'IPageOpt',
+            frontmatter: {},
+            regularPath: '/api/tablePager.html',
+            relativePath: 'api/tablePager.md',
+            key: 'v-6fe7b01f',
+            path: '/api/tablePager.html',
+            headers: [
+              { level: 2, title: 'height', slug: 'height' },
+              { level: 2, title: 'currentPage', slug: 'currentpage' },
+              { level: 2, title: 'total', slug: 'total' },
+              { level: 2, title: 'pageCount', slug: 'pagecount' },
+              { level: 2, title: 'pageSize', slug: 'pagesize' },
+              { level: 2, title: 'pageSizes', slug: 'pagesizes' },
+              { level: 2, title: 'layout', slug: 'layout' }
+            ]
+          },
+          {
+            title: 'Column',
+            frontmatter: {},
+            regularPath: '/api/tableColumn.html',
+            relativePath: 'api/tableColumn.md',
+            key: 'v-b32347b2',
+            path: '/api/tableColumn.html',
+            headers: [
+              { level: 2, title: 'type', slug: 'type' },
+              { level: 2, title: 'name', slug: 'name' },
+              { level: 2, title: 'value', slug: 'value' },
+              { level: 2, title: 'width', slug: 'width' },
+              { level: 2, title: 'fixed', slug: 'fixed' },
+              { level: 2, title: 'align', slug: 'align' },
+              { level: 2, title: 'minWidth', slug: 'minwidth' },
+              { level: 2, title: 'sortable', slug: 'sortable' },
+              { level: 2, title: 'showTooltip', slug: 'showtooltip' },
+              { level: 2, title: 'formatter', slug: 'formatter' }
+            ]
+          },
           {
             title: 'Vue-pandora',
             frontmatter: {},
@@ -104427,6 +104488,43 @@
             headers: [
               { level: 2, title: 'Install', slug: 'install' },
               { level: 2, title: 'Usage', slug: 'usage' }
+            ]
+          },
+          {
+            title: 'API',
+            frontmatter: {},
+            regularPath: '/api/',
+            relativePath: 'api/README.md',
+            key: 'v-260de33e',
+            path: '/api/'
+          },
+          {
+            title: '基础配置',
+            frontmatter: {},
+            regularPath: '/api/tableBase.html',
+            relativePath: 'api/tableBase.md',
+            key: 'v-20f2c1f2',
+            path: '/api/tableBase.html',
+            headers: [
+              { level: 2, title: 'stripe', slug: 'stripe' },
+              { level: 2, title: 'loading', slug: 'loading' },
+              { level: 2, title: 'isHeader', slug: 'isheader' },
+              { level: 2, title: 'selection', slug: 'selection' },
+              { level: 2, title: 'selectionMode', slug: 'selectionmode' },
+              { level: 2, title: 'selectionPos', slug: 'selectionpos' },
+              { level: 2, title: 'selectable', slug: 'selectable' },
+              { level: 2, title: 'sortMode', slug: 'sortmode' },
+              { level: 2, title: 'defaultSort', slug: 'defaultsort' },
+              { level: 2, title: 'defaultOrder', slug: 'defaultorder' },
+              { level: 2, title: 'sortChange', slug: 'sortchange' },
+              { level: 2, title: 'highlightCurrentRow', slug: 'highlightcurrentrow' },
+              { level: 2, title: 'rowClick', slug: 'rowclick' },
+              { level: 2, title: 'handleSelectionChange', slug: 'handleselectionchange' },
+              { level: 2, title: 'pagination', slug: 'pagination' },
+              { level: 2, title: 'pageOpt', slug: 'pageopt' },
+              { level: 2, title: 'column', slug: 'column' },
+              { level: 2, title: 'data', slug: 'data' },
+              { level: 2, title: 'summary', slug: 'summary' }
             ]
           },
           {
@@ -104459,64 +104557,6 @@
               { level: 2, title: 'FormItemOpt 说明', slug: 'formitemopt-说明' },
               { level: 2, title: 'FormItemCompOpt 说明', slug: 'formitemcompopt-说明' }
             ]
-          },
-          {
-            title: 'Table',
-            frontmatter: {},
-            regularPath: '/api/table.html',
-            relativePath: 'api/table.md',
-            key: 'v-3918aeb2',
-            path: '/api/table.html',
-            headers: [
-              { level: 2, title: 'Table', slug: 'table' },
-              { level: 3, title: 'stripe', slug: 'stripe' },
-              { level: 3, title: 'loading', slug: 'loading' },
-              { level: 3, title: 'isHeader', slug: 'isheader' },
-              { level: 3, title: 'selection', slug: 'selection' },
-              { level: 3, title: 'selectionMode', slug: 'selectionmode' },
-              { level: 3, title: 'selectionPos', slug: 'selectionpos' },
-              { level: 3, title: 'selectable', slug: 'selectable' },
-              { level: 3, title: 'sortMode', slug: 'sortmode' },
-              { level: 3, title: 'defaultSort', slug: 'defaultsort' },
-              { level: 3, title: 'defaultOrder', slug: 'defaultorder' },
-              { level: 3, title: 'sortChange', slug: 'sortchange' },
-              { level: 3, title: 'highlightCurrentRow', slug: 'highlightcurrentrow' },
-              { level: 3, title: 'rowClick', slug: 'rowclick' },
-              { level: 3, title: 'handleSelectionChange', slug: 'handleselectionchange' },
-              { level: 3, title: 'pagination', slug: 'pagination' },
-              { level: 3, title: 'pageOpt', slug: 'pageopt' },
-              { level: 3, title: 'column', slug: 'column' },
-              { level: 3, title: 'data', slug: 'data' },
-              { level: 3, title: 'summary', slug: 'summary' },
-              { level: 2, title: 'Table Column 说明', slug: 'table-column-说明' },
-              { level: 3, title: 'type', slug: 'type' },
-              { level: 3, title: 'name', slug: 'name' },
-              { level: 3, title: 'value', slug: 'value' },
-              { level: 3, title: 'width', slug: 'width' },
-              { level: 3, title: 'fixed', slug: 'fixed' },
-              { level: 3, title: 'align', slug: 'align' },
-              { level: 3, title: 'minWidth', slug: 'minwidth' },
-              { level: 3, title: 'sortable', slug: 'sortable' },
-              { level: 3, title: 'showTooltip', slug: 'showtooltip' },
-              { level: 3, title: 'formatter', slug: 'formatter' },
-              { level: 2, title: 'IPageOpt 接口', slug: 'ipageopt-接口' },
-              { level: 3, title: 'height', slug: 'height' },
-              { level: 3, title: 'currentPage', slug: 'currentpage' },
-              { level: 3, title: 'total', slug: 'total' },
-              { level: 3, title: 'pageCount', slug: 'pagecount' },
-              { level: 3, title: 'pageSize', slug: 'pagesize' },
-              { level: 3, title: 'pageSizes', slug: 'pagesizes' },
-              { level: 3, title: 'layout', slug: 'layout' },
-              { level: 2, title: 'ISummaryOption 接口', slug: 'isummaryoption-接口' }
-            ]
-          },
-          {
-            title: 'API',
-            frontmatter: {},
-            regularPath: '/api/',
-            relativePath: 'api/README.md',
-            key: 'v-260de33e',
-            path: '/api/'
           }
         ],
         themeConfig: {
@@ -104530,10 +104570,15 @@
           ],
           sidebar: {
             '/api/': [
-              { title: '表单', collapsable: !0, path: 'form' },
-              { title: '表格', collapsable: !0, path: 'table' }
+              {
+                title: 'Table',
+                collapsable: !1,
+                children: ['tableBase', 'tableColumn', 'tablePager']
+              },
+              { title: 'Form', collapsable: !0, path: 'form' }
             ]
-          }
+          },
+          sidebarDepth: 3
         }
       },
       Gt = n(270),
@@ -105364,13 +105409,13 @@ PERFORMANCE OF THIS SOFTWARE.
         return n.e(7).then(n.bind(null, 751))
       }),
       a.default.component('Badge', function() {
-        return Promise.all([n.e(0), n.e(4)]).then(n.bind(null, 760))
-      }),
-      a.default.component('CodeGroup', function() {
-        return Promise.all([n.e(0), n.e(6)]).then(n.bind(null, 752))
+        return Promise.all([n.e(0), n.e(4)]).then(n.bind(null, 762))
       }),
       a.default.component('CodeBlock', function() {
-        return Promise.all([n.e(0), n.e(5)]).then(n.bind(null, 753))
+        return Promise.all([n.e(0), n.e(5)]).then(n.bind(null, 752))
+      }),
+      a.default.component('CodeGroup', function() {
+        return Promise.all([n.e(0), n.e(6)]).then(n.bind(null, 753))
       })
     n(701), n(262)
     var Xn = {
@@ -105956,7 +106001,7 @@ PERFORMANCE OF THIS SOFTWARE.
         var t = this.$site.base
         return '/' === e.charAt(0) ? t + e.slice(1) : e
       }),
-      (window.__VUEPRESS__ = { version: '1.9.7', hash: 'b6a09a7' }),
+      (window.__VUEPRESS__ = { version: '1.9.7', hash: 'b3b8fd8' }),
       (function(e) {
         return vi.apply(this, arguments)
       })(!1).then(function(e) {

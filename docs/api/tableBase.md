@@ -76,6 +76,28 @@ export default {
 
 是否显示表头
 
+## `border`
+
+- 类型： `Boolean`
+- 默认： `false`
+
+是否带有纵向边框
+
+## `fix`
+
+- 类型： `Boolean`
+- 默认： `true`
+
+列的宽度是否自撑开
+
+## `size`
+
+- 类型： `String`
+- 默认： `-`
+- 可选择： `medium / small / mini`
+
+Table 的尺寸
+
 ## `selection`
 
 - 类型： `Boolean`

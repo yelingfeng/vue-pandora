@@ -47,32 +47,6 @@
 .el-radio__input.is-checked + .el-radio__label {
   color: #48c2a9;
 }
-//   公共table样式
-.el-table td {
-  padding: 0;
-}
-.el-table th {
-  padding: 9px 0;
-  border-top: 1px solid #cccc;
-  color: #5f89a1;
-}
-
-.el-table__body tr.hover-row.el-table__row--striped > td,
-.el-table__body tr.hover-row > td {
-  background: #ffffcb !important;
-}
-
-.el-table--striped .el-table__body tr.el-table__row--striped td {
-  background-color: #f1f9fc;
-}
-// element表格样式
-.el-table--enable-row-hover .el-table__body tr:hover > td {
-  background: #ffffcb !important;
-}
-.el-table .cell.el-tooltip {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
 
 // 弹出层样式
 .el-dialog__header {
@@ -239,4 +213,10 @@
 
 .el-tabs__active-bar {
   background-color: #48c2a9;
+}
+
+.el-table__body, .el-table__footer, .el-table__header{
+  display:inline-block;
+  margin:0;
+  border-collapse:collapse;
 }

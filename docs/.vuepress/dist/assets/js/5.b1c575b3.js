@@ -1,12 +1,12 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [5],
   {
-    724: function(t, e, a) {},
-    747: function(t, e, a) {
+    723: function(t, e, a) {},
+    746: function(t, e, a) {
       'use strict'
-      a(724)
+      a(723)
     },
-    753: function(t, e, a) {
+    752: function(t, e, a) {
       'use strict'
       a.r(e)
       var n = {
@@ -16,7 +16,7 @@
             this.$parent && this.$parent.loadTabs && this.$parent.loadTabs()
           }
         },
-        i = (a(747), a(39)),
+        i = (a(746), a(39)),
         s = Object(i.a)(
           n,
           function() {
