@@ -94,7 +94,7 @@ export default {
 
 - 类型： `String`
 - 默认： `-`
-- 可选择： `medium / small / mini`
+- 可选值： `medium / small / mini`
 
 Table 的尺寸
 

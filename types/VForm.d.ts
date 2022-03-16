@@ -74,23 +74,9 @@ export interface IFormItemCompOpt {
   value: string | any
   type: string
   width?: string | number
-  title?: string
-  isAll?: boolean
-  // 是否是数字文本框
-  isNumberInput?: boolean
-  disabled?: boolean
-  placeholder?: string
-  // 是否多选
-  multiple?: boolean
-  // 设置日期显示格式
-  format?: string
-  // 日期align
-  align?: string
   // formlist items
   items?: any[] | undefined
   data?: any[]
-  tooltipDelay?: number
-  className?: string
   // 日期option
   dateOption?: DateOptionType
   // 上传option

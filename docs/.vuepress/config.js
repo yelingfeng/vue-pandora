@@ -44,7 +44,8 @@ module.exports = {
         {
           title: 'Form',
           collapsable: true,
-          path: 'form'
+          // path: 'form'
+          children: ['formBase', 'formItem', 'formItemComp']
         }
       ]
     },

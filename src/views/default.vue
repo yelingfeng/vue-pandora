@@ -31,7 +31,7 @@ export default class Default extends Vue {
     inline: true,
     labelPosition: 'right',
     labelWidth: '100',
-    btnPos: 'right',
+    // btnPos: 'right',
     items: [
       {
         label: '任务名称',
@@ -409,11 +409,12 @@ export default class Default extends Vue {
         operations: [
           {
             label: '详情',
-            type: 'radio',
+            type: 'butto',
+            tooltip: false
             // title: '添加一个title属性',
-            tooltip: function(row: any) {
-              return row.taskContent + '流量链接趋势'
-            }
+            // tooltip: function(row: any) {
+            //   return row.taskContent + '流量链接趋势'
+            // }
           },
           {
             label: '详情',
@@ -530,6 +531,7 @@ export default class Default extends Vue {
     axios.get('/api/tablelist').then(resp => {
       const { data, totals } = resp.data
       const list = data.list as Array<object>
+      console.log(list)
       this.tableOpt.data = list
       this.tableOpt.pageOpt.total = totals
     })
