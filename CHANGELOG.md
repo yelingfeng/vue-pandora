@@ -1,3 +1,9 @@
+## [1.2.26](https://github.com/yelingfeng/vue-pandora/compare/v1.2.25...v1.2.26) (2022-06-17)
+
+### Features
+
+- **form(date):** datetype week model ([3017130](https://github.com/yelingfeng/vue-pandora/commit/301713074ee8eb1cb8ee04d426fc40b304d365b3))
+
 ## [1.2.25](https://github.com/yelingfeng/vue-pandora/compare/v1.2.24...v1.2.25) (2022-03-14)
 
 ## [1.2.24](https://github.com/yelingfeng/vue-pandora/compare/v1.2.23...v1.2.24) (2022-01-07)
