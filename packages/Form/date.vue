@@ -119,11 +119,10 @@
       :style="widthStyle"
     ></el-date-picker>
     <el-date-picker
-      :format="formatDate"
+      :format="start + ' - ' + end"
       :clearable="clearable"
       :disabled="option.disabled"
       :editable="false"
-      :value-format="valueFormat"
       v-if="type == 'week'"
       v-model="curValue"
       align="align"
@@ -165,6 +164,8 @@ export default class VDate extends Vue {
   private placeholder = '请选择日期'
   private valueFormat = ''
   private valueSeparator = ''
+  private start = ''
+  private end = ''
 
   get widthStyle() {
     return {
@@ -191,10 +192,15 @@ export default class VDate extends Vue {
     this.placeholder = this.option.placeholder || '请选择日期'
     this.valueFormat = this.dateOption?.valueFormat || ''
     this.valueSeparator = this.dateOption?.valueSeparator ?? ','
-    if (this.dateOption.format) {
-      this.formatDate = this.dateOption.format
+
+    if (this.type === 'week') {
+      this.setWeekPickValue()
     } else {
-      this.typeFormat()
+      if (this.dateOption.format) {
+        this.formatDate = this.dateOption.format
+      } else {
+        this.typeFormat()
+      }
     }
   }
   /**
@@ -208,6 +214,16 @@ export default class VDate extends Vue {
       this.curValue = val
     }
   }
+
+  /**
+   * 设置周的显示格式化值
+   */
+  setWeekPickValue() {
+    let startTime = dayjs(this.curValue as string).subtract(1, 'day')
+    let endTime = dayjs(startTime).add(6, 'day')
+    this.start = this.splitDate(startTime)
+    this.end = this.splitDate(endTime)
+  }
   /**
    * @name: setValue
    * @param {val}
@@ -215,10 +231,15 @@ export default class VDate extends Vue {
    * @description: 	用户确认选定的值时触发	组件绑定值。
    */
   changeHandler(val: string) {
-    // console.log(val)
-    if (this.option.change && isFunction(this.option.change)) {
-      this.option.change(val)
+    if (this.type === 'week') {
+      this.setWeekPickValue()
+      this.option.change([this.start, this.end])
+    } else {
+      if (this.option.change && isFunction(this.option.change)) {
+        this.option.change(val)
+      }
     }
+    // console.log(val)
   }
 
   inputHandler(val: string) {
@@ -235,6 +256,10 @@ export default class VDate extends Vue {
       return dayjs(val).format(format)
     }
   }
+
+  splitDate(date) {
+    return dayjs(date).format('YYYY-MM-DD')
+  }
   /**
    * @name: getValue
    * @param {type}
@@ -242,6 +267,10 @@ export default class VDate extends Vue {
    * @description: 获取日期当前值
    */
   getValue() {
+    if (this.type === 'week') {
+      return { [this.option.id]: [this.start, this.end] }
+    }
+
     if (this.curValue === '' || !this.curValue) {
       return { [this.option.id]: this._valueFormat(this.curValue) || '' }
     }

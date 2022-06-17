@@ -16,6 +16,11 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    'generator-star-spacing': 'off',
+    'no-unused-vars': 'off',
+    'no-console': 'off',
+    'no-irregular-whitespace': 'off',
+    'no-debugger': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'prefer-rest-params': 0,

@@ -5,7 +5,7 @@ const publicPath = IS_PROD ? '/vue-pandora' : '/'
 
 module.exports = {
   publicPath: publicPath,
-  lintOnSave: true,
+  lintOnSave: false,
   outputDir: 'lib',
   productionSourceMap: false,
   devServer: {
@@ -34,7 +34,7 @@ module.exports = {
     config.set('name', name)
 
     // https://webpack.js.org/configuration/devtool/#development
-    // config.when(!IS_PROD, config => config.devtool('cheap-eval-source-map'))
+    config.when(!IS_PROD, config => config.devtool('cheap-eval-source-map'))
 
     if (IS_PROD) {
       config.optimization.minimizer('terser').tap(args => {

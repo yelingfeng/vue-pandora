@@ -27,10 +27,6 @@ const constantRouterMap = [
   {
     path: '/hooks',
     component: () => import('@/views/hooksDemo.vue')
-  },
-  {
-    path: '/chart',
-    component: () => import('@/views/chart.vue')
   }
 ]
 

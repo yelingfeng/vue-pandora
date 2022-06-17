@@ -567,6 +567,22 @@ export default class Demo extends Vue {
         }
       },
       {
+        label: '测试周',
+        type: 'date',
+        comOpt: {
+          id: 'queryTestWeek',
+          type: 'week',
+          width: '250',
+          value: new Date().toString(),
+          change(v: any) {
+            console.log(v)
+          },
+          dateOption: {
+            pickOptions: {}
+          }
+        }
+      },
+      {
         label: '测试Radio',
         type: 'radio',
         required: true,
