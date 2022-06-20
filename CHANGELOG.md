@@ -1,3 +1,9 @@
+## [1.2.27](https://github.com/yelingfeng/vue-pandora/compare/v1.2.26...v1.2.27) (2022-06-20)
+
+### Features
+
+- **date:** add dateweek valueformat props ([16cde0b](https://github.com/yelingfeng/vue-pandora/commit/16cde0bb45fd702231356b4c31e50d3f1678de5f))
+
 ## [1.2.26](https://github.com/yelingfeng/vue-pandora/compare/v1.2.25...v1.2.26) (2022-06-17)
 
 ### Features
