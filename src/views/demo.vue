@@ -557,12 +557,13 @@ export default class Demo extends Vue {
           id: 'queryTestMonth',
           type: 'month',
           width: '210',
+          value: '2022-05-10 15:22:00',
           change(v: any) {
             console.log(v)
           },
           dateOption: {
-            format: 'M',
-            valueFormat: 'MM'
+            format: 'yyyyMM',
+            valueFormat: 'yyyyMM'
           }
         }
       },
@@ -578,7 +579,7 @@ export default class Demo extends Vue {
             console.log(v)
           },
           dateOption: {
-            pickOptions: {}
+            valueFormat: 'YYYYMMDD'
           }
         }
       },

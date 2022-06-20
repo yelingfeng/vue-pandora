@@ -258,7 +258,7 @@ export default class VDate extends Vue {
   }
 
   splitDate(date) {
-    return dayjs(date).format('YYYY-MM-DD')
+    return dayjs(date).format(this.dateOption?.valueFormat || 'YYYYMMDD')
   }
   /**
    * @name: getValue
