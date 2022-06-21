@@ -442,7 +442,9 @@ export default class Demo extends Vue {
           disabled: false,
           placeholder: '',
           clearable: true,
-          value: 3,
+          multiple: true,
+          collapseTags: true,
+          value: '',
           data: [
             {
               name: '1月',
