@@ -1,3 +1,9 @@
+## [1.2.28](https://github.com/yelingfeng/vue-pandora/compare/v1.2.27...v1.2.28) (2022-06-21)
+
+### Bug Fixes
+
+- **date:** fix date align props bug ([f6e7260](https://github.com/yelingfeng/vue-pandora/commit/f6e726006c4a76e067c78a6fc8e29faf9a2418fe))
+
 ## [1.2.27](https://github.com/yelingfeng/vue-pandora/compare/v1.2.26...v1.2.27) (2022-06-20)
 
 ### Features
