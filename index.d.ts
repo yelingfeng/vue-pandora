@@ -194,3 +194,26 @@ declare namespace Form {
     rules?: object
   }
 }
+
+declare namespace GisMap {
+  export interface IBMapConfig {
+    // 元素
+    el?: HTMLElement
+    // 中心点
+    center: Array<string>
+    // 层级
+    zoom?: number
+    // 最大层级
+    maxZoom?: number
+    // 最小层级
+    minZoom?: number
+    // Bmap配置对象
+    mapConfig?: Object
+    // 是否开启绘制模式
+    isDraw?: boolean
+    // click事件
+    onClick?: Fn
+    //
+    onOverlayComplete?: Fn
+  }
+}

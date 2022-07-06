@@ -31,7 +31,8 @@
     "./index.d.ts",
     "src/**/*.vue",
     "__tests__/**/*.ts",
-    "__tests__/**/*.tsx"
+    "__tests__/**/*.tsx",
+    "./types/*.d.ts"
   ],
   "exclude": ["node_modules", "./mock/"]
 }

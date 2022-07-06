@@ -64,3 +64,15 @@ declare interface ComponentElRef<T extends HTMLElement = HTMLDivElement> {
 declare type ComponentRef<T extends HTMLElement = HTMLDivElement> = ComponentElRef<T> | null
 
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
+
+declare interface Window {
+  BMap: void
+  BMapLib: void
+  BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW: void
+  BMap_Symbol_SHAPE_POINT: void
+  BMAP_STATUS_SUCCESS: void
+  BMAP_ANCHOR_TOP_RIGHT: void
+  BMAP_DRAWING_POLYGON: void
+  BMAP_DRAWING_CIRCLE: void
+  BMAP_DRAWING_RECTANGLE: void
+}

@@ -22,6 +22,10 @@
               <el-menu-item index="/formlist">formlist</el-menu-item>
               <el-menu-item index="/hooks">hooksDemo</el-menu-item>
             </el-menu-item-group>
+            <el-menu-item-group title="GIS地图">
+              <el-menu-item index="/gisMap">gisMapDemo</el-menu-item>
+              <el-menu-item index="/hooks">hooksDemo</el-menu-item>
+            </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-col>

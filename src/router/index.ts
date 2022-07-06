@@ -27,6 +27,10 @@ const constantRouterMap = [
   {
     path: '/hooks',
     component: () => import('@/views/hooksDemo.vue')
+  },
+  {
+    path: '/gisMap',
+    component: () => import('@/views/gisDemo.vue')
   }
 ]
 
