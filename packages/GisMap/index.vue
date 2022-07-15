@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
+import { Component, Vue, Prop, Ref, Watch } from 'vue-property-decorator'
 import MapClass from './class'
 @Component({
   name: 'GisMap'
@@ -23,6 +23,15 @@ export default class GisMap extends Vue {
     })
 
     this.$mapClass = new MapClass(opt)
+  }
+
+  @Watch('options.isDraw')
+  isDrawHandler(newVal, oldVal) {
+    if (newVal) {
+      this.$mapClass.openEditorMode()
+    } else {
+      this.$mapClass.closeEditorMode()
+    }
   }
 
   openInfoPanel(content, e) {

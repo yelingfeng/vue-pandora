@@ -11,7 +11,6 @@ import {
   addArrow,
   getPolygonArea
 } from './helper'
-import { Message } from 'element-ui'
 
 /**
  * mapClass gis地图基础类
@@ -113,21 +112,25 @@ export default class BMapClass {
     })
   }
 
-  // 打开编辑模式
+  //  关闭编辑模式
   closeEditorMode() {
-    this.drawingManager.open()
+    if (this.drawingManager !== undefined) {
+      this.drawingManager.close()
+    }
     if (this.currentOverlay) this.currentOverlay.disableEditing()
   }
 
-  // 关闭编辑模式
+  //打开编辑模式
   openEditorMode() {
-    this.drawingManager.close()
+    if (this.drawingManager !== undefined) {
+      this.drawingManager.oepn()
+    }
     if (this.currentOverlay) this.currentOverlay.enableEditing()
   }
 
   overlayComplete(e) {
     if (this.overlays.length === 1) {
-      Message('每次只能框选一个区域,请重新框选')
+      alert('每次只能框选一个区域,请重新框选')
       this.openEditorMode()
       this.map.removeOverlay(e.overlay)
       return
@@ -164,10 +167,19 @@ export default class BMapClass {
   }
 
   /**
+   * 判断是否为绘画状态
+   * @returns
+   */
+  isDrawState() {
+    return this.currentOverlay !== null && this.currentOverlay !== undefined
+  }
+
+  /**
    * [获取当前编辑图层的数据 description]
    * @return {[type]} [description]
    */
   getCurOverlayData() {
+    if (!this.isDrawState()) return
     let dataObj = Object.create(null)
     // 圆
     if (this.drawingMode === 'circle') {
