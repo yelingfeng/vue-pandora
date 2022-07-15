@@ -56,6 +56,8 @@ export default class GisDemo extends Vue {
       { lng: '104.080989', lat: '30.657689', dataObj: { name: '张三', local: '成都XXX区' } },
       { lng: '104.055731', lat: '30.667648', dataObj: { name: '李四', local: '成都SSSS区' } }
     ]
+    console.log(123)
+
     this.drawMap.addMarkers(arr)
   }
 
