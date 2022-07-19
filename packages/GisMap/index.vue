@@ -1,4 +1,5 @@
 <script lang="tsx">
+import { watch } from '@vue/composition-api'
 import { Component, Vue, Prop, Ref, Watch } from 'vue-property-decorator'
 import MapClass from './class'
 @Component({
@@ -9,14 +10,23 @@ export default class GisMap extends Vue {
 
   @Ref() readonly GisRef!: any
   private isDrawing = false
+  // 是否显示轨迹回放
+  private isLushu: any = false
+  // lushu 数据
+  private lushuData: any = []
+  // 默认实时状态
+  private lushuStatus: any = 'real'
+  private lushuStatusText: any = '回放'
+  // lushu实例
+  private lushuComp: any = null
 
   private $mapClass: any
   created() {}
 
   mounted() {
-    let el = this.$refs.GisRef
+    const el = this.$refs.GisRef
 
-    let opt = Object.assign({}, this.options, {
+    const opt = Object.assign({}, this.options, {
       el,
       onClick: this.onClickHandler.bind(this),
       overlayComplete: this.overlayComplete.bind(this)
@@ -31,6 +41,14 @@ export default class GisMap extends Vue {
       this.$mapClass.openEditorMode()
     } else {
       this.$mapClass.closeEditorMode()
+    }
+  }
+  @Watch('lushuStatus')
+  lushuStatusHandler(newVal, oldVal) {
+    if (newVal === 'pause') {
+      this.lushuStatusText = '继续'
+    } else if (newVal === 'real' || newVal === 'stop') {
+      this.lushuStatusText = '回放'
     }
   }
 
@@ -61,7 +79,7 @@ export default class GisMap extends Vue {
     }
   }
 
-  // 点聚焦
+  // 点聚焦 设置地图层级
   markerZoomAdapter(data) {
     if (data && this.$mapClass !== undefined && data.length) {
       this.$mapClass.markerZoomAdapter(data)
@@ -70,7 +88,7 @@ export default class GisMap extends Vue {
 
   // 渲染热地图
   drawHeatMap(obj) {
-    let { data } = obj
+    const { data } = obj
     if (data && this.$mapClass !== undefined && data.length) {
       this.$mapClass.drawHeatMap(obj)
     }
@@ -98,6 +116,11 @@ export default class GisMap extends Vue {
     if (this.$mapClass) this.$mapClass.openEditorMode()
   }
 
+  // 关闭编辑模式
+  closeEditorMode() {
+    if (this.$mapClass) this.$mapClass.closeEditorMode()
+  }
+
   // 销毁方法
   beforeDestory() {
     if (this.$mapClass) this.$mapClass.destory()
@@ -116,13 +139,76 @@ export default class GisMap extends Vue {
     if (this.$mapClass) return this.$mapClass.isDrawingState()
   }
 
+  // lushu
+  drawLushu(arr) {
+    if (arr && arr.length) {
+      this.lushuComp = this.$mapClass.drawLushu(arr)
+      this.lushuData = arr
+      this.isLushu = true
+    }
+  }
+  // lushu实时状态
+  lushuReal() {
+    this.clearAllOverlay()
+    const arr = this.lushuData
+    this.lushuStatus = 'real'
+    if (arr && arr.length) this.$mapClass.drawTrajectory(arr)
+  }
+  // lushu暂停
+  lushuPause() {
+    this.lushuStatus = 'pause'
+    if (this.lushuComp) {
+      this.lushuComp.pause()
+    }
+  }
+  // lushu停止
+  lushuStop() {
+    this.lushuStatus = 'stop'
+    if (this.lushuComp) {
+      this.lushuComp.stop()
+    }
+  }
+  // 回放
+  lushuStart() {
+    if (this.lushuStatus !== 'pause') {
+      this.clearAllOverlay()
+    }
+    this.lushuComp.start()
+    this.lushuStatus = 'run'
+  }
   render(h) {
-    return <div ref="GisRef" class="gis-container" />
+    let playBack
+    if (this.isLushu) {
+      playBack = (
+        <div class="playBack">
+          <el-button onClick={this.lushuReal}>实时</el-button>
+          <el-button onClick={this.lushuStart}>{this.lushuStatusText}</el-button>
+          <el-button onClick={this.lushuStop}>停止</el-button>
+          <el-button onClick={this.lushuPause}>暂停</el-button>
+        </div>
+      )
+    }
+    return (
+      <div class="gis-container">
+        <div ref="GisRef" class="gis-box"></div>
+        {playBack}
+      </div>
+    )
   }
 }
 </script>
 <style scoped>
 .gis-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.playBack {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.gis-box {
   width: 100%;
   height: 100%;
 }

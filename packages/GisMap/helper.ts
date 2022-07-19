@@ -53,19 +53,19 @@ export const createPoint = (lng, lat) => {
  * @param {[type]} map        [description]
  */
 export const addArrow = (polyline, length, angleValue, map) => {
-  var linePoint = polyline.getPath() //线的坐标串
-  var arrowCount = linePoint.length
-  var arrowArr = [] // 箭头对象数组, 用于删除
-  for (var i = 1; i < arrowCount; i++) {
+  const linePoint = polyline.getPath() //线的坐标串
+  const arrowCount = linePoint.length
+  const arrowArr = [] // 箭头对象数组, 用于删除
+  for (let i = 1; i < arrowCount; i++) {
     //在拐点处绘制箭头
-    var pixelStart = map.pointToPixel(linePoint[i - 1])
-    var pixelEnd = map.pointToPixel(linePoint[i])
-    var angle = angleValue //箭头和主线的夹角
-    var r = length // r/Math.sin(angle)代表箭头长度
-    var delta = 0 //主线斜率，垂直时无斜率
-    var param = 0 //代码简洁考虑
-    var pixelTemX, pixelTemY //临时点坐标
-    var pixelX, pixelX1, pixelY, pixelY1 //箭头两个点
+    const pixelStart = map.pointToPixel(linePoint[i - 1])
+    const pixelEnd = map.pointToPixel(linePoint[i])
+    const angle = angleValue //箭头和主线的夹角
+    const r = length // r/Math.sin(angle)代表箭头长度
+    let delta = 0 //主线斜率，垂直时无斜率
+    let param = 0 //代码简洁考虑
+    let pixelTemX, pixelTemY //临时点坐标
+    let pixelX, pixelX1, pixelY, pixelY1 //箭头两个点
     if (pixelEnd.x - pixelStart.x === 0) {
       //斜率不存在是时
       pixelTemX = pixelEnd.x
@@ -97,9 +97,9 @@ export const addArrow = (polyline, length, angleValue, map) => {
       pixelX1 = pixelTemX - (Math.tan(angle) * r * delta) / param
       pixelY1 = pixelTemY + (Math.tan(angle) * r) / param
     }
-    var pointArrow = map.pixelToPoint(new BMap.Pixel(pixelX, pixelY))
-    var pointArrow1 = map.pixelToPoint(new BMap.Pixel(pixelX1, pixelY1))
-    var Arrow = new BMap.Polyline([pointArrow, linePoint[i], pointArrow1], lineConfig)
+    const pointArrow = map.pixelToPoint(new BMap.Pixel(pixelX, pixelY))
+    const pointArrow1 = map.pixelToPoint(new BMap.Pixel(pixelX1, pixelY1))
+    const Arrow = new BMap.Polyline([pointArrow, linePoint[i], pointArrow1], lineConfig)
     map.addOverlay(Arrow)
     arrowArr.push(Arrow)
   }
@@ -180,7 +180,7 @@ export const createMarker = ({ lng, lat, colorType = 'red', text }) => {
   const marker = new BMap.Marker(point, {
     icon: myIcon
   })
-  let colorList = {
+  const colorList = {
     blue: '#00a4ff',
     red: '#F65050',
     green: '#30b513'
@@ -209,7 +209,7 @@ export const createMarker = ({ lng, lat, colorType = 'red', text }) => {
  */
 export const createInfoWindow = content => {
   // 创建信息窗口对象
-  let infoWindow = new BMap.InfoWindow(content, winConfig)
+  const infoWindow = new BMap.InfoWindow(content, winConfig)
   return infoWindow
 }
 /**
@@ -243,7 +243,7 @@ export const createDrawingManager = map => {
  */
 export const createHeatmapOverlay = map => {
   let heatRadius = 30
-  let zoom = map.getZoom()
+  const zoom = map.getZoom()
   switch (zoom) {
     case 19:
       heatRadius = 40
@@ -287,4 +287,93 @@ export const getPolygonArea = path => {
   const ply = new BMap.Polygon(path)
   const area = BMapLib.GeoUtils.getPolygonArea(ply) / 1000000
   return area
+}
+
+// 重写路书方法 添加动态绘制路线代码
+BMapLib.LuShu.prototype._move = function(initPos, targetPos, effect) {
+  const pointsArr = [initPos, targetPos] //点数组
+  const me = this
+  //当前的帧数
+  let currentCount = 0
+  //步长，米/秒
+  const timer = 100
+  const step = this._opts.speed / (1000 / timer)
+  //初始坐标
+  const init_pos = this._projection.lngLatToPoint(initPos)
+  //获取结束点的(x,y)坐标
+  const target_pos = this._projection.lngLatToPoint(targetPos)
+  //总的步长
+  const count = Math.round(me._getDistance(init_pos, target_pos) / step)
+
+  //显示折线
+  // 画线操作 （画轨迹）
+  this._map.addOverlay(
+    new BMap.Polyline(pointsArr, {
+      strokeColor: this._opts.color, // 设置颜色
+      strokeWeight: 5, // 宽度
+      strokeOpacity: 0.5 // 透明度
+    })
+  )
+
+  //如果小于1直接移动到下一点
+  if (count < 1) {
+    me._moveNext(++me.i)
+    return
+  }
+  me._intervalFlag = setInterval(function() {
+    //两点之间当前帧数大于总帧数的时候，则说明已经完成移动
+    if (currentCount >= count) {
+      clearInterval(me._intervalFlag)
+      //移动的点已经超过总的长度
+      if (me.i > me._path.length) {
+        return
+      }
+      //运行下一个点
+      me._moveNext(++me.i)
+    } else {
+      currentCount++
+      const x = effect(init_pos.x, target_pos.x, currentCount, count),
+        y = effect(init_pos.y, target_pos.y, currentCount, count),
+        pos = me._projection.pointToLngLat(new BMap.Pixel(x, y))
+      //设置marker
+      if (currentCount == 1) {
+        let proPos = null
+        if (me.i - 1 >= 0) {
+          proPos = me._path[me.i - 1]
+        }
+        if (me._opts.enableRotation == true) {
+          me.setRotation(proPos, initPos, targetPos)
+        }
+        if (me._opts.autoView) {
+          if (!me._map.getBounds().containsPoint(pos)) {
+            me._map.setCenter(pos)
+          }
+        }
+      }
+      //正在移动
+      me._marker.setPosition(pos)
+      //设置自定义overlay的位置
+      me._setInfoWin(pos)
+    }
+  }, timer)
+}
+
+export const createLushu = (map, arrPoints) => {
+  const CAR = `./lib/vender/gis/images/carMarker.png`
+  const lushu = new BMapLib.LuShu(map, arrPoints, {
+    defaultContent: '',
+    // defaultContent: `号码${index + 1}`, // 路书展示内容
+    autoView: true, // 是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+    // 图标设置
+    icon: new BMap.Icon(CAR, new BMap.Size(52, 52)),
+    speed: 500, // 速度
+    enableRotation: true, // 是否设置marker随着道路的走向进行旋转
+    landmarkPois: [
+      // 停顿点   html 展示内容   pauseTime 停留时间 3s
+      //{ lng: 101.8137711066657, lat: 36.61314270812945, html: '加油站', pauseTime: 3 }
+    ]
+    // 用来轨迹运动的时候传入不同的颜色值
+    // color: colors[index % datas.mapData.length]
+  })
+  return lushu
 }

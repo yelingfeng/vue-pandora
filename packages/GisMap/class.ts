@@ -9,7 +9,8 @@ import {
   drawPolygon,
   drawPolyline,
   addArrow,
-  getPolygonArea
+  getPolygonArea,
+  createLushu
 } from './helper'
 
 /**
@@ -32,7 +33,7 @@ export default class BMapClass {
   private GPSHeatOverlay
 
   constructor(options: GisMap.IBMapConfig) {
-    let { center, mapConfig, isDraw } = options
+    const { center, mapConfig, isDraw } = options
     this.options = options
     this.mapCenter = center
     // 是否开启绘制模式
@@ -97,7 +98,7 @@ export default class BMapClass {
   // 内部画箭头 传一个ployline对象
   _drawArrow(polyline) {
     let arrowLen = 10
-    let zoom = this.map.getZoom()
+    const zoom = this.map.getZoom()
     if (zoom >= 15) {
       arrowLen = 6
     }
@@ -114,43 +115,42 @@ export default class BMapClass {
 
   //  关闭编辑模式
   closeEditorMode() {
-    if (this.drawingManager !== undefined) {
-      this.drawingManager.close()
-    }
+    // if (this.drawingManager !== undefined) {
+    //   this.drawingManager.close()
+    // }
     if (this.currentOverlay) this.currentOverlay.disableEditing()
   }
 
   //打开编辑模式
   openEditorMode() {
-    if (this.drawingManager !== undefined) {
-      this.drawingManager.oepn()
-    }
+    // if (this.drawingManager !== undefined) {
+    //   this.drawingManager.open()
+    // }
     if (this.currentOverlay) this.currentOverlay.enableEditing()
   }
 
   overlayComplete(e) {
-    if (this.overlays.length === 1) {
+    if (this.overlays.length > 1) {
       alert('每次只能框选一个区域,请重新框选')
       this.openEditorMode()
       this.map.removeOverlay(e.overlay)
       return
+    } else {
+      this.drawingMode = e.drawingMode
+      this.overlays.push(e.overlay)
+      // 设置当前可编辑
+      this.currentOverlay = e.overlay
+      this.openEditorMode()
+      const overlayData = this.getCurOverlayData()
+      this.options.overlayComplete(overlayData)
     }
-    this.drawingMode = e.drawingMode
-    this.overlays.push(e.overlay)
-
-    // 设置当前可编辑
-    this.currentOverlay = e.overlay
-    this.openEditorMode()
-
-    let overlayData = this.getCurOverlayData()
-    this.options.overlayComplete(overlayData)
   }
 
   // 画区域
   drawOverlay(arr) {
-    let centerData = arr[0]
-    let { lng, lat } = centerData
-    let centerPoint = createPoint(lng, lat)
+    const centerData = arr[0]
+    const { lng, lat } = centerData
+    const centerPoint = createPoint(lng, lat)
     this.map.panTo(centerPoint)
     this.map.enableScrollWheelZoom()
     if (arr.length === 1) {
@@ -218,7 +218,7 @@ export default class BMapClass {
     if (this.isDrawingState()) return
 
     if (this.overlays.length) {
-      for (var i = 0; i < this.overlays.length; i++) {
+      for (let i = 0; i < this.overlays.length; i++) {
         this.map.removeOverlay(this.overlays[i])
       }
       this.overlays.length = 0
@@ -251,8 +251,8 @@ export default class BMapClass {
 
   // 打开panel
   openInfoPanel(content, e) {
-    let point = createPoint(e.point.lng, e.point.lat)
-    let infoWindow = createInfoWindow(content)
+    const point = createPoint(e.point.lng, e.point.lat)
+    const infoWindow = createInfoWindow(content)
     this.map.openInfoWindow(infoWindow, point) // 开启信息窗口
   }
 
@@ -277,7 +277,7 @@ export default class BMapClass {
    * @return {[type]}   [description]
    */
   markerZoomAdapter(marks) {
-    let view = this.map.getViewport(marks)
+    const view = this.map.getViewport(marks)
     if (marks.length === 1) {
       this.map.centerAndZoom(view.center, this.options.zoom)
     } else {
@@ -305,7 +305,7 @@ export default class BMapClass {
 
   // 渲染热地图
   drawHeatMap(obj) {
-    let { data, heatMax } = obj
+    const { data, heatMax } = obj
     this.GPSHeatOverlay = createHeatmapOverlay(this.map)
     this.map.addOverlay(this.GPSHeatOverlay)
     try {
@@ -317,5 +317,33 @@ export default class BMapClass {
     } catch (error) {
       console.warn('热力图组件未检测到符合标准的热力数据，请检查数据是否正常')
     }
+  }
+  // 绘制轨迹
+  drawTrajectory(arr) {
+    let markerConfig: any = null
+    for (let j = 0; j < arr.length; j++) {
+      if (j === 0) {
+        markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'start' }
+      } else if (j === arr.length - 1) {
+        // 终点
+        markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'end' }
+      } else {
+        // 除起点和终点外的其他点
+        markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'coffee' }
+      }
+      const marker = createMarker(markerConfig)
+      this.map.addOverlay(marker)
+    }
+    this.drawPolyline(arr)
+  }
+  drawLushu(arr) {
+    const arrPoints = []
+    arr.forEach(it => {
+      const point = createPoint(it.lng, it.lat)
+      arrPoints.push(point)
+    })
+    this.drawTrajectory(arr)
+    const lushu = createLushu(this.map, arrPoints)
+    return lushu
   }
 }
