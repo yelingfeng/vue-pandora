@@ -310,6 +310,10 @@ export default class VForm extends Vue {
           }
           // formBox = <el-form-item label={it.label}>{comp}</el-form-item>
         }
+        // 内联
+        if (this.formOpt.inline) {
+          elItems.push(<el-form-item label={it.label}>{comp}</el-form-item>)
+        }
 
         return comp
       })
@@ -325,16 +329,26 @@ export default class VForm extends Vue {
         'label-width': this.labelWidth
       }
     }
-    const vDom = (
-      <div class="vpandora-form">
-        <div class="vpandora-form-items">
-          <el-form {...formProps} ref="form">
-            {elItems}
-          </el-form>
+
+    const vDom =
+      this.formOpt.inline === true ? (
+        <div class="vpandora-form">
+          <div class="vpandora-form-items">
+            <el-form {...formProps} ref="form">
+              {elItems}
+            </el-form>
+          </div>
         </div>
-        <div class="vpandora-right-btns">{elBtns}</div>
-      </div>
-    )
+      ) : (
+        <div class="vpandora-form">
+          <div class="vpandora-form-items">
+            <el-form {...formProps} ref="form">
+              {elItems}
+            </el-form>
+          </div>
+          <div class="vpandora-right-btns">{elBtns}</div>
+        </div>
+      )
     return this.isShow ? vDom : ''
   }
 }
