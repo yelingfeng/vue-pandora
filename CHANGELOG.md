@@ -1,3 +1,20 @@
+## [1.2.29](https://github.com/yelingfeng/vue-pandora/compare/v1.2.28...v1.2.29) (2022-07-19)
+
+### Features
+
+- **form:** form inline props ([3af489e](https://github.com/yelingfeng/vue-pandora/commit/3af489e186802b58969348a6a42d02962c79cf5b))
+- **gismap:** add gisMap ([b4568c9](https://github.com/yelingfeng/vue-pandora/commit/b4568c98f90476796f8bfd6d059d26c85f366667))
+- **gismap:** add gisMap ([9f5ea3b](https://github.com/yelingfeng/vue-pandora/commit/9f5ea3b95d23e9cf0e3b2f8a0491f40332e41d33))
+- **gismap:** fix some bug ([ac31551](https://github.com/yelingfeng/vue-pandora/commit/ac3155198ee271f56259cde90e62b8d2da3db95f))
+
+### Tests
+
+- **test:** test ([88d2f8d](https://github.com/yelingfeng/vue-pandora/commit/88d2f8ddac7a2d18da88659071f3171cfb9fcb04))
+
+### BREAKING CHANGES
+
+- **test:** test
+
 ## [1.2.28](https://github.com/yelingfeng/vue-pandora/compare/v1.2.27...v1.2.28) (2022-06-21)
 
 ### Bug Fixes
