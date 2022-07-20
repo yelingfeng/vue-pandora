@@ -310,11 +310,6 @@ export default class VForm extends Vue {
           }
           // formBox = <el-form-item label={it.label}>{comp}</el-form-item>
         }
-        // 内联
-        if (this.formOpt.inline) {
-          elItems.push(<el-form-item label={it.label}>{comp}</el-form-item>)
-        }
-
         return comp
       })
       // if (this.formOpt.btnPos === 'right') {
@@ -330,6 +325,9 @@ export default class VForm extends Vue {
       }
     }
 
+    if (this.formOpt.inline) {
+      elItems.push(<el-form-item>{elBtns}</el-form-item>)
+    }
     const vDom =
       this.formOpt.inline === true ? (
         <div class="vpandora-form">
