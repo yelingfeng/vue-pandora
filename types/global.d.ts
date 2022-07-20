@@ -66,6 +66,7 @@ declare type ComponentRef<T extends HTMLElement = HTMLDivElement> = ComponentElR
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
 
 declare interface Window {
+  $: void
   BMap: void
   BMapLib: void
   BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW: void
@@ -75,4 +76,10 @@ declare interface Window {
   BMAP_DRAWING_POLYGON: void
   BMAP_DRAWING_CIRCLE: void
   BMAP_DRAWING_RECTANGLE: void
+  BMAP_POINT_SIZE_SMALL: void
+  BMAP_POINT_SHAPE_STAR: void
+  BMAP_POINT_SHAPE_CIRCLE: void
+  BMAP_POINT_SHAPE_SQUARE: void
+  BMAP_POINT_SHAPE_RHOMBUS: void
+  BMAP_POINT_SHAPE_WATERDROP: void
 }

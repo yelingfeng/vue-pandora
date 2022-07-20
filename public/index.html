@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./lib/newGis/qt/DrawingManager_min.css" />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -24,8 +25,12 @@
       type="text/javascript"
       src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=pr0qVszfs4d1KcXvyZgYjvGBrIv2qgx5"
     ></script>
+
+    <!-- <script type="text/javascript" src="./lib/newGis/v2019/map_load.js"></script> -->
+    <script src="./lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/newGis/qt/DrawingManager_min.js"></script>
     <script type="text/javascript" src="./lib/newGis/baidumapv2/tools/Heatmap_min.js"></script>
     <script type="text/javascript" src="./lib/newGis/LuShu_min.js"></script>
+    <script type="text/javascript" src="./lib/newGis/qt/GeoUtils_min.js"></script>
   </body>
 </html>

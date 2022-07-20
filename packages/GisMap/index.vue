@@ -15,8 +15,8 @@ export default class GisMap extends Vue {
   // lushu 数据
   private lushuData: any = []
   // 默认实时状态
-  private lushuStatus: any = 'real'
-  private lushuStatusText: any = '回放'
+  // private lushuStatus: any = 'real'
+  // private lushuStatusText: any = '回放'
   // lushu实例
   private lushuComp: any = null
 
@@ -31,8 +31,12 @@ export default class GisMap extends Vue {
       onClick: this.onClickHandler.bind(this),
       overlayComplete: this.overlayComplete.bind(this)
     })
-
     this.$mapClass = new MapClass(opt)
+    if (this.options.isDraw) {
+      this.$mapClass.openEditorMode()
+    } else {
+      this.$mapClass.closeEditorMode()
+    }
   }
 
   @Watch('options.isDraw')
@@ -43,15 +47,15 @@ export default class GisMap extends Vue {
       this.$mapClass.closeEditorMode()
     }
   }
-  @Watch('lushuStatus')
-  lushuStatusHandler(newVal, oldVal) {
-    if (newVal === 'pause') {
-      this.lushuStatusText = '继续'
-    } else if (newVal === 'real' || newVal === 'stop') {
-      this.lushuStatusText = '回放'
-    }
-  }
-
+  // @Watch('lushuStatus')
+  // lushuStatusHandler(newVal, oldVal) {
+  //   if (newVal === 'pause') {
+  //     this.lushuStatusText = '继续'
+  //   } else if (newVal === 'real' || newVal === 'stop') {
+  //     this.lushuStatusText = '回放'
+  //   }
+  // }
+  // 打开infowindow
   openInfoPanel(content, e) {
     if (this.$mapClass) this.$mapClass.openInfoPanel(content, e)
   }
@@ -65,6 +69,7 @@ export default class GisMap extends Vue {
     this.$emit('drawComplete', result)
   }
 
+  // 标记点点击事件
   onClickHandler(e, dataObj) {
     this.$emit('markerClick', {
       e,
@@ -110,6 +115,10 @@ export default class GisMap extends Vue {
   drawOverlay(arrs) {
     if (arrs && arrs.length) this.$mapClass.drawOverlay(arrs)
   }
+  // 海量点
+  drawPointCollection(arrs, opt) {
+    if (arrs && arrs.length) this.$mapClass.drawPointCollection(arrs, opt)
+  }
 
   // 打开编辑模式
   openEditorMode() {
@@ -134,7 +143,7 @@ export default class GisMap extends Vue {
   getOverlayData() {
     if (this.$mapClass) return this.$mapClass.getCurOverlayData()
   }
-
+  // 判断是否为绘制状态 如果“是”的话 阻止操作
   isDrawingState() {
     if (this.$mapClass) return this.$mapClass.isDrawingState()
   }
@@ -151,65 +160,117 @@ export default class GisMap extends Vue {
   lushuReal() {
     this.clearAllOverlay()
     const arr = this.lushuData
-    this.lushuStatus = 'real'
     if (arr && arr.length) this.$mapClass.drawTrajectory(arr)
   }
   // lushu暂停
   lushuPause() {
-    this.lushuStatus = 'pause'
     if (this.lushuComp) {
       this.lushuComp.pause()
     }
   }
   // lushu停止
   lushuStop() {
-    this.lushuStatus = 'stop'
     if (this.lushuComp) {
       this.lushuComp.stop()
     }
   }
   // 回放
   lushuStart() {
-    if (this.lushuStatus !== 'pause') {
-      this.clearAllOverlay()
+    if (this.lushuComp) {
+      this.lushuComp.start()
     }
-    this.lushuComp.start()
-    this.lushuStatus = 'run'
   }
   render(h) {
-    let playBack
-    if (this.isLushu) {
-      playBack = (
-        <div class="playBack">
-          <el-button onClick={this.lushuReal}>实时</el-button>
-          <el-button onClick={this.lushuStart}>{this.lushuStatusText}</el-button>
-          <el-button onClick={this.lushuStop}>停止</el-button>
-          <el-button onClick={this.lushuPause}>暂停</el-button>
-        </div>
-      )
-    }
+    // let playBack
+    // if (this.isLushu) {
+    //   playBack = (
+    //     <div class="playBack">
+    //       <el-button onClick={this.lushuReal}>实时</el-button>
+    //       <el-button onClick={this.lushuStart}>{this.lushuStatusText}</el-button>
+    //       <el-button onClick={this.lushuStop}>停止</el-button>
+    //       <el-button onClick={this.lushuPause}>暂停</el-button>
+    //     </div>
+    //   )
+    // }
     return (
       <div class="gis-container">
         <div ref="GisRef" class="gis-box"></div>
-        {playBack}
       </div>
     )
   }
 }
 </script>
-<style scoped>
+<style lang="less">
 .gis-container {
   width: 100%;
   height: 100%;
   position: relative;
-}
-.playBack {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-.gis-box {
-  width: 100%;
-  height: 100%;
+  .gis-box {
+    width: 100%;
+    height: 100%;
+  }
+  // gis infowindwo 样式覆盖
+  .BMap_pop {
+    .BMap_top {
+      border-top: 1px solid rgba(51, 60, 92, 0.9) !important;
+      background-color: rgba(51, 60, 92, 0.9) !important;
+      height: 24px !important;
+    }
+    .BMap_center {
+      border-left: 1px solid rgba(51, 60, 92, 0.9) !important;
+      border-right: 1px solid rgba(51, 60, 92, 0.9) !important;
+      background-color: rgba(51, 60, 92, 0.9) !important;
+    }
+    .BMap_bottom {
+      border-bottom: 1px solid rgba(51, 60, 92, 0.9) !important;
+      background-color: rgba(51, 60, 92, 0.9) !important;
+    }
+    .BMap_bubble_title {
+      color: #ffffff;
+    }
+    .BMap_bubble_content {
+      color: #ffffff;
+      line-height: 26px;
+      padding: 5px 10px;
+    }
+    > div:nth-child(1) {
+      > div {
+        background: rgba(51, 60, 92, 0.9) !important;
+        border-top: 1px solid rgba(51, 60, 92, 0.9) !important;
+        border-left: 1px solid rgba(51, 60, 92, 0.9) !important;
+      }
+    }
+    > div:nth-child(3) {
+      > div {
+        background: rgba(51, 60, 92, 0.9) !important;
+        border-top: 1px solid rgba(51, 60, 92, 0.9) !important;
+        border-right: 1px solid rgba(51, 60, 92, 0.9) !important;
+      }
+    }
+    > div:nth-child(5) {
+      > div {
+        background: rgba(51, 60, 92, 0.9) !important;
+        border-bottom: 1px solid rgba(51, 60, 92, 0.9) !important;
+        border-left: 1px solid rgba(51, 60, 92, 0.9) !important;
+      }
+    }
+    > div:nth-child(7) {
+      > div {
+        background: rgba(51, 60, 92, 0.9) !important;
+        border-bottom: 1px solid rgba(51, 60, 92, 0.9) !important;
+        border-right: 1px solid rgba(51, 60, 92, 0.9) !important;
+      }
+    }
+    > div:nth-child(9) {
+      left: 5px !important;
+      top: 5px !important;
+    }
+    > div:nth-child(8) {
+      display: none !important;
+    }
+    > div > img {
+      display: none !important;
+    }
+  }
 }
 </style>

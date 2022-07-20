@@ -8,11 +8,13 @@ import {
   drawCircle,
   drawPolygon,
   drawPolyline,
+  drawPointCollection,
   addArrow,
   getPolygonArea,
   createLushu
 } from './helper'
 
+const $: any = window.$
 /**
  * mapClass gis地图基础类
  * [options description]
@@ -53,7 +55,7 @@ export default class BMapClass {
     const poi = createPoint(this.mapCenter[0], this.mapCenter[1])
     this.map.centerAndZoom(poi, this.options.zoom)
     this.map.enableScrollWheelZoom()
-    this.drawing()
+    // this.drawing()
   }
 
   initEvent() {
@@ -63,12 +65,11 @@ export default class BMapClass {
     })
   }
 
+  // 鼠标绘制管理类
   drawing() {
-    if (this.isDraw) {
-      this.currentOverlay = null
-      this.drawingManager = createDrawingManager(this.map)
-      this.drawingManager.addEventListener('overlaycomplete', this.overlayComplete.bind(this))
-    }
+    this.currentOverlay = null
+    this.drawingManager = createDrawingManager(this.map)
+    this.drawingManager.addEventListener('overlaycomplete', this.overlayComplete.bind(this))
   }
 
   // 判断是否为绘制状态 如果“是”的话 阻止操作
@@ -115,9 +116,13 @@ export default class BMapClass {
 
   //  关闭编辑模式
   closeEditorMode() {
-    // if (this.drawingManager !== undefined) {
-    //   this.drawingManager.close()
-    // }
+    if (this.drawingManager !== undefined) {
+      this.drawingManager.close()
+    }
+    // 默认隐藏
+    $('.BMapLib_Drawing_panel').css({
+      display: 'none'
+    })
     if (this.currentOverlay) this.currentOverlay.disableEditing()
   }
 
@@ -126,13 +131,18 @@ export default class BMapClass {
     // if (this.drawingManager !== undefined) {
     //   this.drawingManager.open()
     // }
+    this.drawing()
+    // 默认隐藏
+    $('.BMapLib_Drawing_panel').css({
+      display: 'block'
+    })
     if (this.currentOverlay) this.currentOverlay.enableEditing()
   }
 
   overlayComplete(e) {
-    if (this.overlays.length > 1) {
+    if (this.overlays.length === 1) {
       alert('每次只能框选一个区域,请重新框选')
-      this.openEditorMode()
+      //this.openEditorMode()
       this.map.removeOverlay(e.overlay)
       return
     } else {
@@ -140,10 +150,11 @@ export default class BMapClass {
       this.overlays.push(e.overlay)
       // 设置当前可编辑
       this.currentOverlay = e.overlay
-      this.openEditorMode()
+      // this.openEditorMode()
       const overlayData = this.getCurOverlayData()
       this.options.overlayComplete(overlayData)
     }
+    this.drawingManager.close()
   }
 
   // 画区域
@@ -162,8 +173,7 @@ export default class BMapClass {
 
     this.map.addOverlay(this.currentOverlay)
     this.overlays.push(this.currentOverlay)
-
-    this.currentOverlay.enableEditing()
+    // this.currentOverlay.enableEditing()
   }
 
   /**
@@ -284,17 +294,22 @@ export default class BMapClass {
       this.map.centerAndZoom(view.center, view.zoom)
     }
   }
-
+  // 根据一组经纬度画多边形
   drawPolygon(arr) {
-    const Polygon = drawPolygon(arr)
-    this.map.addOverlay(Polygon)
+    this.currentOverlay = drawPolygon(arr)
+    this.map.addOverlay(this.currentOverlay)
   }
-
+  // 海量点
+  drawPointCollection(arr, opt) {
+    const PointCollection = drawPointCollection(arr, opt)
+    this.map.addOverlay(PointCollection)
+  }
+  // 画圆
   drawCircle(config) {
-    const circle = drawCircle(config)
-    this.map.addOverlay(circle)
+    this.currentOverlay = drawCircle(config)
+    this.map.addOverlay(this.currentOverlay)
   }
-
+  // 画轨迹线
   drawPolyline(arr) {
     const polyline = drawPolyline(arr)
     this.map.addOverlay(polyline)

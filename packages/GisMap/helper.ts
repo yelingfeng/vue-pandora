@@ -203,6 +203,25 @@ export const createMarker = ({ lng, lat, colorType = 'red', text }) => {
 }
 
 /**
+ * [画海量点]
+ * @param  {[type]} arr [description]
+ * @return {[type]}     [description]
+ */
+export const drawPointCollection = (arr, opt) => {
+  if (arr && arr.length) {
+    const points = arr.map(({ lng, lat }) => {
+      return createPoint(lng, lat)
+    })
+    const options = {
+      size: opt.size,
+      shape: opt.shape,
+      color: opt.color
+    }
+    const pointCollection = new BMap.PointCollection(points, options)
+    return pointCollection
+  }
+}
+/**
  * [创建信息窗口对象]
  * @param  {String} content [description]
  * @return {[type]}         [description]
