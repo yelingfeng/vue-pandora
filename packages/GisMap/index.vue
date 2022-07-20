@@ -180,6 +180,9 @@ export default class GisMap extends Vue {
       this.lushuComp.start()
     }
   }
+  drawBaiduMapLayer(arr, opt) {
+    if (arr && arr.length) this.$mapClass.drawBaiduMapLayer(arr, opt)
+  }
   render(h) {
     // let playBack
     // if (this.isLushu) {

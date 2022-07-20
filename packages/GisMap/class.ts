@@ -11,7 +11,8 @@ import {
   drawPointCollection,
   addArrow,
   getPolygonArea,
-  createLushu
+  createLushu,
+  drawBaiduMapLayer
 } from './helper'
 
 const $: any = window.$
@@ -321,6 +322,7 @@ export default class BMapClass {
   // 渲染热地图
   drawHeatMap(obj) {
     const { data, heatMax } = obj
+    this.markerZoomAdapter(data)
     this.GPSHeatOverlay = createHeatmapOverlay(this.map)
     this.map.addOverlay(this.GPSHeatOverlay)
     try {
@@ -360,5 +362,9 @@ export default class BMapClass {
     this.drawTrajectory(arr)
     const lushu = createLushu(this.map, arrPoints)
     return lushu
+  }
+  drawBaiduMapLayer(arr, opt) {
+    const mapvLayer = drawBaiduMapLayer(this.map, arr, opt)
+    return mapvLayer
   }
 }

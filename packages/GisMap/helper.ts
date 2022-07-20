@@ -1,5 +1,6 @@
 const BMap: any = window.BMap
 const BMapLib: any = window.BMapLib
+const mapv: any = window.mapv
 
 const areaConfig = {
   strokeColor: 'red',
@@ -377,6 +378,7 @@ BMapLib.LuShu.prototype._move = function(initPos, targetPos, effect) {
   }, timer)
 }
 
+// 路书
 export const createLushu = (map, arrPoints) => {
   const CAR = `./lib/vender/gis/images/carMarker.png`
   const lushu = new BMapLib.LuShu(map, arrPoints, {
@@ -395,4 +397,32 @@ export const createLushu = (map, arrPoints) => {
     // color: colors[index % datas.mapData.length]
   })
   return lushu
+}
+
+export const drawBaiduMapLayer = (map, arr, opt) => {
+  const data = []
+  const viewsArr = []
+  arr.forEach(it => {
+    const cityCenter = mapv.utilCityCenter.getCenterByCityName(it.name)
+    data.push({
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          cityCenter.lng - 2 + Math.random() * 4,
+          cityCenter.lat - 2 + Math.random() * 4
+        ]
+      },
+      count: it.value,
+      time: 100 * Math.random()
+    })
+    viewsArr.push({
+      lng: cityCenter.lng - 2 + Math.random() * 4,
+      lat: cityCenter.lat - 2 + Math.random() * 4
+    })
+  })
+  const view = map.getViewport(viewsArr)
+  map.centerAndZoom(view.center, view.zoom)
+  const dataSet = new mapv.DataSet(data)
+  const mapvLayer = new mapv.baiduMapLayer(map, dataSet, opt)
+  return mapvLayer
 }
