@@ -1,3 +1,9 @@
+## [1.2.30](https://github.com/yelingfeng/vue-pandora/compare/v1.2.29...v1.2.30) (2022-07-20)
+
+### Bug Fixes
+
+- **form:** fix formitem button ([728373e](https://github.com/yelingfeng/vue-pandora/commit/728373e75aabba280d8926604b4b2664b9773299))
+
 ## [1.2.29](https://github.com/yelingfeng/vue-pandora/compare/v1.2.28...v1.2.29) (2022-07-19)
 
 ### Features
