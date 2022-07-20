@@ -127,7 +127,7 @@ export default class GisDemo extends Vue {
   setMapZoom() {
     this.drawMap.markerZoomAdapter(this.dataArr)
   }
-  //绘制多边形
+  //绘制多边形 网格
   drawPolygon() {
     const arr = [
       [
