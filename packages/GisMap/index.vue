@@ -3,9 +3,9 @@ import { watch } from '@vue/composition-api'
 import { Component, Vue, Prop, Ref, Watch } from 'vue-property-decorator'
 import MapClass from './class'
 @Component({
-  name: 'GisMap'
+  name: 'VGisMap'
 })
-export default class GisMap extends Vue {
+export default class VGisMap extends Vue {
   @Prop() options: GisMap.IBMapConfig
 
   @Ref() readonly GisRef!: any

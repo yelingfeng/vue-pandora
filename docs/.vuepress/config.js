@@ -37,15 +37,20 @@ module.exports = {
     sidebar: {
       '/api/': [
         {
-          title: 'Table',
+          title: '表格',
           collapsable: false,
-          children: ['tableBase', 'tableColumn', 'tablePager']
+          children: ['table/tableBase', 'table/tableColumn', 'table/tablePager']
         },
         {
-          title: 'Form',
-          collapsable: true,
-          // path: 'form'
-          children: ['formBase', 'formItem', 'formItemComp']
+          title: '表单',
+          collapsable: false,
+          // path: 'form/form',
+          children: ['form/formBase', 'form/formItem', 'form/formItemComp', 'form/form']
+        },
+        {
+          title: 'GIS地图',
+          collapsable: false,
+          children: ['gis/gis01', 'gis/gis02', 'gis/gis03']
         }
       ]
     },

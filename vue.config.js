@@ -51,10 +51,15 @@ module.exports = {
     }
     // remove vue-cli-service's progress output
     config.plugins.delete('progress')
+  },
+  configureWebpack: {
+    output: {
+      libraryExport: 'VuePandora'
+    },
+    externals: {
+      vue: 'Vue',
+      'element-ui': 'ElementUI',
+      dayjs: 'Dayjs'
+    }
   }
-  // configureWebpack: {
-  //   output: {
-  //     libraryExport: 'default'
-  //   }
-  // }
 }
