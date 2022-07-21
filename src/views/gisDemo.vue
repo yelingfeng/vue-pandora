@@ -138,6 +138,8 @@ export default class GisDemo extends Vue {
   }
   // marker打点
   addMarkers() {
+    this.clearMap()
+    this.setMapZoom()
     this.drawMap.addMarkers(this.dataArr)
   }
   // 标记点击事件
@@ -165,6 +167,7 @@ export default class GisDemo extends Vue {
   }
   //绘制多边形 网格
   drawPolygon() {
+    this.clearMap()
     const arr = [
       [
         { lng: 104.05148863688133, lat: 30.65042259716188 },
@@ -245,20 +248,27 @@ export default class GisDemo extends Vue {
   }
   // 划线
   drawPolyline() {
+    this.clearMap()
+    this.setMapZoom()
     this.drawMap.drawPolyline(this.dataArr)
   }
   // 画区域
   drawOverlay() {
+    this.clearMap()
+    this.setMapZoom()
     this.drawMap.drawOverlay(this.dataArr)
     // 一条记录可以画圆
     // this.drawMap.drawOverlay([{ lng: 104.0556700999699, lat: 30.654019883585562, radius: 500 }])
   }
   // 画圆
   drawCircle() {
+    this.clearMap()
+    this.setMapZoom()
     this.drawMap.drawCircle({ lng: '104.080989', lat: '30.657689', radius: 500 })
   }
   // 热力地图
   drawHeatMap() {
+    this.clearMap()
     const data = [
       { lng: 116.418261, lat: 39.921984, count: 50 },
       { lng: 116.423332, lat: 39.916532, count: 51 },
@@ -352,15 +362,19 @@ export default class GisDemo extends Vue {
       { lng: 116.42076, lat: 39.915251, count: 70 },
       { lng: 116.425867, lat: 39.918989, count: 8 }
     ]
+    this.drawMap.markerZoomAdapter(data)
     this.drawMap.drawHeatMap({ data: data, heatMax: 100 })
   }
   // 绘制轨迹
   drawLushu() {
+    this.clearMap()
+    this.setMapZoom()
     this.isLushu = true
     this.drawMap.drawLushu(this.dataArr)
   }
   // 海量点
   drawPointCollection() {
+    this.clearMap()
     const arr1 = [
       {
         lng: 104.05148863688133,
@@ -434,6 +448,7 @@ export default class GisDemo extends Vue {
   }
   // mapv
   drawBaiduMapLayer() {
+    this.clearMap()
     const options = {
       fillStyle: 'rgba(55, 50, 250, 0.8)',
       shadowColor: 'rgba(255, 250, 50, 1)',
@@ -462,6 +477,7 @@ export default class GisDemo extends Vue {
   }
   // mapv
   drawBaiduMapLayer2() {
+    this.clearMap()
     const options = {
       fillStyle: 'rgba(255, 50, 50, 0.6)',
       shadowColor: 'rgba(255, 50, 50, 1)',
@@ -480,6 +496,7 @@ export default class GisDemo extends Vue {
   }
   // mapv
   drawBaiduMapLayer3() {
+    this.clearMap()
     const options = {
       size: 13,
       gradient: { 0.25: 'rgb(0,0,255)', 0.55: 'rgb(0,255,0)', 0.85: 'yellow', 1.0: 'rgb(255,0,0)' },
