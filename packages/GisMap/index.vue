@@ -180,8 +180,26 @@ export default class VGisMap extends Vue {
       this.lushuComp.start()
     }
   }
+  //继续
+  lushuContinue() {
+    if (this.lushuComp) {
+      this.lushuComp.continue()
+    }
+  }
+  // mapv
   drawBaiduMapLayer(arr, opt) {
     if (arr && arr.length) this.$mapClass.drawBaiduMapLayer(arr, opt)
+  }
+  drawMapGLLushu(arr) {
+    if (arr && arr.length) {
+      this.lushuComp = this.$mapClass.drawMapGLLushu(arr)
+      this.lushuData = arr
+      this.isLushu = true
+    }
+  }
+  // 轨迹动画
+  drawTrackAnimation(arr, opt) {
+    if (arr && arr.length) this.$mapClass.drawTrackAnimation(arr, opt)
   }
   render(h) {
     // let playBack

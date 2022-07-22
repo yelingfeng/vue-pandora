@@ -1,6 +1,8 @@
 import {
   creatMap,
+  creatMapGL,
   createPoint,
+  createPointGL,
   createMarker,
   createDrawingManager,
   createInfoWindow,
@@ -8,11 +10,14 @@ import {
   drawCircle,
   drawPolygon,
   drawPolyline,
+  drawGLPolyline,
   drawPointCollection,
   addArrow,
   getPolygonArea,
   createLushu,
-  drawBaiduMapLayer
+  createGLLushu,
+  drawBaiduMapLayer,
+  drawTrackAnimation
 } from './helper'
 
 const $: any = window.$
@@ -30,15 +35,17 @@ export default class BMapClass {
   private mapConfig
   private isDraw = false
   private map
+  private mapType
   private currentOverlay
   private drawingManager
   private drawingMode
   private GPSHeatOverlay
 
   constructor(options: GisMap.IBMapConfig) {
-    const { center, mapConfig, isDraw } = options
+    const { center, mapConfig, isDraw, type } = options
     this.options = options
     this.mapCenter = center
+    this.mapType = type
     // 是否开启绘制模式
     this.isDraw = isDraw
     this.mapConfig = Object.assign(
@@ -47,13 +54,21 @@ export default class BMapClass {
       mapConfig
     )
     this.create()
+
     this.initEvent()
   }
 
   create() {
-    this.map = creatMap(this.options.el, this.mapConfig)
+    let poi
+    if (this.mapType === 'gl') {
+      this.map = creatMapGL(this.options.el, this.mapConfig)
+      poi = createPointGL(this.mapCenter[0], this.mapCenter[1])
+    } else {
+      this.map = creatMap(this.options.el, this.mapConfig)
+      poi = createPoint(this.mapCenter[0], this.mapCenter[1])
+    }
+
     this.map.clearOverlays()
-    const poi = createPoint(this.mapCenter[0], this.mapCenter[1])
     this.map.centerAndZoom(poi, this.options.zoom)
     this.map.enableScrollWheelZoom()
     // this.drawing()
@@ -335,6 +350,18 @@ export default class BMapClass {
       console.warn('热力图组件未检测到符合标准的热力数据，请检查数据是否正常')
     }
   }
+
+  // mapv
+  drawBaiduMapLayer(arr, opt) {
+    const mapvLayer = drawBaiduMapLayer(this.map, arr, opt)
+    return mapvLayer
+  }
+  // 轨迹动画
+  drawTrackAnimation(arr, opt) {
+    const polyline = drawGLPolyline(arr)
+    drawTrackAnimation(this.map, polyline, opt)
+  }
+
   // 绘制轨迹
   drawTrajectory(arr) {
     let markerConfig: any = null
@@ -353,6 +380,7 @@ export default class BMapClass {
     }
     this.drawPolyline(arr)
   }
+  // 路书
   drawLushu(arr) {
     const arrPoints = []
     arr.forEach(it => {
@@ -363,8 +391,11 @@ export default class BMapClass {
     const lushu = createLushu(this.map, arrPoints)
     return lushu
   }
-  drawBaiduMapLayer(arr, opt) {
-    const mapvLayer = drawBaiduMapLayer(this.map, arr, opt)
-    return mapvLayer
+  // GL大地路书
+  drawMapGLLushu(arr) {
+    const polyline = drawGLPolyline(arr)
+    this.map.addOverlay(polyline)
+    const lushu = createGLLushu(this.map, polyline)
+    return lushu
   }
 }

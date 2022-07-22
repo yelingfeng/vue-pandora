@@ -61,5 +61,10 @@ module.exports = {
       element: 'ElementUI',
       dayjs: 'dayjs'
     }
+    // externals: {
+    //   vue: 'Vue',
+    //   'element-ui': 'ElementUI',
+    //   dayjs: 'Dayjs'
+    // }
   }
 }
