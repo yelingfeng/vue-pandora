@@ -1,8 +1,6 @@
 import {
   creatMap,
-  creatMapGL,
   createPoint,
-  createPointGL,
   createMarker,
   createDrawingManager,
   createInfoWindow,
@@ -10,7 +8,6 @@ import {
   drawCircle,
   drawPolygon,
   drawPolyline,
-  drawGLPolyline,
   drawPointCollection,
   addArrow,
   getPolygonArea,
@@ -54,20 +51,12 @@ export default class BMapClass {
       mapConfig
     )
     this.create()
-
     this.initEvent()
   }
 
   create() {
-    let poi
-    if (this.mapType === 'gl') {
-      this.map = creatMapGL(this.options.el, this.mapConfig)
-      poi = createPointGL(this.mapCenter[0], this.mapCenter[1])
-    } else {
-      this.map = creatMap(this.options.el, this.mapConfig)
-      poi = createPoint(this.mapCenter[0], this.mapCenter[1])
-    }
-
+    this.map = creatMap(this.options.el, this.mapType, this.mapConfig)
+    const poi = createPoint(this.mapCenter[0], this.mapCenter[1], this.mapType)
     this.map.clearOverlays()
     this.map.centerAndZoom(poi, this.options.zoom)
     this.map.enableScrollWheelZoom()
@@ -119,7 +108,7 @@ export default class BMapClass {
     if (zoom >= 15) {
       arrowLen = 6
     }
-    return addArrow(polyline, arrowLen, Math.PI / 7, this.map)
+    return addArrow(polyline, arrowLen, Math.PI / 7, this.map, this.mapType)
   }
 
   // 内部画线,根据polyline数组 画箭头的方法
@@ -177,14 +166,14 @@ export default class BMapClass {
   drawOverlay(arr) {
     const centerData = arr[0]
     const { lng, lat } = centerData
-    const centerPoint = createPoint(lng, lat)
+    const centerPoint = createPoint(lng, lat, this.mapType)
     this.map.panTo(centerPoint)
     this.map.enableScrollWheelZoom()
     if (arr.length === 1) {
-      this.currentOverlay = drawCircle(centerData)
+      this.currentOverlay = drawCircle(centerData, this.mapType)
       this.drawingMode = 'circle'
     } else {
-      this.currentOverlay = drawPolygon(arr)
+      this.currentOverlay = drawPolygon(arr, this.mapType)
     }
 
     this.map.addOverlay(this.currentOverlay)
@@ -259,7 +248,7 @@ export default class BMapClass {
 
   // 创建标记
   createMarker(opt) {
-    const marker = createMarker(opt)
+    const marker = createMarker(opt, this.mapType)
     this.map.addOverlay(marker)
     // 绑定事件
     marker.addEventListener('click', e => {
@@ -277,7 +266,7 @@ export default class BMapClass {
 
   // 打开panel
   openInfoPanel(content, e) {
-    const point = createPoint(e.point.lng, e.point.lat)
+    const point = createPoint(e.point.lng, e.point.lat, this.mapType)
     const infoWindow = createInfoWindow(content)
     this.map.openInfoWindow(infoWindow, point) // 开启信息窗口
   }
@@ -312,22 +301,22 @@ export default class BMapClass {
   }
   // 根据一组经纬度画多边形
   drawPolygon(arr) {
-    this.currentOverlay = drawPolygon(arr)
+    this.currentOverlay = drawPolygon(arr, this.mapType)
     this.map.addOverlay(this.currentOverlay)
   }
   // 海量点
   drawPointCollection(arr, opt) {
-    const PointCollection = drawPointCollection(arr, opt)
+    const PointCollection = drawPointCollection(arr, opt, this.mapType)
     this.map.addOverlay(PointCollection)
   }
   // 画圆
   drawCircle(config) {
-    this.currentOverlay = drawCircle(config)
+    this.currentOverlay = drawCircle(config, this.mapType)
     this.map.addOverlay(this.currentOverlay)
   }
   // 画轨迹线
   drawPolyline(arr) {
-    const polyline = drawPolyline(arr)
+    const polyline = drawPolyline(arr, this.mapType)
     this.map.addOverlay(polyline)
     // 保存传入的箭头数据
     this.ploylineDatas.push(polyline)
@@ -358,7 +347,7 @@ export default class BMapClass {
   }
   // 轨迹动画
   drawTrackAnimation(arr, opt) {
-    const polyline = drawGLPolyline(arr)
+    const polyline = drawPolyline(arr, this.mapType)
     drawTrackAnimation(this.map, polyline, opt)
   }
 
@@ -373,10 +362,12 @@ export default class BMapClass {
         markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'end' }
       } else {
         // 除起点和终点外的其他点
-        markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'coffee' }
+        // markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'coffee' }
       }
-      const marker = createMarker(markerConfig)
-      this.map.addOverlay(marker)
+      if (markerConfig) {
+        const marker = createMarker(markerConfig, this.mapType)
+        this.map.addOverlay(marker)
+      }
     }
     this.drawPolyline(arr)
   }
@@ -384,17 +375,15 @@ export default class BMapClass {
   drawLushu(arr) {
     const arrPoints = []
     arr.forEach(it => {
-      const point = createPoint(it.lng, it.lat)
+      const point = createPoint(it.lng, it.lat, this.mapType)
       arrPoints.push(point)
     })
-    this.drawTrajectory(arr)
     const lushu = createLushu(this.map, arrPoints)
     return lushu
   }
   // GL大地路书
   drawMapGLLushu(arr) {
-    const polyline = drawGLPolyline(arr)
-    this.map.addOverlay(polyline)
+    const polyline = drawPolyline(arr, this.mapType)
     const lushu = createGLLushu(this.map, polyline)
     return lushu
   }

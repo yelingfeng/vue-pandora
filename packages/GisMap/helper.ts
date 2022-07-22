@@ -39,23 +39,29 @@ const drawOptions = {
 }
 
 /**
+ * [创建地图]
+ * @param  {Dom} map dom
+ * @param {Object} config 地图配置
+ * @return {[type]}     [description]
+ */
+export const creatMap = (map, mapType, config) => {
+  if (mapType === 'gl') {
+    return new BMapGL.Map(map, config)
+  }
+  return new BMap.Map(map, config)
+}
+
+/**
  * [createPoint 创建点 ]
  * @param  {[type]} lng [description]
  * @param  {[type]} lat [description]
  * @return {[type]}     [description]
  */
-export const createPoint = (lng, lat) => {
+export const createPoint = (lng, lat, mapType) => {
+  if (mapType === 'gl') {
+    return new BMapGL.Point(Number(lng), Number(lat))
+  }
   return new BMap.Point(Number(lng), Number(lat))
-}
-
-/**
- * [createPointGL 创建点 ]
- * @param  {[type]} lng [description]
- * @param  {[type]} lat [description]
- * @return {[type]}     [description]
- */
-export const createPointGL = (lng, lat) => {
-  return new BMapGL.Point(Number(lng), Number(lat))
 }
 
 /**
@@ -65,7 +71,7 @@ export const createPointGL = (lng, lat) => {
  * @param {[type]} angleValue [description]
  * @param {[type]} map        [description]
  */
-export const addArrow = (polyline, length, angleValue, map) => {
+export const addArrow = (polyline, length, angleValue, map, mapType) => {
   const linePoint = polyline.getPath() //线的坐标串
   const arrowCount = linePoint.length
   const arrowArr = [] // 箭头对象数组, 用于删除
@@ -110,44 +116,33 @@ export const addArrow = (polyline, length, angleValue, map) => {
       pixelX1 = pixelTemX - (Math.tan(angle) * r * delta) / param
       pixelY1 = pixelTemY + (Math.tan(angle) * r) / param
     }
-    const pointArrow = map.pixelToPoint(new BMap.Pixel(pixelX, pixelY))
-    const pointArrow1 = map.pixelToPoint(new BMap.Pixel(pixelX1, pixelY1))
-    const Arrow = new BMap.Polyline([pointArrow, linePoint[i], pointArrow1], lineConfig)
-    map.addOverlay(Arrow)
-    arrowArr.push(Arrow)
+    if (mapType === 'gl') {
+      const pointArrow = map.pixelToPoint(new BMapGL.Pixel(pixelX, pixelY))
+      const pointArrow1 = map.pixelToPoint(new BMapGL.Pixel(pixelX1, pixelY1))
+      const Arrow = new BMapGL.Polyline([pointArrow, linePoint[i], pointArrow1], lineConfig)
+      map.addOverlay(Arrow)
+      arrowArr.push(Arrow)
+    } else {
+      const pointArrow = map.pixelToPoint(new BMap.Pixel(pixelX, pixelY))
+      const pointArrow1 = map.pixelToPoint(new BMap.Pixel(pixelX1, pixelY1))
+      const Arrow = new BMap.Polyline([pointArrow, linePoint[i], pointArrow1], lineConfig)
+      map.addOverlay(Arrow)
+      arrowArr.push(Arrow)
+    }
   }
   return arrowArr
 }
 
-/**
- * [创建地图]
- * @param  {Dom} map dom
- * @param {Object} config 地图配置
- * @return {[type]}     [description]
- */
-export const creatMap = (map, config) => {
-  return new BMap.Map(map, config)
-}
-
-/**
- * [创建GL地图]
- * @param  {Dom} map dom
- * @param {Object} config 地图配置
- * @return {[type]}     [description]
- */
-export const creatMapGL = (map, config) => {
-  return new BMapGL.Map(map, config)
-}
 /**
  *
  * [根据一组经纬度画多边形]
  * @param arr {Array{Object}}``
  * @return {[type]} [description]
  */
-export const drawPolygon = arr => {
+export const drawPolygon = (arr, mapType) => {
   if (arr && arr.length) {
     const points = arr.map(({ lng, lat }) => {
-      return createPoint(lng, lat)
+      return createPoint(lng, lat, mapType)
     })
     return new BMap.Polygon(points, areaConfig)
   }
@@ -158,10 +153,10 @@ export const drawPolygon = arr => {
  * @param  {[type]} arr [description]
  * @return {[type]}     [description]
  */
-export const drawPolyline = arr => {
+export const drawPolyline = (arr, mapType) => {
   if (arr && arr.length) {
     const points = arr.map(({ lng, lat }) => {
-      return createPoint(lng, lat)
+      return createPoint(lng, lat, mapType)
     })
     // var sy = new BMap.Symbol(7, {
     //     scale: 0.4, //图标缩放大小
@@ -171,23 +166,11 @@ export const drawPolyline = arr => {
     // });
     // var icons = new BMap.IconSequence(sy, '10', '30');
     // lineConfig['icons'] = [icons];
-
+    if (mapType === 'gl') {
+      const polyline = new BMapGL.Polyline(points, lineConfig)
+      return polyline
+    }
     const polyline = new BMap.Polyline(points, lineConfig)
-    return polyline
-  }
-}
-
-/**
- * [画轨迹线]
- * @param  {[type]} arr [description]
- * @return {[type]}     [description]
- */
-export const drawGLPolyline = arr => {
-  if (arr && arr.length) {
-    const points = arr.map(({ lng, lat }) => {
-      return createPointGL(lng, lat)
-    })
-    const polyline = new BMapGL.Polyline(points, lineConfig)
     return polyline
   }
 }
@@ -199,8 +182,8 @@ export const drawGLPolyline = arr => {
  * @param  {[type]} radius [description]
  * @return {[type]}        [description]
  */
-export const drawCircle = ({ lng, lat, radius }) => {
-  const circle = new BMap.Circle(createPoint(lng, lat), radius, areaConfig)
+export const drawCircle = ({ lng, lat, radius }, mapType) => {
+  const circle = new BMap.Circle(createPoint(lng, lat, mapType), radius, areaConfig)
   return circle
 }
 
@@ -211,18 +194,41 @@ export const drawCircle = ({ lng, lat, radius }) => {
  * @param  {String} [colorType='red' }]            [description]
  * @return {[type]}                  [description]
  */
-export const createMarker = ({ lng, lat, colorType = 'red', text }) => {
+export const createMarker = ({ lng, lat, colorType = 'red', text }, mapType) => {
   const path = `./lib/vender/gis/images/${colorType}Marker.png`
-  const myIcon = new BMap.Icon(path, new BMap.Size(35, 55))
-  const point = createPoint(lng, lat)
-  const marker = new BMap.Marker(point, {
-    icon: myIcon
-  })
+
+  const point = createPoint(lng, lat, mapType)
   const colorList = {
     blue: '#00a4ff',
     red: '#F65050',
     green: '#30b513'
   }
+  if (mapType === 'gl') {
+    const myIcon = new BMapGL.Icon(path, new BMapGL.Size(25, 25))
+    const marker = new BMapGL.Marker(point, {
+      icon: myIcon
+    })
+
+    if (text) {
+      const label = new BMapGL.Label(text, {
+        offset: new BMapGL.Size(0, -20)
+      })
+      label.setStyle({
+        border: 'none',
+        fontSize: '12px',
+        color: '#fff',
+        background: colorList[colorType] || '#00a4ff',
+        padding: '2px 6px',
+        borderRadius: '3px'
+      })
+      marker.setLabel(label)
+    }
+    return marker
+  }
+  const myIcon = new BMap.Icon(path, new BMap.Size(25, 25))
+  const marker = new BMap.Marker(point, {
+    icon: myIcon
+  })
   if (text) {
     const label = new BMap.Label(text, {
       offset: new BMap.Size(0, -20)
@@ -245,10 +251,10 @@ export const createMarker = ({ lng, lat, colorType = 'red', text }) => {
  * @param  {[type]} arr [description]
  * @return {[type]}     [description]
  */
-export const drawPointCollection = (arr, opt) => {
+export const drawPointCollection = (arr, opt, mapType) => {
   if (arr && arr.length) {
     const points = arr.map(({ lng, lat }) => {
-      return createPoint(lng, lat)
+      return createPoint(lng, lat, mapType)
     })
     const options = {
       size: opt.size,

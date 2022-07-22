@@ -4,7 +4,8 @@
       <el-col :span="24">
         <el-button @click.native="clearMap">清除</el-button>
         <el-button @click.native="setMapZoom">重置地图层级</el-button>
-        <el-button @click.native="drawLushu">绘制轨迹</el-button>
+        <el-button @click.native="drawTrajectory">绘制轨迹</el-button>
+        <el-button @click.native="drawLushu">启动轨迹回放</el-button>
         <el-button @click.native="drawTrackAnimation">轨迹动画</el-button>
       </el-col>
     </el-row>
@@ -17,12 +18,6 @@
             @markerClick="markerClick"
             @drawComplete="drawComplete"
           ></GisMap>
-          <div class="playBack" v-if="isLushu">
-            <el-button @click="lushuReal">实时</el-button>
-            <el-button @click="lushuStart">{{ lushuStatusText }}</el-button>
-            <el-button @click="lushuStop">停止</el-button>
-            <el-button @click="lushuPause">暂停</el-button>
-          </div>
         </div>
       </el-col>
     </el-row>
@@ -103,10 +98,28 @@ export default class GisDemo extends Vue {
     this.drawMap.markerZoomAdapter(this.dataArr)
   }
   // 绘制轨迹
-  drawLushu() {
+  drawTrajectory() {
     this.clearMap()
     this.setMapZoom()
+    this.drawMap.drawTrajectory(this.dataArr)
+  }
+
+  // 启动回放功能
+  drawLushu() {
+    const option = {
+      pos: {
+        left: '10px',
+        top: '10px'
+      },
+      btns: [
+        { label: '实时', click: this.lushuReal },
+        { label: '回放', click: this.lushuStart },
+        { label: '停止', click: this.lushuStop },
+        { label: '暂停', click: this.lushuPause }
+      ]
+    }
     this.isLushu = true
+    this.drawMap.drawPlayBackBtn(option)
     this.drawMap.drawMapGLLushu(this.dataArr)
   }
   // 实时
@@ -116,20 +129,17 @@ export default class GisDemo extends Vue {
   }
   // 回放
   lushuStart() {
-    // if (this.lushuStatus !== 'pause') {
-    //   this.clearMap()
-    // }
     this.drawMap.lushuStart()
     this.lushuStatus = 'run'
   }
   // 暂停
   lushuPause() {
-    this.drawMap.lushuStop()
+    this.drawMap.lushuPause()
     this.lushuStatus = 'pause'
   }
   // 停止
   lushuStop() {
-    this.drawMap.lushuPause()
+    this.drawMap.lushuStop()
     this.lushuStatus = 'stop'
   }
   drawTrackAnimation() {
@@ -186,12 +196,6 @@ export default class GisDemo extends Vue {
     height: 700px;
     width: 100%;
     position: relative;
-    .playBack {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      z-index: 10;
-    }
   }
 }
 </style>

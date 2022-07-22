@@ -12,11 +12,9 @@ export default class VGisMap extends Vue {
   private isDrawing = false
   // 是否显示轨迹回放
   private isLushu: any = false
-  // lushu 数据
+  // lushu 数据  显示实时状态用到
   private lushuData: any = []
-  // 默认实时状态
-  // private lushuStatus: any = 'real'
-  // private lushuStatusText: any = '回放'
+  private playBack: any = null
   // lushu实例
   private lushuComp: any = null
 
@@ -47,14 +45,7 @@ export default class VGisMap extends Vue {
       this.$mapClass.closeEditorMode()
     }
   }
-  // @Watch('lushuStatus')
-  // lushuStatusHandler(newVal, oldVal) {
-  //   if (newVal === 'pause') {
-  //     this.lushuStatusText = '继续'
-  //   } else if (newVal === 'real' || newVal === 'stop') {
-  //     this.lushuStatusText = '回放'
-  //   }
-  // }
+
   // 打开infowindow
   openInfoPanel(content, e) {
     if (this.$mapClass) this.$mapClass.openInfoPanel(content, e)
@@ -148,6 +139,11 @@ export default class VGisMap extends Vue {
     if (this.$mapClass) return this.$mapClass.isDrawingState()
   }
 
+  //绘制轨迹
+  drawTrajectory(arr) {
+    if (this.$mapClass) return this.$mapClass.drawTrajectory(arr)
+  }
+
   // lushu
   drawLushu(arr) {
     if (arr && arr.length) {
@@ -201,21 +197,29 @@ export default class VGisMap extends Vue {
   drawTrackAnimation(arr, opt) {
     if (arr && arr.length) this.$mapClass.drawTrackAnimation(arr, opt)
   }
+  // 回放按钮
+  drawPlayBackBtn(option) {
+    if (option.btns && option.btns.length) {
+      const btnHtml = option.btns.map(it => {
+        return <el-button onClick={it.click}>{it.label}</el-button>
+      })
+      const btnStyle = option.pos
+      this.playBack = (
+        <div class="playBack" style={btnStyle}>
+          {btnHtml}
+        </div>
+      )
+    }
+    return this.playBack
+  }
+
   render(h) {
-    // let playBack
-    // if (this.isLushu) {
-    //   playBack = (
-    //     <div class="playBack">
-    //       <el-button onClick={this.lushuReal}>实时</el-button>
-    //       <el-button onClick={this.lushuStart}>{this.lushuStatusText}</el-button>
-    //       <el-button onClick={this.lushuStop}>停止</el-button>
-    //       <el-button onClick={this.lushuPause}>暂停</el-button>
-    //     </div>
-    //   )
-    // }
+    // console.log(this.$slots.playBack)
+    // const playBack = this.$slots.playBack
     return (
       <div class="gis-container">
         <div ref="GisRef" class="gis-box"></div>
+        {this.playBack}
       </div>
     )
   }
@@ -229,6 +233,12 @@ export default class VGisMap extends Vue {
   .gis-box {
     width: 100%;
     height: 100%;
+  }
+  .playBack {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
   }
   // gis infowindwo 样式覆盖
   .BMap_pop {

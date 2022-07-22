@@ -18,7 +18,8 @@
         <el-button @click.native="drawOverlay">画区域</el-button>
         <el-button @click.native="drawCircle">画圆</el-button>
         <el-button @click.native="drawHeatMap">热力地图</el-button>
-        <el-button @click.native="drawLushu">绘制轨迹</el-button>
+        <el-button @click.native="drawTrajectory">绘制轨迹</el-button>
+        <el-button @click.native="drawLushu">启动轨迹回放</el-button>
         <el-button @click.native="drawPointCollection">海量点</el-button>
         <el-button @click.native="drawBaiduMapLayer">大数据可视化库MAPV-网格</el-button>
         <el-button @click.native="drawBaiduMapLayer2">大数据可视化库MAPV-点状</el-button>
@@ -35,13 +36,16 @@
             :options="mapOption"
             @markerClick="markerClick"
             @drawComplete="drawComplete"
-          ></GisMap>
-          <div class="playBack" v-if="isLushu">
-            <el-button @click="lushuReal">实时</el-button>
-            <el-button @click="lushuStart">{{ lushuStatusText }}</el-button>
-            <el-button @click="lushuStop">停止</el-button>
-            <el-button @click="lushuPause">暂停</el-button>
-          </div>
+          >
+            <!-- <template v-slot:playBack v-if="isLushu">
+              <div class="playBack">
+                <el-button @click="lushuReal">实时</el-button>
+                <el-button @click="lushuStart">{{ lushuStatusText }}</el-button>
+                <el-button @click="lushuStop">停止</el-button>
+                <el-button @click="lushuPause">暂停</el-button>
+              </div>
+            </template> -->
+          </GisMap>
         </div>
       </el-col>
     </el-row>
@@ -73,6 +77,7 @@ export default class GisDemo extends Vue {
   // 默认实时状态
   private lushuStatus: any = 'real'
   private lushuStatusText: any = '回放'
+  // 是否显示回放功能
   private isLushu: any = false
   private mapvData = [
     { name: '北京', value: 23 },
@@ -354,10 +359,28 @@ export default class GisDemo extends Vue {
     this.drawMap.drawHeatMap({ data: data, heatMax: 100 })
   }
   // 绘制轨迹
-  drawLushu() {
+  drawTrajectory() {
     this.clearMap()
     this.setMapZoom()
+    this.drawMap.drawTrajectory(this.dataArr)
+  }
+
+  // 启动回放功能
+  drawLushu() {
+    const option = {
+      pos: {
+        right: '10px',
+        top: '10px'
+      },
+      btns: [
+        { label: '实时', click: this.lushuReal },
+        { label: '回放', click: this.lushuStart },
+        { label: '停止', click: this.lushuStop },
+        { label: '暂停', click: this.lushuPause }
+      ]
+    }
     this.isLushu = true
+    this.drawMap.drawPlayBackBtn(option)
     this.drawMap.drawLushu(this.dataArr)
   }
   // 海量点
@@ -410,20 +433,17 @@ export default class GisDemo extends Vue {
   }
   // 回放
   lushuStart() {
-    // if (this.lushuStatus !== 'pause') {
-    //   this.clearMap()
-    // }
     this.drawMap.lushuStart()
     this.lushuStatus = 'run'
   }
   // 暂停
   lushuPause() {
-    this.drawMap.lushuStop()
+    this.drawMap.lushuPause()
     this.lushuStatus = 'pause'
   }
   // 停止
   lushuStop() {
-    this.drawMap.lushuPause()
+    this.drawMap.lushuStop()
     this.lushuStatus = 'stop'
   }
   // 打开编辑模式
@@ -518,11 +538,6 @@ export default class GisDemo extends Vue {
     height: 700px;
     width: 100%;
     position: relative;
-    .playBack {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-    }
   }
 }
 </style>
