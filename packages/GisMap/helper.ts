@@ -1,5 +1,7 @@
 const BMap: any = window.BMap
 const BMapLib: any = window.BMapLib
+const BMapGL: any = window.BMapGL
+const BMapGLLib: any = window.BMapGLLib
 const mapv: any = window.mapv
 
 const areaConfig = {
@@ -44,6 +46,16 @@ const drawOptions = {
  */
 export const createPoint = (lng, lat) => {
   return new BMap.Point(Number(lng), Number(lat))
+}
+
+/**
+ * [createPointGL 创建点 ]
+ * @param  {[type]} lng [description]
+ * @param  {[type]} lat [description]
+ * @return {[type]}     [description]
+ */
+export const createPointGL = (lng, lat) => {
+  return new BMapGL.Point(Number(lng), Number(lat))
 }
 
 /**
@@ -116,6 +128,16 @@ export const addArrow = (polyline, length, angleValue, map) => {
 export const creatMap = (map, config) => {
   return new BMap.Map(map, config)
 }
+
+/**
+ * [创建GL地图]
+ * @param  {Dom} map dom
+ * @param {Object} config 地图配置
+ * @return {[type]}     [description]
+ */
+export const creatMapGL = (map, config) => {
+  return new BMapGL.Map(map, config)
+}
 /**
  *
  * [根据一组经纬度画多边形]
@@ -151,6 +173,21 @@ export const drawPolyline = arr => {
     // lineConfig['icons'] = [icons];
 
     const polyline = new BMap.Polyline(points, lineConfig)
+    return polyline
+  }
+}
+
+/**
+ * [画轨迹线]
+ * @param  {[type]} arr [description]
+ * @return {[type]}     [description]
+ */
+export const drawGLPolyline = arr => {
+  if (arr && arr.length) {
+    const points = arr.map(({ lng, lat }) => {
+      return createPointGL(lng, lat)
+    })
+    const polyline = new BMapGL.Polyline(points, lineConfig)
     return polyline
   }
 }
@@ -378,27 +415,7 @@ export const getPolygonArea = path => {
 //   }, timer)
 // }
 
-// 路书
-export const createLushu = (map, arrPoints) => {
-  const CAR = `./lib/vender/gis/images/carMarker.png`
-  const lushu = new BMapLib.LuShu(map, arrPoints, {
-    defaultContent: '',
-    // defaultContent: `号码${index + 1}`, // 路书展示内容
-    autoView: true, // 是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
-    // 图标设置
-    icon: new BMap.Icon(CAR, new BMap.Size(52, 52)),
-    speed: 500, // 速度
-    enableRotation: true, // 是否设置marker随着道路的走向进行旋转
-    landmarkPois: [
-      // 停顿点   html 展示内容   pauseTime 停留时间 3s
-      //{ lng: 101.8137711066657, lat: 36.61314270812945, html: '加油站', pauseTime: 3 }
-    ]
-    // 用来轨迹运动的时候传入不同的颜色值
-    // color: colors[index % datas.mapData.length]
-  })
-  return lushu
-}
-
+// mapv
 export const drawBaiduMapLayer = (map, arr, opt) => {
   const data = []
   const viewsArr = []
@@ -425,4 +442,45 @@ export const drawBaiduMapLayer = (map, arr, opt) => {
   const dataSet = new mapv.DataSet(data)
   const mapvLayer = new mapv.baiduMapLayer(map, dataSet, opt)
   return mapvLayer
+}
+
+// 轨迹动画
+export const drawTrackAnimation = (map, pl, opt) => {
+  setTimeout(() => {
+    const trackAni = new BMapGLLib.TrackAnimation(map, pl, opt)
+    trackAni.start()
+  }, 1000)
+}
+
+// 路书
+export const createLushu = (map, arrPoints) => {
+  const CAR = `./lib/vender/gis/images/carMarker.png`
+  const lushu = new BMapLib.LuShu(map, arrPoints, {
+    defaultContent: '',
+    // defaultContent: `号码${index + 1}`, // 路书展示内容
+    autoView: true, // 是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+    // 图标设置
+    icon: new BMap.Icon(CAR, new BMap.Size(52, 52)),
+    speed: 500, // 速度
+    enableRotation: true, // 是否设置marker随着道路的走向进行旋转
+    landmarkPois: [
+      // 停顿点   html 展示内容   pauseTime 停留时间 3s
+      //{ lng: 101.8137711066657, lat: 36.61314270812945, html: '加油站', pauseTime: 3 }
+    ]
+    // 用来轨迹运动的时候传入不同的颜色值
+    // color: colors[index % datas.mapData.length]
+  })
+  return lushu
+}
+
+// GL路书
+export const createGLLushu = (map, polyline) => {
+  const CAR = `./lib/vender/gis/images/carMarker.png`
+  const lushu = new BMapGLLib.LuShu(map, polyline.getPath(), {
+    autoCenter: true,
+    icon: new BMapGL.Icon(CAR, new BMapGL.Size(48, 48), { anchor: new BMapGL.Size(24, 24) }),
+    speed: 500,
+    enableRotation: true
+  })
+  return lushu
 }

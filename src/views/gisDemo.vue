@@ -9,10 +9,10 @@
           @change="onChangeDraw"
         >
         </el-switch> -->
+        <!-- <el-button @click.native="getMapOverlay">获取图层数据</el-button> -->
         <el-button @click.native="clearMap">清除</el-button>
-        <el-button @click.native="addMarkers">地图打点</el-button>
-        <el-button @click.native="getMapOverlay">获取图层数据</el-button>
         <el-button @click.native="setMapZoom">重置地图层级</el-button>
+        <el-button @click.native="addMarkers">地图打点</el-button>
         <el-button @click.native="drawPolygon">绘制多边形</el-button>
         <el-button @click.native="drawPolyline">划线</el-button>
         <el-button @click.native="drawOverlay">画区域</el-button>
@@ -45,18 +45,6 @@
         </div>
       </el-col>
     </el-row>
-    <!-- <p>-------</p>
-      <el-row>
-          <el-col :span="12">
-               <GisMap ref="maps" :options="mapOption" @markerClick="markerClick"></MapBase>
-          </el-col>
-      </el-row>
-      <el-row>
-          <el-col :span="12">
-               <el-button type="text" @click="mapChange">changeData</el-button>
-               <GisMap ref="map2" :options="mOp" @clickHandler="clickHandler"></BaseChart>
-          </el-col>
-      </el-row> -->
   </div>
 </template>
 <script lang="ts">
@@ -422,9 +410,9 @@ export default class GisDemo extends Vue {
   }
   // 回放
   lushuStart() {
-    if (this.lushuStatus !== 'pause') {
-      this.clearMap()
-    }
+    // if (this.lushuStatus !== 'pause') {
+    //   this.clearMap()
+    // }
     this.drawMap.lushuStart()
     this.lushuStatus = 'run'
   }

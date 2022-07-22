@@ -69,6 +69,8 @@ declare interface Window {
   $: void
   BMap: void
   BMapLib: void
+  BMapGL: void
+  BMapGLLib: void
   mapv: void
   BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW: void
   BMap_Symbol_SHAPE_POINT: void

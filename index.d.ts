@@ -208,9 +208,11 @@ declare namespace GisMap {
     // 最小层级
     minZoom?: number
     // Bmap配置对象
-    mapConfig?: Object
+    mapConfig?: Record<string, any>
     // 是否开启绘制模式
     isDraw?: boolean
+    // 是否为GL地图 'gl' 表示GL地图
+    type?: string
     // click事件
     onClick?: Fn
     //
