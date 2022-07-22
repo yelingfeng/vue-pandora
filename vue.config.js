@@ -58,8 +58,8 @@ module.exports = {
     },
     externals: {
       vue: 'Vue',
-      'element-ui': 'ElementUI',
-      dayjs: 'Dayjs'
+      element: 'ElementUI',
+      dayjs: 'dayjs'
     }
   }
 }
