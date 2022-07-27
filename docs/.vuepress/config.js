@@ -50,7 +50,7 @@ module.exports = {
         {
           title: 'GIS地图',
           collapsable: false,
-          children: ['gis/gis01', 'gis/gis02', 'gis/gis03']
+          children: ['gis/gis01', 'gis/gis02']
         }
       ]
     },

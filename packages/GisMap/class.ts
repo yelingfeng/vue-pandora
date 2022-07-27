@@ -356,17 +356,31 @@ export default class BMapClass {
     let markerConfig: any = null
     for (let j = 0; j < arr.length; j++) {
       if (j === 0) {
-        markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'start' }
+        markerConfig = {
+          lng: arr[j].lng,
+          lat: arr[j].lat,
+          colorType: 'start',
+          dataObj: arr[j].dataObj
+        }
       } else if (j === arr.length - 1) {
         // 终点
-        markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'end' }
+        markerConfig = {
+          lng: arr[j].lng,
+          lat: arr[j].lat,
+          colorType: 'end',
+          dataObj: arr[j].dataObj
+        }
       } else {
         // 除起点和终点外的其他点
-        // markerConfig = { lng: arr[j].lng, lat: arr[j].lat, colorType: 'coffee' }
+        markerConfig = {
+          lng: arr[j].lng,
+          lat: arr[j].lat,
+          colorType: 'coffee',
+          dataObj: arr[j].dataObj
+        }
       }
       if (markerConfig) {
-        const marker = createMarker(markerConfig, this.mapType)
-        this.map.addOverlay(marker)
+        this.createMarker(markerConfig)
       }
     }
     this.drawPolyline(arr)

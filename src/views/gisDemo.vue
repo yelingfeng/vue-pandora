@@ -14,7 +14,7 @@
         <el-button @click.native="setMapZoom">重置地图层级</el-button>
         <el-button @click.native="addMarkers">地图打点</el-button>
         <el-button @click.native="drawPolygon">绘制多边形</el-button>
-        <el-button @click.native="drawPolyline">划线</el-button>
+        <el-button @click.native="drawPolyline">绘制线段</el-button>
         <el-button @click.native="drawOverlay">画区域</el-button>
         <el-button @click.native="drawCircle">画圆</el-button>
         <el-button @click.native="drawHeatMap">热力地图</el-button>
@@ -37,14 +37,6 @@
             @markerClick="markerClick"
             @drawComplete="drawComplete"
           >
-            <!-- <template v-slot:playBack v-if="isLushu">
-              <div class="playBack">
-                <el-button @click="lushuReal">实时</el-button>
-                <el-button @click="lushuStart">{{ lushuStatusText }}</el-button>
-                <el-button @click="lushuStop">停止</el-button>
-                <el-button @click="lushuPause">暂停</el-button>
-              </div>
-            </template> -->
           </GisMap>
         </div>
       </el-col>
@@ -74,11 +66,6 @@ export default class GisDemo extends Vue {
     isDraw: false
   }
   private dataArr = []
-  // 默认实时状态
-  private lushuStatus: any = 'real'
-  private lushuStatusText: any = '回放'
-  // 是否显示回放功能
-  private isLushu: any = false
   private mapvData = [
     { name: '北京', value: 23 },
     { name: '天津', value: 43 },
@@ -121,14 +108,7 @@ export default class GisDemo extends Vue {
       { lng: '104.06252', lat: '30.660812', dataObj: { name: '王五', local: '成都SSSS区' } }
     ]
   }
-  @Watch('lushuStatus')
-  lushuStatusHandler(newVal, oldVal) {
-    if (newVal === 'pause') {
-      this.lushuStatusText = '继续'
-    } else if (newVal === 'real' || newVal === 'stop') {
-      this.lushuStatusText = '回放'
-    }
-  }
+
   // marker打点
   addMarkers() {
     this.clearMap()
@@ -151,7 +131,6 @@ export default class GisDemo extends Vue {
   }
   // 清除标记
   clearMap() {
-    this.isLushu = false
     this.drawMap.clearAllOverlay()
   }
   // 重置地图层级
@@ -379,7 +358,6 @@ export default class GisDemo extends Vue {
         { label: '暂停', click: this.lushuPause }
       ]
     }
-    this.isLushu = true
     this.drawMap.drawPlayBackBtn(option)
     this.drawMap.drawLushu(this.dataArr)
   }
@@ -429,22 +407,18 @@ export default class GisDemo extends Vue {
   // 实时
   lushuReal() {
     this.drawMap.lushuReal()
-    this.lushuStatus = 'real'
   }
   // 回放
   lushuStart() {
     this.drawMap.lushuStart()
-    this.lushuStatus = 'run'
   }
   // 暂停
   lushuPause() {
     this.drawMap.lushuPause()
-    this.lushuStatus = 'pause'
   }
   // 停止
   lushuStop() {
     this.drawMap.lushuStop()
-    this.lushuStatus = 'stop'
   }
   // 打开编辑模式
   openEditorMode() {
