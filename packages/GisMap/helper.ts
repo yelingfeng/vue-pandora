@@ -251,19 +251,14 @@ export const createMarker = ({ lng, lat, colorType = 'red', text }, mapType) => 
  * @param  {[type]} arr [description]
  * @return {[type]}     [description]
  */
-export const drawPointCollection = (arr, opt, mapType) => {
-  if (arr && arr.length) {
-    const points = arr.map(({ lng, lat }) => {
-      return createPoint(lng, lat, mapType)
-    })
-    const options = {
-      size: opt.size,
-      shape: opt.shape,
-      color: opt.color
-    }
-    const pointCollection = new BMap.PointCollection(points, options)
+export const drawPointCollection = (item, opt, mapType) => {
+  const point = createPoint(item.lng, item.lat, mapType)
+  if (mapType === 'gl') {
+    const pointCollection = new BMapGL.PointCollection([point], opt)
     return pointCollection
   }
+  const pointCollection = new BMap.PointCollection([point], opt)
+  return pointCollection
 }
 /**
  * [创建信息窗口对象]

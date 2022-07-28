@@ -306,8 +306,15 @@ export default class BMapClass {
   }
   // 海量点
   drawPointCollection(arr, opt) {
-    const PointCollection = drawPointCollection(arr, opt, this.mapType)
-    this.map.addOverlay(PointCollection)
+    if (arr && arr.length) {
+      arr.forEach(item => {
+        const PointCollection = drawPointCollection(item, opt, this.mapType)
+        this.map.addOverlay(PointCollection)
+        PointCollection.addEventListener('click', e => {
+          this.clickHandler(e, item.dataObj)
+        })
+      })
+    }
   }
   // 画圆
   drawCircle(config) {

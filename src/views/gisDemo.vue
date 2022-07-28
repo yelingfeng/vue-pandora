@@ -103,9 +103,9 @@ export default class GisDemo extends Vue {
     this.dataArr = [
       { lng: '104.080989', lat: '30.657689', dataObj: { name: '张三', local: '成都XXX区' } },
       { lng: '104.055731', lat: '30.667648', dataObj: { name: '李四', local: '成都SSSS区' } },
-      { lng: '104.056843', lat: '30.670566', dataObj: { name: '王五', local: '成都SSSS区' } },
-      { lng: '104.081996', lat: '30.668703', dataObj: { name: '王五', local: '成都SSSS区' } },
-      { lng: '104.06252', lat: '30.660812', dataObj: { name: '王五', local: '成都SSSS区' } }
+      { lng: '104.056843', lat: '30.670566', dataObj: { name: '王五1', local: '成都SSSS区' } },
+      { lng: '104.081996', lat: '30.668703', dataObj: { name: '王五2', local: '成都SSSS区' } },
+      { lng: '104.06252', lat: '30.660812', dataObj: { name: '王五3', local: '成都SSSS区' } }
     ]
   }
 
@@ -368,27 +368,12 @@ export default class GisDemo extends Vue {
       {
         lng: 104.05148863688133,
         lat: 30.65042259716188,
-        dataObj: { name: '张三', local: '成都XXX区' }
+        dataObj: { name: '张三1', local: '成都XXX区' }
       },
       {
         lng: 104.05357936842636,
         lat: 30.65042259716188,
-        dataObj: { name: '张三', local: '成都XXX区' }
-      },
-      {
-        lng: 104.05357936842636,
-        lat: 30.65222124037372,
-        dataObj: { name: '张三', local: '成都XXX区' }
-      },
-      {
-        lng: 104.05148863688133,
-        lat: 30.65222124037372,
-        dataObj: { name: '张三', local: '成都XXX区' }
-      },
-      {
-        lng: 104.05148863688133,
-        lat: 30.6504225971618,
-        dataObj: { name: '张三', local: '成都XXX区' }
+        dataObj: { name: '张三2', local: '成都XXX区' }
       }
     ]
     const opt = {

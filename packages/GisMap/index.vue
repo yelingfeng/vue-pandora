@@ -62,7 +62,6 @@ export default class VGisMap extends Vue {
 
   // 标记点点击事件
   onClickHandler(e, dataObj) {
-    debugger
     this.$emit('markerClick', {
       e,
       data: dataObj
