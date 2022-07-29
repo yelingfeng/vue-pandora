@@ -55,12 +55,12 @@ module.exports = {
   configureWebpack: {
     output: {
       libraryExport: 'VuePandora'
-    },
-    externals: {
-      vue: 'Vue',
-      element: 'ElementUI',
-      dayjs: 'dayjs'
     }
+    // externals: {
+    //   vue: 'Vue',
+    //   element: 'ElementUI',
+    //   dayjs: 'dayjs'
+    // }
     // externals: {
     //   vue: 'Vue',
     //   'element-ui': 'ElementUI',
