@@ -17,7 +17,7 @@ import {
   drawTrackAnimation
 } from './helper'
 
-const $: any = window.$
+// const $: any = window.$
 /**
  * mapClass gis地图基础类
  * [options description]
@@ -60,7 +60,8 @@ export default class BMapClass {
     this.map.clearOverlays()
     this.map.centerAndZoom(poi, this.options.zoom)
     this.map.enableScrollWheelZoom()
-    // this.drawing()
+    this.drawing()
+    ;(document.getElementsByClassName('BMapLib_Drawing_panel') as any)[0].style.display = 'none'
   }
 
   initEvent() {
@@ -125,9 +126,10 @@ export default class BMapClass {
       this.drawingManager.close()
     }
     // 默认隐藏
-    $('.BMapLib_Drawing_panel').css({
-      display: 'none'
-    })
+    // $('.BMapLib_Drawing_panel').css({
+    //   display: 'none'
+    // })
+    ;(document.getElementsByClassName('BMapLib_Drawing_panel') as any)[0].style.display = 'none'
     if (this.currentOverlay) this.currentOverlay.disableEditing()
   }
 
@@ -136,11 +138,13 @@ export default class BMapClass {
     // if (this.drawingManager !== undefined) {
     //   this.drawingManager.open()
     // }
-    this.drawing()
+
     // 默认隐藏
-    $('.BMapLib_Drawing_panel').css({
-      display: 'block'
-    })
+    // $('.BMapLib_Drawing_panel').css({
+    //   display: 'block'
+    // })
+    console.log(document.getElementsByClassName('BMapLib_Drawing_panel'))
+    ;(document.getElementsByClassName('BMapLib_Drawing_panel') as any)[0].style.display = 'block'
     if (this.currentOverlay) this.currentOverlay.enableEditing()
   }
 

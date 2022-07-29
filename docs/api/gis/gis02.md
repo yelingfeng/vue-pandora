@@ -13,19 +13,51 @@
 
 ```vue
 <template>
-  <el-row type="flex" justify="center">
-    <el-col :span="24">
-      <GisMap ref="drawMap" :options="mapOption" @markerClick="markerClick"></GisMap>
-    </el-col>
-  </el-row>
+  <div class="gisDemo-container">
+    <el-row style="margin-bottom:10px;">
+      <el-col :span="24">
+        <el-button @click.native="clearMap">清除</el-button>
+        <el-button @click.native="setMapZoom">重置地图层级</el-button>
+        <el-button @click.native="addMarkers">地图打点</el-button>
+        <el-button @click.native="drawPolygon">绘制多边形</el-button>
+        <el-button @click.native="drawPolyline">绘制线段</el-button>
+        <el-button @click.native="drawOverlay">画区域</el-button>
+        <el-button @click.native="drawCircle">画圆</el-button>
+        <el-button @click.native="drawHeatMap">热力地图</el-button>
+        <el-button @click.native="drawTrajectory">绘制轨迹</el-button>
+        <el-button @click.native="drawLushu">启动轨迹回放</el-button>
+        <el-button @click.native="drawPointCollection">海量点</el-button>
+        <el-button @click.native="drawBaiduMapLayer">大数据可视化库MAPV-网格</el-button>
+        <el-button @click.native="drawBaiduMapLayer2">大数据可视化库MAPV-点状</el-button>
+        <el-button @click.native="drawBaiduMapLayer3">大数据可视化库MAPV-热力图</el-button>
+        <el-button @click.native="openEditorMode">打开编辑模式</el-button>
+        <el-button @click.native="closeEditorMode">关闭编辑模式</el-button>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="24">
+        <div class="gisMapBox">
+          <GisMap
+            ref="drawMap"
+            :options="mapOption"
+            @markerClick="markerClick"
+            @drawComplete="drawComplete"
+          >
+          </GisMap>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
-
 <script lang="ts">
 import { Component, Vue, Ref, Watch } from 'vue-property-decorator'
 import GisMap from '../../packages/GisMap/index.vue'
 import { Message } from 'element-ui'
 import _ from 'lodash'
 
+const BMAP_POINT_SIZE_SMALL: any = window.BMAP_POINT_SIZE_SMALL
+const BMAP_POINT_SHAPE_CIRCLE: any = window.BMAP_POINT_SHAPE_CIRCLE
+const BMAP_POINT_SHAPE_STAR: any = window.BMAP_POINT_SHAPE_STAR
 @Component({
   components: {
     GisMap
@@ -39,6 +71,7 @@ export default class GisDemo extends Vue {
     // 是否打开编辑模式
     isDraw: false
   }
+  private dataArr = []
   private mapvData = [
     { name: '北京', value: 23 },
     { name: '天津', value: 43 },
@@ -73,23 +106,42 @@ export default class GisDemo extends Vue {
     { name: '海口', value: 23 }
   ]
   mounted() {
-    this.addMarkers()
-    this.drawPolygon()
+    this.dataArr = [
+      { lng: '104.080989', lat: '30.657689', dataObj: { name: '张三', local: '成都XXX区' } },
+      { lng: '104.055731', lat: '30.667648', dataObj: { name: '李四', local: '成都SSSS区' } },
+      { lng: '104.056843', lat: '30.670566', dataObj: { name: '王五1', local: '成都SSSS区' } },
+      { lng: '104.081996', lat: '30.668703', dataObj: { name: '王五2', local: '成都SSSS区' } },
+      { lng: '104.06252', lat: '30.660812', dataObj: { name: '王五3', local: '成都SSSS区' } }
+    ]
   }
-  // 清除标记
-  clearMap() {
-    this.isLushu = false
-    this.drawMap.clearAllOverlay()
-  }
-  // 重置地图层级
-  setMapZoom() {
-    this.drawMap.markerZoomAdapter(this.dataArr)
-  }
+
   // marker打点
   addMarkers() {
     this.clearMap()
     this.setMapZoom()
     this.drawMap.addMarkers(this.dataArr)
+  }
+  // 标记点击事件
+  markerClick({ e, data }) {
+    console.log(e, data)
+    this.drawMap.openInfoPanel(`${data.name} | ${data.local}`, e)
+    // Message.success(`${data.name} | ${data.local}`)
+  }
+  // 获取编辑区域信息
+  drawComplete(result) {
+    console.log(result)
+  }
+
+  getMapOverlay() {
+    console.log(this.drawMap.getOverlayData())
+  }
+  // 清除标记
+  clearMap() {
+    this.drawMap.clearAllOverlay()
+  }
+  // 重置地图层级
+  setMapZoom() {
+    this.drawMap.markerZoomAdapter(this.dataArr)
   }
   //绘制多边形 网格
   drawPolygon() {
@@ -183,6 +235,8 @@ export default class GisDemo extends Vue {
     this.clearMap()
     this.setMapZoom()
     this.drawMap.drawOverlay(this.dataArr)
+    // 一条记录可以画圆
+    // this.drawMap.drawOverlay([{ lng: 104.0556700999699, lat: 30.654019883585562, radius: 500 }])
   }
   // 画圆
   drawCircle() {
@@ -295,15 +349,75 @@ export default class GisDemo extends Vue {
     this.setMapZoom()
     this.drawMap.drawTrajectory(this.dataArr)
   }
+
+  // 启动回放功能
+  drawLushu() {
+    const option = {
+      pos: {
+        right: '10px',
+        top: '10px'
+      },
+      btns: [
+        { label: '实时', click: this.lushuReal },
+        { label: '回放', click: this.lushuStart },
+        { label: '停止', click: this.lushuStop },
+        { label: '暂停', click: this.lushuPause }
+      ]
+    }
+    this.drawMap.drawPlayBackBtn(option)
+    this.drawMap.drawLushu(this.dataArr)
+  }
   // 海量点
   drawPointCollection() {
     this.clearMap()
+    const arr1 = [
+      {
+        lng: 104.05148863688133,
+        lat: 30.65042259716188,
+        dataObj: { name: '张三1', local: '成都XXX区' }
+      },
+      {
+        lng: 104.05357936842636,
+        lat: 30.65042259716188,
+        dataObj: { name: '张三2', local: '成都XXX区' }
+      }
+    ]
     const opt = {
       size: BMAP_POINT_SIZE_SMALL,
       shape: BMAP_POINT_SHAPE_CIRCLE,
       color: '#1002e3'
     }
+    const opt1 = {
+      size: BMAP_POINT_SIZE_SMALL,
+      shape: BMAP_POINT_SHAPE_STAR,
+      color: '#FE0000'
+    }
     this.drawMap.drawPointCollection(this.dataArr, opt)
+    this.drawMap.drawPointCollection(arr1, opt1)
+  }
+  // 实时
+  lushuReal() {
+    this.drawMap.lushuReal()
+  }
+  // 回放
+  lushuStart() {
+    this.drawMap.lushuStart()
+  }
+  // 暂停
+  lushuPause() {
+    this.drawMap.lushuPause()
+  }
+  // 停止
+  lushuStop() {
+    this.drawMap.lushuStop()
+  }
+  // 打开编辑模式
+  openEditorMode() {
+    this.mapOption.isDraw = true
+  }
+  // 关闭编辑模式
+  closeEditorMode() {
+    this.mapOption.isDraw = false
   }
   // mapv
   drawBaiduMapLayer() {
@@ -348,6 +462,7 @@ export default class GisDemo extends Vue {
         }
       },
       size: 5,
+      // updateImmediate: true,
       draw: 'simple'
     }
     this.drawMap.drawBaiduMapLayer(this.mapvData, options)
@@ -359,50 +474,38 @@ export default class GisDemo extends Vue {
       size: 13,
       gradient: { 0.25: 'rgb(0,0,255)', 0.55: 'rgb(0,255,0)', 0.85: 'yellow', 1.0: 'rgb(255,0,0)' },
       max: 100,
+      // range: [0, 100], // 过滤显示数据范围
+      // minOpacity: 0.5, // 热力图透明度
+      // maxOpacity: 1,
+      // animation: {
+      //   type: 'time',
+      //   stepsRange: {
+      //     start: 0,
+      //     end: 100
+      //   },
+      //   trails: 10,
+      //   duration: 4
+      // },
       draw: 'heatmap'
     }
     this.drawMap.drawBaiduMapLayer(this.mapvData, options)
   }
-  // 启动回放功能
-  drawLushu() {
-    const option = {
-      pos: {
-        right: '10px',
-        top: '10px'
-      },
-      btns: [
-        { label: '实时', click: this.lushuReal },
-        { label: '回放', click: this.lushuStart },
-        { label: '停止', click: this.lushuStop },
-        { label: '暂停', click: this.lushuPause }
-      ]
-    }
-    this.isLushu = true
-    this.drawMap.drawPlayBackBtn(option)
-    this.drawMap.drawLushu(this.dataArr)
-  }
-  // 实时
-  lushuReal() {
-    this.drawMap.lushuReal()
-    this.lushuStatus = 'real'
-  }
-  // 回放
-  lushuStart() {
-    this.drawMap.lushuStart()
-    this.lushuStatus = 'run'
-  }
-  // 暂停
-  lushuPause() {
-    this.drawMap.lushuPause()
-    this.lushuStatus = 'pause'
-  }
-  // 停止
-  lushuStop() {
-    this.drawMap.lushuStop()
-    this.lushuStatus = 'stop'
-  }
+  onChangeDraw() {}
 }
 </script>
+
+<style lang="less">
+.gisDemo-container {
+  .el-button {
+    margin-bottom: 10px;
+  }
+  .gisMapBox {
+    height: 700px;
+    width: 100%;
+    position: relative;
+  }
+}
+</style>
 ```
 
 :::
