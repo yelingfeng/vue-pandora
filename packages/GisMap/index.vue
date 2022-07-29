@@ -205,7 +205,7 @@ export default class VGisMap extends Vue {
       })
       const btnStyle = option.pos
       this.playBack = (
-        <div class="playBack" style={btnStyle}>
+        <div class="vpandora-gis-playBack" style={btnStyle}>
           {btnHtml}
         </div>
       )
@@ -217,91 +217,11 @@ export default class VGisMap extends Vue {
     // console.log(this.$slots.playBack)
     // const playBack = this.$slots.playBack
     return (
-      <div class="gis-container">
-        <div ref="GisRef" class="gis-box"></div>
+      <div class="vpandora-gis">
+        <div ref="GisRef" class="vpandora-gis-box"></div>
         {this.playBack}
       </div>
     )
   }
 }
 </script>
-<style lang="less">
-.gis-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  .gis-box {
-    width: 100%;
-    height: 100%;
-  }
-  .playBack {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 10;
-  }
-  // gis infowindwo 样式覆盖
-  .BMap_pop {
-    .BMap_top {
-      border-top: 1px solid rgba(51, 60, 92, 0.9) !important;
-      background-color: rgba(51, 60, 92, 0.9) !important;
-      height: 24px !important;
-    }
-    .BMap_center {
-      border-left: 1px solid rgba(51, 60, 92, 0.9) !important;
-      border-right: 1px solid rgba(51, 60, 92, 0.9) !important;
-      background-color: rgba(51, 60, 92, 0.9) !important;
-    }
-    .BMap_bottom {
-      border-bottom: 1px solid rgba(51, 60, 92, 0.9) !important;
-      background-color: rgba(51, 60, 92, 0.9) !important;
-    }
-    .BMap_bubble_title {
-      color: #ffffff;
-    }
-    .BMap_bubble_content {
-      color: #ffffff;
-      line-height: 26px;
-      padding: 5px 10px;
-    }
-    > div:nth-child(1) {
-      > div {
-        background: rgba(51, 60, 92, 0.9) !important;
-        border-top: 1px solid rgba(51, 60, 92, 0.9) !important;
-        border-left: 1px solid rgba(51, 60, 92, 0.9) !important;
-      }
-    }
-    > div:nth-child(3) {
-      > div {
-        background: rgba(51, 60, 92, 0.9) !important;
-        border-top: 1px solid rgba(51, 60, 92, 0.9) !important;
-        border-right: 1px solid rgba(51, 60, 92, 0.9) !important;
-      }
-    }
-    > div:nth-child(5) {
-      > div {
-        background: rgba(51, 60, 92, 0.9) !important;
-        border-bottom: 1px solid rgba(51, 60, 92, 0.9) !important;
-        border-left: 1px solid rgba(51, 60, 92, 0.9) !important;
-      }
-    }
-    > div:nth-child(7) {
-      > div {
-        background: rgba(51, 60, 92, 0.9) !important;
-        border-bottom: 1px solid rgba(51, 60, 92, 0.9) !important;
-        border-right: 1px solid rgba(51, 60, 92, 0.9) !important;
-      }
-    }
-    > div:nth-child(9) {
-      left: 5px !important;
-      top: 5px !important;
-    }
-    > div:nth-child(8) {
-      display: none !important;
-    }
-    > div > img {
-      display: none !important;
-    }
-  }
-}
-</style>
