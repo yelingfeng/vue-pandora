@@ -1,3 +1,9 @@
+## [1.2.32](https://github.com/yelingfeng/vue-pandora/compare/v1.2.31...v1.2.32) (2022-07-29)
+
+### Bug Fixes
+
+- **bug:** fix externals bug ([ce37f1b](https://github.com/yelingfeng/vue-pandora/commit/ce37f1b54d526bd8f47d59b864737e7d881bd386))
+
 ## [1.2.31](https://github.com/yelingfeng/vue-pandora/compare/v1.2.30...v1.2.31) (2022-07-29)
 
 ### Features
