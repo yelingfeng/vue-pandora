@@ -1,3 +1,9 @@
+## [1.2.33](https://github.com/yelingfeng/vue-pandora/compare/v1.2.32...v1.2.33) (2022-07-29)
+
+### Bug Fixes
+
+- **gis:** fix gismap build bug ([721c97b](https://github.com/yelingfeng/vue-pandora/commit/721c97b08c92749fbebaffbb8b0c2aeb546a57ab))
+
 ## [1.2.32](https://github.com/yelingfeng/vue-pandora/compare/v1.2.31...v1.2.32) (2022-07-29)
 
 ### Bug Fixes
