@@ -56,15 +56,5 @@ module.exports = {
     output: {
       libraryExport: 'default'
     }
-    // externals: {
-    //   vue: 'Vue',
-    //   element: 'ElementUI',
-    //   dayjs: 'dayjs'
-    // }
-    // externals: {
-    //   vue: 'Vue',
-    //   'element-ui': 'ElementUI',
-    //   dayjs: 'Dayjs'
-    // }
   }
 }
