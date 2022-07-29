@@ -1,3 +1,17 @@
+## [1.2.31](https://github.com/yelingfeng/vue-pandora/compare/v1.2.30...v1.2.31) (2022-07-29)
+
+### Features
+
+- **1.2.31:** add gismap ([62998bc](https://github.com/yelingfeng/vue-pandora/commit/62998bcdabe754ee978de1998537851d9d56698e))
+- **样式移动:** 样式移动 ([fae4c34](https://github.com/yelingfeng/vue-pandora/commit/fae4c34f1a67a6d99ffdbd72fef74c6fd7454609))
+- gisMap ([3dc2d94](https://github.com/yelingfeng/vue-pandora/commit/3dc2d9406b225e82ec15981b4f0c064bd1b3a592))
+- **gisapi:** gIS API 完善轨迹 ([1e8dd35](https://github.com/yelingfeng/vue-pandora/commit/1e8dd35e107f16b52e917ef094edb59f866b6b59))
+- **gismap:** gismap ([afbbef6](https://github.com/yelingfeng/vue-pandora/commit/afbbef6e45554e504bbbb5993ee7e8d9d15fa0c0))
+- **gismap:** gisMap ([7d7c47e](https://github.com/yelingfeng/vue-pandora/commit/7d7c47e3eca60f69be17111ed2db469135c1a76a))
+- **gismap playback:** map && mapgl 完善、 回放完善 ([d17028b](https://github.com/yelingfeng/vue-pandora/commit/d17028be60c217c21f89ba6d422911640e76492d))
+- **mapgl:** mapgl ([06ff82f](https://github.com/yelingfeng/vue-pandora/commit/06ff82f2497b1b4987bc37d572d85df35ba3e1c2))
+- **mapv:** mapv ([fb7b8bb](https://github.com/yelingfeng/vue-pandora/commit/fb7b8bb2a8bf1b098b66412acbab54a7cdefb01b))
+
 ## [1.2.30](https://github.com/yelingfeng/vue-pandora/compare/v1.2.29...v1.2.30) (2022-07-20)
 
 ### Bug Fixes
