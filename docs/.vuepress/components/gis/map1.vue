@@ -1,7 +1,9 @@
 <template>
   <el-row type="flex" justify="center">
     <el-col :span="24">
-      <VGisMap ref="map" :options="mapOption"></VGisMap>
+      <div style="height:300px">
+        <VGisMap ref="map" :options="mapOption"></VGisMap>
+      </div>
     </el-col>
   </el-row>
 </template>

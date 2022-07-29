@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '../../mock/index.ts'
 import VuePandora from '../../lib/vuepandora.umd'
 import '../../lib/vuepandora.css'
-import VueCompositionAPI from '@vue/composition-api'
+// import VueCompositionAPI from '@vue/composition-api'
 import './index.less'
 // 注册指令
 Vue.directive('highlight', function(el) {
@@ -26,5 +26,5 @@ export default ({
   // ...做一些其他的应用级别的优化
   Vue.use(Element)
   Vue.use(VuePandora)
-  Vue.use(VueCompositionAPI)
+  // Vue.use(VueCompositionAPI)
 }

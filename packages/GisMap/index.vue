@@ -213,7 +213,7 @@ export default class VGisMap extends Vue {
     return this.playBack
   }
 
-  render(h) {
+  render() {
     // console.log(this.$slots.playBack)
     // const playBack = this.$slots.playBack
     return (
