@@ -1,3 +1,10 @@
+## [1.2.34](https://github.com/yelingfeng/vue-pandora/compare/v1.2.33...v1.2.34) (2022-08-19)
+
+### Features
+
+- **api:** api 完善 ([9c81b21](https://github.com/yelingfeng/vue-pandora/commit/9c81b215c9beef3e4c8ae2c4e84545d25b381e4c))
+- **groupselect:** add groupselect ([6fd197c](https://github.com/yelingfeng/vue-pandora/commit/6fd197c8ad9817381c2a50a6987e9212656a46c2))
+
 ## [1.2.33](https://github.com/yelingfeng/vue-pandora/compare/v1.2.32...v1.2.33) (2022-07-29)
 
 ### Bug Fixes
