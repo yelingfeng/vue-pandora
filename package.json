@@ -25,7 +25,8 @@
   },
   "files": [
     "*.d.ts",
-    "dist"
+    "types",
+    "lib"
   ],
   "dependencies": {
     "async-validator": "1.11.5",

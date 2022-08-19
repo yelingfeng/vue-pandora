@@ -15,10 +15,10 @@
     <template v-if="type === 'group'">
       <el-option-group v-for="item in data" :key="item.name" :label="item.name">
         <el-option
-          v-for="item in item.options"
-          :key="item.value"
-          :label="item.name"
-          :value="item.value"
+          v-for="it in item.options"
+          :key="it.value"
+          :label="it.name"
+          :value="it.value"
         ></el-option>
       </el-option-group>
     </template>
@@ -80,7 +80,7 @@ export default class VSelect extends Vue {
     this.value = this.option.value
     this.data = this.option.data || []
     this.disabled = this.option.disabled || false
-    this.placeholder = this.option.placeholder ? this.option.placeholder : '请选择-text'
+    this.placeholder = this.option.placeholder ? this.option.placeholder : '请选择'
   }
   /**
    * @name: getValue
