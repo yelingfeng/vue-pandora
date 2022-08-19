@@ -23,6 +23,58 @@ export default class FormDemo extends Vue {
     btnPos: 'right',
     items: [
       {
+        label: '分组下拉：',
+        type: 'select',
+        comOpt: {
+          type: 'group',
+          id: 'roleId',
+          width: 180,
+          value: '',
+          clearable: false,
+          multiple: true,
+          //  多选简洁展示
+          collapseTags: true,
+          data: [
+            {
+              name: '信息一处',
+              options: [
+                {
+                  value: '1',
+                  name: '业务号1'
+                },
+                {
+                  value: '2',
+                  name: '业务号2'
+                }
+              ]
+            },
+            {
+              name: '信息二处',
+              options: [
+                {
+                  value: '3',
+                  name: '业务号3'
+                },
+                {
+                  value: '4',
+                  name: '业务号4'
+                },
+                {
+                  value: '5',
+                  name: '业务号6'
+                },
+                {
+                  value: '6',
+                  name: '业务号7'
+                }
+              ]
+            }
+          ],
+          placeholder: '请选择',
+          change: () => {}
+        }
+      },
+      {
         label: '所属机房',
         type: 'text',
         show: true,

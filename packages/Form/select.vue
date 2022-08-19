@@ -12,7 +12,18 @@
     :placeholder="placeholder"
     :style="widthStyle"
   >
+    <template v-if="type === 'group'">
+      <el-option-group v-for="item in data" :key="item.name" :label="item.name">
+        <el-option
+          v-for="item in item.options"
+          :key="item.value"
+          :label="item.name"
+          :value="item.value"
+        ></el-option>
+      </el-option-group>
+    </template>
     <el-option
+      v-else
       v-for="item in data"
       :key="item.index"
       :label="item.name"
@@ -37,6 +48,7 @@ export default class VSelect extends Vue {
   private disabled = false
   private placeholder = ''
   private data: object[] = []
+  private type = ''
 
   get widthStyle() {
     return {
@@ -59,6 +71,7 @@ export default class VSelect extends Vue {
    * @description: 组件初始化函数
    */
   initFunc() {
+    this.type = this.option.type
     if (this.option.multiple) {
       this.value = []
     } else {
