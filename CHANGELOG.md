@@ -1,3 +1,9 @@
+## [1.2.35](https://github.com/yelingfeng/vue-pandora/compare/v1.2.34...v1.2.35) (2022-08-19)
+
+### Bug Fixes
+
+- **package:** update package.json ([4902da0](https://github.com/yelingfeng/vue-pandora/commit/4902da0bdb105f12d434bf3728ec7c34de78dc40))
+
 ## [1.2.34](https://github.com/yelingfeng/vue-pandora/compare/v1.2.33...v1.2.34) (2022-08-19)
 
 ### Features
