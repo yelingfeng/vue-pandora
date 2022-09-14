@@ -8,7 +8,6 @@
   "repository": "https://github.com/yelingfeng/vue-pandora.git",
   "author": "yelngfeng <yelingfeng521@gmail.com>",
   "license": " MIT",
-  "tyings": "types/index.d.ts",
   "scripts": {
     "dev": "vue-cli-service serve --open",
     "lib": "vue-cli-service build --target lib --name vuepandora ./index.ts",
