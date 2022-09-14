@@ -1,22 +1,20 @@
 import Vue from 'vue'
 import VForm from './packages/Form/index.vue'
 import VTable from './packages/Table/index.vue'
-import VGisMap from './packages/GisMap/index.vue'
 
 import './src/index.css'
 const install = function(vue: typeof Vue, opts = {}) {
   vue.component(VForm.name, VForm)
   vue.component(VTable.name, VTable)
-  vue.component(VGisMap.name, VGisMap)
+  // vue.component(VGisMap.name, VGisMap)
 }
 
 const VuePandora = {
   install,
   VForm,
-  VTable,
-  VGisMap
+  VTable
 }
-export { VForm, VTable, VGisMap }
+export { VForm, VTable }
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
