@@ -1,3 +1,9 @@
+## [1.2.38](https://github.com/yelingfeng/vue-pandora/compare/v1.2.37...v1.2.38) (2022-09-14)
+
+### Bug Fixes
+
+- **fix:** change vue.config ([9ded841](https://github.com/yelingfeng/vue-pandora/commit/9ded84141411510a0a43839f9b60dea4a1e45249))
+
 ## [1.2.37](https://github.com/yelingfeng/vue-pandora/compare/v1.2.36...v1.2.37) (2022-09-14)
 
 ## [1.2.36](https://github.com/yelingfeng/vue-pandora/compare/v1.2.35...v1.2.36) (2022-09-01)
