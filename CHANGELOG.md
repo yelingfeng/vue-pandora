@@ -1,3 +1,5 @@
+## [1.2.42](https://github.com/yelingfeng/vue-pandora/compare/v1.2.41...v1.2.42) (2022-09-14)
+
 ## [1.2.41](https://github.com/yelingfeng/vue-pandora/compare/v1.2.40...v1.2.41) (2022-09-14)
 
 ## [1.2.40](https://github.com/yelingfeng/vue-pandora/compare/v1.2.39...v1.2.40) (2022-09-14)
