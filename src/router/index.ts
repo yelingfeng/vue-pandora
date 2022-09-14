@@ -31,10 +31,6 @@ const constantRouterMap = [
   {
     path: '/gisMap',
     component: () => import('@/views/gisDemo.vue')
-  },
-  {
-    path: '/gisMapGL',
-    component: () => import('@/views/gisGLDemo.vue')
   }
 ]
 
