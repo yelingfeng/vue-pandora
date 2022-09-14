@@ -1,3 +1,9 @@
+## [1.2.39](https://github.com/yelingfeng/vue-pandora/compare/v1.2.38...v1.2.39) (2022-09-14)
+
+### Bug Fixes
+
+- **fix:** build bug ([0ccf122](https://github.com/yelingfeng/vue-pandora/commit/0ccf1224fce360bb4652b94d36f71e02bb48913d))
+
 ## [1.2.38](https://github.com/yelingfeng/vue-pandora/compare/v1.2.37...v1.2.38) (2022-09-14)
 
 ### Bug Fixes
