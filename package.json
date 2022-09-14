@@ -24,7 +24,6 @@
     "reinstall": "rimraf yarn.lock && rimraf package.lock.json && rimraf node_modules && yarn install"
   },
   "files": [
-    "*.d.ts",
     "types",
     "lib"
   ],
