@@ -54,7 +54,7 @@ module.exports = {
   },
   configureWebpack: {
     output: {
-      libraryExport: 'VuePandora'
+      libraryExport: 'default'
     }
   }
 }
