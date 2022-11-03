@@ -442,8 +442,9 @@ export default class Demo extends Vue {
           disabled: false,
           placeholder: '',
           clearable: true,
-          multiple: true,
-          collapseTags: true,
+          // popperAppendToBody: true,
+          // multiple: false,
+          // collapseTags: true,
           value: '',
           data: [
             {

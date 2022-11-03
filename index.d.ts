@@ -158,6 +158,8 @@ declare namespace Form {
     clearable?: boolean
     // 是否多选
     multiple?: boolean
+    //
+    popperAppendToBody?: boolean
     // 日期align
     align?: string
     // formlist items

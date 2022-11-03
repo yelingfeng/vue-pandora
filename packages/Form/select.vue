@@ -5,6 +5,7 @@
     :disabled="disabled"
     :filterable="option.filterable"
     :multiple="option.multiple"
+    :popper-append-to-body="popperAppendToBody"
     :collapseTags="option.collapseTags"
     @change="changeHandler"
     @focus="focusHandler"
@@ -49,6 +50,7 @@ export default class VSelect extends Vue {
   private placeholder = ''
   private data: object[] = []
   private type = ''
+  private popperAppendToBody = true
 
   get widthStyle() {
     return {
@@ -81,6 +83,7 @@ export default class VSelect extends Vue {
     this.data = this.option.data || []
     this.disabled = this.option.disabled || false
     this.placeholder = this.option.placeholder ? this.option.placeholder : '请选择'
+    this.popperAppendToBody = this.option.popperAppendToBody
   }
   /**
    * @name: getValue
