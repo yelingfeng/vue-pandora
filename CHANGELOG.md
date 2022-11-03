@@ -1,3 +1,9 @@
+## [1.2.45](https://github.com/yelingfeng/vue-pandora/compare/v1.2.44...v1.2.45) (2022-11-03)
+
+### Features
+
+- **form:** select add popperAppendToBody props ([5359484](https://github.com/yelingfeng/vue-pandora/commit/5359484fbc7cba0852cd32aa2f35f6ac6b956fce))
+
 ## [1.2.44](https://github.com/yelingfeng/vue-pandora/compare/v1.2.43...v1.2.44) (2022-09-14)
 
 ## [1.2.43](https://github.com/yelingfeng/vue-pandora/compare/v1.2.42...v1.2.43) (2022-09-14)
