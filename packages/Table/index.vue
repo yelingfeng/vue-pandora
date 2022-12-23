@@ -3,7 +3,7 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { isFunction, hasClass, removeClass, addClass, trim, merge } from '@/utils/common'
 import { SortModeType, OperateType } from '@/utils/enum'
 import pagination from './pagination.vue'
-
+import { isArray } from 'lodash'
 const ASC = 'ascending'
 const DESC = 'descending'
 // 分页高度
@@ -550,6 +550,64 @@ export default class VTable extends Vue {
   }
 
   /**
+   * 自定义tooltip列
+   * @param props
+   * @param item
+   */
+  _formatterTooltipRender(props: any, item: any) {
+    let dialogProps = Object.create(null)
+    const tipFormatter = item.tooltipFormatter ?? {}
+    const { renderEvent, linkProp, popperProp } = tipFormatter
+    const getLinkRender = obj => {
+      let pcfg = Object.create(null)
+      pcfg = {
+        props: linkProp ?? {},
+        on: {
+          click: e => obj.click(props.row, e)
+        }
+      }
+      return <el-link {...pcfg}>{obj.name}</el-link>
+    }
+
+    const ppProp = Object.assign(
+      {},
+      {
+        width: '300px',
+        placement: 'top',
+        trigger: 'hover'
+      },
+      popperProp
+    )
+
+    dialogProps = {
+      props: ppProp,
+      scopedSlots: {
+        reference: () => {
+          return <div domPropsInnerHTML={item.formatter(props.row, props.$index)} />
+        },
+        default: () => {
+          let renderArr = []
+          if (renderEvent && isArray(renderEvent)) {
+            renderArr = renderEvent.map(it => {
+              return getLinkRender(it)
+            })
+          }
+          const renderLL = renderArr.map(it => {
+            return it
+          })
+          return (
+            <el-row class="pandora-custorm-tooltip" type="flex">
+              <el-col span={12}>{props.row[item.value]}</el-col>
+              <el-col span={12}>{renderLL}</el-col>
+            </el-row>
+          )
+        }
+      }
+    }
+    return <el-popover {...dialogProps}></el-popover>
+  }
+
+  /**
    * 多数据 link节点处理
    */
   _LinksVNodeRender(props: any, item: any) {
@@ -753,6 +811,14 @@ export default class VTable extends Vue {
       defaultSlot = {
         default: (props: any) => {
           return <div domPropsInnerHTML={item.formatter(props.row, props.$index)} />
+        }
+      }
+    }
+    // 自定义tooltip
+    if (item.isAdsTooltip) {
+      defaultSlot = {
+        default: (props: any) => {
+          return this._formatterTooltipRender(props, item)
         }
       }
     }

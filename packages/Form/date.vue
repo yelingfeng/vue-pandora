@@ -11,6 +11,7 @@
       :align="align"
       type="datetime"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :placeholder="placeholder"
       :default-time="dateOption.defaultTime"
       :picker-options="dateOption.pickOptions"
@@ -33,6 +34,7 @@
       :end-placeholder="dateOption.endplaceholder"
       :picker-options="dateOption.pickOptions"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :style="widthStyle"
     ></el-date-picker>
     <el-date-picker
@@ -52,6 +54,7 @@
       :end-placeholder="dateOption.endplaceholder"
       :picker-options="dateOption.pickOptions"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :style="widthStyle"
     ></el-date-picker>
     <el-date-picker
@@ -65,6 +68,7 @@
       type="datetimeMinute"
       :align="align"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :placeholder="placeholder"
       :default-time="dateOption.defaultTime"
       :picker-options="dateOption.pickOptions"
@@ -81,6 +85,7 @@
       type="date"
       :align="align"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :placeholder="placeholder"
       :default-time="dateOption.defaultTime"
       :picker-options="dateOption.pickOptions"
@@ -97,6 +102,7 @@
       :align="align"
       type="year"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :placeholder="placeholder"
       :default-time="dateOption.defaultTime"
       :picker-options="dateOption.pickOptions"
@@ -113,6 +119,7 @@
       :align="align"
       type="month"
       @change="changeHandler"
+      :append-to-body="appendToBody"
       :placeholder="placeholder"
       :default-time="dateOption.defaultTime"
       :picker-options="dateOption.pickOptions"
@@ -129,6 +136,7 @@
       type="week"
       @change="changeHandler"
       :placeholder="placeholder"
+      :append-to-body="appendToBody"
       :default-time="dateOption.defaultTime"
       :picker-options="dateOption.pickOptions"
       :style="widthStyle"
@@ -166,6 +174,7 @@ export default class VDate extends Vue {
   private valueSeparator = ''
   private start = ''
   private end = ''
+  private appendToBody = true
 
   get widthStyle() {
     return {
@@ -188,11 +197,11 @@ export default class VDate extends Vue {
     this.type = this.option.type
     this.align = this.option.align || 'left'
     this.dateOption = this.option.dateOption || {}
-    this.clearable = this.dateOption.clearable || false
     this.placeholder = this.option.placeholder || '请选择日期'
+    this.clearable = this.dateOption.clearable || false
     this.valueFormat = this.dateOption?.valueFormat || ''
     this.valueSeparator = this.dateOption?.valueSeparator ?? ','
-
+    this.appendToBody = this.dateOption?.appendToBody
     if (this.type === 'week') {
       this.setWeekPickValue()
     } else {

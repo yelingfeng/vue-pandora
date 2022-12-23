@@ -52,6 +52,7 @@ export interface DateOptionType {
   format?: string
   // 范围选择时选中日期所使用的当日内具体时刻
   defaultTime?: string[]
+  appendToBody?: boolean
   // 是否显示清除按钮
   clearable?: boolean
   rangeSeparator?: string

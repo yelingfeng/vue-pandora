@@ -74,43 +74,46 @@ export default class Default extends Vue {
           ],
           type: 'datetimerange',
           disabled: false,
-          startplaceholder: '开始时间',
-          endplaceholder: '结束时间',
-          rangeSeparator: '至',
-          // defaultTime:['00:00:00', '23:59:59'],
-          pickOptions: {
-            // disabledDate: this.startDisable,
-            shortcuts: [
-              {
-                text: '近24小时',
-                onClick(picker) {
-                  const end = new Date()
-                  const start = new Date()
-                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 1)
-                  // const end = dayjs().format('YYYY-MM-DD HH:mm:ss HH:mm:ss');
-                  // const start = dayjs().subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss HH:mm:ss');
-                  picker.$emit('pick', [start, end])
+          dateOption: {
+            appendToBody: false,
+            startplaceholder: '开始时间',
+            endplaceholder: '结束时间',
+            rangeSeparator: '至',
+            // defaultTime:['00:00:00', '23:59:59'],
+            pickOptions: {
+              // disabledDate: this.startDisable,
+              shortcuts: [
+                {
+                  text: '近24小时',
+                  onClick(picker) {
+                    const end = new Date()
+                    const start = new Date()
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 1)
+                    // const end = dayjs().format('YYYY-MM-DD HH:mm:ss HH:mm:ss');
+                    // const start = dayjs().subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss HH:mm:ss');
+                    picker.$emit('pick', [start, end])
+                  }
+                },
+                {
+                  text: '近1周',
+                  onClick(picker) {
+                    const end = new Date()
+                    const start = new Date()
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+                    picker.$emit('pick', [start, end])
+                  }
+                },
+                {
+                  text: '近1月',
+                  onClick(picker) {
+                    const end = new Date()
+                    const start = new Date()
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+                    picker.$emit('pick', [start, end])
+                  }
                 }
-              },
-              {
-                text: '近1周',
-                onClick(picker) {
-                  const end = new Date()
-                  const start = new Date()
-                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-                  picker.$emit('pick', [start, end])
-                }
-              },
-              {
-                text: '近1月',
-                onClick(picker) {
-                  const end = new Date()
-                  const start = new Date()
-                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-                  picker.$emit('pick', [start, end])
-                }
-              }
-            ]
+              ]
+            }
           }
         }
       },
@@ -125,8 +128,11 @@ export default class Default extends Vue {
           type: 'daterange',
           disabled: false,
           width: '210',
-          pickOptions: {
-            valueFormat: 'yyyy-MM-dd HH:mm:ss'
+          dateOption: {
+            appendToBody: false,
+            pickOptions: {
+              valueFormat: 'yyyy-MM-dd HH:mm:ss'
+            }
           }
         }
       },
@@ -140,7 +146,12 @@ export default class Default extends Vue {
           type: 'datetimerange',
           disabled: false,
           width: '210',
-          pickOptions: {}
+          dateOption: {
+            appendToBody: false,
+            pickOptions: {
+              valueFormat: 'yyyy-MM-dd'
+            }
+          }
         }
       },
       {
