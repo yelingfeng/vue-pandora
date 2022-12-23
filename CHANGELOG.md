@@ -1,3 +1,9 @@
+## [1.2.47](https://github.com/yelingfeng/vue-pandora/compare/v1.2.46...v1.2.47) (2022-12-23)
+
+### Features
+
+- **table:** update adsTooltip ([6adef83](https://github.com/yelingfeng/vue-pandora/commit/6adef83fcb9d5bb539900ed93ba694d94c254b1d))
+
 ## [1.2.46](https://github.com/yelingfeng/vue-pandora/compare/v1.2.45...v1.2.46) (2022-12-23)
 
 ### Features
