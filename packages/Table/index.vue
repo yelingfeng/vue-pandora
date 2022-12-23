@@ -557,7 +557,7 @@ export default class VTable extends Vue {
   _formatterTooltipRender(props: any, item: any) {
     let dialogProps = Object.create(null)
     const tipFormatter = item.tooltipFormatter ?? {}
-    const { renderEvent, linkProp, popperProp } = tipFormatter
+    const { renderEvent, linkProp, popperProp, isShowContent } = tipFormatter
     const getLinkRender = obj => {
       let pcfg = Object.create(null)
       pcfg = {
@@ -583,7 +583,11 @@ export default class VTable extends Vue {
       props: ppProp,
       scopedSlots: {
         reference: () => {
-          return <div domPropsInnerHTML={item.formatter(props.row, props.$index)} />
+          return item.formatter ? (
+            <div domPropsInnerHTML={item.formatter(props.row, props.$index)} />
+          ) : (
+            <div>{props.row[item.value]}</div>
+          )
         },
         default: () => {
           let renderArr = []
@@ -595,11 +599,13 @@ export default class VTable extends Vue {
           const renderLL = renderArr.map(it => {
             return it
           })
-          return (
+          return isShowContent ? (
             <el-row class="pandora-custorm-tooltip" type="flex">
               <el-col span={12}>{props.row[item.value]}</el-col>
               <el-col span={12}>{renderLL}</el-col>
             </el-row>
+          ) : (
+            <div class="pandora-custorm-tooltip">{renderLL}</div>
           )
         }
       }

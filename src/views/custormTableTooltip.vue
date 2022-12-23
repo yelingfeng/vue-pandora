@@ -49,11 +49,12 @@ export default class CustormTableTooltip extends Vue {
         fixed: 'left',
         width: 200,
         align: 'center',
-        formatter: (row: any) => {
-          return `<span style='color:#1890ff;cursor:pointer;'>${row.taskName}</span>`
-        },
+        // formatter: (row: any) => {
+        //   return `<span style='color:#1890ff;cursor:pointer;'>${row.taskName}</span>`
+        // },
         isAdsTooltip: true,
         tooltipFormatter: {
+          isShowContent: false,
           popperProp: {},
           linkProp: {},
           renderEvent: [
