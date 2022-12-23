@@ -1,3 +1,9 @@
+## [1.2.46](https://github.com/yelingfeng/vue-pandora/compare/v1.2.45...v1.2.46) (2022-12-23)
+
+### Features
+
+- **table:** 新增 高级 tooltip 扩展 支持动态 link ([ae80169](https://github.com/yelingfeng/vue-pandora/commit/ae80169f806890cc1a0c97bcac77383711a5928e))
+
 ## [1.2.45](https://github.com/yelingfeng/vue-pandora/compare/v1.2.44...v1.2.45) (2022-11-03)
 
 ### Features
