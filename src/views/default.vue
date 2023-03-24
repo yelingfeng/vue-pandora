@@ -545,6 +545,12 @@ export default class Default extends Vue {
       console.log(list)
       this.tableOpt.data = list
       this.tableOpt.pageOpt.total = totals
+
+      const VTableInstall: any = this.$refs.table
+
+      this.$nextTick(() => {
+        VTableInstall.toggleRowSelection(list[0], true)
+      })
     })
   }
 }

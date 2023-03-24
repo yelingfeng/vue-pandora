@@ -207,6 +207,18 @@ export default class VTable extends Vue {
   }
 
   /**
+   *  设置复选框选中 调用element方法
+   * @param row
+   * @param flag
+   */
+  toggleRowSelection(row: any, flag: boolean) {
+    const eleTable: any = this.$refs.table
+    if (eleTable) {
+      eleTable.toggleRowSelection(row, flag)
+    }
+  }
+
+  /**
    * @name: handleSelectionChange
    * @param {Array} val 当前选中的行数据
    * @return:
