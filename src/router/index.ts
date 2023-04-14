@@ -32,6 +32,10 @@ const constantRouterMap = [
     path: '/tooltipDemo',
     component: () => import('@/views/custormTableTooltip.vue')
   }
+  // {
+  //   path: '/treeDemo',
+  //   component: () => import('@/views/treeTable.vue')
+  // }
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置

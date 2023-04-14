@@ -18,6 +18,8 @@ declare namespace Table {
     isHeader?: boolean
     // 高亮当前行
     highlightCurrentRow?: boolean
+    // 行class方法
+    rowClassFunction?: (row: object, index: number) => void
     // 是否显示多选
     selection: boolean
     // 是否可选中的回调

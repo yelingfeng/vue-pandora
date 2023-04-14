@@ -24,6 +24,8 @@ export interface ITableOption {
   fit?: boolean
   // 高亮当前行
   highlightCurrentRow?: boolean
+  // 行class方法
+  rowClassFunction?: (row: object, index: number) => void
   // 选择模式 单选还是多选
   selectionMode?: string
   // 复现框的位置 前后 top 和 end

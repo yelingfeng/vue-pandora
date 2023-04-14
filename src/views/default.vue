@@ -220,6 +220,14 @@ export default class Default extends Vue {
     border: true,
     loading: true,
     size: 'mini',
+    rowClassFunction: function({ row, rowIndex }) {
+      if (rowIndex === 1) {
+        return 'warning-row'
+      } else if (rowIndex === 3) {
+        return 'success-row'
+      }
+      return ''
+    },
     // selection: true,
     // // 复选框位置 前还是后 top ，end
     // selectionPos: 'top',
@@ -556,4 +564,12 @@ export default class Default extends Vue {
 }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+</style>

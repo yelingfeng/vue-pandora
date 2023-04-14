@@ -916,6 +916,7 @@ export default class VTable extends Vue {
         size: this.option.size,
         fit: this.option.fit,
         'highlight-current-row': this.option.highlightCurrentRow,
+        'row-class-name': this.option.rowClassFunction,
         data: this.tableData
       },
       on: {
