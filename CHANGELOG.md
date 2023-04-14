@@ -1,4 +1,10 @@
-## 1.2.48 (2023-03-24)
+## [1.2.49](https://github.com/yelingfeng/vue-pandora/compare/v1.2.48...v1.2.49) (2023-04-14)
+
+### Features
+
+- **table:** add rowClassFunction props ([3cad4a5](https://github.com/yelingfeng/vue-pandora/commit/3cad4a513883bbec7aa229da502e7c4bec7e7b77))
+
+## [1.2.48](https://github.com/yelingfeng/vue-pandora/compare/d77dc34d3a5a02eb8b7fee62c53066a9489d9712...v1.2.48) (2023-03-24)
 
 ### Bug Fixes
 
