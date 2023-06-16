@@ -31,6 +31,7 @@ module.exports = {
   },
   chainWebpack(config) {
     // it can be accessed in index.html to inject the correct title.
+
     config.set('name', name)
 
     // https://webpack.js.org/configuration/devtool/#development

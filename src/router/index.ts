@@ -31,6 +31,10 @@ const constantRouterMap = [
   {
     path: '/tooltipDemo',
     component: () => import('@/views/custormTableTooltip.vue')
+  },
+  {
+    path: '/chartBase',
+    component: () => import('@/views/charts/base.vue')
   }
   // {
   //   path: '/treeDemo',
