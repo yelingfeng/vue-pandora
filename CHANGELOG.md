@@ -1,3 +1,9 @@
+# [1.3.0](https://github.com/yelingfeng/vue-pandora/compare/v1.2.49...v1.3.0) (2023-06-16)
+
+### Features
+
+- **charts:** add Vcharts base code ([cf2a934](https://github.com/yelingfeng/vue-pandora/commit/cf2a934abcac6ce5d0081bd943b5b8189dab9f90))
+
 ## [1.2.49](https://github.com/yelingfeng/vue-pandora/compare/v1.2.48...v1.2.49) (2023-04-14)
 
 ### Features
