@@ -1,3 +1,9 @@
+## [1.3.1](https://github.com/yelingfeng/vue-pandora/compare/v1.3.0...v1.3.1) (2023-09-20)
+
+### Features
+
+- **table:** add cell mouseEnter mouseLevel event ([121a24a](https://github.com/yelingfeng/vue-pandora/commit/121a24ad5212f77d0f1dcdfeaa1acf773c7f10ae))
+
 # [1.3.0](https://github.com/yelingfeng/vue-pandora/compare/v1.2.49...v1.3.0) (2023-06-16)
 
 ### Features
