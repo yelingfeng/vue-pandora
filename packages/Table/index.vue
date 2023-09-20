@@ -83,6 +83,9 @@ export default class VTable extends Vue {
 
   private _oldActiveSort: any = {}
 
+  // 记录当前行 对象
+  private _currentRow: any = {}
+
   // 当前行index
   private _currentRowIndex: number
   private currentRowObject = {}
@@ -746,6 +749,18 @@ export default class VTable extends Vue {
     return num
   }
 
+  //
+  handlerCellMouseEnter(row: any, column: any, cell: any, event: any) {
+    this._currentRow = row
+    // _currentTipRow
+    this.$emit('handlerCellMouseEnter', this._currentRow)
+  }
+
+  handlerCellMouseLeave(row: any, column: any, cell: any, event: any) {
+    this._currentRow = row
+    this.$emit('handlerCellMouseLeave', this._currentRow)
+  }
+
   // 渲染一列处理
   renderColumnProp(item: any) {
     let columnProps = Object.create(null)
@@ -922,7 +937,9 @@ export default class VTable extends Vue {
       on: {
         'row-click': this.rowClick,
         'selection-change': this.handleSelectionChange,
-        'header-click': this.handleHeaderClick
+        'header-click': this.handleHeaderClick,
+        'cell-mouse-enter': this.handlerCellMouseEnter,
+        'cell-mouse-leave': this.handlerCellMouseLeave
       },
       directives: [{ name: 'loading', value: this.option.loading || false }]
     }

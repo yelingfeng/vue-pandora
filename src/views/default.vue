@@ -9,6 +9,8 @@
       @handleSelectionChange="selectionChange"
       @handleSizePageChange="handleSizeChange"
       @handleCurrentPageChange="handleCurrentChange"
+      @handlerCellMouseEnter="handlerCellMouseEnter"
+      @handlerCellMouseLeave="handlerCellMouseLeave"
     ></VTable>
   </div>
 </template>
@@ -247,6 +249,7 @@ export default class Default extends Vue {
       { prop: 'vd_count', order: 'ascending' },
       { prop: 'ivd_count', order: 'ascending' }
     ],
+
     sortChange: (column: object) => {
       console.log(column)
       this.getTableList()
@@ -544,6 +547,15 @@ export default class Default extends Vue {
     setTimeout(() => {
       this.tableOpt.loading = false
     }, 2000)
+  }
+
+  // cell 划过
+  handlerCellMouseEnter(obj) {
+    console.log(obj.taskName)
+  }
+
+  handlerCellMouseLeave(obj) {
+    console.log(obj.taskName)
   }
 
   getTableList() {
