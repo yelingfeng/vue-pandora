@@ -1,3 +1,9 @@
+## [1.3.2](https://github.com/yelingfeng/vue-pandora/compare/v1.3.1...v1.3.2) (2023-09-21)
+
+### Features
+
+- **table:** add trigger table row event ([59576ad](https://github.com/yelingfeng/vue-pandora/commit/59576adbd21440d3a05e484541553a5c7cfa2980))
+
 ## [1.3.1](https://github.com/yelingfeng/vue-pandora/compare/v1.3.0...v1.3.1) (2023-09-20)
 
 ### Features
