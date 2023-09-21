@@ -8,9 +8,6 @@
               <i class="el-icon-location"></i>
               <span>Demo</span>
             </template>
-            <el-menu-item-group title="Chart">
-              <el-menu-item index="/chartBase">Chart基础</el-menu-item>
-            </el-menu-item-group>
             <el-menu-item-group>
               <template slot="title"></template>
               <el-menu-item index="/default">default</el-menu-item>
