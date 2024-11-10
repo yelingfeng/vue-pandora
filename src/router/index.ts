@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { component } from 'vue/types/umd'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,10 @@ const constantRouterMap = [
   {
     path: '/tooltipDemo',
     component: () => import('@/views/custormTableTooltip.vue')
+  },
+  {
+    path: '/multiSort',
+    component: () => import('@/views/multiSort.vue')
   }
   // {
   //   path: '/treeDemo',

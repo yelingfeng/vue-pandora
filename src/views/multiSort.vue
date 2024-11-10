@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button  @click.native="demoClick">手动table排序重置</el-button>
+    <el-button size="small" @click.native="demoClick">手动table排序重置</el-button>
     <VForm :option="formObj" ref="form"></VForm>
     <VTable
       ref="table"
@@ -238,54 +238,23 @@ export default class Default extends Vue {
     //   console.log(row, index)
     //   return index !== 4
     // },
-    // 排序模式 single 独立排序 ,multi 多项排序
-    sortMode: 'single',
     // 默认升序还是降序
     defaultOrder: 'descending',
+    // 排序模式 single 独立排序 ,multi 多项排序
+    sortMode: 'multi',
     // 默认排序字段列
     defaultSort: [
-      { prop: 'taskName', order: 'descending' },
-      { prop: 'taskContent', order: 'ascending' },
+      { prop: 'createTime', order: 'descending' },
       { prop: 'vd_count', order: 'ascending' },
-      { prop: 'ivd_count', order: 'ascending' }
+      { prop: 'ivd_count', order: 'descending' }
     ],
 
     sortChange: (column: object) => {
-      console.log(column)
+      console.log('sortChange->', column)
       this.getTableList()
     },
     rowChange: (row: object, index: number) => {
       console.log(row, index)
-    },
-    summary: {
-      sumText: '总计',
-      summaryMethod: function(param: any) {
-        const { columns, data } = param
-        const sums: any = []
-        columns.forEach((column: any, index: number) => {
-          if (index === 0) {
-            sums[index] = '总计'
-            return
-          }
-          const values = data.map((item: any) => Number(item[column.property]))
-          if (!values.every((value: any) => isNaN(value))) {
-            sums[index] = values.reduce((prev: any, curr: any) => {
-              const value = Number(curr)
-              if (!isNaN(value)) {
-                return prev + curr
-              } else {
-                return prev
-              }
-            }, 0)
-            sums[index] += ''
-          } else {
-            sums[index] = ' '
-          }
-        })
-        // console.log(sums)
-        // const s = ['提现总数', '', '', '', '', '']
-        return sums
-      }
     },
     column: [
       {
@@ -304,88 +273,8 @@ export default class Default extends Vue {
       },
       { name: '采集总数', value: 'vd_count', minWidth: 150, sortable: true },
       { name: '违规总数', value: 'ivd_count', minWidth: 150, sortable: true },
-      {
-        name: '任务名称2',
-        value: 'taskName2',
-        fixed: 'left',
-        width: 200,
-        align: 'center',
-        showTooltip: false,
-        links: {
-          dataRef: {
-            value: 'tid',
-            name: 'tname'
-          },
-          props: {
-            type: 'danger'
-          },
-          click: (row: any, e: any) => {
-            console.log(row, e)
-          }
-        }
-      },
-      {
-        name: '任务名称',
-        value: 'taskName',
-        // fixed: 'left',
-        align: 'center',
-        combo: [
-          {
-            name: 'el-image',
-            style: 'width:20px; height: 20px',
-            props: {
-              // src:
-              //   'data:image/png;base64,R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='
-            },
-            formatter: function(row: any, index: any) {
-              return `data:image/png;base64,${row.appBase}`
-            }
-          },
-          'taskName'
-        ],
-        sortable: true,
-        formatter: (row: any) => {
-          return `<span style='color:#1890ff;cursor:pointer;'>${row.taskName}</span>`
-        }
-      },
-      {
-        name: '嵌套测试',
-        align: 'center',
-        columns: [
-          {
-            name: '任务名称',
-            value: 'taskName',
-            // fixed: 'left',
-            align: 'center',
-            sortable: true
-          },
-          {
-            name: '图标',
-            value: 'appBase',
-            align: 'left',
-            width: 50,
-            image: true,
-            style: 'width:16px; height: 16px'
-            // formatter: function(row: any, index: any) {
-            //   return `data:image/png;base64,${row.appBase}`
-            // }
-          }
-        ]
-      },
       { name: '创建时间', value: 'createTime', align: 'center', minWidth: '100', sortable: true },
-      { name: '更新时间', value: 'updateTime', align: 'center', sortable: true },
-      {
-        name: '图片截图',
-        value: 'imageList',
-        align: 'center',
-        minWidth: '300',
-        imageList: true,
-        imageConfig: {
-          lazy: true,
-          style: 'width: 50px; height: 50px;',
-          basePath: 'http://124.126.19.246:9004/v1/resource/image/'
-        }
-      },
+      { name: '更新时间', value: 'updateTime', align: 'center' },
       // {
       //   name: '权限测试',
       //   value: 'permissionList',
@@ -550,24 +439,23 @@ export default class Default extends Vue {
   }
 
   // cell 划过
-  handlerCellMouseEnter(obj) {
-    console.log(obj.taskName)
-  }
+  // handlerCellMouseEnter(obj) {
+  //   console.log(obj.taskName)
+  // }
 
-  handlerCellMouseLeave(obj) {
-    console.log(obj.taskName)
-  }
+  // handlerCellMouseLeave(obj) {
+  //   console.log(obj.taskName)
+  // }
 
   getTableList() {
     axios.get('/api/tablelist').then(resp => {
       const { data, totals } = resp.data
       const list = data.list as Array<object>
-      console.log(list)
+      console.log('api loadData', list)
       this.tableOpt.data = list
       this.tableOpt.pageOpt.total = totals
 
       const VTableInstall: any = this.$refs.table
-
       this.$nextTick(() => {
         VTableInstall.toggleRowSelection(list[0], true)
       })

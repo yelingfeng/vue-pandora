@@ -9,11 +9,12 @@
               <span>Demo</span>
             </template>
             <el-menu-item-group>
-              <template slot="title"></template>
+              <template slot="title">基础例子</template>
               <el-menu-item index="/default">default</el-menu-item>
               <el-menu-item index="/demo">demo</el-menu-item>
               <el-menu-item index="/tableDemo">tableDemo</el-menu-item>
               <el-menu-item index="/tooltipDemo">tooltipDemo</el-menu-item>
+              <el-menu-item index="/multiSort">multiSort</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="表单验证">
               <el-menu-item index="/form">form</el-menu-item>
