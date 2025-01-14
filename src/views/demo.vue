@@ -783,6 +783,7 @@ export default class Demo extends Vue {
           },
           {
             label: '删除',
+            type: 'text',
             tooltip: false,
             handlerClick: this.deleteEvent
           },

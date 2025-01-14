@@ -728,6 +728,19 @@ export default class VTable extends Vue {
             ></el-radio>
           </el-tooltip>
         )
+      } else if (OperateType.TEXT == type) {
+        operateDom = (
+          <el-tooltip {...tooltipProp}>
+            <el-button
+              key={index}
+              type="text"
+              disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
+              on-click={() => operate.handlerClick(props.row, props.$index)}
+            >
+              {label}
+            </el-button>
+          </el-tooltip>
+        )
       }
       // 增加操作列回调 如果false 不显示
       if (

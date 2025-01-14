@@ -6,5 +6,6 @@ export const enum SortModeType {
 export const enum OperateType {
   BUTTON = 'button',
   ICON = 'icon',
-  RADIO = 'radio'
+  RADIO = 'radio',
+  TEXT = 'text'
 }

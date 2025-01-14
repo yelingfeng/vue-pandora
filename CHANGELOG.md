@@ -1,4 +1,30 @@
-## 1.3.3 (2024-11-10)
+## [1.3.4](https://github.com/yelingfeng/vue-pandora/compare/v1.3.1...v1.3.4) (2025-01-14)
+
+### Features
+
+- **lib:** update 1.3.3 ([408c1da](https://github.com/yelingfeng/vue-pandora/commit/408c1da37b3df2342aeca01f32cbf3be370c5959))
+- **table:** add trigger table row event ([59576ad](https://github.com/yelingfeng/vue-pandora/commit/59576adbd21440d3a05e484541553a5c7cfa2980))
+- **tabledemo:** 增加多列表头排序例子 ([245e2e4](https://github.com/yelingfeng/vue-pandora/commit/245e2e483547a0d62139487d347fe1200cb95048))
+
+## [1.3.1](https://github.com/yelingfeng/vue-pandora/compare/v1.3.0...v1.3.1) (2023-09-20)
+
+### Features
+
+- **table:** add cell mouseEnter mouseLevel event ([121a24a](https://github.com/yelingfeng/vue-pandora/commit/121a24ad5212f77d0f1dcdfeaa1acf773c7f10ae))
+
+# [1.3.0](https://github.com/yelingfeng/vue-pandora/compare/v1.2.49...v1.3.0) (2023-06-16)
+
+### Features
+
+- **charts:** add Vcharts base code ([cf2a934](https://github.com/yelingfeng/vue-pandora/commit/cf2a934abcac6ce5d0081bd943b5b8189dab9f90))
+
+## [1.2.49](https://github.com/yelingfeng/vue-pandora/compare/v1.2.48...v1.2.49) (2023-04-14)
+
+### Features
+
+- **table:** add rowClassFunction props ([3cad4a5](https://github.com/yelingfeng/vue-pandora/commit/3cad4a513883bbec7aa229da502e7c4bec7e7b77))
+
+## [1.2.48](https://github.com/yelingfeng/vue-pandora/compare/d77dc34d3a5a02eb8b7fee62c53066a9489d9712...v1.2.48) (2023-03-24)
 
 ### Bug Fixes
 
@@ -61,7 +87,6 @@
 - **api:** api 完善 ([9c81b21](https://github.com/yelingfeng/vue-pandora/commit/9c81b215c9beef3e4c8ae2c4e84545d25b381e4c))
 - **change:** fix form checkbox bug ([3d9da78](https://github.com/yelingfeng/vue-pandora/commit/3d9da78fd954b4f25b8a442282d6efbca581d6fc))
 - **change:** update table ([fcbd1db](https://github.com/yelingfeng/vue-pandora/commit/fcbd1dbaadb014b3d096898068ef0c1891efdf17))
-- **charts:** add Vcharts base code ([cf2a934](https://github.com/yelingfeng/vue-pandora/commit/cf2a934abcac6ce5d0081bd943b5b8189dab9f90))
 - **date:** add dateweek valueformat props ([16cde0b](https://github.com/yelingfeng/vue-pandora/commit/16cde0bb45fd702231356b4c31e50d3f1678de5f))
 - **daterange:** add props ([ac56933](https://github.com/yelingfeng/vue-pandora/commit/ac569334ad95e631f3b0c446af774beb40c17cf1))
 - **form(date):** datetype week model ([3017130](https://github.com/yelingfeng/vue-pandora/commit/301713074ee8eb1cb8ee04d426fc40b304d365b3))
@@ -82,13 +107,9 @@
 - **mapv:** mapv ([fb7b8bb](https://github.com/yelingfeng/vue-pandora/commit/fb7b8bb2a8bf1b098b66412acbab54a7cdefb01b))
 - **sortorder/tooltip:** change sortorder bug ,add tooltip ([89f246a](https://github.com/yelingfeng/vue-pandora/commit/89f246a3a9a217a5b6e41629b46eb2e464f6b09c))
 - **summary:** add table symmary setting ([f647ade](https://github.com/yelingfeng/vue-pandora/commit/f647ade74540e8065ed94397f6954fd5a770b0d3))
-- **table:** add cell mouseEnter mouseLevel event ([121a24a](https://github.com/yelingfeng/vue-pandora/commit/121a24ad5212f77d0f1dcdfeaa1acf773c7f10ae))
 - **table:** add loading prop ([05b786f](https://github.com/yelingfeng/vue-pandora/commit/05b786ff85bac64f248d7be61cd993419b3b5305))
-- **table:** add rowClassFunction props ([3cad4a5](https://github.com/yelingfeng/vue-pandora/commit/3cad4a513883bbec7aa229da502e7c4bec7e7b77))
 - **table:** add table custom-column links ([f48eedb](https://github.com/yelingfeng/vue-pandora/commit/f48eedb2928d6cf626eee1079226e67493a553a9))
 - **table:** add toggleRowSelection method ([6889f1a](https://github.com/yelingfeng/vue-pandora/commit/6889f1ae499a66bbd01b28d684dde205268d72af))
-- **table:** add trigger table row event ([59576ad](https://github.com/yelingfeng/vue-pandora/commit/59576adbd21440d3a05e484541553a5c7cfa2980))
-- **tabledemo:** 增加多列表头排序例子 ([245e2e4](https://github.com/yelingfeng/vue-pandora/commit/245e2e483547a0d62139487d347fe1200cb95048))
 - **table:** fix imagesList lazy ([e4940f6](https://github.com/yelingfeng/vue-pandora/commit/e4940f6ca954722a296a96fb90ab03b435935884))
 - **table:** fix last code ([b727fc0](https://github.com/yelingfeng/vue-pandora/commit/b727fc0034e5a14b1137b6892ca99254d6273fbb))
 - **table:** new column props type ([70d666a](https://github.com/yelingfeng/vue-pandora/commit/70d666a0515b33c968d0be53276bdf15c7d46c67))
