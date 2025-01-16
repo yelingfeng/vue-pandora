@@ -1,3 +1,9 @@
+# [1.4.0](https://github.com/yelingfeng/vue-pandora/compare/v1.3.4...v1.4.0) (2025-01-16)
+
+### Features
+
+- **all:** v1.4 更新 ([affe80f](https://github.com/yelingfeng/vue-pandora/commit/affe80f46547219486b15ab86e5dc2509f8c3ce8))
+
 ## [1.3.4](https://github.com/yelingfeng/vue-pandora/compare/v1.3.1...v1.3.4) (2025-01-14)
 
 ### Features
