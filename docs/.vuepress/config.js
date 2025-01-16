@@ -25,8 +25,12 @@ module.exports = {
       //   link: '/usage/'
       // },
       {
-        text: 'API',
+        text: 'API文档',
         link: '/api/'
+      },
+      {
+        text: '案例',
+        link: '/components/'
       },
       {
         text: 'github',
@@ -39,18 +43,124 @@ module.exports = {
         {
           title: '表格',
           collapsable: false,
-          children: ['table/tableBase', 'table/tableColumn', 'table/tablePager']
+          children: ['table/tableColumn', 'table/tablePager']
         },
         {
           title: '表单',
           collapsable: false,
           // path: 'form/form',
-          children: ['form/formBase', 'form/formItem', 'form/formItemComp', 'form/form']
+          children: ['form/api']
         },
         {
-          title: 'GIS地图',
+          title: '高级查询',
+          path: 'queryCondition/api'
+        },
+        {
+          title: '高级组合',
+          path: 'adaptivePage/api'
+        },
+        {
+          title: '详情组件',
+          path: 'detail/api'
+        },
+        {
+          title: '弹框组件',
+          path: 'dialog/api'
+        },
+        {
+          title: '下拉组件',
+          path: 'select/api'
+        },
+        {
+          title: '下拉表格',
+          path: 'select/api'
+        },
+        {
+          title: '下拉Tree',
+          path: 'treeSelect/api'
+        }
+      ],
+      '/components/': [
+        {
+          title: '表格',
+          collapsable: true,
+          path: 'table/tableBase'
+        },
+        {
+          title: '表单',
+          path: 'form/formBase'
+        },
+        {
+          title: '高级查询',
           collapsable: false,
-          children: ['gis/gis01', 'gis/gis02']
+          children: [
+            'queryCondition/base',
+            'queryCondition/btnCheckBind',
+            'queryCondition/defaultVal',
+            'queryCondition/footer',
+            'queryCondition/footerBtn',
+            'queryCondition/handleEventChange',
+            'queryCondition/isDropDownSelectMore',
+            'queryCondition/labelRender',
+            'queryCondition/linkage',
+            'queryCondition/maxVisibleSpans',
+            'queryCondition/slot',
+            'queryCondition/TDatePickerUse',
+            'queryCondition/widthSize'
+          ]
+        },
+        {
+          title: '高级组合',
+          collapsable: false,
+          children: [
+            'adaptivePage/base',
+            'adaptivePage/contentSlot',
+            'adaptivePage/lefttree',
+            'adaptivePage/selection',
+            'adaptivePage/virtual'
+          ]
+        },
+        {
+          title: '详情组件',
+          path: 'detail/base'
+        },
+        {
+          title: '弹框组件',
+          path: 'dialog/base'
+        },
+        {
+          title: '下拉框',
+          path: 'select/base'
+        },
+        {
+          title: '下拉树',
+          path: 'treeSelect/base'
+        },
+        {
+          title: '下拉表格',
+          collapsable: false,
+          children: [
+            'selectTable/defaultSelectValLabel',
+            'selectTable/formDemo',
+            'selectTable/isKeyup',
+            'selectTable/isRadioDisabled',
+            'selectTable/isShowFirstColumn',
+            'selectTable/isShowQuery',
+            'selectTable/isShowQuerySpan',
+            'selectTable/multiple',
+            'selectTable/multipleDefaultSelectVal',
+            'selectTable/multipleDynamicDefaultSelectVal',
+            'selectTable/multiplevirtual',
+            'selectTable/radio',
+            'selectTable/radioDefaultSelectVal',
+            'selectTable/radioDynamicDefaultSelectVal',
+            'selectTable/radioPagination',
+            'selectTable/radiovirtual',
+            'selectTable/rowClickRadio',
+            'selectTable/selectable',
+            'selectTable/showPagination',
+            'selectTable/slotUse'
+          ]
         }
       ]
     },

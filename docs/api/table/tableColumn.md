@@ -1,4 +1,4 @@
-# Column
+# VTable Column
 
 `column`列配置 字段使用说明
 
@@ -159,7 +159,7 @@ operations: [
 
 - 类型：`string`
 - 默认值：`button`
-- 可选值：`button / icon / radio`
+- 可选值：`button / icon / radio / text`
 
 按钮类型
 

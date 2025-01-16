@@ -19,6 +19,9 @@
             <el-menu-item-group title="表单验证">
               <el-menu-item index="/form">form</el-menu-item>
             </el-menu-item-group>
+            <el-menu-item-group title="高级查询">
+              <el-menu-item index="/queryCondition">queryCondition</el-menu-item>
+            </el-menu-item-group>
             <el-menu-item-group title="formList测试">
               <el-menu-item index="/formlist">formlist</el-menu-item>
               <el-menu-item index="/hooks">hooksDemo</el-menu-item>

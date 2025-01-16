@@ -36,6 +36,10 @@ const constantRouterMap = [
   {
     path: '/multiSort',
     component: () => import('@/views/multiSort.vue')
+  },
+  {
+    path: '/queryCondition',
+    component: () => import('@/views/queryCondition.vue')
   }
   // {
   //   path: '/treeDemo',

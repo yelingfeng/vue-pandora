@@ -16,6 +16,7 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    'prettier/prettier': 'off',
     'generator-star-spacing': 'off',
     'no-unused-vars': 'off',
     'no-console': 'off',

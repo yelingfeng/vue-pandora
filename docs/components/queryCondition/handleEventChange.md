@@ -1,0 +1,17 @@
+# 调用 handleEvent 动态修改查询条件值<el-tag>v1.4.13</el-tag>
+
+---
+
+<common-code-format>
+  <docsComponents-VQueryCondition-handleEventChange slot="source"></docsComponents-VQueryCondition-handleEventChange>
+
+最终方法调用`this.$refs.queryCondition.change('W1', 'workshopNum')`。<br/>
+
+解析：<br/>
+
+`queryCondition`条件查询的`ref`；`change('W1', 'workshopNum')`方法，<br/>
+
+参数：`W1`为修改后的值，`workshopNum`为对应查询条件项的`字段名`。
+
+<<< @/docs/.vuepress/components/docsComponents/VQueryCondition/handleEventChange.vue
+</common-code-format>

@@ -1,14 +1,15 @@
 /**
  * 扩展 VuePress 应用
  */
-import Vue from 'vue'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-dark.css' //样式文件
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import '../../mock/index.ts'
-import VuePandora from '../../lib/vuepandora.umd'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-dark.css' //样式文件
+import Vue from 'vue'
 import '../../lib/vuepandora.css'
+import VuePandora from '../../lib/vuepandora.umd'
+import '../../mock/index.ts'
+// import '../../packages/index.js'
 // import VueCompositionAPI from '@vue/composition-api'
 import './index.less'
 // 注册指令
