@@ -1,3 +1,5 @@
+## [1.4.1](https://github.com/yelingfeng/vue-pandora/compare/v1.4.0...v1.4.1) (2025-11-22)
+
 # [1.4.0](https://github.com/yelingfeng/vue-pandora/compare/v1.3.4...v1.4.0) (2025-01-16)
 
 ### Features
@@ -70,8 +72,11 @@
 ### Features
 
 - **1.2.31:** add gismap ([62998bc](https://github.com/yelingfeng/vue-pandora/commit/62998bcdabe754ee978de1998537851d9d56698e))
+- **样式移动:** 样式移动 ([fae4c34](https://github.com/yelingfeng/vue-pandora/commit/fae4c34f1a67a6d99ffdbd72fef74c6fd7454609))
 - **add form prop:** isShow Prop ([63acf02](https://github.com/yelingfeng/vue-pandora/commit/63acf02d42474985711fd0517447ced7c9f163cd))
 - **add storybook:** add demo sb ([76e82e6](https://github.com/yelingfeng/vue-pandora/commit/76e82e6b19a624ee29e798448b8058c6a06a668f))
+- **add:** 新增 表格列 html 渲染 ([6e7a61e](https://github.com/yelingfeng/vue-pandora/commit/6e7a61e28fb60e5c75b8b69cba2e786d37c2f911))
+- **add:** 新增 table combo 属性 ([41c6ea7](https://github.com/yelingfeng/vue-pandora/commit/41c6ea7fed7616bf954733d58c9aa055fd9108b2))
 - **add:** add docs ([aa49309](https://github.com/yelingfeng/vue-pandora/commit/aa4930921c9f2954e0103537eec80861ada8c4e2))
 - **add:** add form test maxlength ([a78d76f](https://github.com/yelingfeng/vue-pandora/commit/a78d76fa778acf1f75758002a79e9d4d39f72c78))
 - **add:** add jest and travis ([746e47e](https://github.com/yelingfeng/vue-pandora/commit/746e47e120417dd0228a20698e3281dc8b979d89))
@@ -88,8 +93,6 @@
 - **add:** table custom iconList col ([adc8a84](https://github.com/yelingfeng/vue-pandora/commit/adc8a8486cee17fa2950ebb314a03471c6a1ae8c))
 - **add:** table image column ([992a31d](https://github.com/yelingfeng/vue-pandora/commit/992a31d9f068036f97d130ffabecee9c9eeecf6b))
 - **add:** text comp add input event ([9c28ca4](https://github.com/yelingfeng/vue-pandora/commit/9c28ca45e6db44be7b0f6c6e7f98472f517267dc))
-- **add:** 新增 table combo 属性 ([41c6ea7](https://github.com/yelingfeng/vue-pandora/commit/41c6ea7fed7616bf954733d58c9aa055fd9108b2))
-- **add:** 新增 表格列 html 渲染 ([6e7a61e](https://github.com/yelingfeng/vue-pandora/commit/6e7a61e28fb60e5c75b8b69cba2e786d37c2f911))
 - **api:** api 完善 ([9c81b21](https://github.com/yelingfeng/vue-pandora/commit/9c81b215c9beef3e4c8ae2c4e84545d25b381e4c))
 - **change:** fix form checkbox bug ([3d9da78](https://github.com/yelingfeng/vue-pandora/commit/3d9da78fd954b4f25b8a442282d6efbca581d6fc))
 - **change:** update table ([fcbd1db](https://github.com/yelingfeng/vue-pandora/commit/fcbd1dbaadb014b3d096898068ef0c1891efdf17))
@@ -113,6 +116,7 @@
 - **mapv:** mapv ([fb7b8bb](https://github.com/yelingfeng/vue-pandora/commit/fb7b8bb2a8bf1b098b66412acbab54a7cdefb01b))
 - **sortorder/tooltip:** change sortorder bug ,add tooltip ([89f246a](https://github.com/yelingfeng/vue-pandora/commit/89f246a3a9a217a5b6e41629b46eb2e464f6b09c))
 - **summary:** add table symmary setting ([f647ade](https://github.com/yelingfeng/vue-pandora/commit/f647ade74540e8065ed94397f6954fd5a770b0d3))
+- **table:** 新增 高级 tooltip 扩展 支持动态 link ([ae80169](https://github.com/yelingfeng/vue-pandora/commit/ae80169f806890cc1a0c97bcac77383711a5928e))
 - **table:** add loading prop ([05b786f](https://github.com/yelingfeng/vue-pandora/commit/05b786ff85bac64f248d7be61cd993419b3b5305))
 - **table:** add table custom-column links ([f48eedb](https://github.com/yelingfeng/vue-pandora/commit/f48eedb2928d6cf626eee1079226e67493a553a9))
 - **table:** add toggleRowSelection method ([6889f1a](https://github.com/yelingfeng/vue-pandora/commit/6889f1ae499a66bbd01b28d684dde205268d72af))
@@ -122,7 +126,6 @@
 - **table:** new imageList column ([2dfd7b4](https://github.com/yelingfeng/vue-pandora/commit/2dfd7b449a8c0726614951425ddbbbacbaa07282))
 - **table:** update adsTooltip ([6adef83](https://github.com/yelingfeng/vue-pandora/commit/6adef83fcb9d5bb539900ed93ba694d94c254b1d))
 - **table:** update table operate button column ([1af1138](https://github.com/yelingfeng/vue-pandora/commit/1af1138c65cf9b18c5d33b7965c1013ec35dbc13))
-- **table:** 新增 高级 tooltip 扩展 支持动态 link ([ae80169](https://github.com/yelingfeng/vue-pandora/commit/ae80169f806890cc1a0c97bcac77383711a5928e))
 - **update table:** restructure table sortOrder ([2df289f](https://github.com/yelingfeng/vue-pandora/commit/2df289f4c9c991f3ffefe000c007c963ce24fc9b))
 - **update types:** add vform\vtable.d.ts interface/type ([ff7e1ec](https://github.com/yelingfeng/vue-pandora/commit/ff7e1ec076efee327eadd490cfd6b9860324fba9))
 - **update v.1.0.16:** fix table column tooltip ([9dfdf52](https://github.com/yelingfeng/vue-pandora/commit/9dfdf520200a036857867ea263c56e15b8c7f0ad))
@@ -150,15 +153,14 @@
 - **update:** select focus event ([c301d64](https://github.com/yelingfeng/vue-pandora/commit/c301d640c2a43f418810fd9b0f8826acd4d77936))
 - **update:** update ([1cbe3d8](https://github.com/yelingfeng/vue-pandora/commit/1cbe3d8fe7454697b7715d42caa642e9118299c1))
 - **update:** update 1.1.3 ([7d87157](https://github.com/yelingfeng/vue-pandora/commit/7d87157de40a99493134b11101db126c27124e1b))
+- **update:** update 表格 combo 的容器类样式 ([1567f80](https://github.com/yelingfeng/vue-pandora/commit/1567f80ec35840a335917a959ad11dca853acb3e))
 - **update:** update form ([28a6d78](https://github.com/yelingfeng/vue-pandora/commit/28a6d78a59909c384e8e9200d82e1c3b6843ee43))
 - **update:** update formlist ([9a4e259](https://github.com/yelingfeng/vue-pandora/commit/9a4e259647087a604a2831a94696aa191623250f))
 - **update:** update path bug ([0b62931](https://github.com/yelingfeng/vue-pandora/commit/0b62931241429c0815420064b02d33e15d669588))
 - **update:** update table operate ([a8353f6](https://github.com/yelingfeng/vue-pandora/commit/a8353f6a361500112c19986b0792a00acc8a0149))
 - **update:** update types ([044170a](https://github.com/yelingfeng/vue-pandora/commit/044170a5f4fc999a791c4508f8ac3a7b04ace638))
 - **update:** update v1.0.4 ([f5646ef](https://github.com/yelingfeng/vue-pandora/commit/f5646ef1fb56cf200dc7f744a9963b83d85572d7))
-- **update:** update 表格 combo 的容器类样式 ([1567f80](https://github.com/yelingfeng/vue-pandora/commit/1567f80ec35840a335917a959ad11dca853acb3e))
 - **update:** version ([cbd844d](https://github.com/yelingfeng/vue-pandora/commit/cbd844d25563482cd010d90da1f1c91d65ec8ecd))
-- **样式移动:** 样式移动 ([fae4c34](https://github.com/yelingfeng/vue-pandora/commit/fae4c34f1a67a6d99ffdbd72fef74c6fd7454609))
 
 ### Tests
 

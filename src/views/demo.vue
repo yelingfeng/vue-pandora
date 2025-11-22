@@ -9,9 +9,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Ref } from 'vue-property-decorator'
+import { Component, Ref, Vue } from 'vue-property-decorator'
 import VForm from '../../packages/Form/index.vue'
-import axios from 'axios'
 @Component({})
 export default class Demo extends Vue {
   private vaildStatus = true
@@ -694,36 +693,36 @@ export default class Demo extends Vue {
           }
         }
       }
-    ],
-    btns: [
-      {
-        comOpt: {
-          id: 'iconTest',
-          type: 'icon',
-          title: 'this is icon test',
-          className: 'el-icon-edit',
-          click: this.iconClickAction
-        }
-      },
-      {
-        comOpt: {
-          id: 'query',
-          value: '查询',
-          width: 210,
-          disabled: false,
-          click: this.querySearchAction.bind(this)
-        }
-      },
-      {
-        comOpt: {
-          id: 'add',
-          value: '新建',
-          width: 210,
-          disabled: false,
-          click: this.addSearchAction
-        }
-      }
     ]
+    // btns: [
+    //   {
+    //     comOpt: {
+    //       id: 'iconTest',
+    //       type: 'icon',
+    //       title: 'this is icon test',
+    //       className: 'el-icon-edit',
+    //       click: this.iconClickAction
+    //     }
+    //   },
+    //   {
+    //     comOpt: {
+    //       id: 'query',
+    //       value: '查询',
+    //       width: 210,
+    //       disabled: false,
+    //       click: this.querySearchAction.bind(this)
+    //     }
+    //   },
+    //   {
+    //     comOpt: {
+    //       id: 'add',
+    //       value: '新建',
+    //       width: 210,
+    //       disabled: false,
+    //       click: this.addSearchAction
+    //     }
+    //   }
+    // ]
   }
   private tableOpt: any = {
     stripe: true,

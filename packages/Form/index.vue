@@ -1,18 +1,18 @@
 <script lang="tsx">
-import textComp from './text.vue'
-import dateComp from './date.vue'
-import selectComp from './select.vue'
-import radioComp from './radio.vue'
-import checkBoxComp from './checkbox.vue'
-import buttonComp from './button.vue'
+import { isArray, isFunction, merge } from '@/utils/common'
+import { Component, Prop, Ref, Vue } from 'vue-property-decorator'
 import autocompleteComp from './autoComplete.vue'
-import textGroupComp from './textGroup.vue'
-import formListComp from './formList.vue'
-import singleGroupComp from './singleGroup/index.vue'
-import uploadComp from './upload.vue'
+import buttonComp from './button.vue'
 import cascadeComp from './cascade.vue'
-import { Component, Vue, Prop, Ref } from 'vue-property-decorator'
-import { isFunction, isArray, merge } from '@/utils/common'
+import checkBoxComp from './checkbox.vue'
+import dateComp from './date.vue'
+import formListComp from './formList.vue'
+import radioComp from './radio.vue'
+import selectComp from './select.vue'
+import singleGroupComp from './singleGroup/index.vue'
+import textComp from './text.vue'
+import textGroupComp from './textGroup.vue'
+import uploadComp from './upload.vue'
 // import { ElForm, ValidateCallback } from 'element-ui/types/form'
 
 @Component({
@@ -324,8 +324,7 @@ export default class VForm extends Vue {
         'label-width': this.labelWidth
       }
     }
-
-    if (this.formOpt.inline) {
+    if (this.formOpt.inline && elBtns) {
       elItems.push(<el-form-item>{elBtns}</el-form-item>)
     }
     const vDom =
