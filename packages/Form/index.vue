@@ -43,6 +43,7 @@ export default class VForm extends Vue {
 
   private labelPosition = ''
   private labelWidth = ''
+  private size = 'medium'
 
   private formVaildModel = Object.create(null)
 
@@ -55,6 +56,7 @@ export default class VForm extends Vue {
     if (this.option.labelWidth) {
       this.labelWidth = this.option.labelWidth + 'px'
     }
+    this.size = this.option.size || 'medium'
   }
 
   /**
@@ -321,7 +323,8 @@ export default class VForm extends Vue {
       props: {
         inline: this.formOpt.inline,
         'label-position': this.labelPosition,
-        'label-width': this.labelWidth
+        'label-width': this.labelWidth,
+        size: this.size
       }
     }
     if (this.formOpt.inline && elBtns) {

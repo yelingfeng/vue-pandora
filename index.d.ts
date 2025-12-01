@@ -192,6 +192,7 @@ declare namespace Form {
     // 表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto
     labelWidth?: string
     btnPos?: string
+    size?: string
     // FormItem
     items: Array<IFormItemOpt>
     // BtnItem

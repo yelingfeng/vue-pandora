@@ -394,6 +394,7 @@ export default class Demo extends Vue {
     inline: true,
     labelPosition: 'right',
     labelWidth: '100',
+    size: 'mini',
     btnPos: 'right',
     items: [
       {
@@ -778,12 +779,16 @@ export default class Demo extends Vue {
           {
             label: '修改',
             tooltip: false,
-            handlerClick: this.handleEdit
+            handlerClick: this.handleEdit,
+            className: function(rows, index) {
+              return rows.orderNum === 7 ? 'fontSizeRed' : ''
+            }
           },
           {
             label: '删除',
             type: 'text',
             tooltip: false,
+            className: 'fontSizeRed',
             handlerClick: this.deleteEvent
           },
           {
@@ -936,4 +941,8 @@ export default class Demo extends Vue {
 }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+.fontSizeRed {
+  color: red;
+}
+</style>

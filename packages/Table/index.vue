@@ -1,9 +1,9 @@
 <script lang="tsx">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { isFunction, hasClass, removeClass, addClass, trim, merge } from '@/utils/common'
-import { SortModeType, OperateType } from '@/utils/enum'
-import pagination from './pagination.vue'
+import { addClass, isFunction, removeClass, trim } from '@/utils/common'
+import { OperateType, SortModeType } from '@/utils/enum'
 import { isArray } from 'lodash'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import pagination from './pagination.vue'
 const ASC = 'ascending'
 const DESC = 'descending'
 // 分页高度
@@ -710,7 +710,13 @@ export default class VTable extends Vue {
           <el-tooltip {...tooltipProp}>
             <el-button
               key={index}
-              class="vpandora-table-operateButton"
+              class={
+                isFunction(operate.className)
+                  ? operate.className(props.row, props.$index)
+                  : typeof operate.className === 'string'
+                  ? operate.className
+                  : 'vpandora-table-operateButton'
+              }
               disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
               on-click={() => operate.handlerClick(props.row, props.$index)}
             >
@@ -734,6 +740,13 @@ export default class VTable extends Vue {
             <el-button
               key={index}
               type="text"
+              class={
+                isFunction(operate.className)
+                  ? operate.className(props.row, props.$index)
+                  : typeof operate.className === 'string'
+                  ? operate.className
+                  : ''
+              }
               disabled={operate.disCallBack && operate.disCallBack(props.row, props.$index)}
               on-click={() => operate.handlerClick(props.row, props.$index)}
             >
