@@ -1,3 +1,13 @@
+## [1.4.2](https://github.com/yelingfeng/vue-pandora/compare/v1.4.1...v1.4.2) (2025-12-01)
+
+### Bug Fixes
+
+- **fix form bug:** 修改表单 bug ([bb9f1a0](https://github.com/yelingfeng/vue-pandora/commit/bb9f1a065e6f7cac16d091b2420287585b899de4))
+
+### Features
+
+- **Form:** 添加表单 size 属性支持 ([39b5b02](https://github.com/yelingfeng/vue-pandora/commit/39b5b020cc85dc02c604823e3eda704a265416af))
+
 ## [1.4.1](https://github.com/yelingfeng/vue-pandora/compare/v1.4.0...v1.4.1) (2025-11-22)
 
 # [1.4.0](https://github.com/yelingfeng/vue-pandora/compare/v1.3.4...v1.4.0) (2025-01-16)
