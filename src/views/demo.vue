@@ -582,7 +582,28 @@ export default class Demo extends Vue {
             console.log(v)
           },
           dateOption: {
-            valueFormat: 'YYYYMMDD'
+            format: 'yyyyMM',
+            valueFormat: 'yyyyMM'
+          }
+        }
+      },
+      {
+        label: '测试月度范围',
+        type: 'date',
+        comOpt: {
+          id: 'monthrange',
+          type: 'monthrange',
+          width: '250',
+          value: '',
+          change(v: any) {
+            console.log(v)
+          },
+          dateOption: {
+            startplaceholder: '开始月',
+            endplaceholder: '结束月',
+            pickOptions: {},
+            format: 'yyyy/MM',
+            valueFormat: 'yyyy/MM'
           }
         }
       },

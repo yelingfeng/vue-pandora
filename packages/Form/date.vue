@@ -141,13 +141,33 @@
       :picker-options="dateOption.pickOptions"
       :style="widthStyle"
     ></el-date-picker>
+    <el-date-picker
+      :format="formatDate"
+      :disabled="option.disabled"
+      :clearable="clearable"
+      :editable="false"
+      :value-format="valueFormat"
+      v-if="type == 'monthrange'"
+      v-model="curValue"
+      type="monthrange"
+      :placeholder="placeholder"
+      :align="align"
+      :range-separator="dateOption.rangeSeparator"
+      :default-time="dateOption.defaultTime"
+      :start-placeholder="dateOption.startplaceholder"
+      :end-placeholder="dateOption.endplaceholder"
+      :picker-options="dateOption.pickOptions"
+      @change="changeHandler"
+      :append-to-body="appendToBody"
+      :style="widthStyle"
+    ></el-date-picker>
   </div>
 </template>
 
 <script lang="ts">
+import { isFunction } from '@/utils/common'
 import dayjs from 'dayjs'
-import { isArray, isFunction } from '@/utils/common'
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component({
   components: {}
@@ -228,11 +248,24 @@ export default class VDate extends Vue {
    * 设置周的显示格式化值
    */
   setWeekPickValue() {
-    let startTime = dayjs(this.curValue as string).subtract(1, 'day')
-    let endTime = dayjs(startTime).add(6, 'day')
+    const startTime = dayjs(this.curValue as string).subtract(1, 'day')
+    const endTime = dayjs(startTime).add(6, 'day')
     this.start = this.splitDate(startTime)
     this.end = this.splitDate(endTime)
   }
+
+  // /**
+  //  * 设置月度范围的显示格式化值
+  //  */
+  // setMonthRangePickValue() {
+  //   if (this.curValue !== '' && this.curValue !== null && this.curValue !== undefined) {
+  //     const startTime = dayjs(this.curValue as string).subtract(1, 'month')
+  //     const endTime = dayjs(startTime).add(1, 'month')
+  //     this.start = this.splitMonth(startTime)
+  //     this.end = this.splitMonth(endTime)
+  //   }
+  // }
+
   /**
    * @name: setValue
    * @param {val}
@@ -268,6 +301,10 @@ export default class VDate extends Vue {
 
   splitDate(date) {
     return dayjs(date).format(this.dateOption?.valueFormat || 'YYYYMMDD')
+  }
+
+  splitMonth(date) {
+    return dayjs(date).format(this.dateOption?.valueFormat || 'YYYYMM')
   }
   /**
    * @name: getValue
@@ -336,6 +373,9 @@ export default class VDate extends Vue {
         break
       case 'month':
         format = 'M'
+        break
+      case 'monthrange':
+        format = 'YYYY-MM'
         break
       case 'week':
         format = 'WW'
