@@ -1,3 +1,9 @@
+## [1.4.3](https://github.com/yelingfeng/vue-pandora/compare/v1.4.2...v1.4.3) (2025-12-04)
+
+### Features
+
+- **表单:** 添加月度范围选择器功能 ([340a326](https://github.com/yelingfeng/vue-pandora/commit/340a326f13d6005de6240101b1e958c0d0131e62))
+
 ## [1.4.2](https://github.com/yelingfeng/vue-pandora/compare/v1.4.1...v1.4.2) (2025-12-01)
 
 ### Bug Fixes
